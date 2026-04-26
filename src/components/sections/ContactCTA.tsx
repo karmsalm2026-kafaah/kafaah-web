@@ -1,8 +1,68 @@
 "use client";
 
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
+
+const serviceOptions = [
+  "Owner's Engineer",
+  "Commissioning & Startup",
+  "Operation Readiness",
+  "Technical Troubleshooting",
+  "Production Optimization",
+  "Operator Training",
+  "Investor Advisory"
+];
+
+function CustomSelect() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState("");
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <div
+        className={`w-full bg-navy-deep/50 border ${isOpen ? 'border-gold/60 bg-white/[0.03]' : 'border-white/[0.15] hover:border-white/[0.25]'} text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 transition-colors outline-none cursor-pointer flex justify-between items-center`}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <span className={selected ? "text-white" : "text-silver/40"}>
+          {selected || "Select a service…"}
+        </span>
+        <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-silver/40'}`} />
+      </div>
+      
+      <div 
+        className={`absolute z-50 top-full left-0 w-full mt-2 bg-[#0A1424] border border-white/[0.1] shadow-2xl transition-all duration-200 origin-top ${isOpen ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}
+      >
+        <div className="max-h-[240px] overflow-y-auto py-2">
+          {serviceOptions.map((opt) => (
+            <div
+              key={opt}
+              className={`px-4 py-3 text-[14px] font-light cursor-pointer transition-colors ${selected === opt ? 'bg-gold/10 text-gold' : 'text-silver/70 hover:bg-white/[0.06] hover:text-white'}`}
+              onClick={() => {
+                setSelected(opt);
+                setIsOpen(false);
+              }}
+            >
+              {opt}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function ContactCTA() {
   return (
@@ -95,19 +155,7 @@ export function ContactCTA() {
               <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-silver/80 block mb-2">
                 Service of Interest
               </label>
-              <select 
-                className="custom-select w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none cursor-pointer"
-                aria-label="Service of Interest"
-              >
-                <option value="" className="bg-navy text-silver/50">Select a service…</option>
-                <option className="bg-navy text-cloud">Owner&apos;s Engineer</option>
-                <option className="bg-navy text-cloud">Commissioning &amp; Startup</option>
-                <option className="bg-navy text-cloud">Operation Readiness</option>
-                <option className="bg-navy text-cloud">Technical Troubleshooting</option>
-                <option className="bg-navy text-cloud">Production Optimization</option>
-                <option className="bg-navy text-cloud">Operator Training</option>
-                <option className="bg-navy text-cloud">Investor Advisory</option>
-              </select>
+              <CustomSelect />
             </div>
 
             <div className="mb-6">
