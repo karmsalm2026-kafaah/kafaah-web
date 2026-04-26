@@ -17,17 +17,17 @@ export function HeroSection() {
           className="w-full h-full object-fill object-right lg:object-center opacity-100 mix-blend-luminosity"
           />
         </picture>
-        {/* Stronger Authoritative Gradient Overlays - Lightened on mobile */}
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/40 sm:via-navy-deep/80 to-transparent" />
+        {/* Stronger Authoritative Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/80 sm:via-navy-deep/80 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 sm:via-navy-deep/40 via-transparent to-navy-deep" />
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-6 sm:px-8 lg:px-16 pt-36 pb-16">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-6 sm:px-8 lg:px-16 pt-24 pb-8 sm:pt-36 sm:pb-16">
 
         {/* Eyebrow with gold line */}
         <FadeIn>
-          <div className="flex items-center gap-4 mb-10 md:mb-14">
+          <div className="flex items-center gap-4 mb-8 md:mb-14">
             <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
             <span className="font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-gold">
               Independent Specialists · Egypt &amp; Gulf
@@ -37,7 +37,7 @@ export function HeroSection() {
 
         {/* Headline – 3 lines, typographic drama */}
         <FadeIn delay={0.12}>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(44px,7.5vw,110px)] leading-[0.95] tracking-[-0.02em] mb-8 max-w-[850px]">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(44px,7.5vw,110px)] leading-[0.95] tracking-[-0.02em] mb-6 sm:mb-8 max-w-[850px]">
             <span className="text-white">Engineering</span>
             <br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold">
@@ -50,7 +50,7 @@ export function HeroSection() {
 
         {/* Sub copy - Increased brightness for readability */}
         <FadeIn delay={0.24}>
-          <p className="text-base sm:text-lg md:text-[19px] text-silver/90 max-w-[520px] leading-[1.85] mb-12 font-medium">
+          <p className="text-base sm:text-lg md:text-[19px] text-silver/90 max-w-[520px] leading-[1.85] mb-8 sm:mb-12 font-medium">
             Direct expertise in H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP
             — from feasibility studies to full-scale commissioning.
           </p>
@@ -58,10 +58,10 @@ export function HeroSection() {
 
         {/* CTAs */}
         <FadeIn delay={0.36}>
-          <div className="flex flex-col sm:flex-row items-start gap-5">
+          <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
             <Link
               href="/services/owners-engineer/"
-              className="group relative inline-flex items-center justify-center gap-3 font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.2em] uppercase text-navy-deep w-full sm:w-[220px] py-4 bg-gold hover:bg-gold-light transition-all duration-300 overflow-hidden"
+              className="group relative inline-flex items-center justify-center gap-3 font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.2em] uppercase text-navy-deep w-full sm:w-[220px] py-3.5 sm:py-4 bg-gold hover:bg-gold-light transition-all duration-300 overflow-hidden"
             >
               {/* Light sweep on hover */}
               <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-out" />
@@ -71,7 +71,7 @@ export function HeroSection() {
 
             <Link
               href="/experience/"
-              className="group inline-flex items-center justify-center gap-3 font-[family-name:var(--font-ui)] text-[11px] font-semibold tracking-[0.15em] uppercase text-silver/80 w-full sm:w-[220px] py-4 border border-white/30 hover:border-gold hover:text-gold transition-all duration-300 backdrop-blur-sm bg-white/[0.02]"
+              className="group inline-flex items-center justify-center gap-3 font-[family-name:var(--font-ui)] text-[11px] font-semibold tracking-[0.15em] uppercase text-silver/80 w-full sm:w-[220px] py-3.5 sm:py-4 border border-white/30 hover:border-gold hover:text-gold transition-all duration-300 backdrop-blur-sm bg-white/[0.02]"
             >
               <span>Our Track Record</span>
               <FileText className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -84,16 +84,20 @@ export function HeroSection() {
       <FadeIn delay={0.48} y={0}>
         <div className="relative z-10 border-t border-white/[0.12] bg-navy-deep/30 backdrop-blur-sm">
           <div className="container mx-auto px-6 sm:px-8 lg:px-16">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/[0.12]">
+            <div className="grid grid-cols-2 md:grid-cols-4">
               {[
                 { num: "20+", label: "Years of Operation" },
                 { num: "6", label: "Core Technologies" },
                 { num: "7", label: "Service Verticals" },
                 { num: "100%", label: "Independent" },
-              ].map((stat) => (
+              ].map((stat, i) => (
                 <div
                   key={stat.label}
-                  className="py-6 md:py-8 px-4 md:px-8 group cursor-default"
+                  className={`py-5 sm:py-6 md:py-8 px-2 sm:px-4 md:px-8 group cursor-default border-white/[0.12] ${
+                    i === 1 || i === 3 ? "border-l" : ""
+                  } ${i === 2 ? "max-md:border-l-0 md:border-l" : ""} ${
+                    i < 2 ? "border-b md:border-b-0" : ""
+                  }`}
                 >
                   <div className="font-[family-name:var(--font-display)] text-2xl md:text-[32px] text-white mb-1.5 group-hover:text-gold transition-colors duration-300">
                     {stat.num}

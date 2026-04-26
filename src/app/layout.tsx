@@ -50,6 +50,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     siteName: "Kafaah Industrial Solutions",
   },
+  icons: {
+    icon: "/icon.webp",
+  },
 };
 
 export default function RootLayout({
