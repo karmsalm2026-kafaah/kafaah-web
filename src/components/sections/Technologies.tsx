@@ -1,0 +1,74 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { technologies } from "@/data/technologies";
+import { FadeIn } from "@/components/Animations";
+
+export function TechnologiesSection() {
+  return (
+    <section className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+
+      <div className="relative container mx-auto px-6 sm:px-8 lg:px-16">
+        {/* Section Header */}
+        <FadeIn>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
+            <span className="font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-gold">
+              03 — Technologies
+            </span>
+          </div>
+          <h2 className="font-[family-name:var(--font-display)] text-[clamp(32px,4.5vw,56px)] leading-[1.1] text-white mb-16 lg:mb-20">
+            Our domain in <em className="text-gold">inorganic chemistry</em>
+          </h2>
+        </FadeIn>
+
+        {/* Tech Grid */}
+        <FadeIn delay={0.15}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/[0.04]">
+            {technologies.map((tech) => (
+              <Link
+                key={tech.slug}
+                href={`/technologies/${tech.slug}/`}
+                className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-r border-b border-white/[0.04] last:border-r-0 md:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0"
+              >
+                {/* Top accent line */}
+                <div className="absolute top-0 left-0 w-0 h-[2px] bg-gradient-to-r from-gold to-gold-light group-hover:w-full transition-all duration-500 z-10" />
+
+                {/* Visible Formula */}
+                <div className="font-[family-name:var(--font-display)] text-[48px] leading-none text-white/50 mb-4 transition-colors duration-500 group-hover:text-gold/90">
+                  {tech.formula}
+                </div>
+
+                <h3 className="font-[family-name:var(--font-ui)] text-[13px] font-bold tracking-[0.1em] uppercase text-white mb-2 group-hover:text-gold transition-colors duration-300">
+                  {tech.name}
+                </h3>
+
+                <p className="text-[13px] font-light text-silver/50 leading-[1.7] mb-6">
+                  {tech.shortDesc}
+                </p>
+
+                <span className="inline-flex items-center gap-2 font-[family-name:var(--font-ui)] text-[10px] font-semibold tracking-[0.15em] uppercase text-silver/35 group-hover:text-gold transition-colors duration-300">
+                  {tech.completedProject ? (
+                    <>
+                      Completed project
+                      <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                    </>
+                  ) : (
+                    <>
+                      View technology
+                      <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                    </>
+                  )}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
