@@ -22,7 +22,7 @@ function deleteCookie(name: string) {
 }
 
 export type GatewayRole = "owner" | "epc";
-export type GatewayLocale = "en" | "ar";
+export type GatewayLocale = "en" | "ar" | "zh";
 
 export function setGatewayCookies(
   role: GatewayRole,

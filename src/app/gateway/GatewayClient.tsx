@@ -47,9 +47,77 @@ const COUNTRY_GROUPS = [
 /* ═══════════════════════════════════════════
    LOADING MESSAGES
    ═══════════════════════════════════════════ */
+const DICT = {
+  portal: { en: "Gateway Portal", ar: "بوابة الدخول", zh: "门户网站" },
+  title1: { en: "How can we ", ar: "كيف يمكننا ", zh: "我们能为您" },
+  titleHighlight: { en: "help you?", ar: "مساعدتك؟", zh: "提供什么帮助？" },
+  desc: {
+    en: "Independent technical consultants serving both project owners and EPC contractors across chemical and fertilizer plants.",
+    ar: "مستشارون فنيون مستقلون يخدمون المالكين والمقاولين على حد سواء في المنشآت الكيميائية والأسمدة.",
+    zh: "独立的专业技术顾问，服务于化工和化肥工厂的项目业主与EPC承包商。"
+  },
+  years: { en: "20+ Years", ar: "+٢٠ سنة خبرة", zh: "20+ 年经验" },
+  independent: { en: "Independent", ar: "مستقلون", zh: "独立客观" },
+  confidential: { en: "Confidential", ar: "سري", zh: "绝对保密" },
+  
+  ownerTag: { en: "Owner / Investor", ar: "مالك / مستثمر", zh: "业主 / 投资者" },
+  ownerTitle: { en: "Project Owner or Investor", ar: "مالك مشروع أو مستثمر", zh: "项目业主或投资者" },
+  ownerDesc: {
+    en: "You're building or investing in a fertilizer or chemical facility. You need independent technical oversight to protect your capital and decisions.",
+    ar: "تقوم ببناء أو الاستثمار في منشأة أسمدة أو كيميائية. تحتاج إلى رقابة فنية مستقلة لحماية رأس مالك وقراراتك.",
+    zh: "您正在建设或投资化肥及化工设施。您需要独立的技术监督以保护您的资本和决策。"
+  },
+  ownerPills: {
+    en: ["Owner's Engineer", "Due Diligence", "Investment Advisory", "Risk Control"],
+    ar: ["مهندس المالك", "العناية الواجبة", "استشارات استثمارية", "التحكم بالمخاطر"],
+    zh: ["业主工程师", "尽职调查", "投资咨询", "风险控制"]
+  },
+  ownerEnter: { en: "Enter as Owner / Investor →", ar: "← الدخول كمالك / مستثمر", zh: "作为业主/投资者进入 →" },
+
+  epcTag: { en: "EPC/Contractor", ar: "المقاول", zh: "EPC/承包商" },
+  epcTitle: { en: "EPC Contractor or Specialist", ar: "مقاول EPC أو متخصص", zh: "EPC承包商或专家" },
+  epcDesc: {
+    en: "You're executing an industrial project and need expert commissioning, startup, or troubleshooting support for chemical or fertilizer plants.",
+    ar: "تقوم بتنفيذ مشروع صناعي وتحتاج إلى دعم خبراء في التشغيل والصيانة واستكشاف الأخطاء في المنشآت الكيميائية أو الأسمدة.",
+    zh: "您正在执行工业项目，需要针对化工或化肥工厂的专家级调试、启动或故障排除支持。"
+  },
+  epcPills: {
+    en: ["Commissioning", "Troubleshooting", "Startup Support", "Optimization"],
+    ar: ["التشغيل", "استكشاف الأخطاء", "دعم بدء التشغيل", "التحسين"],
+    zh: ["调试启动", "故障排除", "启动支持", "性能优化"]
+  },
+  epcEnter: { en: "Enter as EPC / Contractor →", ar: "← الدخول كمقاول / متخصص", zh: "作为EPC/承包商进入 →" },
+
+  langLabel: { en: "Language", ar: "اللغة", zh: "语言" },
+  langPrefix: { en: "Lang:", ar: "اللغة:", zh: "语言:" },
+  countryLabel: { en: "Country", ar: "البلد", zh: "国家" },
+  regionPrefix: { en: "Region:", ar: "الدولة:", zh: "地区:" },
+  selectCountry: { en: "Select Country", ar: "اختر الدولة", zh: "选择国家" },
+  enter: { en: "Enter", ar: "دخول", zh: "进入" },
+  skip: { en: "Skip for now → Enter site", ar: "تخطي → الدخول للموقع", zh: "跳过 → 进入网站" },
+  enterLabelOwnerDesktop: { en: "Enter as Project Owner", ar: "الدخول كمالك مشروع", zh: "作为项目业主进入" },
+  enterLabelEPCDesktop: { en: "Enter as EPC Contractor", ar: "الدخول كمقاول EPC", zh: "作为EPC承包商进入" },
+  enterLabelOwnerMobile: { en: "Enter as Owner", ar: "دخول كمالك", zh: "作为业主进入" },
+  enterLabelEPCMobile: { en: "Enter as EPC", ar: "دخول كمقاول", zh: "作为EPC进入" },
+  selectRole: { en: "Select a role to enter", ar: "اختر الدور للدخول", zh: "选择一个角色进入" }
+};
+
 const LOADING_MESSAGES = {
   en: ["Authenticating...", "Loading your portal...", "Welcome to Kafaah"],
   ar: ["جاري التحميل...", "إعداد تجربتك...", "أهلاً بك في كفاءة"],
+  zh: ["正在验证...", "正在加载您的门户...", "欢迎来到 Kafaah"],
+};
+
+const getFontClass = (locale: GatewayLocale, type: "display" | "ui" | "body") => {
+  if (locale === "ar") return "font-[family-name:var(--font-arabic)] tracking-normal";
+  if (locale === "zh") return "font-[family-name:var(--font-chinese)] tracking-normal";
+  return `font-[family-name:var(--font-${type})]`;
+};
+
+const getLangName = (locale: GatewayLocale) => {
+  if (locale === "ar") return "العربية";
+  if (locale === "zh") return "中文";
+  return "English";
 };
 
 /* ═══════════════════════════════════════════
@@ -95,6 +163,8 @@ export function GatewayClient() {
           const arabCountries = ["Egypt", "Jordan", "Lebanon", "Iraq", "Saudi Arabia", "UAE", "Kuwait", "Qatar", "Bahrain", "Oman", "Morocco", "Tunisia", "Algeria", "Libya"];
           if (arabCountries.includes(foundCountry)) {
             setSelectedLocale("ar");
+          } else if (["China", "Taiwan", "Hong Kong"].includes(foundCountry)) {
+            setSelectedLocale("zh");
           }
         }
       } catch (err) {
@@ -161,6 +231,19 @@ export function GatewayClient() {
         : selectedLocale === "ar"
           ? "اختر دورك أولاً"
           : "Select your role first";
+
+  const mobileEnterLabel =
+    selectedRole === "owner"
+      ? selectedLocale === "ar"
+        ? "دخول كمالك"
+        : "Enter as Owner"
+      : selectedRole === "epc"
+        ? selectedLocale === "ar"
+          ? "دخول كمقاول"
+          : "Enter as EPC"
+        : selectedLocale === "ar"
+          ? "اختر دورك"
+          : "Select Role";
 
   /* ═══════════════════════════════════════════
      LOADING SCREEN (Handled via overlay in main render)
@@ -263,43 +346,32 @@ export function GatewayClient() {
             <div className="flex items-center justify-center gap-3 mb-5">
               <div className="w-8 h-px bg-gold/50" />
               <span className="font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] font-bold tracking-[0.3em] uppercase text-gold">
-                {selectedLocale === "ar" ? "بوابة الدخول" : "Gateway Portal"}
+                {DICT.portal[selectedLocale]}
               </span>
               <div className="w-8 h-px bg-gold/50" />
             </div>
-            <h1 className={`text-[clamp(28px,5vw,52px)] leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-5 text-white max-w-[850px] mx-auto ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)]" : "font-[family-name:var(--font-display)]"}`}>
-              {selectedLocale === "ar" ? (
-                <>
-                  كيف يمكننا{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold">مساعدتك؟</span>
-                </>
-              ) : (
-                <>
-                  How can we{" "}
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold">help you?</span>
-                </>
-              )}
+            <h1 className={`text-[clamp(28px,5vw,52px)] leading-[1.05] tracking-[-0.02em] mb-3 sm:mb-5 text-white max-w-[850px] mx-auto ${getFontClass(selectedLocale, "display")}`}>
+              {DICT.title1[selectedLocale]}
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold">{DICT.titleHighlight[selectedLocale]}</span>
             </h1>
-            <p className={`text-[14px] sm:text-[15px] md:text-[16px] text-white max-w-[560px] mx-auto leading-[1.6] sm:leading-[1.8] mb-4 sm:mb-5 font-normal ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)]" : ""}`}>
-              {selectedLocale === "ar"
-                ? "مستشارون فنيون مستقلون يخدمون المالكين والمقاولين على حد سواء في المنشآت الكيميائية والأسمدة."
-                : "Independent technical consultants serving both project owners and EPC contractors across chemical and fertilizer plants."}
+            <p className={`text-[14px] sm:text-[15px] md:text-[16px] text-white max-w-[560px] mx-auto leading-[1.6] sm:leading-[1.8] mb-4 sm:mb-5 font-normal ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "body") : ""}`}>
+              {DICT.desc[selectedLocale]}
             </p>
             {/* Trust indicators */}
             <div className="flex items-center justify-center gap-4 sm:gap-6 mb-2">
               <span className="text-[10px] font-[family-name:var(--font-ui)] tracking-[0.1em] uppercase text-silver/100 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#6ECFA3]/40" />
-                {selectedLocale === "ar" ? "+٢٠ سنة خبرة" : "20+ Years"}
+                {DICT.years[selectedLocale]}
               </span>
               <span className="w-px h-3 bg-white/20" />
               <span className="text-[10px] font-[family-name:var(--font-ui)] tracking-[0.1em] uppercase text-silver/100 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold/40" />
-                {selectedLocale === "ar" ? "مستقلون" : "Independent"}
+                {DICT.independent[selectedLocale]}
               </span>
               <span className="w-px h-3 bg-white/20" />
               <span className="text-[10px] font-[family-name:var(--font-ui)] tracking-[0.1em] uppercase text-silver/100 flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#A78BFA]/40" />
-                {selectedLocale === "ar" ? "سري" : "Confidential"}
+                {DICT.confidential[selectedLocale]}
               </span>
             </div>
           </div>
@@ -313,8 +385,8 @@ export function GatewayClient() {
             <button
               onClick={() => setSelectedRole("owner")}
               className={`group relative gw-glass border border-white/5 text-start transition-all duration-500 p-5 sm:p-6 lg:p-8 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 ${selectedRole === "owner"
-                  ? "bg-[#0D1F32]/80 ring-1 ring-[#6ECFA3]/30 gw-glow-owner"
-                  : "hover:bg-[#0C1A2C]/60 hover:border-white/10"
+                ? "bg-[#0D1F32]/80 ring-1 ring-[#6ECFA3]/30 gw-glow-owner"
+                : "hover:bg-[#0C1A2C]/60 hover:border-white/10"
                 }`}
               tabIndex={0}
               aria-pressed={selectedRole === "owner"}
@@ -323,8 +395,8 @@ export function GatewayClient() {
               {/* Gold bottom border on selected/hover */}
               <div
                 className={`absolute bottom-0 inset-x-0 h-[2px] transition-all duration-300 ${selectedRole === "owner"
-                    ? "bg-[#6ECFA3]"
-                    : "bg-transparent group-hover:bg-gold/50"
+                  ? "bg-[#6ECFA3]"
+                  : "bg-transparent group-hover:bg-gold/50"
                   }`}
               />
 
@@ -332,11 +404,11 @@ export function GatewayClient() {
               <div className="flex items-center justify-between mb-4">
                 <span
                   className={`font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.4em] uppercase px-3 py-1 border transition-colors ${selectedRole === "owner"
-                      ? "text-[#6ECFA3] border-[#6ECFA3]/40 bg-[#6ECFA3]/[0.06]"
-                      : "text-muted/70 border-white/10"
+                    ? "text-[#6ECFA3] border-[#6ECFA3]/40 bg-[#6ECFA3]/[0.06]"
+                    : "text-muted/70 border-white/10"
                     }`}
                 >
-                  {selectedLocale === "ar" ? "مالك / مستثمر" : "Owner / Investor"}
+                  {DICT.ownerTag[selectedLocale]}
                 </span>
                 {selectedRole === "owner" && (
                   <div className="w-2 h-2 bg-[#6ECFA3] rounded-full gw-dot-pulse" />
@@ -351,28 +423,21 @@ export function GatewayClient() {
               />
 
               {/* Title */}
-              <h3 className={`text-[16px] sm:text-[18px] font-bold tracking-[0.05em] uppercase text-white mb-3 ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)] tracking-normal" : "font-[family-name:var(--font-ui)]"}`}>
-                {selectedLocale === "ar"
-                  ? "مالك مشروع أو مستثمر"
-                  : "Project Owner or Investor"}
+              <h3 className={`text-[16px] sm:text-[18px] font-bold tracking-[0.05em] uppercase text-white mb-3 ${getFontClass(selectedLocale, "display")}`}>
+                {DICT.ownerTitle[selectedLocale]}
               </h3>
 
               {/* Description */}
-              <p className={`text-[13px] sm:text-[14px] text-white/80 leading-[1.7] mb-5 ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)]" : ""}`}>
-                {selectedLocale === "ar"
-                  ? "تقوم ببناء أو الاستثمار في منشأة أسمدة أو كيميائية. تحتاج إلى رقابة فنية مستقلة لحماية رأس مالك وقراراتك."
-                  : "You're building or investing in a fertilizer or chemical facility. You need independent technical oversight to protect your capital and decisions."}
+              <p className={`text-[13px] sm:text-[14px] text-white/80 leading-[1.7] mb-5 ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "body") : ""}`}>
+                {DICT.ownerDesc[selectedLocale]}
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-5">
-                {(selectedLocale === "ar"
-                  ? ["مهندس المالك", "العناية الواجبة", "استشارات استثمارية", "التحكم بالمخاطر"]
-                  : ["Owner's Engineer", "Due Diligence", "Investment Advisory", "Risk Control"]
-                ).map((tag) => (
+                {DICT.ownerPills[selectedLocale].map((tag) => (
                   <span
                     key={tag}
-                    className={`text-[11px] sm:text-[12px] font-medium tracking-wide uppercase text-silver/80 border border-white/[0.12] px-2.5 py-1.5 transition-colors group-hover:border-white/25 group-hover:text-white ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)] tracking-normal" : "font-[family-name:var(--font-ui)]"}`}
+                    className={`text-[11px] sm:text-[12px] font-medium tracking-wide uppercase text-silver/80 border border-white/[0.12] px-2.5 py-1.5 transition-colors group-hover:border-white/25 group-hover:text-white ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : "font-[family-name:var(--font-ui)]"}`}
                   >
                     {tag}
                   </span>
@@ -382,19 +447,17 @@ export function GatewayClient() {
               {/* CTA */}
               <div
                 className={`flex items-center gap-2 font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.15em] uppercase transition-colors ${selectedRole === "owner"
-                    ? "text-[#6ECFA3]"
-                    : "text-silver/30 group-hover:text-gold"
+                  ? "text-[#6ECFA3]"
+                  : "text-silver/30 group-hover:text-gold"
                   }`}
               >
                 <span>
-                  {selectedLocale === "ar"
-                    ? "← الدخول كمالك / مستثمر"
-                    : "Enter as Owner / Investor →"}
+                  {DICT.ownerEnter[selectedLocale]}
                 </span>
                 <ArrowRight
                   className={`w-3.5 h-3.5 transition-transform duration-300 ${selectedLocale === "ar"
-                      ? "rotate-180 group-hover:-translate-x-1"
-                      : "group-hover:translate-x-1"
+                    ? "rotate-180 group-hover:-translate-x-1"
+                    : "group-hover:translate-x-1"
                     }`}
                 />
               </div>
@@ -404,8 +467,8 @@ export function GatewayClient() {
             <button
               onClick={() => setSelectedRole("epc")}
               className={`group relative gw-glass border border-white/5 text-start transition-all duration-500 p-5 sm:p-6 lg:p-8 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 ${selectedRole === "epc"
-                  ? "bg-[#0D1F32]/80 ring-1 ring-[#A78BFA]/30 gw-glow-epc"
-                  : "hover:bg-[#0C1A2C]/60 hover:border-white/10"
+                ? "bg-[#0D1F32]/80 ring-1 ring-[#A78BFA]/30 gw-glow-epc"
+                : "hover:bg-[#0C1A2C]/60 hover:border-white/10"
                 }`}
               tabIndex={0}
               aria-pressed={selectedRole === "epc"}
@@ -414,8 +477,8 @@ export function GatewayClient() {
               {/* Bottom border */}
               <div
                 className={`absolute bottom-0 inset-x-0 h-[2px] transition-all duration-300 ${selectedRole === "epc"
-                    ? "bg-[#A78BFA]"
-                    : "bg-transparent group-hover:bg-gold/50"
+                  ? "bg-[#A78BFA]"
+                  : "bg-transparent group-hover:bg-gold/50"
                   }`}
               />
 
@@ -423,11 +486,11 @@ export function GatewayClient() {
               <div className="flex items-center justify-between mb-4">
                 <span
                   className={`font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.4em] uppercase px-3 py-1 border transition-colors ${selectedRole === "epc"
-                      ? "text-[#A78BFA] border-[#A78BFA]/40 bg-[#A78BFA]/[0.06]"
-                      : "text-muted/70 border-white/10"
+                    ? "text-[#A78BFA] border-[#A78BFA]/40 bg-[#A78BFA]/[0.06]"
+                    : "text-muted/70 border-white/10"
                     }`}
                 >
-                  {selectedLocale === "ar" ? "المقاول" : "EPC/Contractor"}
+                  {DICT.epcTag[selectedLocale]}
                 </span>
                 {selectedRole === "epc" && (
                   <div className="w-2 h-2 bg-[#A78BFA] rounded-full gw-dot-pulse" />
@@ -442,28 +505,21 @@ export function GatewayClient() {
               />
 
               {/* Title */}
-              <h3 className={`text-[16px] sm:text-[18px] font-bold tracking-[0.05em] uppercase text-white mb-3 ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)] tracking-normal" : "font-[family-name:var(--font-ui)]"}`}>
-                {selectedLocale === "ar"
-                  ? "مقاول EPC أو متخصص"
-                  : "EPC Contractor or Specialist"}
+              <h3 className={`text-[16px] sm:text-[18px] font-bold tracking-[0.05em] uppercase text-white mb-3 ${getFontClass(selectedLocale, "display")}`}>
+                {DICT.epcTitle[selectedLocale]}
               </h3>
 
               {/* Description */}
-              <p className={`text-[13px] sm:text-[14px] text-white/80 leading-[1.7] mb-5 ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)]" : ""}`}>
-                {selectedLocale === "ar"
-                  ? "تقوم بتنفيذ مشروع صناعي وتحتاج إلى دعم خبراء في التشغيل والصيانة واستكشاف الأخطاء في المنشآت الكيميائية أو الأسمدة."
-                  : "You're executing an industrial project and need expert commissioning, startup, or troubleshooting support for chemical or fertilizer plants."}
+              <p className={`text-[13px] sm:text-[14px] text-white/80 leading-[1.7] mb-5 ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "body") : ""}`}>
+                {DICT.epcDesc[selectedLocale]}
               </p>
 
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-5">
-                {(selectedLocale === "ar"
-                  ? ["التشغيل", "استكشاف الأخطاء", "دعم بدء التشغيل", "التحسين"]
-                  : ["Commissioning", "Troubleshooting", "Startup Support", "Optimization"]
-                ).map((tag) => (
+                {DICT.epcPills[selectedLocale].map((tag) => (
                   <span
                     key={tag}
-                    className={`text-[11px] sm:text-[12px] font-medium tracking-wide uppercase text-silver/80 border border-white/[0.12] px-2.5 py-1.5 transition-colors group-hover:border-white/25 group-hover:text-white ${selectedLocale === "ar" ? "font-[family-name:var(--font-arabic)] tracking-normal" : "font-[family-name:var(--font-ui)]"}`}
+                    className={`text-[11px] sm:text-[12px] font-medium tracking-wide uppercase text-silver/80 border border-white/[0.12] px-2.5 py-1.5 transition-colors group-hover:border-white/25 group-hover:text-white ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : "font-[family-name:var(--font-ui)]"}`}
                   >
                     {tag}
                   </span>
@@ -473,19 +529,17 @@ export function GatewayClient() {
               {/* CTA */}
               <div
                 className={`flex items-center gap-2 font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.15em] uppercase transition-colors ${selectedRole === "epc"
-                    ? "text-[#A78BFA]"
-                    : "text-silver/30 group-hover:text-gold"
+                  ? "text-[#A78BFA]"
+                  : "text-silver/30 group-hover:text-gold"
                   }`}
               >
                 <span>
-                  {selectedLocale === "ar"
-                    ? "← الدخول كمقاول / متخصص"
-                    : "Enter as EPC / Contractor →"}
+                  {DICT.epcEnter[selectedLocale]}
                 </span>
                 <ArrowRight
                   className={`w-3.5 h-3.5 transition-transform duration-300 ${selectedLocale === "ar"
-                      ? "rotate-180 group-hover:-translate-x-1"
-                      : "group-hover:translate-x-1"
+                    ? "rotate-180 group-hover:-translate-x-1"
+                    : "group-hover:translate-x-1"
                     }`}
                 />
               </div>
@@ -505,14 +559,14 @@ export function GatewayClient() {
                   type="button"
                   onClick={() => { setLangOpen(!langOpen); setCountryOpen(false); }}
                   className="w-full flex items-center gap-3 bg-[#0A1118]/60 backdrop-blur-md border border-white/10 text-white font-[family-name:var(--font-ui)] text-[12px] sm:text-[13px] tracking-[0.08em] uppercase py-3 px-4 cursor-pointer hover:border-white/25 hover:bg-[#0A1118]/80 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
-                  aria-label={selectedLocale === "ar" ? "اللغة" : "Language"}
+                  aria-label={DICT.langLabel[selectedLocale]}
                   aria-expanded={langOpen}
                 >
                   <Globe className="w-4 h-4 text-white/50 shrink-0" />
                   <span className="text-[10px] uppercase tracking-wider text-white/50 hidden sm:inline-block">
-                    {selectedLocale === "ar" ? "اللغة:" : "Lang:"}
+                    {DICT.langPrefix[selectedLocale]}
                   </span>
-                  <span className="flex-1 text-start">{selectedLocale === "ar" ? "العربية" : "English"}</span>
+                  <span className={`flex-1 text-start ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : ""}`}>{getLangName(selectedLocale)}</span>
                   <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-200 ${langOpen ? "rotate-180 text-gold" : ""}`} />
                 </button>
                 {langOpen && (
@@ -520,15 +574,16 @@ export function GatewayClient() {
                     {[
                       { value: "en" as GatewayLocale, label: "English" },
                       { value: "ar" as GatewayLocale, label: "العربية" },
+                      { value: "zh" as GatewayLocale, label: "中文" },
                     ].map((lang) => (
                       <button
                         key={lang.value}
                         type="button"
                         onClick={() => { setSelectedLocale(lang.value); setLangOpen(false); }}
                         className={`w-full text-start px-4 py-3 text-[12px] sm:text-[13px] tracking-[0.08em] uppercase font-[family-name:var(--font-ui)] transition-colors cursor-pointer ${selectedLocale === lang.value
-                            ? "bg-gold/10 text-gold border-s-2 border-gold"
-                            : "text-white/80 hover:bg-white/5 hover:text-white border-s-2 border-transparent"
-                          }`}
+                          ? "bg-gold/10 text-gold border-s-2 border-gold"
+                          : "text-white/80 hover:bg-white/5 hover:text-white border-s-2 border-transparent"
+                          } ${lang.value === "ar" || lang.value === "zh" ? getFontClass(lang.value, "ui") : ""}`}
                       >
                         {lang.label}
                       </button>
@@ -543,15 +598,15 @@ export function GatewayClient() {
                   type="button"
                   onClick={() => { setCountryOpen(!countryOpen); setLangOpen(false); }}
                   className="w-full flex items-center gap-3 bg-[#0A1118]/60 backdrop-blur-md border border-white/10 text-white font-[family-name:var(--font-ui)] text-[12px] sm:text-[13px] tracking-[0.08em] uppercase py-3 px-4 cursor-pointer hover:border-white/25 hover:bg-[#0A1118]/80 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50"
-                  aria-label={selectedLocale === "ar" ? "البلد" : "Country"}
+                  aria-label={DICT.countryLabel[selectedLocale]}
                   aria-expanded={countryOpen}
                 >
                   <MapPin className="w-4 h-4 text-white/50 shrink-0" />
                   <span className="text-[10px] uppercase tracking-wider text-white/50 hidden sm:inline-block">
-                    {selectedLocale === "ar" ? "الدولة:" : "Region:"}
+                    {DICT.regionPrefix[selectedLocale]}
                   </span>
-                  <span className={`flex-1 text-start ${selectedCountry ? "text-white" : "text-white/40"}`}>
-                    {selectedCountry || (selectedLocale === "ar" ? "اختر الدولة" : "Select Country")}
+                  <span className={`flex-1 text-start ${selectedCountry ? "text-white" : "text-white/40"} ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : ""}`}>
+                    {selectedCountry || DICT.selectCountry[selectedLocale]}
                   </span>
                   <ChevronDown className={`w-4 h-4 text-white/50 transition-transform duration-200 ${countryOpen ? "rotate-180 text-gold" : ""}`} />
                 </button>
@@ -571,11 +626,12 @@ export function GatewayClient() {
                               setCountryOpen(false);
                               const arabCountries = ["Egypt", "Jordan", "Lebanon", "Iraq", "Saudi Arabia", "UAE", "Kuwait", "Qatar", "Bahrain", "Oman", "Morocco", "Tunisia", "Algeria", "Libya"];
                               if (arabCountries.includes(c)) setSelectedLocale("ar");
+                              else if (["China", "Taiwan", "Hong Kong"].includes(c)) setSelectedLocale("zh");
                               else setSelectedLocale("en");
                             }}
                             className={`w-full text-start px-4 py-2.5 text-[12px] tracking-[0.05em] uppercase font-[family-name:var(--font-ui)] transition-colors cursor-pointer ${selectedCountry === c
-                                ? "bg-gold/10 text-gold border-s-2 border-gold"
-                                : "text-white/70 hover:bg-white/5 hover:text-white border-s-2 border-transparent"
+                              ? "bg-gold/10 text-gold border-s-2 border-gold"
+                              : "text-white/70 hover:bg-white/5 hover:text-white border-s-2 border-transparent"
                               }`}
                           >
                             {c}
@@ -591,14 +647,14 @@ export function GatewayClient() {
               <button
                 onClick={handleEnter}
                 disabled={!canEnter}
-                className={`hidden sm:flex items-center justify-center gap-2 px-10 py-4 font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 backdrop-blur-md border border-transparent ${canEnter
-                    ? "bg-gold/90 text-navy-deep hover:bg-gold hover:scale-[1.02] gw-btn-shimmer shadow-[0_0_30px_rgba(232,146,10,0.2)]"
-                    : "bg-white/5 text-silver/20 cursor-not-allowed border-white/10"
+                className={`hidden sm:flex items-center justify-center gap-2 px-10 h-full min-h-[44px] font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 backdrop-blur-md border border-transparent ${canEnter
+                  ? "bg-gold/90 text-navy-deep hover:bg-gold hover:scale-[1.02] gw-btn-shimmer"
+                  : "bg-white/5 text-silver/20 cursor-not-allowed border-white/10"
                   }`}
                 tabIndex={0}
               >
-                <span>
-                  {selectedLocale === "ar" ? "دخول" : "Enter"}
+                <span className={selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : ""}>
+                  {DICT.enter[selectedLocale]}
                 </span>
                 <ArrowRight className={`w-4 h-4 ${selectedLocale === "ar" ? "rotate-180" : ""}`} />
               </button>
@@ -609,12 +665,12 @@ export function GatewayClient() {
               onClick={handleEnter}
               disabled={!canEnter}
               className={`sm:hidden w-full flex items-center justify-center gap-3 py-4 rounded-sm font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.15em] uppercase transition-all duration-300 cursor-pointer mb-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold/50 border ${canEnter
-                  ? "bg-gradient-to-r from-gold via-[#E89A0A] to-gold text-navy-deep hover:brightness-110 gw-btn-shimmer shadow-[0_4px_24px_rgba(232,146,10,0.25)] border-gold/30"
-                  : "bg-white/5 text-silver/20 cursor-not-allowed border-white/10"
+                ? "bg-gradient-to-r from-gold via-[#E89A0A] to-gold text-navy-deep hover:brightness-110 gw-btn-shimmer shadow-[0_4px_24px_rgba(232,146,10,0.25)] border-gold/30"
+                : "bg-white/5 text-silver/20 cursor-not-allowed border-white/10"
                 }`}
               tabIndex={0}
             >
-              {enterLabel}
+              {mobileEnterLabel}
               <ArrowRight className={`w-4 h-4 ${selectedLocale === "ar" ? "rotate-180" : ""}`} />
             </button>
 
@@ -622,7 +678,7 @@ export function GatewayClient() {
             <div className="hidden sm:block">
               <p
                 className={`text-center font-[family-name:var(--font-ui)] text-[10px] tracking-[0.15em] uppercase transition-colors duration-300 ${canEnter ? "text-gold/60" : "text-silver/20"
-                  }`}
+                  } ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : ""}`}
               >
                 {enterLabel}
               </p>
@@ -637,12 +693,10 @@ export function GatewayClient() {
         >
           <button
             onClick={handleSkip}
-            className="font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] font-medium tracking-[0.15em] uppercase text-silver/25 hover:text-silver/50 transition-colors cursor-pointer focus:outline-none"
+            className={`font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] font-medium tracking-[0.15em] uppercase text-silver/25 hover:text-silver/50 transition-colors cursor-pointer focus:outline-none ${selectedLocale === "ar" || selectedLocale === "zh" ? getFontClass(selectedLocale, "ui") : ""}`}
             tabIndex={0}
           >
-            {selectedLocale === "ar"
-              ? "تخطي → الدخول للموقع"
-              : "Skip for now → Enter site"}
+            {DICT.skip[selectedLocale]}
           </button>
           <span className="font-[family-name:var(--font-ui)] text-[8px] tracking-[0.2em] uppercase text-silver/15">
             kafaahsolutions.com

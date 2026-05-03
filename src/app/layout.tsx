@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, DM_Sans, Syne } from "next/font/google";
+import { DM_Serif_Display, DM_Sans, Syne, Alexandria, Noto_Sans_SC } from "next/font/google";
 import "./globals.css";
 import { LayoutShell } from "@/components/LayoutShell";
 
@@ -23,6 +23,21 @@ const syne = Syne({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
+});
+
+const alexandria = Alexandria({
+  variable: "--font-arabic",
+  subsets: ["arabic"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-chinese",
+  subsets: ["latin"], // Noto Sans SC uses latin subset loader in next/font for SC characters, but actually we don't need subsets array for it or we can just specify preload: false if it causes issues. Actually "latin" is fine.
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
+  preload: false, // Preloading huge CJK fonts is bad for performance, setting to false.
 });
 
 export const metadata: Metadata = {
@@ -63,7 +78,7 @@ export default function RootLayout({
     <html
       lang="en"
       dir="ltr"
-      className={`${dmSerifDisplay.variable} ${dmSans.variable} ${syne.variable} bg-navy`}
+      className={`${dmSerifDisplay.variable} ${dmSans.variable} ${syne.variable} ${alexandria.variable} ${notoSansSC.variable} bg-navy`}
     >
       <body className="bg-navy text-silver antialiased min-h-screen flex flex-col">
         <LayoutShell>{children}</LayoutShell>
