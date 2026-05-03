@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
+import type { ContactContent } from "@/data/roleContent";
 
 const serviceOptions = [
   "Owner's Engineer",
@@ -64,7 +65,15 @@ function CustomSelect() {
   );
 }
 
-export function ContactCTA() {
+interface Props {
+  content?: ContactContent;
+}
+
+export function ContactCTA({ content }: Props) {
+  const eyebrow = content?.eyebrow ?? "Start the conversation";
+  const headline = content?.headline ?? "How can we";
+  const headlineAccent = content?.headlineAccent ?? "help you?";
+  const subCopy = content?.subCopy ?? "Whether you are building a new inorganic chemical plant, running an existing facility, or evaluating an investment — Kafaah brings 20 years of direct operational expertise to your problem. We respond within 24 hours.";
   return (
     <section className="bg-navy py-28 relative overflow-hidden">
       {/* Background elements */}
@@ -86,19 +95,16 @@ export function ContactCTA() {
             <div className="flex items-center gap-4 mb-6">
               <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
               <span className="font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-gold">
-                05 — Contact
+                {eyebrow}
               </span>
             </div>
             <h2 className="font-[family-name:var(--font-display)] text-[clamp(36px,5vw,60px)] leading-[1.1] text-white mb-6">
-              How can we
+              {headline}
               <br />
-              <em className="text-gold">help you?</em>
+              <em className="text-gold">{headlineAccent}</em>
             </h2>
             <p className="text-[16px] font-light text-silver/70 leading-[1.8] mb-10">
-              Whether you are building a new inorganic chemical plant, running an
-              existing facility, or evaluating an investment — Kafaah brings 20
-              years of direct operational expertise to your problem. We respond
-              within 24 hours.
+              {subCopy}
             </p>
             <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row items-stretch w-full sm:w-auto">
               <Link

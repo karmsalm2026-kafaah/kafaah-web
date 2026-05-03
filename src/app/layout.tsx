@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, DM_Sans, Syne } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { LayoutShell } from "@/components/LayoutShell";
 
 const dmSerifDisplay = DM_Serif_Display({
   variable: "--font-display",
@@ -67,9 +66,7 @@ export default function RootLayout({
       className={`${dmSerifDisplay.variable} ${dmSans.variable} ${syne.variable} bg-navy`}
     >
       <body className="bg-navy text-silver antialiased min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <LayoutShell>{children}</LayoutShell>
 
         {/* JSON-LD Structured Data */}
         <script

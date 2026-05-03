@@ -1,3 +1,7 @@
+"use client";
+
+import { useRole } from "@/lib/RoleContext";
+import { roleContentMap, defaultContent } from "@/data/roleContent";
 import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
 import { HeroSection } from "@/components/sections/Hero";
@@ -11,17 +15,20 @@ import { InsightBanner } from "@/components/sections/InsightBanner";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 
 export default function HomePage() {
+  const { role } = useRole();
+  const content = role ? roleContentMap[role] : defaultContent;
+
   return (
     <>
-      <HeroSection />
+      <HeroSection content={content.hero} />
       <Ticker />
-      <ProblemSection />
-      <ServicesSection />
+      <ProblemSection content={content.problem} />
+      <ServicesSection content={content.services} />
       <TechnologiesSection />
-      <InsightBanner />
+      <InsightBanner content={content.insight} />
       <TrackRecordSection />
       <GeographySection />
-      <ContactCTA />
+      <ContactCTA content={content.contact} />
     </>
   );
 }

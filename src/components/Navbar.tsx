@@ -4,9 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, RefreshCw } from "lucide-react";
 import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
+import { useRole } from "@/lib/RoleContext";
 
 const techDropdown = technologies.map((t) => ({
   href: `/technologies/${t.slug}/`,
@@ -25,6 +26,13 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { role } = useRole();
+
+  const roleBadge = role === "owner"
+    ? { label: "Owner Portal", color: "text-[#6ECFA3] hover:text-white hover:opacity-100" }
+    : role === "epc"
+    ? { label: "EPC Portal", color: "text-[#A78BFA] hover:text-white hover:opacity-100" }
+    : null;
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
@@ -59,6 +67,19 @@ export function Navbar() {
             priority
           />
         </Link>
+
+        {/* Role Badge */}
+        {roleBadge && (
+          <Link
+            href="/gateway"
+            className={`hidden md:inline-flex items-center gap-1.5 ml-3 px-2 py-1 text-[10px] font-[family-name:var(--font-ui)] font-bold tracking-[0.15em] uppercase transition-all duration-300 opacity-80 ${roleBadge.color}`}
+            title="Switch portal"
+            onClick={() => { document.cookie = 'kafaah_role=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax'; }}
+          >
+            {roleBadge.label}
+            <RefreshCw className="w-2.5 h-2.5 opacity-50" />
+          </Link>
+        )}
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-0.5">

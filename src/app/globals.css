@@ -31,6 +31,23 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+/* ── DARK SELECT / OPTION — Prevents white flash ── */
+select,
+select option,
+select optgroup {
+  background-color: #0A1118;
+  color: #A8C8E8;
+}
+select:focus,
+select:active {
+  background-color: #0A1118;
+}
+select option:checked {
+  background-color: #0D1F32;
+  color: #E8920A;
 }
 
 body {
@@ -240,3 +257,169 @@ input:focus, select:focus, textarea:focus {
   -webkit-appearance: none;
   appearance: none;
 }
+
+/* ══════════════════════════════════════════════
+   GATEWAY PAGE ANIMATIONS
+   ══════════════════════════════════════════════ */
+
+/* Logo pulse with gold glow on loading screen */
+@keyframes gw-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(232, 146, 10, 0.15));
+  }
+  50% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 40px rgba(232, 146, 10, 0.35));
+  }
+}
+.gw-logo-pulse {
+  animation: gw-pulse 2s ease-in-out infinite;
+}
+
+/* Loading message fade in */
+@keyframes gw-msg-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.gw-msg-fade {
+  animation: gw-msg-enter 0.5s ease-out forwards;
+}
+
+/* Active role dot pulse */
+@keyframes gw-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+.gw-dot-pulse {
+  animation: gw-dot 1.5s ease-in-out infinite;
+}
+
+/* Gateway select option styling */
+.gw-select option {
+  background: #0B1829;
+  color: #A8C8E8;
+}
+.gw-select optgroup {
+  font-weight: 600;
+  color: #E8920A;
+}
+
+/* ── ANIMATED BORDER LIGHT ── */
+@keyframes spin-border {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+.animated-border-box {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  padding: 2px;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  overflow: hidden;
+}
+.animated-border-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 60%, rgba(232, 146, 10, 0.35) 80%, transparent 100%);
+  animation: spin-border 5s linear infinite;
+}
+.animated-border-box:hover::before {
+  background: conic-gradient(from 0deg, transparent 60%, rgba(245, 168, 42, 0.8) 80%, transparent 100%);
+  animation-duration: 3s;
+}
+
+/* ── GATEWAY PREMIUM EFFECTS ── */
+
+/* Shimmer sweep on CTA button */
+@keyframes gw-shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.gw-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.gw-btn-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  animation: gw-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Floating ambient particles */
+@keyframes gw-float-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  50% { transform: translate(30px, -40px) scale(1.2); opacity: 0.6; }
+}
+@keyframes gw-float-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(-20px, -60px) scale(0.8); opacity: 0.5; }
+}
+.gw-particle-1 { animation: gw-float-1 8s ease-in-out infinite; }
+.gw-particle-2 { animation: gw-float-2 12s ease-in-out infinite; }
+
+/* Card glow on selection */
+@keyframes gw-glow-owner {
+  0%, 100% { box-shadow: 0 0 20px rgba(110, 207, 163, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(110, 207, 163, 0.12), 0 0 80px rgba(110, 207, 163, 0.04); }
+}
+@keyframes gw-glow-epc {
+  0%, 100% { box-shadow: 0 0 20px rgba(167, 139, 250, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(167, 139, 250, 0.12), 0 0 80px rgba(167, 139, 250, 0.04); }
+}
+.gw-glow-owner { animation: gw-glow-owner 3s ease-in-out infinite; }
+.gw-glow-epc { animation: gw-glow-epc 3s ease-in-out infinite; }
+
+/* Glassmorphism upgrade for cards */
+.gw-glass {
+  background: linear-gradient(135deg, rgba(10, 17, 24, 0.5) 0%, rgba(13, 31, 50, 0.3) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  backdrop-filter: blur(20px) saturate(1.2);
+}
+
+/* Gold line reveal animation */
+@keyframes gw-line-reveal {
+  from { width: 0; opacity: 0; }
+  to { width: 32px; opacity: 1; }
+}
+.gw-line-reveal {
+  animation: gw-line-reveal 0.8s ease-out forwards;
+}
+
+/* Ambient background orbs */
+@keyframes gw-orb-drift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(40px, -30px); }
+  66% { transform: translate(-20px, 20px); }
+  100% { transform: translate(0, 0); }
+}
+.gw-orb { animation: gw-orb-drift 20s ease-in-out infinite; }
+
+/* Progress bar fill */
+.gw-progress-fill {
+  width: 100%;
+  transition: width 0.6s ease;
+  animation: gw-shimmer 1.5s ease-in-out infinite;
+}
+
+/* Custom scrollbar for dark dropdowns */
+.gw-custom-scroll::-webkit-scrollbar { width: 4px; }
+.gw-custom-scroll::-webkit-scrollbar-track { background: transparent; }
+.gw-custom-scroll::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+.gw-custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(245, 168, 42, 0.3); }

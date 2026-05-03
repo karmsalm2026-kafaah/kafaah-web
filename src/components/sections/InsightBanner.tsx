@@ -1,8 +1,16 @@
 "use client";
 
 import { FadeIn } from "@/components/Animations";
+import type { InsightContent } from "@/data/roleContent";
 
-export function InsightBanner() {
+interface Props {
+  content?: InsightContent;
+}
+
+export function InsightBanner({ content }: Props) {
+  const quote = content?.quote ?? "We measure before and after — results are not estimated, they are documented.";
+  const attribution = content?.attribution ?? "— Kafaah — Production Optimization";
+
   return (
     <section className="relative py-24 sm:py-28 bg-navy overflow-hidden">
       {/* Ambient glow */}
@@ -20,14 +28,13 @@ export function InsightBanner() {
           </div>
 
           <p className="font-[family-name:var(--font-display)] text-[clamp(22px,3.2vw,40px)] leading-[1.35] text-white italic max-w-[800px] mx-auto mb-8">
-            We measure before and after — results are not estimated, they
-            are documented.
+            {quote}
           </p>
 
           <div className="flex items-center justify-center gap-4">
             <div className="w-8 h-px bg-gold/40" />
             <span className="font-[family-name:var(--font-ui)] text-[11px] font-semibold tracking-[0.2em] uppercase text-gold/80">
-              Kafaah — Production Optimization
+              {attribution}
             </span>
             <div className="w-8 h-px bg-gold/40" />
           </div>

@@ -28,15 +28,15 @@ export function Ticker() {
               {items.map((item, i) => (
                 <div
                   key={`${arrayIndex}-${i}`}
-                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-silver/60 whitespace-nowrap flex items-center gap-4 transition-colors hover:text-white cursor-default"
+                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-white/90 whitespace-nowrap flex items-center gap-4 transition-all hover:text-white cursor-default"
                 >
-                  <div className="flex items-center justify-center h-8 px-3 rounded-full bg-white/[0.02] border border-white/[0.06] shadow-inner transition-colors group-hover:border-gold/30 group-hover:bg-gold/[0.05]">
-                    <span className="text-gold text-[11px] font-bold tracking-widest">{item.formula}</span>
+                  <div className="flex items-center justify-center h-8 px-4 rounded-sm bg-gold/10 border border-gold/30 shadow-[0_0_15px_rgba(232,146,10,0.1)] transition-all group-hover:border-gold/50 group-hover:bg-gold/20 group-hover:shadow-[0_0_20px_rgba(232,146,10,0.2)]">
+                    <span className="text-gold-light text-[12px] font-bold tracking-widest">{item.formula}</span>
                   </div>
-                  <span className="text-[12px] uppercase tracking-[0.1em]">{item.name}</span>
+                  <span className="text-[12px] sm:text-[13px] uppercase tracking-[0.15em] font-bold">{item.name}</span>
 
                   {/* Separator dot */}
-                  <div className="w-1.5 h-1.5 rounded-full bg-gold/20 ml-4 transition-all group-hover:bg-gold/50 group-hover:scale-125" aria-hidden="true" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-gold/40 ml-4 transition-all group-hover:bg-gold group-hover:scale-125 shadow-[0_0_8px_rgba(232,146,10,0.5)]" aria-hidden="true" />
                 </div>
               ))}
             </React.Fragment>
