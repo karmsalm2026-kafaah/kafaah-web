@@ -4,10 +4,18 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { technologies } from "@/data/technologies";
 import { FadeIn } from "@/components/Animations";
+import { useRole } from "@/lib/RoleContext";
+import { tech as techDict, getFontClass, isRtl } from "@/lib/i18n";
 
 export function TechnologiesSection() {
+  const { locale } = useRole();
+  const fc = getFontClass(locale, "display");
+  const fcBody = getFontClass(locale);
+  const rtl = isRtl(locale);
+  const isEn = locale === "en";
+  const isAr = locale === "ar";
   return (
-    <section className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
@@ -17,12 +25,12 @@ export function TechnologiesSection() {
         <FadeIn>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
-            <span className="font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-gold">
-              03 — Technologies
+            <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
+              {techDict.sectionLabel[locale]}
             </span>
           </div>
-          <h2 className="font-[family-name:var(--font-display)] text-[clamp(32px,4.5vw,56px)] leading-[1.1] text-white mb-16 lg:mb-20">
-            Our domain in <em className="text-gold">inorganic chemistry</em>
+          <h2 className={`${fc} text-[clamp(32px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20`}>
+            {techDict.headline[locale]}<em className="text-gold not-italic">{techDict.headlineAccent[locale]}</em>
           </h2>
         </FadeIn>
 
@@ -43,24 +51,24 @@ export function TechnologiesSection() {
                   {tech.formula}
                 </div>
 
-                <h3 className="font-[family-name:var(--font-ui)] text-[13px] font-bold tracking-[0.1em] uppercase text-white mb-2 group-hover:text-gold transition-colors duration-300">
+                <h3 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[13px] tracking-[0.1em] uppercase" : fcBody + " text-[15px]"} font-bold text-white mb-2 group-hover:text-gold transition-colors duration-300`}>
                   {tech.name}
                 </h3>
 
-                <p className="text-[13px] font-light text-silver/50 leading-[1.7] mb-6">
+                <p className={`${fcBody} ${isAr ? "text-[15px] leading-[1.9]" : "text-[13px] leading-[1.7]"} font-light text-silver/50 mb-6`}>
                   {tech.shortDesc}
                 </p>
 
-                <span className="inline-flex items-center gap-2 font-[family-name:var(--font-ui)] text-[10px] font-semibold tracking-[0.15em] uppercase text-silver/35 group-hover:text-gold transition-colors duration-300">
+                <span className={`inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.15em] uppercase" : fcBody + " text-[12px]"} font-semibold text-silver/35 group-hover:text-gold transition-colors duration-300`}>
                   {tech.completedProject ? (
                     <>
-                      Completed project
-                      <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                      {techDict.completedProject[locale]}
+                      <ArrowRight className={`w-3 h-3 translate-x-0 ${rtl ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"} transition-transform duration-300`} />
                     </>
                   ) : (
                     <>
-                      View technology
-                      <ArrowRight className="w-3 h-3 translate-x-0 group-hover:translate-x-1 transition-transform duration-300" />
+                      {techDict.viewTech[locale]}
+                      <ArrowRight className={`w-3 h-3 translate-x-0 ${rtl ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"} transition-transform duration-300`} />
                     </>
                   )}
                 </span>

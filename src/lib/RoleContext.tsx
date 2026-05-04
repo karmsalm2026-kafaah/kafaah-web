@@ -1,18 +1,20 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
 import type { GatewayRole, GatewayLocale } from "@/lib/cookies";
 
 interface RoleContextValue {
   role: GatewayRole | null;
   locale: GatewayLocale;
   country: string | null;
+  setLocale: (l: GatewayLocale) => void;
 }
 
 const RoleCtx = createContext<RoleContextValue>({
   role: null,
   locale: "en",
   country: null,
+  setLocale: () => {},
 });
 
 export function useRole() {
@@ -22,9 +24,10 @@ export function useRole() {
 /**
  * RoleProvider — Reads gateway cookies on mount and exposes
  * role / locale / country to the entire component tree.
+ * Also provides setLocale() so the Navbar language picker can update locale globally.
  */
 export function RoleProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<RoleContextValue>({
+  const [state, setState] = useState<Omit<RoleContextValue, "setLocale">>({
     role: null,
     locale: "en",
     country: null,
@@ -43,5 +46,18 @@ export function RoleProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  return <RoleCtx.Provider value={state}>{children}</RoleCtx.Provider>;
+  const setLocale = useCallback((l: GatewayLocale) => {
+    // Update cookie
+    const date = new Date();
+    date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
+    document.cookie = `kafaah_locale=${l};expires=${date.toUTCString()};path=/;SameSite=Lax`;
+    // Update state
+    setState((prev) => ({ ...prev, locale: l }));
+  }, []);
+
+  return (
+    <RoleCtx.Provider value={{ ...state, setLocale }}>
+      {children}
+    </RoleCtx.Provider>
+  );
 }

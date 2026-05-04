@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowRight, Mail, ChevronDown } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
 import type { ContactContent } from "@/data/roleContent";
+import { useRole } from "@/lib/RoleContext";
+import { contactCta as ctaDict, getFontClass, isRtl } from "@/lib/i18n";
 
 const serviceOptions = [
   "Owner's Engineer",
@@ -16,7 +18,7 @@ const serviceOptions = [
   "Investor Advisory"
 ];
 
-function CustomSelect() {
+function CustomSelect({ placeholder }: { placeholder: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +40,7 @@ function CustomSelect() {
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={selected ? "text-white" : "text-silver/40"}>
-          {selected || "Select a service…"}
+          {selected || placeholder}
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-silver/40'}`} />
       </div>
@@ -70,12 +72,19 @@ interface Props {
 }
 
 export function ContactCTA({ content }: Props) {
-  const eyebrow = content?.eyebrow ?? "Start the conversation";
-  const headline = content?.headline ?? "How can we";
-  const headlineAccent = content?.headlineAccent ?? "help you?";
-  const subCopy = content?.subCopy ?? "Whether you are building a new inorganic chemical plant, running an existing facility, or evaluating an investment — Kafaah brings 20 years of direct operational expertise to your problem. We respond within 24 hours.";
+  const { locale } = useRole();
+  const fc = getFontClass(locale, "display");
+  const fcBody = getFontClass(locale);
+  const rtl = isRtl(locale);
+  const isEn = locale === "en";
+  const isAr = locale === "ar";
+  const eyebrow = content?.eyebrow?.[locale] ?? ctaDict.eyebrow[locale];
+  const headline = content?.headline?.[locale] ?? ctaDict.headline[locale];
+  const headlineAccent = content?.headlineAccent?.[locale] ?? ctaDict.headlineAccent[locale];
+  const subCopy = content?.subCopy?.[locale] ?? "Whether you are building a new inorganic chemical plant, running an existing facility, or evaluating an investment — Kafaah brings 20 years of direct operational expertise to your problem. We respond within 24 hours.";
+
   return (
-    <section className="bg-navy py-28 relative overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="bg-navy py-28 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
@@ -94,34 +103,34 @@ export function ContactCTA({ content }: Props) {
           <div>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
-              <span className="font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] font-semibold tracking-[0.3em] uppercase text-gold">
+              <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
                 {eyebrow}
               </span>
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(36px,5vw,60px)] leading-[1.1] text-white mb-6">
+            <h2 className={`${fc} text-[clamp(36px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
               {headline}
               <br />
-              <em className="text-gold">{headlineAccent}</em>
+              <em className="text-gold not-italic">{headlineAccent}</em>
             </h2>
-            <p className="text-[16px] font-light text-silver/70 leading-[1.8] mb-10">
+            <p className={`${fcBody} ${isAr ? "text-[17px] leading-[2]" : "text-[16px] leading-[1.8]"} font-light text-silver/70 mb-10`}>
               {subCopy}
             </p>
             <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row items-stretch w-full sm:w-auto">
               <Link
                 href="/contact/"
-                className="flex-1 group relative inline-flex items-center justify-center gap-2 font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.15em] uppercase px-8 py-4 overflow-hidden transition-all duration-300 border border-gold bg-gold text-navy-deep hover:bg-transparent hover:text-gold"
+                className={`flex-1 group relative inline-flex items-center justify-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold px-8 py-4 overflow-hidden transition-all duration-300 border border-gold bg-gold text-navy-deep hover:bg-transparent hover:text-gold`}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Get in Touch
-                  <ArrowRight className="w-3.5 h-3.5" />
+                <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
+                  {ctaDict.getInTouch[locale]}
+                  <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />
                 </span>
               </Link>
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="flex-1 group relative inline-flex items-center justify-center gap-2 font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.15em] uppercase px-8 py-4 overflow-hidden transition-all duration-300 border border-white/20 text-white hover:border-white hover:bg-white/5"
+                className={`flex-1 group relative inline-flex items-center justify-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold px-8 py-4 overflow-hidden transition-all duration-300 border border-white/20 text-white hover:border-white hover:bg-white/5`}
               >
-                <span className="relative z-10 flex items-center gap-2">
-                  Send Email
+                <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
+                  {ctaDict.sendEmail[locale]}
                   <Mail className="w-3.5 h-3.5" />
                 </span>
               </a>
@@ -136,58 +145,58 @@ export function ContactCTA({ content }: Props) {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
               <div>
-                <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-silver/80 block mb-2">
-                  Full Name
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                  {ctaDict.fullName[locale]}
                 </label>
                 <input
                   type="text"
                   placeholder="Dr. Ahmed Al-Rashid"
-                  className="w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none"
+                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
                 />
               </div>
               <div>
-                <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-silver/80 block mb-2">
-                  Company
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                  {ctaDict.company[locale]}
                 </label>
                 <input
                   type="text"
                   placeholder="SIPCHEM"
-                  className="w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none"
+                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
                 />
               </div>
             </div>
 
             <div className="mb-5">
-              <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-silver/80 block mb-2">
-                Service of Interest
+              <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                {ctaDict.serviceOfInterest[locale]}
               </label>
-              <CustomSelect />
+              <CustomSelect placeholder={ctaDict.selectService[locale]} />
             </div>
 
             <div className="mb-6">
-              <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-silver/80 block mb-2">
-                Message
+              <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                {ctaDict.message[locale]}
               </label>
               <textarea
-                placeholder="Briefly describe your situation or question…"
-                className="w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none resize-y min-h-[100px]"
+                placeholder={ctaDict.messagePlaceholder[locale]}
+                className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
                 rows={3}
               />
             </div>
 
-            <button className="w-full font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.15em] uppercase bg-white/5 border border-white/10 text-white py-4 hover:bg-gold hover:border-gold hover:text-navy-deep transition-all duration-300">
-              Send Consultation Request
+            <button className={`w-full ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold bg-white/5 border border-white/10 text-white py-4 hover:bg-gold hover:border-gold hover:text-navy-deep transition-all duration-300`}>
+              {ctaDict.sendRequest[locale]}
             </button>
 
-            <div className="mt-8 pt-6 border-t border-white/[0.06] flex gap-x-6 gap-y-3 flex-wrap">
-              <span className="text-[12px] font-light text-silver/50 flex items-center gap-1.5 uppercase tracking-[0.05em]">
-                📍 Cairo, Egypt
+            <div className={`mt-8 pt-6 border-t border-white/[0.06] flex gap-x-6 gap-y-3 flex-wrap`}>
+              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/50 flex items-center gap-1.5`}>
+                {ctaDict.locationLabel[locale]}
               </span>
-              <span className="text-[12px] font-light text-silver/50 flex items-center gap-1.5 uppercase tracking-[0.05em]">
-                ⚡ Response within 24 hours
+              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/50 flex items-center gap-1.5`}>
+                {ctaDict.responseTime[locale]}
               </span>
-              <span className="text-[12px] font-light text-silver/50 flex items-center gap-1.5 uppercase tracking-[0.05em]">
-                🔒 Confidential
+              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/50 flex items-center gap-1.5`}>
+                {ctaDict.confidential[locale]}
               </span>
             </div>
           </div>

@@ -1,13 +1,19 @@
+"use client";
+
 import React from "react";
+import { useRole } from "@/lib/RoleContext";
+import { ticker as tickerDict } from "@/lib/i18n";
 
 export function Ticker() {
+  const { locale } = useRole();
+  const names = tickerDict.names[locale];
   const items = [
-    { formula: "H₂SO₄", name: "Sulfuric Acid" },
-    { formula: "H₃PO₄", name: "Phosphoric Acid" },
-    { formula: "K₂SO₄", name: "Sulfate of Potash" },
-    { formula: "NPK", name: "Nitrogen Phosphorus Potassium" },
-    { formula: "MgSO₄", name: "Magnesium Sulphate" },
-    { formula: "SSP", name: "Single Superphosphate" },
+    { formula: "H₂SO₄", name: names[0] },
+    { formula: "H₃PO₄", name: names[1] },
+    { formula: "K₂SO₄", name: names[2] },
+    { formula: "NPK", name: names[3] },
+    { formula: "MgSO₄", name: names[4] },
+    { formula: "SSP", name: names[5] },
   ];
 
   return (
@@ -17,7 +23,7 @@ export function Ticker() {
 
       {/* Label */}
       <div className="hidden md:flex font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.25em] uppercase text-gold bg-navy-deep px-8 h-full items-center shrink-0 border-r border-white/[0.04] relative z-20 shadow-[8px_0_16px_rgba(4,12,24,0.6)]">
-        Technologies
+        {tickerDict.label[locale]}
       </div>
 
       {/* Ticker Container with gradient masks for smooth fade in/out */}

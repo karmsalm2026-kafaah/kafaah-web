@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useState } from "react";
+import { useRole } from "@/lib/RoleContext";
+import { contactPage as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -42,6 +44,12 @@ export function ContactClient() {
     setTimeout(() => setIsSuccess(false), 5000);
   };
 
+  const { locale } = useRole();
+  const rtl = isRtl(locale);
+  const fcDisplay = getFontClass(locale, "display");
+  const fcUi = getFontClass(locale, "ui");
+  const fcBody = getFontClass(locale, "body");
+
   return (
     <section className="min-h-[calc(100vh-68px)] flex flex-col lg:flex-row">
       {/* Left side - Info */}
@@ -55,20 +63,20 @@ export function ContactClient() {
         
         <div className="relative z-10 max-w-[500px]">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line">
-              Contact
+            <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line`}>
+              {dict.pageTitle[locale]}
             </div>
-            <h1 className="font-[family-name:var(--font-display)] text-[clamp(36px,5vw,64px)] leading-[1.05] text-cloud mb-8">
-              Let&apos;s talk about your <em className="text-gold">plant.</em>
+            <h1 className={`${fcDisplay} text-[clamp(36px,5vw,64px)] leading-[1.05] text-cloud mb-8`}>
+              {dict.letsTalk[locale]}<em className="text-gold not-italic">{dict.letsTalkAccent[locale]}</em>
             </h1>
             <p className="text-[16.5px] font-light text-silver leading-[1.8] mb-12">
-              We respond to all inquiries within 24 hours. Whether you need an Owner&apos;s Engineer, are facing a technical crisis, or need operators trained, we are ready to deploy.
+              {dict.respondTime[locale]}
             </p>
 
             <div className="space-y-8">
               <div>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-2">
-                  Headquarters
+                <div className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-2`}>
+                  {dict.headquarters[locale]}
                 </div>
                 <div className="text-cloud text-[15px] font-light leading-relaxed">
                   Cairo, Egypt
@@ -76,10 +84,10 @@ export function ContactClient() {
               </div>
               
               <div>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-2">
-                  Email
+                <div className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted mb-2`}>
+                  {dict.email[locale]}
                 </div>
-                <a href="mailto:info@kafaahsolutions.com" className="text-gold hover:text-gold-light transition-colors text-[15px] font-light">
+                <a href="mailto:info@kafaahsolutions.com" className="text-gold hover:text-gold-light transition-colors text-[15px] font-light" dir="ltr">
                   info@kafaahsolutions.com
                 </a>
               </div>
@@ -95,60 +103,60 @@ export function ContactClient() {
             {isSuccess ? (
                <div className="bg-gold/10 border border-gold p-8 text-center">
                   <div className="text-gold mb-3 text-2xl">✓</div>
-                  <h3 className="font-[family-name:var(--font-display)] text-[22px] text-cloud mb-2">Message Sent Successfully</h3>
+                  <h3 className={`${fcDisplay} text-[22px] text-cloud mb-2`}>{dict.successTitle[locale]}</h3>
                   <p className="text-sm text-silver font-light">
-                     Thank you for reaching out. A specialist from our team will review your inquiry and respond within 24 hours.
+                     {dict.successDesc[locale]}
                   </p>
                </div>
             ) : (
                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                  <div>
-                   <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2">
-                     Full Name <span className="text-gold">*</span>
+                   <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2`}>
+                     {dict.fullName[locale]} <span className="text-gold">*</span>
                    </label>
                    <input
                      {...register("name")}
                      type="text"
-                     className={`w-full bg-navy-dark border ${errors.name ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud font-[family-name:var(--font-body)] text-sm font-light px-4 py-3`}
+                     className={`w-full bg-navy-dark border ${errors.name ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud ${fcBody} text-sm font-light px-4 py-3`}
                    />
                    {errors.name && <span className="text-red-400 text-xs mt-1 block">{errors.name.message}</span>}
                  </div>
                  
                  <div>
-                   <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2">
-                     Company <span className="text-gold">*</span>
+                   <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2`}>
+                     {dict.companyLabel[locale]} <span className="text-gold">*</span>
                    </label>
                    <input
                      {...register("company")}
                      type="text"
-                     className={`w-full bg-navy-dark border ${errors.company ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud font-[family-name:var(--font-body)] text-sm font-light px-4 py-3`}
+                     className={`w-full bg-navy-dark border ${errors.company ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud ${fcBody} text-sm font-light px-4 py-3`}
                    />
                    {errors.company && <span className="text-red-400 text-xs mt-1 block">{errors.company.message}</span>}
                  </div>
                </div>
  
                <div>
-                 <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2">
-                   Work Email <span className="text-gold">*</span>
+                 <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2`}>
+                   {dict.workEmail[locale]} <span className="text-gold">*</span>
                  </label>
                  <input
                    {...register("email")}
                    type="email"
-                   className={`w-full bg-navy-dark border ${errors.email ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud font-[family-name:var(--font-body)] text-sm font-light px-4 py-3`}
+                   className={`w-full bg-navy-dark border ${errors.email ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud ${fcBody} text-sm font-light px-4 py-3`}
                  />
                  {errors.email && <span className="text-red-400 text-xs mt-1 block">{errors.email.message}</span>}
                </div>
  
                <div>
-                 <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2">
-                   Service of Interest <span className="text-gold">*</span>
+                 <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2`}>
+                   {dict.serviceLabel[locale]} <span className="text-gold">*</span>
                  </label>
                  <select
                    {...register("service")}
-                   className={`custom-select w-full bg-navy-dark border ${errors.service ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud font-[family-name:var(--font-body)] text-sm font-light px-4 py-3 cursor-pointer`}
+                   className={`custom-select w-full bg-navy-dark border ${errors.service ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud ${fcBody} text-sm font-light px-4 py-3 cursor-pointer`}
                  >
-                   <option value="">Select a service...</option>
+                   <option value="">{dict.selectService[locale]}</option>
                    <option value="owners-engineer">Owner&apos;s Engineer</option>
                    <option value="commissioning">Commissioning & Startup</option>
                    <option value="readiness">Operation Readiness</option>
@@ -161,12 +169,12 @@ export function ContactClient() {
                </div>
  
                <div>
-                 <label className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2">
-                   Message <span className="text-gold">*</span>
+                 <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-muted block mb-2`}>
+                   {dict.messageLabel[locale]} <span className="text-gold">*</span>
                  </label>
                  <textarea
                    {...register("message")}
-                   className={`w-full bg-navy-dark border ${errors.message ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud font-[family-name:var(--font-body)] text-sm font-light px-4 py-3 resize-y min-h-[120px]`}
+                   className={`w-full bg-navy-dark border ${errors.message ? 'border-red-500/50' : 'border-divider'} focus:border-gold outline-none transition-colors text-cloud ${fcBody} text-sm font-light px-4 py-3 resize-y min-h-[120px]`}
                  ></textarea>
                  {errors.message && <span className="text-red-400 text-xs mt-1 block">{errors.message.message}</span>}
                </div>
@@ -174,9 +182,9 @@ export function ContactClient() {
                <button
                  type="submit"
                  disabled={isSubmitting}
-                 className="w-full font-[family-name:var(--font-ui)] text-[13px] font-bold tracking-[0.15em] uppercase bg-gold text-navy py-4 hover:bg-gold-light transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                 className={`w-full ${fcUi} text-[13px] font-bold tracking-[0.15em] uppercase bg-gold text-navy py-4 hover:bg-gold-light transition-colors disabled:opacity-70 disabled:cursor-not-allowed`}
                >
-                 {isSubmitting ? "Sending..." : "Submit Inquiry"}
+                 {isSubmitting ? dict.sending[locale] : dict.submit[locale]}
                </button>
              </form>
             )}

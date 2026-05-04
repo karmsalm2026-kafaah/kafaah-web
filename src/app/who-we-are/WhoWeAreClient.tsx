@@ -3,31 +3,28 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
+import { useRole } from "@/lib/RoleContext";
+import { whoWeAre as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
 
 export function WhoWeAreClient() {
+  const { locale } = useRole();
+  const rtl = isRtl(locale);
+  const fcDisplay = getFontClass(locale, "display");
+  const fcUi = getFontClass(locale, "ui");
   return (
     <>
       {/* Positioning */}
       <section className="py-20 bg-navy">
         <div className="max-w-[860px] mx-auto px-8">
           <FadeIn>
-            <p className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,34px)] leading-[1.35] text-cloud italic mb-8">
-              Kafaah Industrial Solutions is an independent Egyptian-founded
-              consultancy specializing in inorganic chemical and fertilizer plant
-              commissioning, startup, troubleshooting, and performance
-              optimization.
+            <p className={`${fcDisplay} text-[clamp(22px,3vw,34px)] leading-[1.35] text-cloud italic mb-8`}>
+              {dict.intro[locale]}
             </p>
             <p className="text-[16.5px] font-light text-silver leading-[1.8] mb-5">
-              We bring 20 years of direct operational expertise across H₂SO₄,
-              H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants. Our team has not only
-              consulted on these plants — we have operated them. We have managed
-              startups, resolved production crises, optimized yields, and trained
-              the operators who run these facilities every day.
+              {dict.p1[locale]}
             </p>
             <p className="text-[16.5px] font-light text-silver leading-[1.8] mb-5">
-              The word <strong className="text-cloud font-medium">Kafaah</strong>{" "}
-              (كفاءة) means competence in Arabic. It is not a marketing name — it
-              is our standard. Every engagement we accept must meet it.
+              {dict.p2[locale]}
             </p>
           </FadeIn>
         </div>
@@ -37,30 +34,13 @@ export function WhoWeAreClient() {
       <section className="py-20 bg-navy-dark border-t border-divider">
         <div className="max-w-[860px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line">
-              What Makes Us Different
+            <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line`}>
+              {dict.whatMakesDifferent[locale]}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-divider">
-              {[
-                {
-                  title: "Independent",
-                  desc: "We have no relationships with EPC contractors, equipment vendors, or technology licensors. Our only obligation is to you.",
-                },
-                {
-                  title: "Operational",
-                  desc: "We have run these plants. When we troubleshoot, we draw on real experience — not theoretical knowledge.",
-                },
-                {
-                  title: "Chemical-Specific",
-                  desc: "We specialize in inorganic acids and specialty fertilizers. We do not try to cover every industry.",
-                },
-                {
-                  title: "Results-Documented",
-                  desc: "We measure before and after. Our recommendations are backed by data, and our results are documented.",
-                },
-              ].map((item) => (
+              {dict.diffFeatures[locale].map((item) => (
                 <div key={item.title} className="bg-navy-card p-8">
-                  <h3 className="font-[family-name:var(--font-display)] text-xl text-cloud mb-3">
+                  <h3 className={`${fcDisplay} text-xl text-cloud mb-3`}>
                     {item.title}
                   </h3>
                   <p className="text-sm font-light text-muted leading-relaxed">
@@ -77,28 +57,27 @@ export function WhoWeAreClient() {
       <section className="py-20 bg-navy border-t border-divider">
         <div className="max-w-[860px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line">
-              Our Domain
+            <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line`}>
+              {dict.ourDomain[locale]}
             </div>
             <p className="text-[16.5px] font-light text-silver leading-[1.8] mb-8">
-              We work exclusively in the inorganic chemical and fertilizer space.
-              Our domain covers:
+              {dict.domainSub[locale]}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-divider">
               {[
-                { formula: "H₂SO₄", name: "Sulfuric Acid" },
-                { formula: "H₃PO₄", name: "Phosphoric Acid" },
-                { formula: "K₂SO₄", name: "Sulfate of Potash" },
-                { formula: "NPK", name: "NPK Fertilizers" },
-                { formula: "MgSO₄", name: "Magnesium Sulphate" },
-                { formula: "SSP", name: "Single Superphosphate" },
+                { formula: "H₂SO₄", name: { en: "Sulfuric Acid", ar: "حمض الكبريتيك", zh: "硫酸" } },
+                { formula: "H₃PO₄", name: { en: "Phosphoric Acid", ar: "حمض الفوسفوريك", zh: "磷酸" } },
+                { formula: "K₂SO₄", name: { en: "Sulfate of Potash", ar: "كبريتات البوتاسيوم", zh: "硫酸钾" } },
+                { formula: "NPK", name: { en: "NPK Fertilizers", ar: "سماد مركب NPK", zh: "氮磷钾复合肥" } },
+                { formula: "MgSO₄", name: { en: "Magnesium Sulphate", ar: "كبريتات المغنيسيوم", zh: "硫酸镁" } },
+                { formula: "SSP", name: { en: "Single Superphosphate", ar: "سوبر فوسفات أحادي", zh: "普通过磷酸钙" } },
               ].map((tech) => (
                 <div key={tech.formula} className="bg-navy-card p-6 text-center">
-                  <div className="font-[family-name:var(--font-display)] text-3xl text-navy-soft/60 mb-2">
+                  <div className="font-[family-name:var(--font-display)] text-3xl text-navy-soft/60 mb-2" dir="ltr">
                     {tech.formula}
                   </div>
-                  <div className="font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase text-cloud">
-                    {tech.name}
+                  <div className={`${fcUi} text-[11px] font-bold tracking-[0.1em] uppercase text-cloud`}>
+                    {tech.name[locale]}
                   </div>
                 </div>
               ))}
@@ -111,18 +90,14 @@ export function WhoWeAreClient() {
       <section className="py-20 bg-navy-dark border-t border-divider">
         <div className="max-w-[860px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line">
-              Where We Work
+            <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-8 gold-line`}>
+              {dict.whereWeWork[locale]}
             </div>
             <p className="text-[16.5px] font-light text-silver leading-[1.8] mb-5">
-              Kafaah is based in Cairo, Egypt. Our work spans the MENA region —
-              from industrial zones in Egypt (Cairo, Suez) to Saudi Arabia
-              (Yanbu Industrial City) and the broader Gulf.
+              {dict.whereP1[locale]}
             </p>
             <p className="text-[16.5px] font-light text-silver leading-[1.8]">
-              We provide on-site services wherever the plant is located, with
-              remote advisory and documentation review available between site
-              visits.
+              {dict.whereP2[locale]}
             </p>
           </FadeIn>
         </div>
@@ -132,19 +107,20 @@ export function WhoWeAreClient() {
       <section className="py-20 bg-navy-mid border-t border-divider">
         <div className="max-w-[860px] mx-auto px-8 text-center">
           <FadeIn>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,4vw,48px)] leading-[1.1] text-cloud mb-4">
-              How can we <em className="text-gold-light">help you?</em>
+            <h2 className={`${fcDisplay} text-[clamp(28px,4vw,48px)] leading-[1.1] text-cloud mb-4`}>
+              {dict.howCanWeHelp[locale]}<em className="text-gold-light not-italic">{dict.helpAccent[locale]}</em>
             </h2>
             <p className="text-base font-light text-silver mb-8">
-              Whether you are building, operating, or investing — we bring 20
-              years of direct experience to your problem.
+              {dict.ctaSub[locale]}
             </p>
             <Link
               href="/contact/"
-              className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.12em] uppercase bg-gold text-navy px-7 py-3.5 hover:bg-gold-light transition-colors inline-flex items-center gap-2"
+              className={`${fcUi} text-xs font-bold tracking-[0.12em] uppercase bg-gold text-navy px-7 py-3.5 hover:bg-gold-light transition-colors inline-flex items-center gap-2`}
             >
-              Get in Touch
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
+                {shared.getInTouch[locale]}
+                <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />
+              </span>
             </Link>
           </FadeIn>
         </div>

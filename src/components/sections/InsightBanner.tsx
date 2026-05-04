@@ -2,17 +2,22 @@
 
 import { FadeIn } from "@/components/Animations";
 import type { InsightContent } from "@/data/roleContent";
+import { useRole } from "@/lib/RoleContext";
+import { insightBanner as insightDict, getFontClass, isRtl } from "@/lib/i18n";
 
 interface Props {
   content?: InsightContent;
 }
 
 export function InsightBanner({ content }: Props) {
-  const quote = content?.quote ?? "We measure before and after — results are not estimated, they are documented.";
-  const attribution = content?.attribution ?? "— Kafaah — Production Optimization";
+  const { locale } = useRole();
+  const fc = getFontClass(locale, "display");
+  const rtl = isRtl(locale);
+  const quote = content?.quote?.[locale] ?? insightDict.quote[locale];
+  const attribution = content?.attribution?.[locale] ?? insightDict.attribution[locale];
 
   return (
-    <section className="relative py-24 sm:py-28 bg-navy overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative py-24 sm:py-28 bg-navy overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gold/[0.03] rounded-full blur-[120px]" />
@@ -27,7 +32,7 @@ export function InsightBanner({ content }: Props) {
             &ldquo;
           </div>
 
-          <p className="font-[family-name:var(--font-display)] text-[clamp(22px,3.2vw,40px)] leading-[1.35] text-white italic max-w-[800px] mx-auto mb-8">
+          <p className={`${fc} text-[clamp(22px,3.2vw,40px)] leading-[1.35] text-white italic max-w-[800px] mx-auto mb-8`}>
             {quote}
           </p>
 
