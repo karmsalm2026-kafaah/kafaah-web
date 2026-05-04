@@ -28,6 +28,8 @@ const LOCALES: GatewayLocale[] = ["en", "ar", "zh"];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileTechOpen, setMobileTechOpen] = useState(false);
+  const [mobileSvcOpen, setMobileSvcOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const pathname = usePathname();
@@ -254,27 +256,39 @@ export function Navbar() {
               {t("whoWeAre")}
             </Link>
 
-            <div className="py-3.5 border-b border-white/[0.06]">
-              <div className={`${fc} text-[10px] font-bold tracking-[0.25em] uppercase text-gold mb-3`}>
+            <div className="border-b border-white/[0.06]">
+              <button
+                onClick={() => setMobileTechOpen(!mobileTechOpen)}
+                className={`flex items-center justify-between w-full py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 hover:text-white transition-colors`}
+              >
                 {t("technologies")}
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileTechOpen ? "rotate-180" : ""}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${mobileTechOpen ? "max-h-[600px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
+                {techDropdown.map((item) => (
+                  <Link key={item.slug} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
+                    <span className="text-gold text-[11px] min-w-[40px]">{item.formula}</span>
+                    {item.label}
+                  </Link>
+                ))}
               </div>
-              {techDropdown.map((item) => (
-                <Link key={item.slug} href={item.href} onClick={() => setMobileOpen(false)} className="flex items-center gap-2 py-2.5 pl-3 text-[13px] text-silver/50 hover:text-white transition-colors">
-                  <span className="text-gold text-[11px] min-w-[40px]">{item.formula}</span>
-                  {item.label}
-                </Link>
-              ))}
             </div>
 
-            <div className="py-3.5 border-b border-white/[0.06]">
-              <div className={`${fc} text-[10px] font-bold tracking-[0.25em] uppercase text-gold mb-3`}>
+            <div className="border-b border-white/[0.06]">
+              <button
+                onClick={() => setMobileSvcOpen(!mobileSvcOpen)}
+                className={`flex items-center justify-between w-full py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 hover:text-white transition-colors`}
+              >
                 {t("services")}
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileSvcOpen ? "rotate-180" : ""}`} />
+              </button>
+              <div className={`overflow-hidden transition-all duration-300 ${mobileSvcOpen ? "max-h-[600px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
+                {svcDropdown.map((item) => (
+                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`block py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
+                    {item.label}
+                  </Link>
+                ))}
               </div>
-              {svcDropdown.map((item) => (
-                <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="block py-2.5 pl-3 text-[13px] text-silver/50 hover:text-white transition-colors">
-                  {item.label}
-                </Link>
-              ))}
             </div>
 
             <Link href="/experience/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
