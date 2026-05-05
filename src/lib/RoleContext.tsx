@@ -1,49 +1,40 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
-import type { GatewayRole, GatewayLocale } from "@/lib/cookies";
+import type { GatewayLocale } from "@/lib/cookies";
 
-interface RoleContextValue {
-  role: GatewayRole | null;
+interface LocaleContextValue {
   locale: GatewayLocale;
-  country: string | null;
   setLocale: (l: GatewayLocale) => void;
 }
 
-const RoleCtx = createContext<RoleContextValue>({
-  role: null,
+const LocaleCtx = createContext<LocaleContextValue>({
   locale: "en",
-  country: null,
   setLocale: () => {},
 });
 
 export function useRole() {
-  return useContext(RoleCtx);
+  return useContext(LocaleCtx);
 }
 
 /**
- * RoleProvider — Reads gateway cookies on mount and exposes
- * role / locale / country to the entire component tree.
+ * RoleProvider — Reads locale cookie on mount and exposes
+ * locale to the entire component tree.
  * Also provides setLocale() so the Navbar language picker can update locale globally.
  */
 export function RoleProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState<Omit<RoleContextValue, "setLocale">>({
-    role: null,
-    locale: "en",
-    country: null,
-  });
+  const [locale, setLocaleState] = useState<GatewayLocale>("en");
 
   useEffect(() => {
-    // Read cookies client-side
+    // Read locale cookie client-side
     const get = (name: string) => {
       const m = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
       return m ? decodeURIComponent(m[2]) : null;
     };
-    setState({
-      role: (get("kafaah_role") as GatewayRole) || null,
-      locale: (get("kafaah_locale") as GatewayLocale) || "en",
-      country: get("kafaah_country"),
-    });
+    const savedLocale = get("kafaah_locale") as GatewayLocale;
+    if (savedLocale) {
+      setLocaleState(savedLocale);
+    }
   }, []);
 
   const setLocale = useCallback((l: GatewayLocale) => {
@@ -52,12 +43,12 @@ export function RoleProvider({ children }: { children: ReactNode }) {
     date.setTime(date.getTime() + 365 * 24 * 60 * 60 * 1000);
     document.cookie = `kafaah_locale=${l};expires=${date.toUTCString()};path=/;SameSite=Lax`;
     // Update state
-    setState((prev) => ({ ...prev, locale: l }));
+    setLocaleState(l);
   }, []);
 
   return (
-    <RoleCtx.Provider value={{ ...state, setLocale }}>
+    <LocaleCtx.Provider value={{ locale, setLocale }}>
       {children}
-    </RoleCtx.Provider>
+    </LocaleCtx.Provider>
   );
 }

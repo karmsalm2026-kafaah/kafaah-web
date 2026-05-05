@@ -26,7 +26,7 @@ export function Footer() {
       {/* Top accent line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
-      <div className="relative container mx-auto px-6 sm:px-8 lg:px-16 pt-24 pb-12">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20 mb-16 pb-16 border-b border-white/[0.04]">
           {/* Brand */}

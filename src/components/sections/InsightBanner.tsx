@@ -26,7 +26,7 @@ export function InsightBanner({ content }: Props) {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
       <FadeIn>
-        <div className="relative container mx-auto px-6 sm:px-8 lg:px-16 text-center">
+        <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Decorative quotes */}
           <div className="font-[family-name:var(--font-display)] text-[80px] sm:text-[120px] leading-none text-gold/[0.08] select-none mb-[-40px] sm:mb-[-60px]">
             &ldquo;

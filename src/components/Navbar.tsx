@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown, ArrowRight, RefreshCw, Globe, Home, Briefcase, FlaskConical, Wrench, Award, Lightbulb, Mail } from "lucide-react";
+import { Menu, X, ChevronDown, ArrowRight, Globe, Home, Briefcase, FlaskConical, Wrench, Award, Lightbulb, Mail } from "lucide-react";
 import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
 import { useRole } from "@/lib/RoleContext";
@@ -33,7 +33,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
   const pathname = usePathname();
-  const { role, locale, setLocale } = useRole();
+  const { locale, setLocale } = useRole();
   const langRef = useRef<HTMLDivElement>(null);
 
   const t = (key: keyof typeof nav) => nav[key][locale];
@@ -43,12 +43,6 @@ export function Navbar() {
   const navFont = locale !== "en"
     ? `${fc} text-[13px] font-semibold`
     : `font-[family-name:var(--font-ui)] text-[11.5px] font-medium tracking-[0.08em] uppercase`;
-
-  const roleBadge = role === "owner"
-    ? { label: nav.ownerPortal[locale], color: "text-[#6ECFA3] hover:text-white hover:opacity-100" }
-    : role === "epc"
-    ? { label: nav.epcPortal[locale], color: "text-[#A78BFA] hover:text-white hover:opacity-100" }
-    : null;
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
@@ -81,7 +75,7 @@ export function Navbar() {
           : "bg-transparent border-b border-white/[0.04]"
       }`}
     >
-      <div className="container mx-auto px-6 sm:px-8 lg:px-16 h-[72px] flex items-center justify-between">
+      <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-[72px] flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
@@ -93,19 +87,6 @@ export function Navbar() {
             priority
           />
         </Link>
-
-        {/* Role Badge */}
-        {roleBadge && (
-          <Link
-            href="/gateway"
-            className={`hidden md:inline-flex items-center gap-1.5 ${rtl ? "mr-3" : "ml-3"} px-2 py-1 text-[10px] ${fc} font-bold tracking-[0.15em] uppercase transition-all duration-300 opacity-80 ${roleBadge.color}`}
-            title="Switch portal"
-            onClick={() => { document.cookie = 'kafaah_role=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax'; }}
-          >
-            {roleBadge.label}
-            <RefreshCw className="w-2.5 h-2.5 opacity-50" />
-          </Link>
-        )}
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-0.5">
@@ -226,10 +207,8 @@ export function Navbar() {
 
           <Link
             href="/contact/"
-            className={`hidden md:inline-flex group relative items-center gap-2 ${locale !== "en" ? fc + " text-[13px] font-bold" : fc + " text-[11px] font-bold tracking-[0.15em] uppercase"} px-6 py-2.5 overflow-hidden transition-all duration-300 border border-gold/80 text-gold hover:text-navy-deep hover:border-gold`}
+            className={`hidden md:inline-flex group relative items-center gap-2 ${locale !== "en" ? fc + " text-[13px] font-bold" : fc + " text-[11px] font-bold tracking-[0.15em] uppercase"} px-6 py-2.5 overflow-hidden transition-all duration-300 bg-gold text-navy-deep rounded-sm gw-btn-shimmer hover:bg-gold-light hover:scale-105`}
           >
-            {/* Fill animation on hover */}
-            <span className="absolute inset-0 bg-gold translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
             <Mail className="w-3.5 h-3.5 relative z-10" />
             <span className="relative z-10">{t("getInTouch")}</span>
           </Link>
@@ -323,7 +302,7 @@ export function Navbar() {
               <Link
                 href="/contact/"
                 onClick={() => setMobileOpen(false)}
-                className={`flex items-center justify-center gap-2 w-full ${fc} text-[12px] font-bold tracking-[0.2em] uppercase bg-gold text-navy-deep py-4 transition-colors`}
+                className={`relative overflow-hidden flex items-center justify-center gap-2 w-full ${fc} text-[12px] font-bold tracking-[0.2em] uppercase bg-gold text-navy-deep py-4 rounded-sm transition-all gw-btn-shimmer`}
               >
                 {t("getInTouch")}
               </Link>

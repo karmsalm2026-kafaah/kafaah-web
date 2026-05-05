@@ -30,12 +30,12 @@ export function ServicesSection({ content }: Props) {
     : services;
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy overflow-hidden">
+    <section id="services" dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy overflow-hidden">
       {/* Subtle background texture */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
-      <div className="relative container mx-auto px-6 sm:px-8 lg:px-16">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <FadeIn>
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-16 lg:mb-20">
@@ -50,13 +50,6 @@ export function ServicesSection({ content }: Props) {
                 {headline}<em className="text-gold not-italic">{headlineAccent}</em>
               </h2>
             </div>
-            <Link
-              href="/services/owners-engineer/"
-              className={`group inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-semibold text-gold/80 hover:text-gold transition-colors mt-6 sm:mt-0`}
-            >
-              {svcDict.allServices[locale]}
-              <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${rtl ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"}`} />
-            </Link>
           </div>
         </FadeIn>
 

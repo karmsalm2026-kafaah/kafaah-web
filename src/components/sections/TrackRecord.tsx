@@ -19,7 +19,7 @@ export function TrackRecordSection() {
       {/* Background */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
 
-      <div className="relative container mx-auto px-6 sm:px-8 lg:px-16">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 lg:gap-20 items-start">
           {/* Left: Projects */}
           <FadeIn>

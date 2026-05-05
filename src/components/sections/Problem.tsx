@@ -47,7 +47,7 @@ export function ProblemSection({ content }: Props) {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
-      <div className="relative container mx-auto px-6 sm:px-8 lg:px-16">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Eyebrow */}
         <FadeIn>
           <div className="flex items-center gap-4 mb-6">

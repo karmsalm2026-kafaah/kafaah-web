@@ -1,7 +1,6 @@
 /**
- * Gateway Cookie Utilities
- * Manages kafaah_role, kafaah_locale, and kafaah_country cookies
- * Used by the gateway page and middleware for personalization
+ * Cookie Utilities
+ * Manages kafaah_locale cookie for i18n persistence
  */
 
 const COOKIE_EXPIRY_DAYS = 365;
@@ -17,35 +16,12 @@ function getCookie(name: string): string | null {
   return match ? decodeURIComponent(match[2]) : null;
 }
 
-function deleteCookie(name: string) {
-  document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
-}
-
-export type GatewayRole = "owner" | "epc";
 export type GatewayLocale = "en" | "ar" | "zh";
 
-export function setGatewayCookies(
-  role: GatewayRole,
-  locale: GatewayLocale,
-  country?: string
-) {
-  setCookie("kafaah_role", role);
+export function setLocaleCookie(locale: GatewayLocale) {
   setCookie("kafaah_locale", locale);
-  if (country) {
-    setCookie("kafaah_country", country);
-  }
 }
 
-export function getGatewayCookies() {
-  return {
-    role: getCookie("kafaah_role") as GatewayRole | null,
-    locale: getCookie("kafaah_locale") as GatewayLocale | null,
-    country: getCookie("kafaah_country"),
-  };
-}
-
-export function clearGatewayCookies() {
-  deleteCookie("kafaah_role");
-  deleteCookie("kafaah_locale");
-  deleteCookie("kafaah_country");
+export function getLocaleCookie(): GatewayLocale | null {
+  return getCookie("kafaah_locale") as GatewayLocale | null;
 }

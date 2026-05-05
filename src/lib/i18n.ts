@@ -38,8 +38,6 @@ export const nav = {
   experience: { en: "Experience", ar: "الخبرات", zh: "经验" } as L,
   insights: { en: "Insights", ar: "رؤى", zh: "洞察" } as L,
   getInTouch: { en: "Get in Touch", ar: "تواصل معنا", zh: "联系我们" } as L,
-  ownerPortal: { en: "Owner Portal", ar: "بوابة المالك", zh: "业主门户" } as L,
-  epcPortal: { en: "EPC Portal", ar: "بوابة المقاول", zh: "EPC门户" } as L,
   language: { en: "Language", ar: "اللغة", zh: "语言" } as L,
 };
 
@@ -65,16 +63,16 @@ export const footer = {
    HOMEPAGE SECTIONS
    ══════════════════════════════════════════════ */
 export const hero = {
-  eyebrow: { en: "Independent Specialists · Egypt & Gulf", ar: "متخصصون مستقلون · مصر والخليج", zh: "独立专家 · 埃及与海湾" } as L,
+  eyebrow: { en: "Independent Experts for Owners & EPCs", ar: "خبراء مستقلون لخدمة المُلّاك ومقاولي EPC", zh: "为业主和EPC提供独立专业支持" } as L,
   headline: {
     en: ["Engineering", "certainty", "for critical plants."],
     ar: ["نُهندس", "اليقين", "للمصانع الحرجة."],
     zh: ["为关键工厂", "铸造", "工程确定性。"],
   } as LArr,
   subCopy: {
-    en: "Direct expertise in H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP — from feasibility studies to full-scale commissioning.",
-    ar: "خبرة مباشرة في H₂SO₄ و H₃PO₄ و K₂SO₄ و NPK و MgSO₄ و SSP — من دراسات الجدوى حتى التشغيل الكامل.",
-    zh: "在 H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄ 及 SSP 领域拥有丰富实操经验——从可行性研究到全面调试。",
+    en: "Independent technical oversight for Owners, and expert commissioning support for EPCs — bringing 20 years of direct operational experience to H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants.",
+    ar: "إشراف فني مستقل لحماية المُلّاك، ودعم متخصص في التشغيل لمقاولي EPC — نضع 20 عاماً من الخبرة التشغيلية المباشرة في مصانع H₂SO₄ و H₃PO₄ و K₂SO₄ و NPK و MgSO₄ و SSP.",
+    zh: "为业主提供独立的技术监督，为EPC提供专业的调试支持——将20年的直接运营经验应用于 H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄ 及 SSP 工厂。",
   } as L,
   exploreServices: { en: "Explore Services", ar: "اكتشف خدماتنا", zh: "探索服务" } as L,
   ourTrackRecord: { en: "Our Track Record", ar: "سجلّ إنجازاتنا", zh: "我们的业绩" } as L,

@@ -11,7 +11,7 @@ export function GeographySection() {
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} className="bg-navy-deep py-12 border-b border-white/[0.04]">
-      <div className="container mx-auto px-6 sm:px-8 lg:px-16 flex flex-col md:flex-row items-center gap-6 md:gap-12 flex-wrap">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-6 md:gap-12 flex-wrap">
         <div className={`${fc} text-[10px] font-bold tracking-[0.3em] uppercase text-gold/70 shrink-0`}>
           {geoDict.label[locale]}
         </div>
