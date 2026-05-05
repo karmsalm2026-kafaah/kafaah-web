@@ -41,7 +41,7 @@ export function TechnologiesSection() {
               <Link
                 key={tech.slug}
                 href={`/technologies/${tech.slug}/`}
-                className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-r border-b border-white/[0.04] last:border-r-0 md:[&:nth-child(2n)]:border-r-0 lg:[&:nth-child(2n)]:border-r lg:[&:nth-child(3n)]:border-r-0"
+                className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-e border-b border-white/[0.04] last:border-e-0 md:[&:nth-child(2n)]:border-e-0 lg:[&:nth-child(2n)]:border-e lg:[&:nth-child(3n)]:border-e-0"
               >
                 {/* Top accent line */}
                 <div className="absolute top-0 left-0 w-0 h-[2px] bg-gradient-to-r from-gold to-gold-light group-hover:w-full transition-all duration-500 z-10" />

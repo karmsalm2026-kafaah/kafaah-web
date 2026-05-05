@@ -133,8 +133,8 @@ export function HeroSection({ content }: Props) {
               {stats.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`py-3 sm:py-4 md:py-6 px-2 sm:px-4 md:px-8 group cursor-default border-white/[0.12] ${i === 1 || i === 3 ? "border-l" : ""
-                    } ${i === 2 ? "max-md:border-l-0 md:border-l" : ""} ${i < 2 ? "border-b md:border-b-0" : ""
+                  className={`py-3 sm:py-4 md:py-6 px-2 sm:px-4 md:px-8 group cursor-default border-white/[0.12] ${i === 1 || i === 3 ? "border-s" : ""
+                    } ${i === 2 ? "max-md:border-s-0 md:border-s" : ""} ${i < 2 ? "border-b md:border-b-0" : ""
                     }`}
                 >
                   <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-[clamp(1.5rem,2.5vw,2.5rem)] text-white mb-1 md:mb-1.5 group-hover:text-gold transition-colors duration-300`}>

@@ -24,7 +24,7 @@ export function ExperienceClient() {
 
           {dict.projects[locale].map((proj: any, idx: number) => (
             <FadeIn delay={0.1 * (idx + 1)} key={idx}>
-              <div className={`bg-navy-card border border-divider p-8 lg:p-10 mb-6 border-l-[3px] border-l-gold ${rtl ? "border-r-[3px] border-r-gold border-l-0" : ""}`}>
+              <div className="bg-navy-card border border-divider p-8 lg:p-10 mb-6 border-s-[3px] border-s-gold">
                 <div className="flex flex-wrap items-center gap-4 mb-4">
                   <span className={`${fcUi} text-[9px] font-bold tracking-[0.15em] uppercase bg-gold/15 text-gold border border-gold/30 px-2.5 py-0.5`}>
                     {proj.badge}

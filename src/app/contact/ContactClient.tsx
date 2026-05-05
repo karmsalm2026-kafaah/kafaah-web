@@ -53,7 +53,7 @@ export function ContactClient() {
   return (
     <section className="min-h-[calc(100vh-68px)] flex flex-col lg:flex-row">
       {/* Left side - Info */}
-      <div className="flex-1 bg-navy-dark p-8 lg:p-16 xl:p-24 border-r border-divider flex flex-col justify-center relative overflow-hidden">
+      <div className="flex-1 bg-navy-dark p-8 lg:p-16 xl:p-24 border-e border-divider flex flex-col justify-center relative overflow-hidden">
         <div
           className="absolute right-[-40px] bottom-[-40px] font-[family-name:var(--font-display)] text-[clamp(120px,25vw,360px)] text-navy-mid/20 leading-none pointer-events-none select-none"
           aria-hidden="true"

@@ -143,7 +143,7 @@ export function Navbar() {
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
               <div className="grid grid-cols-2">
                 {/* Owners Column */}
-                <div className={`p-4 ${rtl ? "border-l" : "border-r"} border-white/[0.06]`}>
+                <div className="p-4 border-e border-white/[0.06]">
                   <div className={`mb-3 pb-2 border-b border-white/[0.06] ${fc} text-[11px] font-bold text-gold uppercase tracking-[0.1em]`}>
                     {megaMenu.owners[locale]}
                   </div>
