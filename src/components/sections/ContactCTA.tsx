@@ -118,8 +118,12 @@ export function ContactCTA({ content }: Props) {
             <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row items-stretch w-full sm:w-auto">
               <Link
                 href="/contact/"
-                className={`flex-1 group relative inline-flex items-center justify-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold px-8 py-4 overflow-hidden transition-all duration-300 border border-gold bg-gold text-navy-deep hover:bg-transparent hover:text-gold`}
+                className={`flex-1 group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
               >
+                {/* Premium animated light sweep */}
+                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+                <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
                 <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
                   {ctaDict.getInTouch[locale]}
                   <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />
@@ -127,8 +131,14 @@ export function ContactCTA({ content }: Props) {
               </Link>
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className={`flex-1 group relative inline-flex items-center justify-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold px-8 py-4 overflow-hidden transition-all duration-300 border border-white/20 text-white hover:border-white hover:bg-white/5`}
+                className={`flex-1 group btn-premium-glass ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
               >
+                {/* Premium animated border */}
+                <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Subtle inner glow on hover */}
+                <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                 <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
                   {ctaDict.sendEmail[locale]}
                   <Mail className="w-3.5 h-3.5" />
@@ -184,8 +194,12 @@ export function ContactCTA({ content }: Props) {
               />
             </div>
 
-            <button className={`w-full ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold bg-white/5 border border-white/10 text-white py-4 hover:bg-gold hover:border-gold hover:text-navy-deep transition-all duration-300`}>
-              {ctaDict.sendRequest[locale]}
+            <button className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}>
+              {/* Premium animated light sweep */}
+              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
+              <span className="relative z-10">{ctaDict.sendRequest[locale]}</span>
             </button>
 
             <div className={`mt-8 pt-6 border-t border-white/[0.06] flex gap-x-6 gap-y-3 flex-wrap`}>

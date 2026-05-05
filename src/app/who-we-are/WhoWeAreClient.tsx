@@ -115,8 +115,12 @@ export function WhoWeAreClient() {
             </p>
             <Link
               href="/contact/"
-              className={`${fcUi} text-xs font-bold tracking-[0.12em] uppercase bg-gold text-navy px-7 py-3.5 hover:bg-gold-light transition-colors inline-flex items-center gap-2`}
+              className={`group btn-premium-gold ${fcUi} text-xs font-bold tracking-[0.12em] uppercase`}
             >
+              {/* Premium animated light sweep */}
+              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
               <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
                 {shared.getInTouch[locale]}
                 <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />

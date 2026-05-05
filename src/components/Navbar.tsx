@@ -8,7 +8,7 @@ import { Menu, X, ChevronDown, ArrowRight, Globe, Home, Briefcase, FlaskConical,
 import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
 import { useRole } from "@/lib/RoleContext";
-import { nav, getFontClass, getLangName, isRtl } from "@/lib/i18n";
+import { nav, megaMenu, getFontClass, getLangName, isRtl } from "@/lib/i18n";
 import type { GatewayLocale } from "@/lib/cookies";
 
 const techDropdown = technologies.map((t) => ({
@@ -106,8 +106,9 @@ export function Navbar() {
               {t("technologies")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </span>
-            <div className={`nav-dropdown absolute top-[72px] ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px] bg-[#071222] border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden`}>
-              <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
+            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px]`}>
+              <div className="bg-[#071222] border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+                <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
               <div className="p-2">
                 {techDropdown.map((item) => (
                   <Link
@@ -124,36 +125,64 @@ export function Navbar() {
                     <ArrowRight className={`w-3 h-3 ${rtl ? "mr-auto rotate-180" : "ml-auto"} text-gold/0 group-hover/item:text-gold translate-x-[-4px] group-hover/item:translate-x-0 transition-all duration-200`} />
                   </Link>
                 ))}
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Services Dropdown */}
+          {/* Services Mega Menu */}
           <div className="nav-item-drop relative">
             <span className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/services") ? "nav-link-active" : ""}`}>
               <Wrench className="w-3.5 h-3.5 opacity-50" />
               {t("services")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </span>
-            <div className={`nav-dropdown absolute top-[72px] ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px] bg-[#071222] border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden`}>
-              <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
-              <div className="p-2">
-                {svcDropdown.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="block px-4 py-3 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
-                  >
-                    <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
-                      {item.label}
-                    </span>
-                    {item.sub && (
-                      <span className="block font-[family-name:var(--font-body)] text-[11px] text-gold/80 tracking-normal mt-0.5">
-                        {item.sub}
-                      </span>
-                    )}
-                  </Link>
-                ))}
+            {/* Mega Menu Dropdown */}
+            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[650px]`}>
+              <div className="bg-navy-deep border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+                <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
+              <div className="grid grid-cols-2">
+                {/* Owners Column */}
+                <div className={`p-4 ${rtl ? "border-l" : "border-r"} border-white/[0.06]`}>
+                  <div className={`mb-3 pb-2 border-b border-white/[0.06] ${fc} text-[11px] font-bold text-gold uppercase tracking-[0.1em]`}>
+                    {megaMenu.owners[locale]}
+                  </div>
+                  <div className="space-y-1">
+                    {svcDropdown.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className="block px-3 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
+                      >
+                        <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
+                          {item.label}
+                        </span>
+                        {item.sub && (
+                          <span className="block font-[family-name:var(--font-body)] text-[10.5px] text-gold/80 tracking-normal mt-0.5">
+                            {item.sub}
+                          </span>
+                        )}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+                {/* EPC Column */}
+                <div className="p-4 bg-white/[0.02]">
+                  <div className={`mb-3 pb-2 border-b border-white/[0.06] ${fc} text-[11px] font-bold text-silver/60 uppercase tracking-[0.1em]`}>
+                    {megaMenu.epc[locale]}
+                  </div>
+                  <div className="h-full min-h-[150px] flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/[0.04] mb-3">
+                        <Wrench className="w-4 h-4 text-silver/30" />
+                      </div>
+                      <p className={`${fc} text-[12px] font-medium text-silver/40`}>
+                        {megaMenu.comingSoon[locale]}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
               </div>
             </div>
           </div>
@@ -175,11 +204,11 @@ export function Navbar() {
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="flex items-center gap-1.5 text-silver/60 hover:text-gold transition-colors px-2 py-1.5"
+              className="group/lang flex items-center gap-1.5 bg-white/5 hover:bg-white/10 transition-all duration-300 px-3 py-1.5 rounded-sm"
               aria-label={nav.language[locale]}
             >
-              <Globe className="w-4 h-4" />
-              <span className="hidden sm:inline text-[10px] font-[family-name:var(--font-ui)] font-bold tracking-[0.1em] uppercase">
+              <Globe className="w-4 h-4 text-white group-hover/lang:text-gold transition-colors" />
+              <span className="hidden sm:inline text-[10px] font-[family-name:var(--font-ui)] font-bold tracking-[0.1em] uppercase text-white group-hover/lang:text-gold transition-colors">
                 {locale.toUpperCase()}
               </span>
             </button>
@@ -261,12 +290,22 @@ export function Navbar() {
                 {t("services")}
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileSvcOpen ? "rotate-180" : ""}`} />
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${mobileSvcOpen ? "max-h-[600px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
+              <div className={`overflow-hidden transition-all duration-300 ${mobileSvcOpen ? "max-h-[800px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
+                <div className={`mb-2 pt-1 ${rtl ? "pr-3" : "pl-3"} ${fc} text-[10px] font-bold text-gold uppercase tracking-[0.1em]`}>
+                  {megaMenu.owners[locale]}
+                </div>
                 {svcDropdown.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`block py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
+                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`block py-2 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
                     {item.label}
                   </Link>
                 ))}
+                
+                <div className={`mt-4 mb-2 ${rtl ? "pr-3" : "pl-3"} ${fc} text-[10px] font-bold text-silver/60 uppercase tracking-[0.1em]`}>
+                  {megaMenu.epc[locale]}
+                </div>
+                <div className={`py-2 ${rtl ? "pr-3" : "pl-3"} text-[12px] text-silver/30 italic`}>
+                  {megaMenu.comingSoon[locale]}
+                </div>
               </div>
             </div>
 

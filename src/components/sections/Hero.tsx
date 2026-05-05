@@ -95,10 +95,10 @@ export function HeroSection({ content }: Props) {
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4">
               <Link
                 href={primary.href}
-                className={`group relative inline-flex items-center justify-center gap-3 ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-bold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-bold tracking-[0.2em] uppercase"} text-navy-deep w-full sm:w-auto min-w-[240px] px-8 py-4 bg-gold hover:bg-gold-light rounded-sm transition-all duration-500 overflow-hidden shadow-[0_0_20px_rgba(212,175,55,0.15)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:-translate-y-1 active:translate-y-0`}
+                className={`group btn-premium-gold ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-bold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-bold tracking-[0.2em] uppercase"} w-full sm:w-auto min-w-[240px]`}
               >
                 {/* Premium animated light sweep */}
-                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-[shimmer_1.5s_infinite]" />
+                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
                 <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
                 
                 <Rocket className="w-4 h-4 relative z-10 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -108,7 +108,7 @@ export function HeroSection({ content }: Props) {
 
               <Link
                 href={secondary.href}
-                className={`group relative inline-flex items-center justify-center gap-3 ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-semibold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-semibold tracking-[0.15em] uppercase"} text-silver w-full sm:w-auto min-w-[240px] px-8 py-4 rounded-sm transition-all duration-500 overflow-hidden bg-white/5 backdrop-blur-md hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(212,175,55,0.1)] hover:-translate-y-1 active:translate-y-0`}
+                className={`group btn-premium-glass ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-semibold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-semibold tracking-[0.15em] uppercase"} w-full sm:w-auto min-w-[240px]`}
               >
                 {/* Premium animated border */}
                 <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />

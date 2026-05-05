@@ -41,6 +41,12 @@ export const nav = {
   language: { en: "Language", ar: "اللغة", zh: "语言" } as L,
 };
 
+export const megaMenu = {
+  owners: { en: "Plant Owners / Operators", ar: "مُلاك ومشغلو المصانع", zh: "工厂业主/运营商" } as L,
+  epc: { en: "EPC Contractors", ar: "مقاولون EPC", zh: "EPC承包商" } as L,
+  comingSoon: { en: "Coming Soon", ar: "سيتم إضافتها قريباً", zh: "即将推出" } as L,
+};
+
 /* ══════════════════════════════════════════════
    FOOTER
    ══════════════════════════════════════════════ */

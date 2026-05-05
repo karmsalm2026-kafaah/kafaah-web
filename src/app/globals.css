@@ -240,6 +240,37 @@ body {
   pointer-events: auto;
 }
 
+/* ── PREMIUM BUTTONS ── */
+.btn-premium-gold {
+  @apply relative inline-flex items-center justify-center gap-3;
+  @apply text-navy-deep px-8 py-4 bg-gold hover:bg-gold-light rounded-sm;
+  @apply transition-all duration-500 overflow-hidden;
+  @apply hover:-translate-y-1 active:translate-y-0 cursor-pointer;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+.btn-premium-gold:hover {
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+}
+
+.btn-premium-glass {
+  @apply relative inline-flex items-center justify-center gap-3;
+  @apply text-silver px-8 py-4 rounded-sm transition-all duration-500 overflow-hidden;
+  @apply bg-white/5 backdrop-blur-md hover:bg-white/10 hover:text-white;
+  @apply hover:-translate-y-1 active:translate-y-0 cursor-pointer;
+}
+.btn-premium-glass:hover {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+/* Shimmer Animation for Gold Button */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.animate-shimmer {
+  animation: shimmer 1.5s infinite;
+}
+
 /* ── FOCUS STYLES ── */
 input:focus, select:focus, textarea:focus {
   border-color: rgba(232, 146, 10, 0.5) !important;
