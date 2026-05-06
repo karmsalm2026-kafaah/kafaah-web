@@ -34,11 +34,11 @@ export function TrackRecordSection() {
                 {trDict.headline[locale]}<em className="text-gold not-italic">{trDict.headlineAccent[locale]}</em>
               </h2>
 
-              <div className="flex flex-col gap-[1px] bg-white/[0.04]">
+              <div className="flex flex-col gap-[1px] bg-white/[0.08]">
                 {/* Project 1 */}
                 <div className="group relative bg-navy p-8 transition-all duration-500 hover:bg-navy-card-hover">
                   <div className={`absolute ${rtl ? "right-0" : "left-0"} top-0 bottom-0 w-[2px] bg-navy-soft group-hover:bg-gold transition-colors duration-500`} />
-                  <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/70 mb-3 block`}>
+                  <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/85 mb-3 block`}>
                     Commissioning &amp; Startup · Nov 2025 – Jan 2026
                   </span>
                   <div className={`${isEn ? "font-[family-name:var(--font-display)] text-[22px]" : fcBody + " text-[20px] font-bold"} text-white leading-[1.2] mb-2 group-hover:text-gold transition-colors duration-300`}>
@@ -93,11 +93,11 @@ export function TrackRecordSection() {
                 full life of an inorganic chemical plant.
               </p>
 
-              <div className="flex flex-col border border-white/[0.06]">
+              <div className="flex flex-col border border-white/[0.10]">
                 {trDict.disciplines[locale].map((d) => (
                   <div
                     key={d.label}
-                    className={`px-6 py-5 border-b border-white/[0.06] last:border-b-0 flex items-center gap-4 ${fcBody} ${isAr ? "text-[15px]" : "text-[14px]"} text-silver/90 hover:bg-white/[0.02] transition-colors`}
+                    className={`px-6 py-5 border-b border-white/[0.10] last:border-b-0 flex items-center gap-4 ${fcBody} ${isAr ? "text-[15px]" : "text-[14px]"} text-silver hover:bg-white/[0.04] transition-colors`}
                   >
                     <div className="w-1.5 h-1.5 bg-gold shrink-0" />
                     <strong className="font-medium text-white min-w-[100px]">

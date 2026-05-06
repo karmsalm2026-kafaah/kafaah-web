@@ -55,7 +55,7 @@ export function ServicesSection({ content }: Props) {
 
         {/* Service Cards Grid */}
         <FadeIn delay={0.1}>
-          <div className={`grid grid-cols-1 md:grid-cols-2 ${filteredServices.length > 2 ? "lg:grid-cols-3" : ""} gap-[1px] bg-white/[0.04]`}>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${filteredServices.length > 2 ? "lg:grid-cols-3" : ""} gap-[1px] bg-white/[0.08]`}>
             {filteredServices.map((svc, index) => (
               <Link
                 key={svc.slug}
@@ -87,11 +87,11 @@ export function ServicesSection({ content }: Props) {
                   {svc.title}
                 </h3>
 
-                <p className={`${fcBody} ${isAr ? "text-[16px] leading-[1.9]" : "text-[14px] leading-[1.75]"} font-light text-silver/80 mb-8`}>
+                <p className={`${fcBody} ${isAr ? "text-[16px] leading-[1.9]" : "text-[14px] leading-[1.75]"} font-light text-silver/90 mb-8`}>
                   {svc.shortDesc}
                 </p>
 
-                <span className={`inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.12em] uppercase" : fcBody + " text-[13px]"} font-semibold text-silver/80 group-hover:text-gold transition-colors duration-300`}>
+                <span className={`inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.12em] uppercase" : fcBody + " text-[13px]"} font-semibold text-silver/90 group-hover:text-gold transition-colors duration-300`}>
                   {svcDict.exploreService[locale]}
                   <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${rtl ? "translate-x-0 group-hover:-translate-x-1.5 rotate-180" : "translate-x-0 group-hover:translate-x-1.5"}`} />
                 </span>

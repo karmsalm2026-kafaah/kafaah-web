@@ -92,7 +92,7 @@ export default function RootLayout({
               "@type": "Organization",
               name: "Kafaah Industrial Solutions",
               url: "https://kafaahsolutions.com",
-              logo: "https://kafaahsolutions.com/logo.svg",
+              logo: "https://kafaahsolutions.com/logo.webp",
               description:
                 "Independent specialists in inorganic chemical and fertilizer plant commissioning, startup, troubleshooting, and performance optimization.",
               address: {

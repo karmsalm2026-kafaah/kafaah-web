@@ -73,7 +73,7 @@ export function ProblemSection({ content }: Props) {
               {paragraphs.map((p, i) => {
                 const has20Years = locale === 'en' && p.includes("20 years of direct operational experience");
                 return (
-                  <p key={i} className={`${fcBody} text-silver/80 ${isAr ? "text-[17px] leading-[2] font-normal" : "font-light text-[16px] leading-[1.85]"} ${rtl ? "text-right" : ""}`}>
+                  <p key={i} className={`${fcBody} text-silver/90 ${isAr ? "text-[17px] leading-[2] font-normal" : "font-light text-[16px] leading-[1.85]"} ${rtl ? "text-right" : ""}`}>
                     {has20Years ? (
                       <>{p.split("20 years")[0]}<strong className="text-white font-medium">20 years of direct operational experience</strong>{p.split("20 years of direct operational experience")[1] ?? ""}</>
                     ) : (
@@ -94,7 +94,7 @@ export function ProblemSection({ content }: Props) {
               return (
                 <div
                   key={i}
-                  className="group relative bg-navy-card/60 border border-white/[0.06] p-8 transition-all duration-500 hover:border-gold/30 hover:bg-navy-card-hover/80"
+                  className="group relative bg-navy-card/60 border border-white/[0.10] p-8 transition-all duration-500 hover:border-gold/30 hover:bg-navy-card-hover/80"
                 >
                   {/* Top gold accent line */}
                   <div className="absolute top-0 left-0 w-0 h-[2px] bg-gradient-to-r from-gold to-gold-light group-hover:w-full transition-all duration-500" />
@@ -112,7 +112,7 @@ export function ProblemSection({ content }: Props) {
                     {point.label}
                   </h3>
 
-                  <p className={`${fcBody} text-silver/60 ${isAr ? "text-[15px] leading-[1.9]" : "text-[14px] leading-[1.7]"} font-light`}>
+                  <p className={`${fcBody} text-silver/75 ${isAr ? "text-[15px] leading-[1.9]" : "text-[14px] leading-[1.7]"} font-light`}>
                     {point.desc}
                   </p>
                 </div>

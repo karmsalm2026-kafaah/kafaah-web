@@ -71,8 +71,8 @@ export function Navbar() {
       dir={rtl ? "rtl" : "ltr"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-navy-deep/95 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
-          : "bg-transparent border-b border-white/[0.04]"
+          ? "bg-navy-deep/95 backdrop-blur-xl border-b border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent border-b border-white/[0.08]"
       }`}
     >
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-[72px] flex items-center justify-between">
@@ -107,7 +107,7 @@ export function Navbar() {
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </span>
             <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px]`}>
-              <div className="bg-[#071222] border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+              <div className="bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
               <div className="p-2">
                 {techDropdown.map((item) => (
@@ -139,12 +139,12 @@ export function Navbar() {
             </span>
             {/* Mega Menu Dropdown */}
             <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[650px]`}>
-              <div className="bg-navy-deep border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+              <div className="bg-navy-deep border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
               <div className="grid grid-cols-2">
                 {/* Owners Column */}
-                <div className="p-4 border-e border-white/[0.06]">
-                  <div className={`mb-3 pb-2 border-b border-white/[0.06] ${fc} text-[11px] font-bold text-gold uppercase tracking-[0.1em]`}>
+                <div className="p-4 border-e border-white/[0.10]">
+                  <div className={`mb-3 pb-2 border-b border-white/[0.10] ${fc} text-[11px] font-bold text-gold uppercase tracking-[0.1em]`}>
                     {megaMenu.owners[locale]}
                   </div>
                   <div className="space-y-1">
@@ -168,7 +168,7 @@ export function Navbar() {
                 </div>
                 {/* EPC Column */}
                 <div className="p-4 bg-white/[0.02]">
-                  <div className={`mb-3 pb-2 border-b border-white/[0.06] ${fc} text-[11px] font-bold text-silver/60 uppercase tracking-[0.1em]`}>
+                  <div className={`mb-3 pb-2 border-b border-white/[0.10] ${fc} text-[11px] font-bold text-silver/70 uppercase tracking-[0.1em]`}>
                     {megaMenu.epc[locale]}
                   </div>
                   <div className="h-full min-h-[150px] flex items-center justify-center">
@@ -213,7 +213,7 @@ export function Navbar() {
               </span>
             </button>
             {langOpen && (
-              <div className={`absolute top-full ${rtl ? "left-0" : "right-0"} mt-2 min-w-[140px] bg-[#071222] border border-white/[0.12] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden z-50`}>
+              <div className={`absolute top-full ${rtl ? "left-0" : "right-0"} mt-2 min-w-[140px] bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden z-50`}>
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
                 <div className="p-1.5">
                   {LOCALES.map((l) => (
@@ -255,7 +255,7 @@ export function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div dir={rtl ? "rtl" : "ltr"} className="lg:hidden bg-navy-deep/98 backdrop-blur-2xl border-t border-white/[0.06] max-h-[calc(100vh-72px)] overflow-y-auto">
+        <div dir={rtl ? "rtl" : "ltr"} className="lg:hidden bg-navy-deep/98 backdrop-blur-2xl border-t border-white/[0.10] max-h-[calc(100vh-72px)] overflow-y-auto">
           <div className="px-6 py-5 space-y-1">
             <Link href="/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
               {t("home")}

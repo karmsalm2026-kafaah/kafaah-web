@@ -22,13 +22,13 @@ export function Footer() {
   ];
 
   return (
-    <footer dir={rtl ? "rtl" : "ltr"} className="relative bg-navy overflow-hidden border-t border-white/[0.04]">
+    <footer dir={rtl ? "rtl" : "ltr"} className="relative bg-navy overflow-hidden border-t border-white/[0.08]">
       {/* Top accent line */}
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12">
         {/* Top Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20 mb-16 pb-16 border-b border-white/[0.04]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-20 mb-16 pb-16 border-b border-white/[0.08]">
           {/* Brand */}
           <div className="lg:pr-8">
             <Link href="/" className="inline-block mb-8 group">
@@ -40,7 +40,7 @@ export function Footer() {
                 className="h-[42px] w-auto object-contain brightness-110 group-hover:brightness-125 transition-all duration-300"
               />
             </Link>
-            <p className={`${fc} ${isAr ? "text-[16px] leading-[2]" : "text-[14px] leading-[1.8]"} font-light text-silver/80 max-w-[320px]`}>
+            <p className={`${fc} ${isAr ? "text-[16px] leading-[2]" : "text-[14px] leading-[1.8]"} font-light text-silver/90 max-w-[320px]`}>
               {footer.brandDesc[locale]}
             </p>
           </div>
@@ -56,7 +56,7 @@ export function Footer() {
                 <li key={t.slug}>
                   <Link
                     href={`/technologies/${t.slug}/`}
-                    className="group flex items-center gap-3 text-[14px] font-light text-silver/90 hover:text-white transition-colors duration-300"
+                    className="group flex items-center gap-3 text-[14px] font-light text-silver hover:text-white transition-colors duration-300"
                   >
                     <span className="font-[family-name:var(--font-ui)] text-gold/70 text-[11px] font-bold min-w-[36px] group-hover:text-gold transition-colors tracking-widest">
                       {t.formula}
@@ -81,7 +81,7 @@ export function Footer() {
                 <li key={s.slug}>
                   <Link
                     href={`/services/${s.slug}/`}
-                    className="group text-[14px] font-light text-silver/90 hover:text-white transition-colors duration-300 flex items-center gap-3"
+                    className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3"
                   >
                     <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors" />
                     {s.title}
@@ -102,7 +102,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className={`group text-[14px] font-light text-silver/90 hover:text-white transition-colors duration-300 flex items-center gap-3 ${fc}`}
+                    className={`group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3 ${fc}`}
                   >
                     <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors" />
                     {link.label}
@@ -115,15 +115,15 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left mt-8">
-          <div className={`${fc} ${isEn ? "text-[10px] tracking-[0.15em] uppercase" : "text-[12px]"} font-medium text-silver/50`}>
+          <div className={`${fc} ${isEn ? "text-[10px] tracking-[0.15em] uppercase" : "text-[12px]"} font-medium text-silver/70`}>
             {footer.copyright[locale]}
           </div>
           <div className="flex items-center justify-center gap-4">
-            <span className={`${fc} ${isEn ? "text-[10px] tracking-[0.2em] uppercase" : "text-[12px]"} font-medium text-silver/50`}>
+            <span className={`${fc} ${isEn ? "text-[10px] tracking-[0.2em] uppercase" : "text-[12px]"} font-medium text-silver/70`}>
               {footer.independent[locale]}
             </span>
             <div className="w-1 h-1 rounded-full bg-gold/50" />
-            <span className={`${fc} ${isEn ? "text-[10px] tracking-[0.2em] uppercase" : "text-[12px]"} font-medium text-silver/50`}>
+            <span className={`${fc} ${isEn ? "text-[10px] tracking-[0.2em] uppercase" : "text-[12px]"} font-medium text-silver/70`}>
               {footer.technical[locale]}
             </span>
             <div className="w-1 h-1 rounded-full bg-gold/50" />

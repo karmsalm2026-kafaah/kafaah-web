@@ -17,12 +17,12 @@ export function Ticker() {
   ];
 
   return (
-    <div className="bg-navy-deep border-y border-white/[0.04] overflow-hidden h-14 flex items-center relative z-10">
+    <div className="bg-navy-deep border-y border-white/[0.08] overflow-hidden h-14 flex items-center relative z-10">
       {/* Subtle background noise */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
 
       {/* Label */}
-      <div className="hidden md:flex font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.25em] uppercase text-gold bg-navy-deep px-8 h-full items-center shrink-0 border-e border-white/[0.04] relative z-20 shadow-[8px_0_16px_rgba(4,12,24,0.6)]">
+      <div className="hidden md:flex font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.25em] uppercase text-gold bg-navy-deep px-8 h-full items-center shrink-0 border-e border-white/[0.08] relative z-20 shadow-[8px_0_16px_rgba(4,12,24,0.6)]">
         {tickerDict.label[locale]}
       </div>
 
