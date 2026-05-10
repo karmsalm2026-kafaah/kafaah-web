@@ -2,6 +2,7 @@
 
 import { useRole } from "@/lib/RoleContext";
 import { geography as geoDict, getFontClass, isRtl } from "@/lib/i18n";
+import { StaggerChildren, RevealItem } from "@/components/Animations";
 
 export function GeographySection() {
   const { locale } = useRole();
@@ -15,16 +16,17 @@ export function GeographySection() {
         <div className={`${fc} text-[10px] font-bold tracking-[0.3em] uppercase text-gold/70 shrink-0`}>
           {geoDict.label[locale]}
         </div>
-        <div className="flex flex-wrap justify-center md:justify-start gap-y-4">
+        <StaggerChildren className="flex flex-wrap justify-center md:justify-start gap-y-4" staggerDelay={0.05}>
           {locations.map((loc) => (
-            <div
-              key={loc}
-              className={`${fc} text-[11px] font-semibold tracking-[0.15em] uppercase text-silver/80 px-5 md:px-7 border-${rtl ? "l" : "r"} border-white/[0.10] last:border-${rtl ? "l" : "r"}-0 hover:text-white transition-colors cursor-default`}
-            >
-              {loc}
-            </div>
+            <RevealItem key={loc}>
+              <div
+                className={`${fc} text-[11px] font-semibold tracking-[0.15em] uppercase text-silver/80 px-5 md:px-7 border-${rtl ? "l" : "r"} border-white/[0.10] last:border-${rtl ? "l" : "r"}-0 hover:text-white transition-colors cursor-default`}
+              >
+                {loc}
+              </div>
+            </RevealItem>
           ))}
-        </div>
+        </StaggerChildren>
       </div>
     </div>
   );

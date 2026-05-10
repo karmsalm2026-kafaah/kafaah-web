@@ -7,6 +7,7 @@ export interface Service {
   shortDesc: string;
   featured?: boolean;
   badge?: string;
+  audience: "owner" | "epc" | "both";
   /* Full page content */
   heroTagline: string;
   intro: string[];
@@ -32,6 +33,7 @@ export const services: Service[] = [
       "When you are building a chemical plant, the EPC company works for the project. Kafaah works for you. Your independent technical representative from design review through handover.",
     featured: true,
     badge: "Highest Value",
+    audience: "owner",
     heroTagline:
       "Your independent technical representative — from design review through plant handover.",
     intro: [
@@ -58,8 +60,14 @@ export const services: Service[] = [
       "Our team brings 20 years of direct experience inside H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP facilities. We know what works in the field — and what fails.",
       "We are fully independent. We have no relationships with EPC contractors, equipment vendors, or technology licensors. Our only obligation is to the plant owner.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk"],
-    seoTitle: "Owner's Engineer for Chemical Plants — Independent Technical Representation",
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+    ],
+    seoTitle:
+      "Owner's Engineer for Chemical Plants — Independent Technical Representation",
     seoDescription:
       "Independent Owner's Engineer service for inorganic chemical and fertilizer plant projects. Design review, construction surveillance, commissioning oversight. 20 years of operational expertise.",
     seoKeywords: [
@@ -75,7 +83,9 @@ export const services: Service[] = [
     slug: "commissioning",
     shortDesc:
       "Pre-commissioning through performance testing. We have managed startup of H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants from cold to first product.",
-    heroTagline: "From cold equipment to first product — managed by engineers who have done it before.",
+    audience: "both",
+    heroTagline:
+      "From cold equipment to first product — managed by engineers who have done it before.",
     intro: [
       "Commissioning is the most critical phase of any chemical plant project. It is where years of design and construction are tested against reality — and where most problems emerge.",
       "Kafaah provides experienced commissioning teams who have managed startup of inorganic chemical plants across multiple technologies. We bring systematic methodology, chemical-specific knowledge, and the calm judgment that comes from having seen these situations before.",
@@ -98,7 +108,14 @@ export const services: Service[] = [
       "We have commissioned H₂SO₄ contact process plants, H₃PO₄ wet process units, K₂SO₄ Mannheim furnaces, NPK granulation lines, and SSP acidulation plants.",
       "Our most recent commissioning: a 40,000 T/yr SOP plant in Suez, Egypt — from pre-startup to first product in under 3 months.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk", "magnesium-sulphate", "ssp"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+      "magnesium-sulphate",
+      "ssp",
+    ],
     seoTitle: "Chemical Plant Commissioning & Startup Services",
     seoDescription:
       "Expert commissioning and startup services for inorganic chemical and fertilizer plants. H₂SO₄, H₃PO₄, K₂SO₄, NPK. From pre-commissioning to performance testing.",
@@ -115,7 +132,9 @@ export const services: Service[] = [
     slug: "operation-readiness",
     shortDesc:
       "Pre-startup review, HAZOP support, operating procedures, pre-commissioning checklists, staffing readiness, and safety systems verification.",
-    heroTagline: "Making sure your plant is ready to operate — before you turn it on.",
+    audience: "owner",
+    heroTagline:
+      "Making sure your plant is ready to operate — before you turn it on.",
     intro: [
       "A plant that is mechanically complete is not necessarily ready to operate. Operation Readiness bridges the gap between construction completion and safe, reliable startup.",
       "Kafaah reviews your operational preparedness across all disciplines — from operating procedures to staffing plans to safety systems — and identifies gaps before they become problems during commissioning.",
@@ -137,7 +156,12 @@ export const services: Service[] = [
     whyKafaah: [
       "We prepare plants for startup based on real operational experience — not theoretical checklists. Every item we review reflects a lesson learned from actual plant operations.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+    ],
     seoTitle: "Operation Readiness Review for Chemical Plants",
     seoDescription:
       "Comprehensive operation readiness services for inorganic chemical plants. Pre-startup review, HAZOP support, operating procedures, safety verification.",
@@ -154,7 +178,9 @@ export const services: Service[] = [
     slug: "troubleshooting",
     shortDesc:
       "Production loss, quality deviation, equipment failure. We have seen most problems before — and resolved them. Rapid diagnosis using chemical-specific methodology.",
-    heroTagline: "When your plant is underperforming — we find the root cause and fix it.",
+    audience: "both",
+    heroTagline:
+      "When your plant is underperforming — we find the root cause and fix it.",
     intro: [
       "Chemical plants lose money every day they underperform. Production loss, quality deviation, unplanned downtime, excessive energy consumption — these problems have specific causes, and they have solutions.",
       "Kafaah provides rapid technical troubleshooting for inorganic chemical and fertilizer plants. Our approach is methodical: measure first, diagnose second, recommend third. We do not guess.",
@@ -176,7 +202,14 @@ export const services: Service[] = [
       "We have operated these plants ourselves. When we troubleshoot, we draw on 20 years of direct experience with the same equipment, the same reactions, and the same failure modes.",
       "We have resolved issues in H₂SO₄ converter efficiency, H₃PO₄ filtration performance, K₂SO₄ furnace operations, and NPK granulation quality.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk", "magnesium-sulphate", "ssp"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+      "magnesium-sulphate",
+      "ssp",
+    ],
     seoTitle: "Chemical Plant Troubleshooting — Rapid Technical Diagnosis",
     seoDescription:
       "Expert troubleshooting for inorganic chemical and fertilizer plants. Production loss, quality deviation, equipment failure. Rapid on-site diagnosis by experienced plant operators.",
@@ -193,7 +226,9 @@ export const services: Service[] = [
     slug: "production-optimization",
     shortDesc:
       "Process audit, energy balance review, yield improvement, unit cost reduction. We measure before and after — results are not estimated, they are documented.",
-    heroTagline: "Measurable improvements in yield, energy, and unit cost — documented, not estimated.",
+    audience: "both",
+    heroTagline:
+      "Measurable improvements in yield, energy, and unit cost — documented, not estimated.",
     intro: [
       "Most chemical plants operate below their design capacity or above their design energy consumption. The gap between actual and optimal performance represents significant lost revenue.",
       "Kafaah provides systematic production optimization based on engineering analysis — not generic consulting. We measure current performance, identify specific improvement opportunities, and quantify the results after implementation.",
@@ -216,7 +251,14 @@ export const services: Service[] = [
       "We measure before and after. Our recommendations are based on real plant data, and our results are documented — not estimated.",
       "We understand the specific optimization levers for each technology: converter pass efficiency in H₂SO₄, filtration yield in H₃PO₄, furnace thermal efficiency in K₂SO₄, granulation parameters in NPK.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk", "magnesium-sulphate", "ssp"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+      "magnesium-sulphate",
+      "ssp",
+    ],
     seoTitle: "Chemical Plant Production Optimization Services",
     seoDescription:
       "Production optimization for inorganic chemical and fertilizer plants. Process audit, yield improvement, energy reduction. Measurable results documented by experienced specialists.",
@@ -233,7 +275,9 @@ export const services: Service[] = [
     slug: "operator-training",
     shortDesc:
       "Plant-specific training programs in Arabic and English. Developed by engineers who have operated these plants — not generic training consultants.",
-    heroTagline: "Training developed by operators, for operators — in Arabic and English.",
+    audience: "both",
+    heroTagline:
+      "Training developed by operators, for operators — in Arabic and English.",
     intro: [
       "The best equipment in the world is only as good as the people who operate it. Operator competency is the single largest factor in plant reliability, safety, and production consistency.",
       "Kafaah develops and delivers plant-specific training programs based on real operational experience. Our training is not theoretical — it is built from the actual procedures, failure modes, and best practices of inorganic chemical plants.",
@@ -255,7 +299,12 @@ export const services: Service[] = [
       "Our trainers have operated these plants themselves. They teach from experience — not from textbooks.",
       "All training materials are available in Arabic and English, adapted for the specific plant configuration and technology.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+    ],
     seoTitle: "Chemical Plant Operator Training — Arabic & English",
     seoDescription:
       "Plant-specific operator training for inorganic chemical and fertilizer plants. Arabic and English. Developed and delivered by experienced plant operators.",
@@ -272,6 +321,7 @@ export const services: Service[] = [
     slug: "investor-advisory",
     shortDesc:
       "From feasibility through first product — one advisor, no handoffs, full chain accountability. Technology selection, EPC evaluation, and startup oversight.",
+    audience: "owner",
     heroTagline:
       "One advisor from feasibility to first product — no handoffs, full chain accountability.",
     intro: [
@@ -296,7 +346,14 @@ export const services: Service[] = [
       "We are the only advisor who stays with the project from the first feasibility question to the first ton of product. No handoffs between consulting phases.",
       "Our advice is grounded in 20 years of operating the same plants we advise on. When we say a technology works — it is because we have operated it.",
     ],
-    relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk", "magnesium-sulphate", "ssp"],
+    relatedTech: [
+      "sulfuric-acid",
+      "phosphoric-acid",
+      "sulfate-of-potash",
+      "npk",
+      "magnesium-sulphate",
+      "ssp",
+    ],
     seoTitle: "Chemical Plant Investor Advisory — Feasibility to Startup",
     seoDescription:
       "End-to-end investor advisory for inorganic chemical and fertilizer plant projects. Technology selection, EPC evaluation, construction oversight, startup. 20 years of plant operating experience.",
@@ -307,4 +364,136 @@ export const services: Service[] = [
       "industrial investment advisor MENA",
     ],
   },
+  {
+    num: "08",
+    title: "Process & Engineering Support",
+    slug: "process-engineering-support",
+    shortDesc:
+      "Expert process engineering support during EPC phases to ensure robust design, technology compliance, and operability.",
+    audience: "epc",
+    heroTagline:
+      "Ensuring your engineering phase is grounded in operational reality.",
+    intro: [
+      "During the engineering phase, critical decisions are made that affect the entire plant lifecycle.",
+      "We provide process engineering expertise to EPCs to ensure designs are practical, compliant with licensor requirements, and operationally sound."
+    ],
+    scope: [
+      "Process flow diagram (PFD) and P&ID reviews",
+      "Equipment sizing and specification verification",
+      "HAZOP and safety study participation",
+      "Licensor technology compliance checks"
+    ],
+    engagement: {
+      duration: "Flexible (Engineering phase)",
+      team: "Process Engineers, SMEs",
+      location: "Remote / EPC Home Office"
+    },
+    whyKafaah: [
+      "Operational Perspective: We review designs based on how the plant will actually be operated.",
+      "Technology Expertise: Deep knowledge of specific chemical processes and licensor standards."
+    ],
+    relatedTech: ["sulfuric-acid", "phosphoric-acid", "npk-fertilizers"],
+    seoTitle: "Process & Engineering Support for EPCs | Kafaah",
+    seoDescription: "Process engineering support for EPC contractors during chemical plant design and engineering phases.",
+    seoKeywords: ["EPC process engineering", "chemical plant design review", "P&ID review"]
+  },
+  {
+    num: "09",
+    title: "Construction & Commissioning Support",
+    slug: "construction-commissioning-support",
+    shortDesc:
+      "On-site support during construction and mechanical completion to prepare for a smooth transition to commissioning.",
+    audience: "epc",
+    heroTagline:
+      "Bridging the gap between construction completion and plant operation.",
+    intro: [
+      "The transition from construction to commissioning is often where EPC projects face the most delays.",
+      "We integrate with your construction teams to ensure mechanical completion aligns with commissioning sequences and operational requirements."
+    ],
+    scope: [
+      "Pre-commissioning planning and procedure development",
+      "Mechanical completion walkdowns and punchlisting",
+      "System turnover management",
+      "Initial equipment testing support"
+    ],
+    engagement: {
+      duration: "Project specific (Construction to pre-commissioning)",
+      team: "Commissioning Managers, Field Engineers",
+      location: "On-site"
+    },
+    whyKafaah: [
+      "Seamless Transition: We know what is required for successful commissioning.",
+      "Proactive Problem Solving: Identifying issues before they impact the startup schedule."
+    ],
+    relatedTech: ["sulfuric-acid", "phosphoric-acid", "potassium-sulfate"],
+    seoTitle: "Construction & Commissioning Support for EPCs",
+    seoDescription: "Expert support for EPCs during the transition from construction to commissioning in chemical plants.",
+    seoKeywords: ["EPC commissioning support", "mechanical completion chemical plant", "pre-commissioning"]
+  },
+  {
+    num: "10",
+    title: "Plant Startup and Performance Guarantee",
+    slug: "startup-performance-guarantee",
+    shortDesc:
+      "Leading the critical startup phase and conducting performance test runs to secure guarantee acceptance.",
+    audience: "epc",
+    heroTagline:
+      "Delivering the plant to performance parameters — safely and on schedule.",
+    intro: [
+      "Startup is the moment of truth for any EPC project. Achieving performance guarantees is essential for project handover.",
+      "We provide the operational leadership and technical expertise required to start the plant safely and achieve the required production rates and product quality."
+    ],
+    scope: [
+      "Initial plant startup execution",
+      "Process stabilization and optimization",
+      "Performance Test Run (PTR) management",
+      "Troubleshooting startup operational issues"
+    ],
+    engagement: {
+      duration: "1 to 3 months (Startup phase)",
+      team: "Startup Managers, Lead Operators, Process Experts",
+      location: "On-site"
+    },
+    whyKafaah: [
+      "Startup Specialists: We have successfully started up numerous inorganic chemical plants.",
+      "Results-Driven: Focused on achieving performance parameters efficiently to secure handover."
+    ],
+    relatedTech: ["sulfuric-acid", "phosphoric-acid", "ssp"],
+    seoTitle: "Plant Startup & Performance Guarantee | Kafaah",
+    seoDescription: "Specialized startup and performance guarantee services for EPCs building chemical and fertilizer plants.",
+    seoKeywords: ["chemical plant startup", "performance test run EPC", "plant performance guarantee"]
+  },
+  {
+    num: "11",
+    title: "Claims & Technical Documentation",
+    slug: "claims-technical-documentation",
+    shortDesc:
+      "Technical substantiation for claims, variation orders, and comprehensive operational documentation.",
+    audience: "epc",
+    heroTagline:
+      "Protecting your project with sound technical justification and clear documentation.",
+    intro: [
+      "Disputes and variations are common in complex EPC projects. Strong technical documentation is critical for resolving claims.",
+      "We provide independent technical analysis to support or defend claims, as well as the development of comprehensive plant operating manuals."
+    ],
+    scope: [
+      "Technical root cause analysis for delays or failures",
+      "Variation order technical justification",
+      "Development of Standard Operating Procedures (SOPs)",
+      "Preparation of comprehensive operating manuals"
+    ],
+    engagement: {
+      duration: "As required",
+      team: "Senior Engineers, Technical Writers",
+      location: "Remote / On-site as needed"
+    },
+    whyKafaah: [
+      "Independent Expertise: Objective technical analysis that stands up to scrutiny.",
+      "Operational Focus: Documentation created by engineers who understand plant operations."
+    ],
+    relatedTech: ["sulfuric-acid", "phosphoric-acid", "potassium-sulfate", "npk-fertilizers", "magnesium-sulfate", "ssp"],
+    seoTitle: "Claims & Technical Documentation for EPCs",
+    seoDescription: "Technical justification for EPC claims and development of operational documentation for chemical plants.",
+    seoKeywords: ["EPC claims technical support", "chemical plant operating manuals", "SOP development"]
+  }
 ];

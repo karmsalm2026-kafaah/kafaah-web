@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, FileText, Rocket, BarChart3 } from "lucide-react";
-import { FadeIn } from "@/components/Animations";
+import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import type { HeroContent } from "@/data/roleContent";
 import { useRole } from "@/lib/RoleContext";
 import { hero as heroDict, isRtl, getFontClass } from "@/lib/i18n";
@@ -41,12 +41,12 @@ export function HeroSection({ content }: Props) {
         <picture>
           {/* Mobile: same image for all locales */}
           <source media="(max-width: 768px)" srcSet="/hero-bg-mobile-828.webp" />
-          {/* Desktop: Specific image for English */}
-          {locale === "en" && <source media="(min-width: 769px)" srcSet="/hero-bg-extended.webp" />}
+          {/* Desktop: Specific image for LTR languages (English, Chinese) */}
+          {!rtl && <source media="(min-width: 769px)" srcSet="/hero-bg-extended.webp" />}
           {/* Desktop: RTL-specific image for Arabic */}
           {rtl && <source media="(min-width: 769px)" srcSet="/hero-bg-rtl-1920.webp" />}
           <img
-            src="/hero-bg-1920.webp"
+            src="/hero-bg-extended.webp"
             alt="Engineering Team"
             className="w-full h-full object-fill object-right lg:object-center opacity-100 mix-blend-luminosity"
           />
@@ -58,20 +58,19 @@ export function HeroSection({ content }: Props) {
 
       {/* ── Main Content ── */}
       <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-4 sm:pt-24 sm:pb-6">
-
-        <div className="relative max-w-[1000px]">
+        <StaggerChildren className="relative max-w-[1000px]">
           {/* Eyebrow with gold line */}
-          <FadeIn>
+          <RevealItem>
             <div className="flex items-center gap-4 mb-4 sm:mb-6">
               <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
               <span className={`${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.75rem,1vw,0.875rem)] font-semibold" : "font-[family-name:var(--font-ui)] text-[clamp(0.65rem,0.8vw,0.75rem)] font-semibold tracking-[0.3em] uppercase"} text-gold`}>
                 {eyebrow}
               </span>
             </div>
-          </FadeIn>
+          </RevealItem>
 
           {/* Headline – 2 lines, typographic drama */}
-          <FadeIn delay={0.12}>
+          <RevealItem>
             <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-[clamp(2rem,3.8vw,3.75rem)] leading-[1.3] tracking-normal font-black"
               : locale === "zh" ? getFontClass(locale) + " text-[clamp(1.75rem,3.2vw,3.75rem)] leading-[1.15] tracking-normal font-bold"
                 : "font-[family-name:var(--font-display)] text-[clamp(2.25rem,4.5vw,5rem)] leading-[0.95] tracking-[-0.02em]"
@@ -85,17 +84,17 @@ export function HeroSection({ content }: Props) {
               </div>
               <span className="block text-muted pt-2 overflow-visible">{headline[2]}</span>
             </h1>
-          </FadeIn>
+          </RevealItem>
 
           {/* Sub copy - Increased brightness for readability */}
-          <FadeIn delay={0.24}>
+          <RevealItem>
             <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[clamp(0.9rem,1.2vw,1.15rem)] text-silver max-w-[min(590px,79vw)] leading-[1.6] sm:leading-[1.8] mb-8 sm:mb-10 font-medium text-justify`}>
               {sub}
             </p>
-          </FadeIn>
+          </RevealItem>
 
           {/* CTAs */}
-          <FadeIn delay={0.36}>
+          <RevealItem>
             <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mt-4">
               <Link
                 href={primary.href}
@@ -125,8 +124,8 @@ export function HeroSection({ content }: Props) {
                 <FileText className="w-4 h-4 relative z-10 opacity-50 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" />
               </Link>
             </div>
-          </FadeIn>
-        </div>
+          </RevealItem>
+        </StaggerChildren>
       </div>
 
       {/* ── Bottom Stats Bar ── */}

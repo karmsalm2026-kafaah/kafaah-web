@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { technologies } from "@/data/technologies";
-import { FadeIn } from "@/components/Animations";
+import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
 import { tech as techDict, getFontClass, isRtl } from "@/lib/i18n";
 
@@ -22,26 +22,29 @@ export function TechnologiesSection() {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <FadeIn>
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
-            <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
-              {techDict.sectionLabel[locale]}
-            </span>
-          </div>
-          <h2 className={`${fc} text-[clamp(32px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20`}>
-            {techDict.headline[locale]}<em className="text-gold not-italic">{techDict.headlineAccent[locale]}</em>
-          </h2>
-        </FadeIn>
+        <StaggerChildren>
+          <RevealItem>
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
+              <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
+                {techDict.sectionLabel[locale]}
+              </span>
+            </div>
+          </RevealItem>
+          <RevealItem>
+            <h2 className={`${fc} text-[clamp(32px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20`}>
+              {techDict.headline[locale]}<em className="text-gold not-italic">{techDict.headlineAccent[locale]}</em>
+            </h2>
+          </RevealItem>
+        </StaggerChildren>
 
         {/* Tech Grid */}
-        <FadeIn delay={0.15}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/[0.08]">
-            {technologies.map((tech) => (
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-white/[0.08]" staggerDelay={0.08}>
+          {technologies.map((tech) => (
+            <RevealItem key={tech.slug}>
               <Link
-                key={tech.slug}
                 href={`/technologies/${tech.slug}/`}
-                className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-e border-b border-white/[0.08] last:border-e-0 md:[&:nth-child(2n)]:border-e-0 lg:[&:nth-child(2n)]:border-e lg:[&:nth-child(3n)]:border-e-0"
+                className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-e border-b border-white/[0.08] last:border-e-0 md:[&:nth-child(2n)]:border-e-0 lg:[&:nth-child(2n)]:border-e lg:[&:nth-child(3n)]:border-e-0 block h-full"
               >
                 {/* Left custom border - shortened from edges, stable */}
                 <div className="absolute left-0 top-4 bottom-4 w-[4px] bg-gold rounded-r-sm transition-all duration-500" />
@@ -76,9 +79,9 @@ export function TechnologiesSection() {
                   )}
                 </span>
               </Link>
-            ))}
-          </div>
-        </FadeIn>
+            </RevealItem>
+          ))}
+        </StaggerChildren>
       </div>
     </section>
   );

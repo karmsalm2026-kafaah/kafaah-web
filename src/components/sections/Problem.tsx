@@ -1,8 +1,10 @@
 "use client";
 
-import { FadeIn } from "@/components/Animations";
+import Image from "next/image";
+import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import { TrendingDown, Clock, ShieldAlert } from "lucide-react";
 import type { ProblemContent } from "@/data/roleContent";
+import { defaultContent } from "@/data/roleContent";
 import { useRole } from "@/lib/RoleContext";
 import { problem as problemDict, getFontClass, isRtl } from "@/lib/i18n";
 
@@ -20,25 +22,18 @@ export function ProblemSection({ content }: Props) {
   const isAr = locale === "ar";
   const isEn = locale === "en";
   const painLabels = problemDict.painLabels[locale];
-  const sectionLabel = content?.sectionLabel?.[locale] ?? problemDict.sectionLabel[locale];
-  const headline = content?.headline?.[locale] ?? problemDict.headline[locale];
-  const headlineAccent = content?.headlineAccent?.[locale] ?? problemDict.headlineAccent[locale];
-  const subHeadline = content?.subHeadline?.[locale] ?? problemDict.subHeadline[locale];
-  const paragraphs = content?.paragraphs?.[locale] ?? [
-    "A plant is only as reliable as the people who commissioned it. The commissioning phase is where years of engineering design get translated into real operations — and where most critical decisions are made under pressure, in real time.",
-    "EPC companies manage projects. They do not manage operations. When a plant underperforms — low yield, quality deviation, unplanned downtime — the EPC has already left.",
-    "Kafaah exists to bridge that gap. We bring 20 years of direct operational experience inside inorganic chemical and fertilizer plants — not consulting experience, operational experience.",
-  ];
-  const painPoints = content?.painPoints?.map((p, idx) => ({
+  const contentToUse = content ?? defaultContent.problem;
+  const sectionLabel = contentToUse.sectionLabel[locale] ?? problemDict.sectionLabel[locale];
+  const headline = contentToUse.headline[locale] ?? problemDict.headline[locale];
+  const headlineAccent = contentToUse.headlineAccent[locale] ?? problemDict.headlineAccent[locale];
+  const subHeadline = contentToUse.subHeadline[locale] ?? problemDict.subHeadline[locale];
+  const paragraphs = contentToUse.paragraphs[locale];
+  const painPoints = contentToUse.painPoints.map((p) => ({
     stat: p.stat,
     label: p.label[locale],
     desc: p.desc[locale]
-  })) ?? [
-      { stat: "40%", label: painLabels[0], desc: "Average performance gap in first-year operations without specialist commissioning." },
-      { stat: "6–18 mo", label: painLabels[1], desc: "Typical time lost when commissioning teams lack plant-specific operational depth." },
-      { stat: "3×", label: painLabels[2], desc: "More frequent in plants commissioned by EPC generalists vs. process specialists." },
-    ];
-  const tagline = content?.tagline?.[locale] ?? problemDict.tagline[locale];
+  }));
+  const tagline = contentToUse.tagline[locale] ?? problemDict.tagline[locale];
 
   return (
     <section dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
@@ -59,45 +54,84 @@ export function ProblemSection({ content }: Props) {
         </FadeIn>
 
         {/* Main Statement */}
-        <FadeIn delay={0.1}>
-          <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-20 items-start mb-20">
-            <div>
-              <h2 className={`${fc} text-[clamp(26px,3.5vw,42px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.2]"} text-white mb-6`}>
+        <StaggerChildren className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-10 lg:gap-20 items-start mb-20" staggerDelay={0.15}>
+          <div>
+            <RevealItem>
+              <h2 className={`${fc} text-[clamp(26px,3.5vw,42px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.2]"} text-white mb-8`}>
                 {headline}
                 <span className="text-gold not-italic">{headlineAccent}</span>
                 {subHeadline}
               </h2>
-            </div>
-
-            <div className="space-y-5">
-              {paragraphs.map((p, i) => {
-                const has20Years = locale === 'en' && p.includes("20 years of direct operational experience");
-                return (
-                  <p key={i} className={`${fcBody} text-silver/90 ${isAr ? "text-[17px] leading-[2] font-normal" : "font-light text-[16px] leading-[1.85]"} ${rtl ? "text-right" : ""}`}>
-                    {has20Years ? (
-                      <>{p.split("20 years")[0]}<strong className="text-white font-medium">20 years of direct operational experience</strong>{p.split("20 years of direct operational experience")[1] ?? ""}</>
-                    ) : (
-                      p
-                    )}
-                  </p>
-                );
-              })}
-            </div>
+            </RevealItem>
+            
+            <RevealItem>
+              <div className="group relative mt-10 mx-auto lg:mx-0 w-full max-w-[420px] aspect-square">
+                {/* Side custom border */}
+                <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[4px] bg-gold transition-all duration-500 z-20`} />
+                
+                {/* Top gold accent line */}
+                <div className="absolute top-0 left-6 right-6 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500 z-20" />
+                
+                <div className="absolute inset-0">
+                  <Image 
+                    src="/logo-compelet.webp" 
+                    alt="Kafaah Logo" 
+                    fill
+                    sizes="(max-width: 768px) 100vw, 420px"
+                    className="object-fill opacity-95 transition-opacity group-hover:opacity-100 drop-shadow-[0_0_20px_rgba(212,175,55,0.15)] rounded-sm"
+                  />
+                </div>
+              </div>
+            </RevealItem>
           </div>
-        </FadeIn>
+
+          <div className="space-y-10">
+            {/* Owner Block */}
+            <RevealItem className="space-y-5">
+              {paragraphs.slice(0, 3).map((p, i) => (
+                <p key={`owner-${i}`} className={`${fcBody} text-white/85 text-justify ${isAr ? "text-[14px] sm:text-[15px] leading-[1.9] font-normal" : "font-light text-[14px] sm:text-[15px] leading-[1.75]"} ${rtl ? "text-justify" : ""}`}>
+                  {i === 0 && (
+                    <span className={`text-gold font-bold ${rtl ? 'ml-2' : 'mr-2'} tracking-wide uppercase`}>
+                      {locale === 'en' ? 'OWNERS —' : locale === 'ar' ? 'للمُلاك والمستثمرين —' : '对于业主 —'}
+                    </span>
+                  )}
+                  {p}
+                </p>
+              ))}
+            </RevealItem>
+
+            {/* Decorative Separator */}
+            <RevealItem>
+              <div className="w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
+            </RevealItem>
+
+            {/* EPC Block */}
+            <RevealItem className="space-y-5">
+              {paragraphs.slice(3, 6).map((p, i) => (
+                <p key={`epc-${i}`} className={`${fcBody} text-white/85 text-justify ${isAr ? "text-[14px] sm:text-[15px] leading-[1.9] font-normal" : "font-light text-[14px] sm:text-[15px] leading-[1.75]"} ${rtl ? "text-justify" : ""}`}>
+                  {i === 0 && (
+                    <span className={`text-gold font-bold ${rtl ? 'ml-2' : 'mr-2'} tracking-wide uppercase`}>
+                      {locale === 'en' ? 'EPC CONTRACTORS —' : locale === 'ar' ? 'لمقاولي EPC —' : '对于EPC承包商 —'}
+                    </span>
+                  )}
+                  {p}
+                </p>
+              ))}
+            </RevealItem>
+          </div>
+        </StaggerChildren>
 
         {/* Pain Point Cards */}
-        <FadeIn delay={0.25}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {painPoints.map((point, i) => {
-              const IconComp = defaultIcons[i % defaultIcons.length];
-              return (
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8" staggerDelay={0.1}>
+          {painPoints.map((point, i) => {
+            const IconComp = defaultIcons[i % defaultIcons.length];
+            return (
+              <RevealItem key={i}>
                 <div
-                  key={i}
-                  className="group relative bg-navy-card/60 border border-white/[0.10] p-8 transition-all duration-500 hover:border-gold/30 hover:bg-navy-card-hover/80"
+                  className="group relative bg-navy-card/60 border border-white/[0.10] p-8 transition-all duration-500 hover:border-gold/30 hover:bg-navy-card-hover/80 h-full"
                 >
-                  {/* Left custom border - shortened from edges */}
-                  <div className="absolute left-0 top-4 bottom-4 w-[4px] bg-gold rounded-r-sm" />
+                  {/* Side custom border - shortened from edges */}
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[4px] bg-gold`} />
 
                   {/* Top gold accent line - shortened from edges, appears on hover */}
                   <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
@@ -119,10 +153,10 @@ export function ProblemSection({ content }: Props) {
                     {point.desc}
                   </p>
                 </div>
-              );
-            })}
-          </div>
-        </FadeIn>
+              </RevealItem>
+            );
+          })}
+        </StaggerChildren>
 
         {/* Bottom Tagline */}
         <FadeIn delay={0.35}>

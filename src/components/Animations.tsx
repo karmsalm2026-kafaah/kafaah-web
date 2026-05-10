@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
 interface FadeInProps {
@@ -71,7 +71,7 @@ export function StaggerChildren({
   );
 }
 
-export const staggerItem = {
+export const staggerItem: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
@@ -79,3 +79,16 @@ export const staggerItem = {
     transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] },
   },
 };
+
+interface RevealItemProps {
+  children: ReactNode;
+  className?: string;
+}
+
+export function RevealItem({ children, className = "" }: RevealItemProps) {
+  return (
+    <motion.div variants={staggerItem} className={className}>
+      {children}
+    </motion.div>
+  );
+}

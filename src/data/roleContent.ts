@@ -115,19 +115,19 @@ const ownerContent: RoleContent = {
     },
     paragraphs: {
       en: [
-        "When you invest in a chemical plant, the EPC contractor manages the project. But the EPC works for the project — not for you. Their priority is schedule and budget compliance. Your priority is a plant that actually works.",
-        "Without an independent technical representative on your side of the table, design decisions, equipment substitutions, and construction shortcuts go unchallenged — and their consequences appear years after the EPC has left.",
-        "Kafaah places 20 years of direct operational experience on your side. We review what the EPC delivers, challenge what doesn't meet the standard, and ensure the plant you receive is the plant you paid for."
+        "When you invest in a chemical plant, you and your EPC contractor share a common goal — a successful project. Yet each party naturally carries different priorities: the EPC manages schedule, budget, and constructability, while you focus on long-term plant performance, operability, and return on investment.",
+        "Kafaah's Owner's Engineer service bridges that gap. We serve as your independent technical representative throughout the project — collaborating with the EPC, reviewing technical deliverables, and ensuring that the plant you commission is fully aligned with your operational vision and investment expectations.",
+        "This is the highest-value engagement Kafaah offers — because the decisions made during construction shape the next 20 years of plant performance."
       ],
       ar: [
-        "عند الاستثمار في مصنع كيماويات، يتولى المقاول إدارة المشروع. لكن المقاول يعمل لصالح المشروع — وليس لصالحك. أولويتهم هي الالتزام بالجدول الزمني والميزانية. أما أولويتك فهي مصنع يعمل بكفاءة.",
-        "بدون ممثل فني مستقل بجانبك، تمر قرارات التصميم واستبدال المعدات واختصارات البناء دون مساءلة — وتظهر عواقبها بعد سنوات من مغادرة المقاول.",
-        "تضع كفاءة 20 عاماً من الخبرة التشغيلية المباشرة في صفك. نقوم بمراجعة ما يسلمه المقاول، ونعترض على ما لا يلبي المعايير، ونضمن أن المصنع الذي تتسلمه هو المصنع الذي دفعت ثمنه."
+        "عند استثمارك في مصنع للكيماويات، تتشارك أنت ومقاول EPC هدفاً واحداً وهو نجاح المشروع. ومع ذلك، تحمل كل جهة بطبيعة الحال أولويات مختلفة: فالمقاول يدير الجدول الزمني والميزانية وقابلية البناء، بينما ينصب تركيزك على أداء المصنع على المدى الطويل، وقابلية التشغيل، والعائد على الاستثمار.",
+        "تأتي خدمة مهندس المالك من كفاءة لسد هذه الفجوة. نحن نمثلك فنياً كممثل مستقل طوال فترة المشروع — نتعاون مع مقاول EPC، ونراجع التسليمات الفنية، ونضمن أن المصنع الذي تقوم بتشغيله يتماشى تماماً مع رؤيتك التشغيلية وتوقعاتك الاستثمارية.",
+        "هذا هو أعلى ارتباط قيمة تقدمه كفاءة — لأن القرارات المتخذة أثناء فترة الإنشاء هي التي تشكل أداء المصنع للـ 20 عاماً القادمة."
       ],
       zh: [
-        "当您投资一家化工厂时，EPC承包商负责管理项目。但EPC是为项目工作——而不是为您。他们的首要任务是遵守进度和预算。您的首要任务是一家真正运转的工厂。",
-        "如果没有独立的技术代表站在您这一边，设计决策、设备更换和施工捷径将无人质疑——而它们的后果将在EPC离开数年后显现出来。",
-        "Kafaah将20年的直接运营经验放在您这一边。我们审查EPC交付的内容，质疑不符合标准的地方，并确保您收到的工厂是您所期望的工厂。"
+        "当您投资一家化工厂时，您和您的EPC承包商拥有一个共同的目标——项目的成功。然而，每一方自然都有不同的优先事项：EPC管理进度、预算和可建性，而您则关注工厂的长期性能、可操作性和投资回报。",
+        "Kafaah的业主工程师服务正是为了弥合这一差距。我们作为您在整个项目中的独立技术代表——与EPC合作，审查技术交付成果，并确保您委托的工厂完全符合您的运营愿景和投资预期。",
+        "这是Kafaah提供的最具价值的合作服务——因为在建设期间做出的决定将影响工厂未来20年的性能。"
       ]
     },
     painPoints: [
@@ -251,19 +251,28 @@ const epcContent: RoleContent = {
     },
     paragraphs: {
       en: [
-        "A plant is only as reliable as the people who commissioned it. The commissioning phase is where years of engineering design get translated into real operations — and where most critical decisions are made under pressure, in real time.",
-        "EPC companies manage projects. They do not manage operations. When a plant underperforms — low yield, quality deviation, unplanned downtime — the EPC has already left.",
-        "Kafaah exists to bridge that gap. We bring 20 years of direct operational experience inside inorganic chemical and fertilizer plants — not consulting experience, operational experience."
+        "When you invest in a chemical plant, you and your EPC contractor share a common goal — a successful project. Yet each party naturally carries different priorities: the EPC manages schedule, budget, and constructability, while you focus on long-term plant performance, operability, and return on investment.",
+        "Kafaah's Owner's Engineer service bridges that gap. We serve as your independent technical representative throughout the project — collaborating with the EPC, reviewing technical deliverables, and ensuring that the plant you commission is fully aligned with your operational vision and investment expectations.",
+        "This is the highest-value engagement Kafaah offers — because the decisions made during construction shape the next 20 years of plant performance.",
+        "As an EPC contractor in chemical and fertilizer plants, you carry the full weight of execution — schedule, cost, quality, and stakeholder management, all at once.",
+        "Kafaah partners with you to de-risk the most critical phase of the project: Commissioning and Startup (CSU). We provide the specialized operational depth needed to bridge the gap between mechanical completion and reliable steady-state operations.",
+        "By integrating our hands-on process specialists into your team, we help you accelerate time-to-market, prevent costly operational delays, and deliver a plant that exceeds owner expectations — allowing you to hand over the keys with confidence."
       ],
       ar: [
-        "موثوقية المصنع تعتمد بالأساس على كفاءة من قام بتشغيله. مرحلة التشغيل هي حيث تُترجم سنوات من التصميم الهندسي إلى عمليات حقيقية — وحيث تُتخذ القرارات الحاسمة تحت الضغط، في الوقت الفعلي.",
-        "شركات المقاولات تدير المشاريع. هي لا تدير العمليات التشغيلية. عندما يضعف أداء المصنع — انخفاض الإنتاجية، انحراف الجودة، التوقف غير المخطط له — يكون المقاول قد غادر بالفعل.",
-        "وُجدت كفاءة لسد هذه الفجوة. نحن نقدم 20 عاماً من الخبرة التشغيلية المباشرة داخل مصانع الكيماويات غير العضوية والأسمدة — ليست خبرة استشارية، بل خبرة تشغيلية على أرض الواقع."
+        "عند استثمارك في مصنع للكيماويات، تتشارك أنت ومقاول EPC هدفاً واحداً وهو نجاح المشروع. ومع ذلك، تحمل كل جهة بطبيعة الحال أولويات مختلفة: فالمقاول يدير الجدول الزمني والميزانية وقابلية البناء، بينما ينصب تركيزك على أداء المصنع على المدى الطويل، وقابلية التشغيل، والعائد على الاستثمار.",
+        "تأتي خدمة مهندس المالك من كفاءة لسد هذه الفجوة. نحن نمثلك فنياً كممثل مستقل طوال فترة المشروع — نتعاون مع مقاول EPC، ونراجع التسليمات الفنية، ونضمن أن المصنع الذي تقوم بتشغيله يتماشى تماماً مع رؤيتك التشغيلية وتوقعاتك الاستثمارية.",
+        "هذا هو أعلى ارتباط قيمة تقدمه كفاءة — لأن القرارات المتخذة أثناء فترة الإنشاء هي التي تشكل أداء المصنع للـ 20 عاماً القادمة.",
+        "بصفتك مقاول EPC في مصانع الكيماويات والأسمدة، فإنك تحمل العبء الكامل للتنفيذ — الجدول الزمني، والتكلفة، والجودة، وإدارة أصحاب المصلحة، كل ذلك في وقت واحد.",
+        "تشارك كفاءة معك لتقليل المخاطر في المرحلة الأكثر أهمية في المشروع: التشغيل وبدء التشغيل (CSU). نحن نقدم العمق التشغيلي المتخصص المطلوب لسد الفجوة بين الإكمال الميكانيكي وعمليات الحالة المستقرة الموثوقة.",
+        "من خلال دمج متخصصي العمليات العمليين لدينا في فريقك، نساعدك على تسريع وقت الوصول إلى السوق، ومنع التأخيرات التشغيلية المكلفة، وتسليم مصنع يتجاوز توقعات المالك — مما يتيح لك تسليم المفاتيح بثقة."
       ],
       zh: [
-        "工厂的可靠性取决于负责调试它的人员。调试阶段是将多年的工程设计转化为实际运营的阶段——在这一阶段，最关键的决策都是在压力下实时做出的。",
-        "EPC公司管理项目。他们不管理运营。当工厂表现不佳时——产量低、质量偏差、计划外停机——EPC往往已经离开了。",
-        "Kafaah的存在就是为了弥合这一差距。我们在无机化学和化肥工厂内拥有20年的直接运营经验——不是咨询经验，而是实战运营经验。"
+        "当您投资一家化工厂时，您和您的EPC承包商拥有一个共同的目标——项目的成功。然而，每一方自然都有不同的优先事项：EPC管理进度、预算和可建性，而您则关注工厂的长期性能、可操作性和投资回报。",
+        "Kafaah的业主工程师服务正是为了弥合这一差距。我们作为您在整个项目中的独立技术代表——与EPC合作，审查技术交付成果，并确保您委托的工厂完全符合您的运营愿景和投资预期。",
+        "这是Kafaah提供的最具价值的合作服务——因为在建设期间做出的决定将影响工厂未来20年的性能。",
+        "作为化工厂和化肥厂的EPC承包商，您承担着执行的全部重任——必须同时兼顾进度、成本、质量和利益相关者管理。",
+        "Kafaah与您合作，以降低项目中最关键阶段的风险：调试和启动 (CSU)。我们提供所需的专业运营深度，以弥合机械完工与可靠稳态运营之间的差距。",
+        "通过将我们实践经验丰富的工艺专家整合到您的团队中，我们帮助您加快上市时间，防止昂贵的运营延误，交付一家超出业主期望的工厂——让您充满信心地移交钥匙。"
       ]
     },
     painPoints: [
