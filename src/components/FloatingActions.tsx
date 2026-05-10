@@ -10,7 +10,7 @@ export function FloatingActions() {
     <>
       {/* WhatsApp - Fixed to the Left */}
       <a
-        href="https://wa.me/201000000000" // TODO: Update with real WhatsApp number
+        href="https://wa.me/201018081191"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contact us on WhatsApp"
