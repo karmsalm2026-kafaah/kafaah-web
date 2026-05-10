@@ -52,8 +52,8 @@ export function HeroSection({ content }: Props) {
           />
         </picture>
         {/* Lighter Gradient Overlays for better image visibility */}
-        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/50 md:from-navy-deep/90 via-navy-deep/20 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/5 sm:via-transparent via-transparent to-navy-deep/60" />
+        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/80 md:from-navy-deep/90 via-navy-deep/60 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/30 sm:via-transparent via-transparent to-navy-deep/60" />
       </div>
 
       {/* ── Main Content ── */}
@@ -88,7 +88,7 @@ export function HeroSection({ content }: Props) {
 
           {/* Sub copy - Increased brightness for readability */}
           <RevealItem>
-            <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[clamp(0.9rem,1.2vw,1.15rem)] text-silver max-w-[min(590px,79vw)] leading-[1.6] sm:leading-[1.8] mb-8 sm:mb-10 font-medium text-justify`}>
+            <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[clamp(0.85rem,1vw,1rem)] text-silver max-w-[min(590px,79vw)] leading-[1.6] sm:leading-[1.8] mb-8 sm:mb-10 font-medium text-justify`}>
               {sub}
             </p>
           </RevealItem>
@@ -111,7 +111,7 @@ export function HeroSection({ content }: Props) {
 
               <Link
                 href={secondary.href}
-                className={`group btn-premium-glass ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-semibold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-semibold tracking-[0.15em] uppercase"} w-full sm:w-auto min-w-[240px]`}
+                className={`group btn-premium-glass border border-white/20 hover:border-white/40 ${locale !== "en" ? getFontClass(locale) + " text-[clamp(0.8125rem,1vw,0.875rem)] font-semibold" : "font-[family-name:var(--font-ui)] text-[clamp(0.7rem,0.9vw,0.8rem)] font-semibold tracking-[0.15em] uppercase"} w-full sm:w-auto min-w-[240px]`}
               >
                 {/* Premium animated border */}
                 <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />

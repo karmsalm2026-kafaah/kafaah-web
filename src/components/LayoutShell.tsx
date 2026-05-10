@@ -3,6 +3,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { RoleProvider } from "@/lib/RoleContext";
+import { FloatingActions } from "@/components/FloatingActions";
 
 /**
  * LayoutShell — Renders Navbar and Footer around site content.
@@ -13,6 +14,7 @@ export function LayoutShell({ children }: { children: React.ReactNode }) {
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
+      <FloatingActions />
     </RoleProvider>
   );
 }

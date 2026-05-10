@@ -123,7 +123,7 @@ export function ContactCTA({ content }: Props) {
               </Link>
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className={`flex-1 group btn-premium-glass ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
+                className={`flex-1 group btn-premium-glass border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
               >
                 {/* Premium animated border */}
                 <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
