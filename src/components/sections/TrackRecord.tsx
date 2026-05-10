@@ -34,10 +34,18 @@ export function TrackRecordSection() {
                 {trDict.headline[locale]}<em className="text-gold not-italic">{trDict.headlineAccent[locale]}</em>
               </h2>
 
-              <div className="flex flex-col gap-[1px] bg-white/[0.08]">
+              <div className="flex flex-col gap-0 border border-white/[0.08] bg-navy overflow-hidden">
                 {/* Project 1 */}
-                <div className="group relative bg-navy p-8 transition-all duration-500 hover:bg-navy-card-hover">
-                  <div className={`absolute ${rtl ? "right-0" : "left-0"} top-0 bottom-0 w-[2px] bg-navy-soft group-hover:bg-gold transition-colors duration-500`} />
+                <Link
+                  href="/experience/"
+                  className="group relative bg-navy p-8 transition-all duration-500 hover:bg-navy-card-hover flex-1"
+                >
+                  {/* Left custom border - shortened from edges, stable */}
+                  <div className={`absolute ${rtl ? "right-0" : "left-0"} top-4 bottom-4 w-[4px] bg-gold rounded-${rtl ? "l" : "r"}-sm transition-all duration-500`} />
+                  
+                  {/* Top gold accent line - shortened from edges, appears on hover */}
+                  <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
                   <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/85 mb-3 block`}>
                     Commissioning &amp; Startup · Nov 2025 – Jan 2026
                   </span>
@@ -51,11 +59,24 @@ export function TrackRecordSection() {
                     <span className="flex items-center gap-1.5">📍 Suez, Egypt</span>
                     <span className="flex items-center gap-1.5">⚙ 40,000 T/yr</span>
                   </div>
+                </Link>
+
+                {/* Professional Separator */}
+                <div className="relative h-px w-full px-8">
+                  <div className="h-full w-full bg-gradient-to-r from-transparent via-white/[0.15] to-transparent" />
                 </div>
 
                 {/* Project 2 */}
-                <div className="group relative bg-navy p-8 transition-all duration-500 hover:bg-navy-card-hover">
-                  <div className={`absolute ${rtl ? "right-0" : "left-0"} top-0 bottom-0 w-[2px] bg-navy-soft group-hover:bg-gold transition-colors duration-500`} />
+                <Link
+                  href="/experience/"
+                  className="group relative bg-navy p-8 transition-all duration-500 hover:bg-navy-card-hover flex-1"
+                >
+                  {/* Left custom border - shortened from edges, stable */}
+                  <div className={`absolute ${rtl ? "right-0" : "left-0"} top-4 bottom-4 w-[4px] bg-gold rounded-${rtl ? "l" : "r"}-sm transition-all duration-500`} />
+                  
+                  {/* Top gold accent line - shortened from edges, appears on hover */}
+                  <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
                   <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/70 mb-3 block`}>
                     Granulation &amp; Startup · March 2026
                   </span>
@@ -68,7 +89,7 @@ export function TrackRecordSection() {
                   <div className={`flex gap-6 mt-5 ${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/90`}>
                     <span className="flex items-center gap-1.5">📍 Yanbu, KSA</span>
                   </div>
-                </div>
+                </Link>
               </div>
 
               <Link

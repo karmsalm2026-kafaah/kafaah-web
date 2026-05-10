@@ -41,6 +41,8 @@ export function HeroSection({ content }: Props) {
         <picture>
           {/* Mobile: same image for all locales */}
           <source media="(max-width: 768px)" srcSet="/hero-bg-mobile-828.webp" />
+          {/* Desktop: Specific image for English */}
+          {locale === "en" && <source media="(min-width: 769px)" srcSet="/hero-bg-extended.webp" />}
           {/* Desktop: RTL-specific image for Arabic */}
           {rtl && <source media="(min-width: 769px)" srcSet="/hero-bg-rtl-1920.webp" />}
           <img
@@ -50,12 +52,12 @@ export function HeroSection({ content }: Props) {
           />
         </picture>
         {/* Lighter Gradient Overlays for better image visibility */}
-        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/90 via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 sm:via-transparent via-transparent to-navy-deep" />
+        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/50 md:from-navy-deep/90 via-navy-deep/20 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/5 sm:via-transparent via-transparent to-navy-deep/60" />
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-4 sm:pt-24 sm:pb-6">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-4 sm:pt-24 sm:pb-6">
 
         <div className="relative max-w-[1000px]">
           {/* Eyebrow with gold line */}

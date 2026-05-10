@@ -43,8 +43,11 @@ export function TechnologiesSection() {
                 href={`/technologies/${tech.slug}/`}
                 className="group relative bg-navy p-8 lg:p-10 overflow-hidden transition-all duration-500 hover:bg-navy-card-hover border-e border-b border-white/[0.08] last:border-e-0 md:[&:nth-child(2n)]:border-e-0 lg:[&:nth-child(2n)]:border-e lg:[&:nth-child(3n)]:border-e-0"
               >
-                {/* Top accent line */}
-                <div className="absolute top-0 left-0 w-0 h-[2px] bg-gradient-to-r from-gold to-gold-light group-hover:w-full transition-all duration-500 z-10" />
+                {/* Left custom border - shortened from edges, stable */}
+                <div className="absolute left-0 top-4 bottom-4 w-[4px] bg-gold rounded-r-sm transition-all duration-500" />
+                
+                {/* Top gold accent line - shortened from edges, appears on hover */}
+                <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
                 {/* Visible Formula */}
                 <div className="font-[family-name:var(--font-display)] text-[48px] leading-none text-white/70 mb-4 transition-colors duration-500 group-hover:text-gold/90">

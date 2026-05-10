@@ -33,7 +33,7 @@ export function Footer() {
           <div className="lg:pr-8">
             <Link href="/" className="inline-block mb-8 group">
               <Image
-                src="/logo.webp"
+                src="/logo1.webp"
                 alt="Kafaah Industrial Solutions"
                 width={160}
                 height={68}

@@ -89,14 +89,6 @@ export function ContactCTA({ content }: Props) {
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
       
-      {/* K watermark */}
-      <div
-        className="absolute right-[-60px] bottom-[-40px] font-[family-name:var(--font-display)] text-[280px] text-white/[0.02] leading-none pointer-events-none select-none tracking-tighter"
-        aria-hidden="true"
-      >
-        K
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
         {/* Left CTA */}
         <FadeIn>
@@ -150,68 +142,82 @@ export function ContactCTA({ content }: Props) {
 
         {/* Right: Quick Contact Panel */}
         <FadeIn delay={0.15}>
-          <div className="bg-navy-card border border-white/[0.14] p-8 lg:p-10 relative group shadow-2xl">
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-gold/0 via-gold to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
-              <div>
-                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/90 block mb-2`}>
-                  {ctaDict.fullName[locale]}
-                </label>
-                <input
-                  type="text"
-                  placeholder="Dr. Ahmed Al-Rashid"
-                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/55 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
-                />
+          <div className="relative">
+            <div className="bg-gradient-to-br from-navy-card/90 to-navy-deep/95 backdrop-blur-xl border border-white/[0.14] p-8 lg:p-10 relative group shadow-2xl z-10">
+              {/* Left custom border - shortened from edges, stable */}
+              <div className={`absolute ${rtl ? "right-0" : "left-0"} top-4 bottom-4 w-[4px] bg-gold rounded-${rtl ? "l" : "r"}-sm transition-all duration-500`} />
+              
+              {/* Top gold accent line - shortened from edges, appears on hover */}
+              <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                <div>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/90 block mb-2`}>
+                    {ctaDict.fullName[locale]}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Dr. Ahmed Al-Rashid"
+                    className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/55 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
+                  />
+                </div>
+                <div>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                    {ctaDict.company[locale]}
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="SIPCHEM"
+                    className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
+                  />
+                </div>
               </div>
-              <div>
+
+              <div className="mb-5">
                 <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
-                  {ctaDict.company[locale]}
+                  {ctaDict.serviceOfInterest[locale]}
                 </label>
-                <input
-                  type="text"
-                  placeholder="SIPCHEM"
-                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
+                <CustomSelect placeholder={ctaDict.selectService[locale]} />
+              </div>
+
+              <div className="mb-6">
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                  {ctaDict.message[locale]}
+                </label>
+                <textarea
+                  placeholder={ctaDict.messagePlaceholder[locale]}
+                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
+                  rows={3}
                 />
+              </div>
+
+              <button className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}>
+                {/* Premium animated light sweep */}
+                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+                <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
+                <span className="relative z-10">{ctaDict.sendRequest[locale]}</span>
+              </button>
+
+              <div className={`mt-8 pt-6 border-t border-white/[0.10] flex gap-x-6 gap-y-3 flex-wrap`}>
+                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+                  {ctaDict.locationLabel[locale]}
+                </span>
+                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+                  {ctaDict.responseTime[locale]}
+                </span>
+                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+                  {ctaDict.confidential[locale]}
+                </span>
               </div>
             </div>
 
-            <div className="mb-5">
-              <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
-                {ctaDict.serviceOfInterest[locale]}
-              </label>
-              <CustomSelect placeholder={ctaDict.selectService[locale]} />
-            </div>
-
-            <div className="mb-6">
-              <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
-                {ctaDict.message[locale]}
-              </label>
-              <textarea
-                placeholder={ctaDict.messagePlaceholder[locale]}
-                className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
-                rows={3}
-              />
-            </div>
-
-            <button className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}>
-              {/* Premium animated light sweep */}
-              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
-              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
-
-              <span className="relative z-10">{ctaDict.sendRequest[locale]}</span>
-            </button>
-
-            <div className={`mt-8 pt-6 border-t border-white/[0.10] flex gap-x-6 gap-y-3 flex-wrap`}>
-              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
-                {ctaDict.locationLabel[locale]}
-              </span>
-              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
-                {ctaDict.responseTime[locale]}
-              </span>
-              <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
-                {ctaDict.confidential[locale]}
-              </span>
+            {/* Brand watermark - centered directly under the form */}
+            <div
+              className="absolute left-1/2 -translate-x-1/2 -bottom-30 font-[family-name:var(--font-display)] text-[120px] text-white/[0.05] leading-none pointer-events-none select-none tracking-tighter uppercase z-0"
+              aria-hidden="true"
+            >
+              Kafaah
             </div>
           </div>
         </FadeIn>

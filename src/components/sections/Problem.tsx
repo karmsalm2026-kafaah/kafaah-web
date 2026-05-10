@@ -29,15 +29,15 @@ export function ProblemSection({ content }: Props) {
     "EPC companies manage projects. They do not manage operations. When a plant underperforms — low yield, quality deviation, unplanned downtime — the EPC has already left.",
     "Kafaah exists to bridge that gap. We bring 20 years of direct operational experience inside inorganic chemical and fertilizer plants — not consulting experience, operational experience.",
   ];
-  const painPoints = content?.painPoints?.map((p, idx) => ({ 
-    stat: p.stat, 
-    label: p.label[locale], 
-    desc: p.desc[locale] 
+  const painPoints = content?.painPoints?.map((p, idx) => ({
+    stat: p.stat,
+    label: p.label[locale],
+    desc: p.desc[locale]
   })) ?? [
-    { stat: "40%", label: painLabels[0], desc: "Average performance gap in first-year operations without specialist commissioning." },
-    { stat: "6–18 mo", label: painLabels[1], desc: "Typical time lost when commissioning teams lack plant-specific operational depth." },
-    { stat: "3×", label: painLabels[2], desc: "More frequent in plants commissioned by EPC generalists vs. process specialists." },
-  ];
+      { stat: "40%", label: painLabels[0], desc: "Average performance gap in first-year operations without specialist commissioning." },
+      { stat: "6–18 mo", label: painLabels[1], desc: "Typical time lost when commissioning teams lack plant-specific operational depth." },
+      { stat: "3×", label: painLabels[2], desc: "More frequent in plants commissioned by EPC generalists vs. process specialists." },
+    ];
   const tagline = content?.tagline?.[locale] ?? problemDict.tagline[locale];
 
   return (
@@ -96,8 +96,11 @@ export function ProblemSection({ content }: Props) {
                   key={i}
                   className="group relative bg-navy-card/60 border border-white/[0.10] p-8 transition-all duration-500 hover:border-gold/30 hover:bg-navy-card-hover/80"
                 >
-                  {/* Top gold accent line */}
-                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-gradient-to-r from-gold to-gold-light group-hover:w-full transition-all duration-500" />
+                  {/* Left custom border - shortened from edges */}
+                  <div className="absolute left-0 top-4 bottom-4 w-[4px] bg-gold rounded-r-sm" />
+
+                  {/* Top gold accent line - shortened from edges, appears on hover */}
+                  <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
 
                   <div className="flex items-center gap-3 mb-6">
                     <div className="w-10 h-10 flex items-center justify-center border border-gold/20 bg-gold/[0.06] group-hover:bg-gold/[0.12] transition-colors duration-300">

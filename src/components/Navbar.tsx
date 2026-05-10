@@ -79,7 +79,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <Image
-            src="/logo.webp"
+            src="/logo1.webp"
             alt="Kafaah Industrial Solutions"
             width={160}
             height={68}
