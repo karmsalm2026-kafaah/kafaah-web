@@ -2,9 +2,12 @@
 
 import { Bot } from "lucide-react";
 import { useRole } from "@/lib/RoleContext";
+import { useState } from "react";
+import { ChatWindow } from "./ChatWindow";
 
 export function FloatingActions() {
   const { locale } = useRole();
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   return (
     <>
@@ -23,10 +26,7 @@ export function FloatingActions() {
 
       {/* Chatbot - Fixed to the Right */}
       <button
-        onClick={() => {
-          // Placeholder for Chatbot trigger
-          console.log("Open chatbot");
-        }}
+        onClick={() => setIsChatOpen(!isChatOpen)}
         aria-label="Open Chatbot"
         className="fixed bottom-6 right-4 sm:right-6 z-50 flex items-center justify-center w-14 h-14 bg-navy-card border border-white/10 text-gold rounded-full shadow-lg hover:scale-110 hover:border-gold/50 hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300"
       >
@@ -38,6 +38,9 @@ export function FloatingActions() {
           <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-gold border-2 border-navy-card"></span>
         </span>
       </button>
+
+      {/* The Chatbot Window */}
+      <ChatWindow isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </>
   );
 }
