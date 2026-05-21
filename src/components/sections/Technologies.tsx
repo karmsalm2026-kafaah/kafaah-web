@@ -82,6 +82,23 @@ export function TechnologiesSection() {
             </RevealItem>
           ))}
         </StaggerChildren>
+
+        {/* Closing Tagline */}
+        <div className="mt-12 sm:mt-16 pt-8 border-t border-white/[0.06] flex items-start gap-4">
+          <div className="w-1.5 h-1.5 bg-gold shrink-0 mt-2 rounded-full" />
+          <p className={`${fcBody} text-silver/80 text-[13px] sm:text-[14px] leading-relaxed max-w-3xl font-light`}>
+            {techDict.closingLine[locale].split(" — ").map((part, index) => {
+              if (index === 1) {
+                return (
+                  <span key={index} className="text-gold font-medium">
+                    — {part}
+                  </span>
+                );
+              }
+              return part;
+            })}
+          </p>
+        </div>
       </div>
     </section>
   );

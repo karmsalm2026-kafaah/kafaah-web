@@ -81,7 +81,7 @@ export function ContactCTA({ content }: Props) {
   const eyebrow = content?.eyebrow?.[locale] ?? ctaDict.eyebrow[locale];
   const headline = content?.headline?.[locale] ?? ctaDict.headline[locale];
   const headlineAccent = content?.headlineAccent?.[locale] ?? ctaDict.headlineAccent[locale];
-  const subCopy = content?.subCopy?.[locale] ?? "Whether you are building a new inorganic chemical plant, running an existing facility, or evaluating an investment — Kafaah brings 20 years of direct operational expertise to your problem. We respond within 24 hours.";
+  const subCopy = content?.subCopy?.[locale] ?? ctaDict.subCopy[locale];
 
   return (
     <section dir={rtl ? "rtl" : "ltr"} className="bg-navy py-28 relative overflow-hidden">
@@ -157,7 +157,7 @@ export function ContactCTA({ content }: Props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="Dr. Ahmed Al-Rashid"
+                    placeholder={ctaDict.fullNamePlaceholder[locale]}
                     className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/55 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
@@ -167,7 +167,7 @@ export function ContactCTA({ content }: Props) {
                   </label>
                   <input
                     type="text"
-                    placeholder="SIPCHEM"
+                    placeholder={ctaDict.companyPlaceholder[locale]}
                     className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>

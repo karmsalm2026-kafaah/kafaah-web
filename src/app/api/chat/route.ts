@@ -1,21 +1,21 @@
-import { google } from '@ai-sdk/google';
+import { groq } from '@ai-sdk/groq';
 import { streamText, stepCountIs, convertToModelMessages } from 'ai';
 import { tool } from 'ai';
 import { z } from 'zod';
-import { chatbotKnowledge } from '@/lib/chatbotKnowledge';
+import { getChatbotKnowledge } from '@/lib/chatbotKnowledge';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  const { messages } = await req.json();
+  const { messages, locale } = await req.json();
 
   // Convert UIMessages (from the client) to ModelMessages (for the LLM)
   const modelMessages = await convertToModelMessages(messages);
 
   const result = streamText({
-    model: google('gemini-2.0-flash'),
-    system: chatbotKnowledge,
+    model: groq('llama-3.3-70b-versatile'),
+    system: getChatbotKnowledge(locale),
     messages: modelMessages,
     tools: {
       collectLead: tool({

@@ -75,24 +75,58 @@ export const footer = {
    HOMEPAGE SECTIONS
    ══════════════════════════════════════════════ */
 export const hero = {
-  eyebrow: { en: "Independent Experts for Owners & EPCs", ar: "خبراء مستقلون لخدمة المُلّاك ومقاولي EPC", zh: "为业主和EPC提供独立专业支持" } as L,
+  eyebrow: { 
+    en: "INDEPENDENT TECHNICAL EXPERTS FOR FERTILIZER & CHEMICAL PLANTS", 
+    ar: "خبراء فنيون مستقلون لمصانع الأسمدة والكيماويات", 
+    zh: "化肥与化学工厂的独立技术专家" 
+  } as L,
   headline: {
-    en: ["Engineering", "certainty", "for critical plants."],
-    ar: ["نُهندس", "اليقين", "للمصانع الحرجة."],
-    zh: ["为关键工厂", "铸造", "工程确定性。"],
+    en: ["Where Industrial Projects", "Become Operating Plants."],
+    ar: ["حيث تتحول المشاريع الصناعية", "إلى مصانع تشغيلية."],
+    zh: ["让工业项目", "真正投入运营。"],
   } as LArr,
   subCopy: {
-    en: "Independent technical oversight for Owners, and expert commissioning support for EPCs — bringing 20 years of direct operational experience to H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants.",
-    ar: "إشراف فني مستقل لحماية المُلّاك، ودعم متخصص في التشغيل لمقاولي EPC — نضع 20 عاماً من الخبرة التشغيلية المباشرة في مصانع H₂SO₄ و H₃PO₄ و K₂SO₄ و NPK و MgSO₄ و SSP.",
-    zh: "为业主提供独立的技术监督，为EPC提供专业的调试支持——将20年的直接运营经验应用于 H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄ 及 SSP 工厂。",
+    en: "From design review and commissioning to startup and stable operation — Kafaah supports the phases where industrial projects succeed or fail.",
+    ar: "من مراجعة التصميم والتشغيل التجريبي إلى بدء التشغيل والتشغيل المستقر — تدعم كفاءة المراحل التي تنجح فيها المشاريع الصناعية أو تفشل.",
+    zh: "从设计审查和调试到启动和稳定运行——Kafaah 支持工业项目成败的关键阶段。",
   } as L,
-  exploreServices: { en: "Explore Services", ar: "اكتشف خدماتنا", zh: "探索服务" } as L,
+  exploreServices: { en: "VIEW CAPABILITIES", ar: "اكتشف خدماتنا", zh: "查看能力" } as L,
+  discussPlant: { en: "SELECTED PROJECT EXPERIENCE", ar: "الخبرات المشاريعية المختارة", zh: "精选项目经验" } as L,
   ourTrackRecord: { en: "Our Track Record", ar: "سجلّ إنجازاتنا", zh: "我们的业绩" } as L,
   statsLabels: {
     en: ["Years of Operation", "Core Technologies", "Service Verticals", "Independent"],
     ar: ["عامًا من الخبرة", "تقنيات أساسية", "قطاعات خدمية", "مستقلون"],
     zh: ["年运营经验", "核心技术", "服务领域", "独立运营"],
   } as LArr,
+  stats: {
+    en: [
+      { value: "20+", label: "YEARS OF HANDS-ON PLANT EXPERIENCE" },
+      { value: "6", label: "INDUSTRIAL PROCESSES" },
+      { value: "11", label: "SERVICE OFFERINGS" },
+      { value: "MENA", label: "& BEYOND" }
+    ],
+    ar: [
+      { value: "20+", label: "عاماً من الخبرة الميدانية بالمصانع" },
+      { value: "6", label: "عمليات صناعية متكاملة" },
+      { value: "11", label: "خدمة هندسية متخصصة" },
+      { value: "MENA", label: "والشرق الأوسط وأكثر" }
+    ],
+    zh: [
+      { value: "20+", label: "年工厂实践经验" },
+      { value: "6", label: "工业流程" },
+      { value: "11", label: "服务产品" },
+      { value: "MENA", label: "及更广泛地区" }
+    ]
+  } as Record<GatewayLocale, { value: string; label: string }[]>,
+  builtInside: {
+    title: { en: "BUILT INSIDE REAL PLANTS", ar: "بُنيت داخل مصانع حقيقية", zh: "在真实工厂内构建" } as L,
+    items: {
+      en: ["Commissioning & Startup", "Operational Stabilization", "Performance Optimization", "Independent Technical Oversight", "Fertilizer & Chemical Facilities"],
+      ar: ["التشغيل التجريبي وبدء التشغيل", "الاستقرار التشغيلي", "تحسين الأداء", "الإشراف الفني المستقل", "مصانع الأسمدة والكيماويات"],
+      zh: ["调试与启动", "运营稳定化", "性能优化", "独立技术监督", "化肥与化工设施"]
+    } as LArr,
+    location: { en: "EGYPT · GULF · MENA REGION", ar: "مصر · الخليج · منطقة الشرق الأوسط", zh: "埃及 · 海湾 · 中东北非地区" } as L
+  },
 };
 
 export const ticker = {
@@ -115,15 +149,186 @@ export const problem = {
     ar: ["فقدان الإنتاجية", "تأخّر بدء التشغيل", "توقّف غير مخطّط"],
     zh: ["产量损失", "延迟启动", "计划外停机"],
   } as LArr,
+  challenge: {
+    sectionLabel: { en: "01 — THE CHALLENGE", ar: "01 — التحدي", zh: "01 — 挑战" } as L,
+    headline: { en: "Most industrial failures begin long before the first shutdown.", ar: "معظم الأعطال الصناعية تبدأ قبل وقت طويل من أول توقف.", zh: "大多数工业故障在首次停机之前很久就已经开始。" } as L,
+    paragraph: {
+      en: "Misaligned expectations, weak technical oversight, and rushed commissioning rarely appear until the damage is done — and their impact can affect plant performance for years.",
+      ar: "التوقعات غير المتوافقة، والإشراف الفني الضعيف، والتشغيل التجريبي المتسرع نادراً ما تظهر حتى يقع الضرر — وتأثيرها يمكن أن يلازم أداء المصنع لسنوات.",
+      zh: "不匹配的预期、薄弱的技术监督和仓促的调试，往往直到损害已经造成才会显现——而其影响可能会持续影响工厂性能多年。"
+    } as L,
+    cards: [
+      {
+        title: { en: "COMMISSIONING DELAYS", ar: "تأخيرات التشغيل التجريبي", zh: "调试延误" },
+        desc: { en: "Lost revenue for owners. Extended costs for EPC contractors. The result of commissioning without process-specific expertise.", ar: "خسارة الإيرادات للمُلاك. تكاليف إضافية لمقاولي EPC. نتيجة التشغيل التجريبي بدون خبرة متخصصة في العمليات.", zh: "业主收入损失。EPC承包商成本增加。缺乏工艺特定专业知识进行调试的结果。" }
+      },
+      {
+        title: { en: "OPERATIONAL INSTABILITY", ar: "عدم الاستقرار التشغيلي", zh: "运营不稳定" },
+        desc: { en: "Unplanned shutdowns and repeated tuning cycles hurt both sides — owners miss performance targets, contractors face contractual risk.", ar: "التوقفات غير المخططة ودورات الضبط المتكررة تضر بالطرفين — المُلاك يفوتون أهداف الأداء، والمقاولون يواجهون مخاطر تعاقدية.", zh: "计划外停机和反复调试周期损害双方——业主错过性能目标，承包商面临合同风险。" }
+      },
+      {
+        title: { en: "HIDDEN PERFORMANCE LOSSES", ar: "خسائر أداء مخفية", zh: "隐性性能损失" },
+        desc: { en: "When design doesn't translate to real operation, owners lose returns and contractors lose reputation.", ar: "عندما لا يُترجم التصميم إلى تشغيل فعلي، يخسر المُلاك العوائد ويخسر المقاولون السمعة.", zh: "当设计无法转化为实际运营时，业主损失回报，承包商损失声誉。" }
+      }
+    ],
+    quote: {
+      en: "The real cost of poor execution is rarely immediate — it compounds through years of unstable operation.",
+      ar: "التكلفة الحقيقية للتنفيذ السيء نادراً ما تكون فورية — بل تتراكم عبر سنوات من التشغيل غير المستقر.",
+      zh: "糟糕执行的真正代价很少是即时的——它会在多年不稳定运营中不断累积。"
+    } as L,
+  },
+  solution: {
+    sectionLabel: { en: "02 — THE SOLUTION", ar: "02 — الحل", zh: "02 — 解决方案" } as L,
+    headline: { en: "One Partner.", ar: "شريك واحد.", zh: "一个合作伙伴。" } as L,
+    headlineAccent: { en: "One Side at a Time.", ar: "طرف واحد في كل مرة.", zh: "一次只服务一方。" } as L,
+    paragraph: {
+      en: "Kafaah supports both project owners and EPC contractors — independently. We provide the technical alignment, operational expertise, and commissioning depth required to move projects from construction into reliable operation.",
+      ar: "تدعم كفاءة المُلاك ومقاولي EPC — بشكل مستقل. نوفر التوافق الفني والخبرة التشغيلية وعمق التشغيل التجريبي المطلوب لنقل المشاريع من البناء إلى التشغيل الموثوق.",
+      zh: "Kafaah 独立支持项目业主和EPC承包商。我们提供将项目从建设推进到可靠运营所需的技术协调、运营专业知识和调试深度。"
+    } as L,
+    conflictTitle: {
+      en: "ONE PROJECT. ONE CLIENT. NO CONFLICT OF INTEREST.",
+      ar: "مشروع واحد. عميل واحد. لا تضارب في المصالح.",
+      zh: "一个项目。一个客户。无利益冲突。"
+    } as L,
+    conflictDesc: {
+      en: "Kafaah never represents both sides of the same project simultaneously.",
+      ar: "لا تمثل كفاءة أبداً طرفي نفس المشروع في وقت واحد.",
+      zh: "Kafaah 绝不同时代表同一项目的双方。"
+    } as L,
+    owners: {
+      title: { en: "FOR PROJECT OWNERS", ar: "لمُلاك المشاريع", zh: "面向项目业主" },
+      desc: { en: "Independent technical oversight that protects long-term operational performance — not just project delivery.", ar: "إشراف فني مستقل يحمي الأداء التشغيلي طويل المدى — وليس فقط تسليم المشروع.", zh: "保护长期运营绩效的独立技术监督——不仅仅是项目交付。" }
+    },
+    epc: {
+      title: { en: "FOR EPC CONTRACTORS", ar: "لمقاولي EPC", zh: "面向EPC承包商" },
+      desc: { en: "Specialist commissioning and startup expertise that closes the gap between mechanical completion and stable operation.", ar: "خبرة متخصصة في التشغيل التجريبي وبدء التشغيل تسد الفجوة بين الإنجاز الميكانيكي والتشغيل المستقر.", zh: "专业的调试和启动专业知识，弥合机械竣工和稳定运行之间的差距。" }
+    }
+  },
 };
 
 export const services = {
   sectionLabel: { en: "02 — Services", ar: "02 — الخدمات", zh: "02 — 服务" } as L,
-  headline: { en: "What we ", ar: "ما الذي ", zh: "我们" } as L,
-  headlineAccent: { en: "do", ar: "نقدّمه", zh: "做什么" } as L,
+  headline: { en: "Our Services — ", ar: "خدماتنا — ", zh: "我们的服务——" } as L,
+  headlineAccent: { en: "Across the Full Project Lifecycle", ar: "عبر دورة حياة المشروع الكاملة", zh: "横跨整个项目生命周期" } as L,
   allServices: { en: "All Services", ar: "جميع الخدمات", zh: "所有服务" } as L,
-  exploreService: { en: "Explore service", ar: "اكتشف الخدمة", zh: "了解服务" } as L,
+  exploreService: { en: "VIEW SCOPE", ar: "عرض تفاصيل الخدمة", zh: "查看详情" } as L,
   bottomTagline: { en: "End-to-end plant lifecycle support", ar: "دعم شامل لكامل دورة حياة المنشأة", zh: "全生命周期工厂支持" } as L,
+  closingLine: {
+    en: "From first engineering decision to stable plant operation — Kafaah is present at every phase where industrial projects succeed or fail.",
+    ar: "من أول قرار هندسي وحتى التشغيل المستقر للمصنع — تتواجد كفاءة في كل مرحلة تنجح أو تفشل فيها المشاريع الصناعية.",
+    zh: "从第一个工程决策到稳定的工厂运行——在工业项目成败的每个阶段，Kafaah 都与您同在。"
+  } as L,
+  phases: {
+    en: [
+      { num: "01", title: "Project & Design Phase", sub: "Early technical decisions determine whether a plant becomes profitable — or problematic." },
+      { num: "02", title: "Construction & Pre-Startup", sub: "Most startup failures are created long before startup begins." },
+      { num: "03", title: "Startup & Stabilization", sub: "The most critical — and most underestimated — phase of any industrial plant." },
+      { num: "04", title: "Performance & Optimization", sub: "Stable operation is not the finish line — performance is." }
+    ],
+    ar: [
+      { num: "01", title: "مرحلة المشروع والتصميم", sub: "القرارات الفنية المبكرة تحدد ما إذا كان المصنع سيصبح مربحاً — أو مليئاً بالمشاكل." },
+      { num: "02", title: "البناء وما قبل بدء التشغيل", sub: "معظم إخفاقات بدء التشغيل تتولد قبل وقت طويل من بدء التشغيل نفسه." },
+      { num: "03", title: "بدء التشغيل والاستقرار", sub: "المرحلة الأكثر حرجاً — والأكثر استهانة بها — في أي منشأة صناعية." },
+      { num: "04", title: "الأداء والتحسين", sub: "التشغيل المستقر ليس نهاية المطاف — الأداء هو الغاية." }
+    ],
+    zh: [
+      { num: "01", title: "项目与设计阶段", sub: "早期的技术决策决定了工厂是否盈利——还是问题重重。" },
+      { num: "02", title: "建设与启动前", sub: "大多数启动失败在启动开始之前就已经埋下。" },
+      { num: "03", title: "启动与稳定化", sub: "任何工业工厂中最关键——也最被低估的——阶段。" },
+      { num: "04", title: "性能与优化", sub: "稳定运行不是终点——性能才是。" }
+    ]
+  } as Record<GatewayLocale, { num: string; title: string; sub: string }[]>,
+  serviceList: {
+    "owners-engineer": {
+      title: { en: "Owner's Engineer", ar: "مهندس المالك", zh: "业主工程师" },
+      desc: {
+        en: "Independent technical representative from design review through contract award and project execution.",
+        ar: "الممثل الفني المستقل من مراجعة التصميم إلى ترسية العقود وتنفيذ المشروع.",
+        zh: "从设计审查到合同授予和项目执行的独立技术代表。"
+      }
+    },
+    "investor-advisory": {
+      title: { en: "Investor Advisory", ar: "الاستشارات الاستثمارية", zh: "投资者咨询" },
+      desc: {
+        en: "From feasibility to technology selection, with full technical accountability and no fragmented handoffs.",
+        ar: "من دراسة الجدوى إلى اختيار التكنولوجيا، بمسؤولية فنية كاملة ودون تسليمات مُجزّأة.",
+        zh: "从可行性到技术选择，全面的技术问责且无碎片化交接。"
+      }
+    },
+    "process-engineering-support": {
+      title: { en: "Process & Engineering Support", ar: "الدعم الهندسي والعملياتي", zh: "工艺与工程支持" },
+      desc: {
+        en: "Expert process engineering input during early design to ensure operability, reliability, and long-term performance.",
+        ar: "مدخلات هندسة العمليات المتخصصة أثناء التصميم المبكر لضمان قابلية التشغيل والموثوقية والأداء طويل المدى.",
+        zh: "在早期设计中提供专业的工艺工程输入，确保可操作性、可靠性和长期性能。"
+      }
+    },
+    "construction-commissioning-support": {
+      title: { en: "Construction & Commissioning Support", ar: "دعم البناء والتشغيل التجريبي", zh: "建设与调试支持" },
+      desc: {
+        en: "On-site technical support during construction to ensure mechanical completion is truly commissioning-ready.",
+        ar: "الدعم الفني في الموقع أثناء البناء لضمان جاهزية الانتهاء الميكانيكي للتشغيل الفعلي.",
+        zh: "施工期间的现场技术支持，以确保机械竣工真正做好调试准备。"
+      }
+    },
+    "operation-readiness": {
+      title: { en: "Operation Readiness", ar: "جاهزية التشغيل", zh: "运营准备就绪" },
+      desc: {
+        en: "HAZOP support, operating procedures, staffing readiness, and safety system verification before startup begins.",
+        ar: "دعم دراسات HAZOP، وإجراءات التشغيل، وجاهزية الموظفين، والتحقق من أنظمة السلامة قبل بدء التشغيل.",
+        zh: "在启动开始前提供 HAZOP 支持、操作规程、人员配备就绪和安全系统验证。"
+      }
+    },
+    "commissioning": {
+      title: { en: "Commissioning & Startup", ar: "التشغيل التجريبي وبدء التشغيل", zh: "调试与启动" },
+      desc: {
+        en: "From pre-commissioning through performance testing — leading the transition from cold systems to first product.",
+        ar: "من ما قبل التشغيل التجريبي وحتى اختبارات الأداء — قيادة الانتقال من الأنظمة الباردة إلى أول منتج.",
+        zh: "从预调试到性能测试——引领从冷态系统到首批产品的过渡。"
+      }
+    },
+    "troubleshooting": {
+      title: { en: "Technical Troubleshooting", ar: "استكشاف الأعطال الفنية", zh: "技术故障排除" },
+      desc: {
+        en: "Rapid-response diagnostics and root cause analysis for operational problems, bottlenecks, and production losses.",
+        ar: "التشخيص السريع وتحليل الأسباب الجذرية للمشاكل التشغيلية والاختناقات وخسائر الإنتاج.",
+        zh: "针对运营问题、瓶颈和生产损失的快速响应诊断和根本原因分析。"
+      }
+    },
+    "operator-training": {
+      title: { en: "Operator Training", ar: "تدريب المشغلين", zh: "操作员培训" },
+      desc: {
+        en: "Structured, plant-specific training programs that build real operational competence — not generic classroom theory.",
+        ar: "برامج تدريبية منظمة ومخصصة للمصنع تبني كفاءة تشغيلية حقيقية — وليس نظريات فصول دراسية عامة.",
+        zh: "结构化的工厂专用培训计划，建立真正的运营能力——而非通用的课堂理论。"
+      }
+    },
+    "production-optimization": {
+      title: { en: "Production Optimization", ar: "تحسين الإنتاج", zh: "生产优化" },
+      desc: {
+        en: "Systematic identification of production bottlenecks, yield losses, and energy inefficiencies — with measured results.",
+        ar: "التحديد المنهجي لاختناقات الإنتاج وخسائر الإنتاجية وأوجه عدم كفاءة الطاقة — بنتائج مقاسة.",
+        zh: "系统识别生产瓶颈、产量损失和能源低效——以可测量的结果为依据。"
+      }
+    },
+    "startup-performance-guarantee": {
+      title: { en: "Plant Startup & Performance Guarantee", ar: "بدء التشغيل وضمان الأداء", zh: "工厂启动与性能保证" },
+      desc: {
+        en: "Leading startup activities and performance test runs to support guarantee acceptance and operational stability.",
+        ar: "قيادة أنشطة بدء التشغيل واختبارات الأداء لدعم قبول الضمان والاستقرار التشغيلي.",
+        zh: "主导启动活动和性能测试运行，以支持保证验收和运营稳定。"
+      }
+    },
+    "claims-technical-documentation": {
+      title: { en: "Claims & Technical Documentation", ar: "المطالبات والتوثيق الفني", zh: "索赔与技术文件" },
+      desc: {
+        en: "Technical substantiation for claims, variation orders, and comprehensive operational documentation.",
+        ar: "التأسيس الفني للمطالبات وأوامر التغيير والتوثيق التشغيلي الشامل.",
+        zh: "为索赔、变更单提供技术依据，以及全面的运营文件编制。"
+      }
+    }
+  } as Record<string, { title: Record<GatewayLocale, string>; desc: Record<GatewayLocale, string> }>,
 };
 
 export const tech = {
@@ -132,6 +337,11 @@ export const tech = {
   headlineAccent: { en: "inorganic chemistry", ar: "الكيمياء غير العضوية", zh: "无机化学" } as L,
   viewTech: { en: "View technology", ar: "استعراض التقنية", zh: "查看技术" } as L,
   completedProject: { en: "Completed project", ar: "مشروع مُنجَز", zh: "已完成项目" } as L,
+  closingLine: {
+    en: "If your plant is on this list, we've been inside one just like it — and we know where the problems hide.",
+    ar: "إذا كان مصنعك في هذه القائمة، فقد عملنا من داخل مصنع مثله تماماً — ونعرف أين تختبئ المشاكل.",
+    zh: "如果您的工厂在此列表中，我们曾在与之相同的工厂内部工作过——我们知道问题隐藏在哪里。"
+  } as L,
 };
 
 export const trackRecord = {
@@ -161,6 +371,53 @@ export const trackRecord = {
       { label: "电气", desc: "仪表、控制系统、安全系统" },
     ],
   } as Record<GatewayLocale, { label: string; desc: string }[]>,
+  projects: {
+    en: [
+      {
+        phase: "Commissioning & Startup · Nov 2025 – Jan 2026",
+        title: "Suez SOP Plant",
+        tech: "K₂SO₄ · Mannheim Process · Chinese EPC",
+        location: "Suez, Egypt",
+        capacity: "40,000 T/yr"
+      },
+      {
+        phase: "Granulation & Startup · March 2026",
+        title: "Yanbu Granulation Facility",
+        tech: "NPK · Granulation · Saudi Arabia",
+        location: "Yanbu, KSA"
+      }
+    ],
+    ar: [
+      {
+        phase: "التشغيل التجريبي وبدء التشغيل · نوفمبر 2025 - يناير 2026",
+        title: "مصنع سلفات البوتاسيوم بالسويس",
+        tech: "سلفات البوتاسيوم (K₂SO₄) · طريقة Mannheim · مقاول صيني",
+        location: "السويس، مصر",
+        capacity: "40,000 طن/سنة"
+      },
+      {
+        phase: "التحبيب والتشغيل · مارس 2026",
+        title: "منشأة تحبيب الأسمدة بينبع",
+        tech: "NPK · التحبيب · المملكة العربية السعودية",
+        location: "ينبع، السعودية"
+      }
+    ],
+    zh: [
+      {
+        phase: "试车与启动 · 2025年11月 – 2026年1月",
+        title: "苏伊士 SOP 硫酸钾厂",
+        tech: "硫酸钾 (K₂SO₄) · 曼海姆法 · 中国总包商",
+        location: "埃及，苏伊士",
+        capacity: "40,000 吨/年"
+      },
+      {
+        phase: "造粒与启动 · 2026年3月",
+        title: "延布造粒装置",
+        tech: "NPK · 造粒 · 沙特阿拉伯",
+        location: "沙特，延布"
+      }
+    ]
+  } as Record<GatewayLocale, { phase: string; title: string; tech: string; location: string; capacity?: string }[]>,
 };
 
 export const geography = {
@@ -185,10 +442,17 @@ export const contactCta = {
   eyebrow: { en: "Start the conversation", ar: "ابدأ المحادثة", zh: "开始对话" } as L,
   headline: { en: "How can we", ar: "كيف يمكننا", zh: "我们如何" } as L,
   headlineAccent: { en: "help you?", ar: "مساعدتك؟", zh: "帮助您？" } as L,
+  subCopy: {
+    en: "Whether you are building a new inorganic chemical plant, running an existing facility, or evaluating an investment — Kafaah brings 20 years of direct operational expertise to your problem. We respond within 24 hours.",
+    ar: "سواء كنت تبني مصنعاً كيميائياً غير عضوي جديداً، أو تدير منشأة قائمة، أو تقيّم استثماراً — تضع كفاءة 20 عاماً من الخبرة التشغيلية المباشرة في خدمتك. نرد خلال 24 ساعة.",
+    zh: "无论您是在建设新的无机化工厂、运营现有设施还是评估投资——Kafaah 将20年的直接运营经验带到您的问题中。我们在24小时内回复。"
+  } as L,
   getInTouch: { en: "Get in Touch", ar: "تواصل معنا", zh: "联系我们" } as L,
   sendEmail: { en: "Send Email", ar: "إرسال بريد", zh: "发送邮件" } as L,
   fullName: { en: "Full Name", ar: "الاسم الكامل", zh: "全名" } as L,
+  fullNamePlaceholder: { en: "Dr. Ahmed Al-Rashid", ar: "د. أحمد الرشيد", zh: "阿里·拉希德 博士" } as L,
   company: { en: "Company", ar: "الشركة", zh: "公司" } as L,
+  companyPlaceholder: { en: "SIPCHEM", ar: "سبكيم", zh: "沙特基础工业公司" } as L,
   serviceOfInterest: { en: "Service of Interest", ar: "الخدمة المطلوبة", zh: "感兴趣的服务" } as L,
   selectService: { en: "Select a service…", ar: "اختر خدمة…", zh: "选择服务…" } as L,
   message: { en: "Message", ar: "الرسالة", zh: "留言" } as L,
@@ -199,9 +463,107 @@ export const contactCta = {
   confidential: { en: "🔒 Confidential", ar: "🔒 سري", zh: "🔒 保密" } as L,
 };
 
-/* ══════════════════════════════════════════════
-   INNER PAGES
-   ══════════════════════════════════════════════ */
+export const whyKafaah = {
+  eyebrow: { en: "WHY KAFAAH", ar: "لماذا كفاءة", zh: "为什么选择 KAFAAH" } as L,
+  headline: {
+    en: "Four reasons clients trust us with their most critical phases.",
+    ar: "أربعة أسباب تجعل العملاء يثقون بنا في أكثر مراحلهم حرجاً.",
+    zh: "客户在最关键的阶段信任我们的四个原因。"
+  } as L,
+  cards: {
+    en: [
+      {
+        title: "Independent by Structure",
+        desc: "We work with owners and EPC contractors — but never on opposite sides of the same project."
+      },
+      {
+        title: "Built Around Operations",
+        desc: "Our expertise comes from inside operating plants, not from generic consulting frameworks."
+      },
+      {
+        title: "Project-Specific Expertise",
+        desc: "Every assignment is supported by specialists selected specifically for the plant, process, and startup phase involved."
+      },
+      {
+        title: "Focused on Critical Phases",
+        desc: "We operate where industrial risk is highest: commissioning, startup, stabilization, and operational performance."
+      }
+    ],
+    ar: [
+      {
+        title: "مستقلون هيكلياً",
+        desc: "نحن نعمل مع الملاك ومقاولي EPC - ولكن لا نكون أبداً على طرفي نقيض في نفس المشروع."
+      },
+      {
+        title: "التشغيل أولاً",
+        desc: "تأتي خبرتنا من داخل المصانع التشغيلية، وليس من أطر استشارية عامة."
+      },
+      {
+        title: "خبرة مخصصة للمشروع",
+        desc: "كل مهمة يدعمها متخصصون تم اختيارهم خصيصاً للمصنع والعملية التشغيلية ومرحلة بدء التشغيل المعنية."
+      },
+      {
+        title: "التركيز على المراحل الحرجة",
+        desc: "نعمل حيث تكون المخاطر الصناعية في أعلى مستوياتها: التشغيل التجريبي، وبدء التشغيل، والاستقرار، والأداء التشغيلي."
+      }
+    ],
+    zh: [
+      {
+        title: "结构独立",
+        desc: "我们与业主和 EPC 承包商合作——但绝不会在同一个项目的对立面工作。"
+      },
+      {
+        title: "立足于运营",
+        desc: "我们的专业知识来自运营中的工厂内部，而非通用的咨询框架。"
+      },
+      {
+        title: "特定项目的专业技术",
+        desc: "每项任务都由专门针对相关工厂、工艺和启动阶段选拔的专家提供支持。"
+      },
+      {
+        title: "专注于关键阶段",
+        desc: "我们在工业风险最高的环节开展工作：调试、启动、稳定化和运营绩效。"
+      }
+    ]
+  } as Record<GatewayLocale, { title: string; desc: string }[]>
+};
+
+export const founderBio = {
+  sectionLabel: { en: "06 — BUILT ON OPERATIONAL EXPERIENCE", ar: "06 — بنيت على الخبرة التشغيلية", zh: "06 — 立足于运营经验" } as L,
+  name: { en: "Eng. Karim Hisham", ar: "م. كريم هشام", zh: "卡里姆·希沙姆 工程师" } as L,
+  role: { en: "FOUNDER & MANAGING DIRECTOR", ar: "المؤسس والمدير التنفيذي", zh: "创始人兼常务董事" } as L,
+  quote: {
+    en: "\"Kafaah was founded to bring technical accountability back to industrial projects. We operate inside the plant, because that is where the real problems are solved.\"",
+    ar: "\"تأسست كفاءة لإعادة المسؤولية الفنية إلى المشاريع الصناعية. نحن نعمل من داخل المصنع، لأن هذا هو المكان الوحيد الذي تُحل فيه المشاكل الحقيقية.\"",
+    zh: "\"Kafaah 的创立是为了将技术问责制带回工业项目。我们在工厂内部进行操作，因为那才是解决真实问题的地方。\""
+  } as L,
+  desc: {
+    en: "20+ years of hands-on experience inside fertilizer and chemical plants — across commissioning, startup, troubleshooting, and operational stabilization. Our approach is shaped by real industrial environments, where technical decisions directly affect production reliability, operating cost, and long-term plant performance.",
+    ar: "أكثر من 20 عاماً من الخبرة العملية داخل مصانع الأسمدة والكيماويات — عبر التشغيل التجريبي وبدء التشغيل واستكشاف الأعطال والاستقرار التشغيلي. يتشكل نهجنا بالبيئات الصناعية الحقيقية، حيث تؤثر القرارات الفنية مباشرة على موثوقية الإنتاج وتكلفة التشغيل والأداء طويل المدى للمصنع.",
+    zh: "在化肥和化工厂内拥有20多年的实际操作经验——横跨调试、启动、故障排除和运营稳定化。我们的方法是在真实的工业环境中塑造的，在这些环境中，技术决策直接影响生产可靠性、运营成本和长期工厂绩效。"
+  } as L,
+  cards: {
+    en: [
+      { title: "20+ Years Experience", sub: "Fertilizer & Chemical Plants" },
+      { title: "Commissioning & Startup", sub: "From cold systems to first product" },
+      { title: "Egypt · Gulf · MENA", sub: "Regional operational presence" },
+      { title: "Hands-on Leadership", sub: "Operations & Optimization" }
+    ],
+    ar: [
+      { title: "خبرة 20+ عاماً", sub: "مصانع الأسمدة والكيماويات" },
+      { title: "التشغيل التجريبي والتدشين", sub: "من الأنظمة الباردة إلى أول منتج" },
+      { title: "مصر · الخليج · الشرق الأوسط", sub: "تواجد تشغيلي إقليمي" },
+      { title: "قيادة ميدانية عملية", sub: "التشغيل والتحسين المستمر" }
+    ],
+    zh: [
+      { title: "20年以上经验", sub: "化肥与化工厂" },
+      { title: "调试与启动", sub: "从冷态系统到首批产品" },
+      { title: "埃及 · 海湾 · 中东北非", sub: "区域运营足迹" },
+      { title: "亲力亲为的领导", sub: "运营与优化" }
+    ]
+  } as Record<GatewayLocale, { title: string; sub: string }[]>
+};
+
 export const whoWeAre = {
   pageTitle: { en: "Who We Are", ar: "من نحن", zh: "关于我们" } as L,
   heroEyebrow: { en: "About", ar: "حول", zh: "关于" } as L,
