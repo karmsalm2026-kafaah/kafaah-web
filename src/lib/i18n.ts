@@ -842,6 +842,77 @@ export const technologiesPage = {
   challengesLabel: { en: "Critical Startup Gates", ar: "مراحل بدء التشغيل الحرجة", zh: "启动运行关键点" } as L,
   experienceLabel: { en: "Kafaah Handprint", ar: "خبرة كفاءة الميدانية", zh: "Kafaah 现场实绩" } as L,
   exploreBtn: { en: "EXPLORE DETAILED PROFILE", ar: "عرض الملف التقني التفصيلي", zh: "浏览详细技术档案" } as L,
+  articles: {
+    en: [
+      {
+        id: "1",
+        title: "Why EPC Handover is the Most Critical Phase of Your Plant",
+        category: "Commissioning",
+        date: "April 2026",
+        excerpt:
+          "The gap between 'mechanically complete' and 'operationally viable' is where most investors lose money. How an Owner's Engineer bridges this gap.",
+        content: `## The EPC Handover Gap: From Steel to Synergy
+
+Many investors assume that when an Engineering, Procurement, and Construction (EPC) contractor declares a plant "mechanically complete," the facility is ready to produce chemical output. This is a costly misconception. The gap between mechanical completion and stable operation is where projects succeed or fail.
+
+### Suez & Yanbu Case Studies
+
+In our commissioning work at Suez (magnesium sulphate) and Yanbu (NPK and phosphoric acid plants), we identified key systemic errors in the transitional phase:
+
+1. **Pre-commissioning Checklist Oversights**: Piping loop checks, hydrostatic tests, and instrument calibrations must be independently verified by an Owner's Engineer, rather than solely relying on the EPC contractor's self-certification.
+2. **Operations Readiness (OR) Integration**: Operations staff must be integrated during the late construction phase to ensure proper hand-on training and ownership transfer.
+
+### Key EPC Handover Checkpoints
+
+* **Punch List Management**: Categorizing deficiencies into Category A (must resolve before startup) and Category B (can resolve post-startup).
+* **Performance Guarantee Runs (PGR)**: Validating specific raw material consumption rates, utility usage, and product specifications over continuous 72-hour test windows under nominal load.`,
+      },
+      {
+        id: "2",
+        title: "Common Pitfalls in Mannheim Furnace Refractory Curing",
+        category: "Technical Troubleshooting",
+        date: "March 2026",
+        excerpt:
+          "Incorrect curing of the SOP furnace refractory leads to premature failure and costly downtime. We review the standard procedure and where it usually goes wrong.",
+        content: `## Mannheim Furnace Refractory: Curing to Prevent Failure
+
+Mannheim furnaces operate at extreme temperatures (500°C to 650°C) with highly corrosive reactants (potassium chloride and sulfuric acid producing potassium sulfate and hydrochloric acid gas). The silica brick and high-alumina refractory lining inside the furnace chamber are critical assets. Proper curing during the initial heating phase determines whether the bricks will survive years of operation or crack within months.
+
+### The Curing Curve
+
+Refractory curing requires a precise thermal schedule to drive off free water first, and then chemically bound water.
+
+* **Ambient to 110°C**: Rate not exceeding 10°C/hr. Hold at 110°C for 24 hours to evaporate free moisture.
+* **110°C to 350°C**: Rate not exceeding 15°C/hr. Hold at 350°C for 18 hours to release bound water without creating internal steam pressure.
+* **350°C to Operating Temp (approx. 550°C)**: Rate of 20°C/hr. Hold at operating temperature for 24 hours for thermal equilibrium.
+
+### Common Failures in the Field
+
+In multiple troubleshooting interventions, we discovered operators accelerating the curing curve to meet construction deadlines. This causes "spalling"—where trapped moisture vaporizes into high-pressure steam, cracking the bricks from within. Our team enforces certified digital temperature monitoring and independent gas burner calibration to prevent refractory failures.`,
+      },
+      {
+        id: "3",
+        title: "Optimizing NPK Granulation for High Ambient Humidity",
+        category: "Production Optimization",
+        date: "February 2026",
+        excerpt:
+          "Operating a granulation plant in the Gulf or Red Sea coast requires specific operational adjustments to maintain product quality and avoid caking.",
+        content: `## NPK Granulation in High Ambient Humidity: Challenges and Control
+
+NPK (Nitrogen, Phosphorus, Potassium) compound fertilizer granulation is highly sensitive to humidity. In coastal regions with high ambient humidity, such as the Gulf or Red Sea coasts, fertilizer salts absorb atmospheric moisture rapidly. This makes the material sticky, leading to build-up in the drum granulator, screen clogging, and product caking in storage silos.
+
+### Thermodynamics of Salt Hydration
+
+Every NPK formulation has a Critical Relative Humidity (CRH). If the ambient air's relative humidity exceeds the CRH, the fertilizer will actively absorb moisture. In coastal zones, ambient humidity regularly exceeds 80%, while NPK formulas containing urea and ammonium nitrate can have a CRH as low as 55-60%.
+
+### Operational Tricks to Avoid Caking
+
+1. **Optimizing Recycle Ratio**: Increasing the recycle ratio of dry, cool fines to the granulator buffer zone helps to absorb raw material moisture fluctuations.
+2. **Controlling Dryer Exhaust Air Temp**: Raising exhaust air temperature from the dryer drum to ensure internal grain moisture is strictly below 1.0%.
+3. **Post-Treatment Coating**: Applying high-quality anti-caking agent (oil-wax-dust coating) immediately after cooling to create a hydrophobic barrier on granules.`,
+      },
+    ]
+  },
   
   h2so4: {
     title: { en: "Sulfuric Acid — H₂SO₄", ar: "حمض الكبريتيك — H₂SO₄", zh: "硫酸 — H₂SO₄" } as L,
@@ -1160,6 +1231,21 @@ export const insightsPage = {
       {
         id: "1",
         title: "Why EPC Handover is the Most Critical Phase of Your Plant",
+        content: `## The EPC Handover Gap: From Steel to Synergy
+
+Many investors assume that when an Engineering, Procurement, and Construction (EPC) contractor declares a plant "mechanically complete," the facility is ready to produce chemical output. This is a costly misconception. The gap between mechanical completion and stable operation is where projects succeed or fail.
+
+### Suez & Yanbu Case Studies
+
+In our commissioning work at Suez (magnesium sulphate) and Yanbu (NPK and phosphoric acid plants), we identified key systemic errors in the transitional phase:
+
+1. **Pre-commissioning Checklist Oversights**: Piping loop checks, hydrostatic tests, and instrument calibrations must be independently verified by an Owner's Engineer, rather than solely relying on the EPC contractor's self-certification.
+2. **Operations Readiness (OR) Integration**: Operations staff must be integrated during the late construction phase to ensure proper hand-on training and ownership transfer.
+
+### Key EPC Handover Checkpoints
+
+* **Punch List Management**: Categorizing deficiencies into Category A (must resolve before startup) and Category B (can resolve post-startup).
+* **Performance Guarantee Runs (PGR)**: Validating specific raw material consumption rates, utility usage, and product specifications over continuous 72-hour test windows under nominal load.`,
         category: "Commissioning",
         date: "April 2026",
         excerpt:
@@ -1168,6 +1254,21 @@ export const insightsPage = {
       {
         id: "2",
         title: "Common Pitfalls in Mannheim Furnace Refractory Curing",
+        content: `## Mannheim Furnace Refractory: Curing to Prevent Failure
+
+Mannheim furnaces operate at extreme temperatures (500°C to 650°C) with highly corrosive reactants (potassium chloride and sulfuric acid producing potassium sulfate and hydrochloric acid gas). The silica brick and high-alumina refractory lining inside the furnace chamber are critical assets. Proper curing during the initial heating phase determines whether the bricks will survive years of operation or crack within months.
+
+### The Curing Curve
+
+Refractory curing requires a precise thermal schedule to drive off free water first, and then chemically bound water.
+
+* **Ambient to 110°C**: Rate not exceeding 10°C/hr. Hold at 110°C for 24 hours to evaporate free moisture.
+* **110°C to 350°C**: Rate not exceeding 15°C/hr. Hold at 350°C for 18 hours to release bound water without creating internal steam pressure.
+* **350°C to Operating Temp (approx. 550°C)**: Rate of 20°C/hr. Hold at operating temperature for 24 hours for thermal equilibrium.
+
+### Common Failures in the Field
+
+In multiple troubleshooting interventions, we discovered operators accelerating the curing curve to meet construction deadlines. This causes "spalling"—where trapped moisture vaporizes into high-pressure steam, cracking the bricks from within. Our team enforces certified digital temperature monitoring and independent gas burner calibration to prevent refractory failures.`,
         category: "Technical Troubleshooting",
         date: "March 2026",
         excerpt:
@@ -1176,6 +1277,19 @@ export const insightsPage = {
       {
         id: "3",
         title: "Optimizing NPK Granulation for High Ambient Humidity",
+        content: `## NPK Granulation in High Ambient Humidity: Challenges and Control
+
+NPK (Nitrogen, Phosphorus, Potassium) compound fertilizer granulation is highly sensitive to humidity. In coastal regions with high ambient humidity, such as the Gulf or Red Sea coasts, fertilizer salts absorb atmospheric moisture rapidly. This makes the material sticky, leading to build-up in the drum granulator, screen clogging, and product caking in storage silos.
+
+### Thermodynamics of Salt Hydration
+
+Every NPK formulation has a Critical Relative Humidity (CRH). If the ambient air's relative humidity exceeds the CRH, the fertilizer will actively absorb moisture. In coastal zones, ambient humidity regularly exceeds 80%, while NPK formulas containing urea and ammonium nitrate can have a CRH as low as 55-60%.
+
+### Operational Tricks to Avoid Caking
+
+1. **Optimizing Recycle Ratio**: Increasing the recycle ratio of dry, cool fines to the granulator buffer zone helps to absorb raw material moisture fluctuations.
+2. **Controlling Dryer Exhaust Air Temp**: Raising exhaust air temperature from the dryer drum to ensure internal grain moisture is strictly below 1.0%.
+3. **Post-Treatment Coating**: Applying high-quality anti-caking agent (oil-wax-dust coating) immediately after cooling to create a hydrophobic barrier on granules.`,
         category: "Production Optimization",
         date: "February 2026",
         excerpt:
@@ -1186,6 +1300,21 @@ export const insightsPage = {
       {
         id: "1",
         title: "لماذا يعتبر تسليم EPC المرحلة الأكثر حرجاً لمنشأتك",
+        content: `## فجوة تسليم EPC: من الهيكل المعدني إلى التكامل التشغيلي
+
+يفترض العديد من المستثمرين أنه عندما يعلن مقاول الهندسة والمشتريات والإنشاءات (EPC) أن المصنع "مكتمل ميكانيكياً"، فإن المنشأة جاهزة لبدء الإنتاج الكيميائي. هذا اعتقاد خاطئ ومكلف. الفجوة بين الاكتمال الميكانيكي والتشغيل المستقر هي المرحلة التي تتحدد فيها نجاح المشاريع أو فشلها.
+
+### دراسات حالة: السويس وينبع
+
+في أعمال التشغيل التجريبي التي قمنا بها في السويس (كبريتات المغنيسيوم) وينبع (مصانع NPK وحمض الفوسفوريك)، حددنا أخطاء نظامية رئيسية في المرحلة الانتقالية:
+
+1. **إغفال قوائم فحص ما قبل التشغيل**: يجب التحقق من اختبارات الدوائر الهيدروليكية، والاختبارات الهيدروستاتيكية، ومعايرة الأجهزة بشكل مستقل من قبل مهندس المالك، بدلاً من الاعتماد فقط على شهادة المقاول الذاتية.
+2. **تكامل جاهزية العمليات**: يجب دمج موظفي التشغيل خلال مرحلة البناء المتأخرة لضمان التدريب العملي السليم ونقل الملكية.
+
+### نقاط فحص تسليم EPC الرئيسية
+
+* **إدارة قائمة الملاحظات (Punch List)**: تصنيف العيوب إلى الفئة أ (يجب حلها قبل بدء التشغيل) والفئة ب (يمكن حلها بعد بدء التشغيل).
+* **تشغيل ضمان الأداء (PGR)**: التحقق من معدلات استهلاك المواد الخام، واستخدام المرافق، ومواصفات المنتج خلال فترات اختبار مستمرة لمدة 72 ساعة تحت الحمل الاسمي.`,
         category: "التشغيل",
         date: "أبريل 2026",
         excerpt: "الفجوة بين 'مكتمل ميكانيكياً' و 'جاهز للتشغيل' هي حيث يخسر معظم المستثمرين أموالهم. كيف يسد مهندس المالك هذه الفجوة.",
@@ -1193,6 +1322,21 @@ export const insightsPage = {
       {
         id: "2",
         title: "الأخطاء الشائعة في معالجة حراريات فرن مانهايم",
+        content: `## حراريات فرن مانهايم: المعالجة لتجنب الفشل
+
+تعمل أفران مانهايم في درجات حرارة قصوى (500 إلى 650 درجة مئوية) مع وجود متفاعلات شديدة التآكل (كلوريد البوتاسيوم وحمض الكبريتيك لإنتاج كبريتات البوتاسيوم وغاز حمض الهيدروكلوريك). تعتبر الطوب السيليكي والبطانة الحرارية عالية الألومينا داخل غرفة الفرن من الأصول الحيوية. تحدد المعالجة الصحيحة أثناء مرحلة التسخين الأولية ما إذا كان الطوب سيعيش لسنوات من التشغيل أو يتصدع في غضون أشهر.
+
+### منحنى المعالجة الحراري
+
+تتطلب معالجة المواد الحرارية جدولاً حرارياً دقيقاً لطرد المياه الحرة أولاً، ثم المياه المرتبطة كيميائياً.
+
+* **من درجة الحرارة المحيطة إلى 110 درجة مئوية**: بمعدل لا يتجاوز 10 درجات مئوية/ساعة. الثبات عند 110 درجات مئوية لمدة 24 ساعة لتبخير الرطوبة الحرة.
+* **من 110 إلى 350 درجة مئوية**: بمعدل لا يتجاوز 15 درجة مئوية/ساعة. الثبات عند 350 درجة مئوية لمدة 18 ساعة لإطلاق الماء المرتبط دون إحداث ضغط بخار داخلي.
+* **من 350 درجة مئوية إلى حرارة التشغيل (حوالي 550 درجة مئوية)**: بمعدل 20 درجة مئوية/ساعة. الثبات عند حرارة التشغيل لمدة 24 ساعة لتحقيق التوازن الحراري.
+
+### الأخطاء الشائعة في الموقع
+
+في العديد من التدخلات لحل المشاكل التقنية، اكتشفنا قيام المشغلين بتسريع منحنى المعالجة للوفاء بالمواعيد النهائية للبناء. يؤدي هذا إلى حدوث "التشظي" (spalling) — حيث تتبخر الرطوبة المحاصرة وتتحول إلى بخار عالي الضغط، مما يؤدي إلى تصدع الطوب من الداخل. يفرض فريقنا مراقبة رقمية معتمدة لدرجات الحرارة ومعايرة مستقلة للشعلات لتجنب فشل الحراريات.`,
         category: "استكشاف الأخطاء الفنية",
         date: "مارس 2026",
         excerpt: "المعالجة غير الصحيحة لحراريات فرن سلفات البوتاسيوم تؤدي إلى الفشل المبكر وفترات التوقف المكلفة. نستعرض الإجراء القياسي وأين يحدث الخطأ عادة.",
@@ -1200,6 +1344,19 @@ export const insightsPage = {
       {
         id: "3",
         title: "تحسين تحبيب NPK في ظروف الرطوبة المحيطة العالية",
+        content: `## تحبيب NPK في الرطوبة المحيطة العالية: التحديات والتحكم
+
+عملية تحبيب الأسمدة المركبة NPK (النيتروجين والفوسفور والبوتاسيوم) حساسة للغاية للرطوبة. في المناطق الساحلية ذات الرطوبة المحيطة العالية، مثل سواحل الخليج أو البحر الأحمر، تمتص أملاح الأسمدة الرطوبة الجوية بسرعة. وهذا يجعل المادة لزجة، مما يؤدي إلى تراكمها في أسطوانة التحبيب، وانسداد الغرابيل، وتكتل المنتج في صوامع التخزين.
+
+### ديناميكا الحرارة لتميؤ الأملاح
+
+لكل تركيبة NPK درجة رطوبة نسبية حرجة (CRH). إذا تجاوزت الرطوبة النسبية للهواء المحيط هذه الدرجة، فإن السماد سيمتص الرطوبة بنشاط. في المناطق الساحلية، تتجاوز الرطوبة المحيطة بانتظام 80%، بينما يمكن أن تصل درجة الرطوبة النسبية الحرجة لتركيبات NPK التي تحتوي على اليوريا ونترات الأمونيوم إلى 55-60%.
+
+### حيل تشغيلية لتجنب التكتل
+
+1. **تحسين نسبة إعادة التدوير**: زيادة نسبة إعادة تدوير المواد الناعمة والجافة والباردة إلى منطقة Granulator يساعد في امتصاص تقلبات الرطوبة.
+2. **التحكم في درجة حرارة عادم المجفف**: رفع درجة حرارة هواء العادم من أسطوانة التجفيف لضمان أن رطوبة الحبيبات الداخلية أقل بدقة من 1.0%.
+3. **طلاء ما بعد المعالجة**: تطبيق عامل مضاد للتكتل عالي الجودة (طلاء الزيت والشمع والغبار) مباشرة بعد التبريد لتشكيل حاجز كاره للماء على الحبيبات.`,
         category: "تحسين الإنتاج",
         date: "فبراير 2026",
         excerpt: "تشغيل مصنع تحبيب في الخليج أو ساحل البحر الأحمر يتطلب تعديلات تشغيلية محددة للحفاظ على جودة المنتج وتجنب التكتل.",
@@ -1209,6 +1366,21 @@ export const insightsPage = {
       {
         id: "1",
         title: "为什么EPC交接是您工厂最关键的阶段",
+        content: `## EPC 交接差距：从钢结构到系统协同
+
+许多投资者认为，当工程、采购和施工（EPC）承包商宣布工厂“机械完工”时，设施就已准备好进行化学品生产。这是一个代价高昂的误解。“机械完工”与“稳定运营”之间的差距是项目成败的关键所在。
+
+### 苏伊士与延布案例研究
+
+在苏伊士（硫酸镁）和延布（复合肥与磷酸装置）的调试工作中，我们发现了过渡阶段的几个关键系统性错误：
+
+1. **试车前清单遗漏**：管道回路检查、水压试验和仪表校准必须由业主工程师进行独立验证，而不能仅仅依赖 EPC 承包商的自我认证。
+2. **运营就绪（OR）整合**：运营人员必须在建设后期介入，以确保适当的实际操作培训和所有权顺利转移。
+
+### EPC 交接关键检查点
+
+* **尾项清单管理**：将缺陷分类为 A 类（启动前必须解决）和 B 类（启动后可解决）。
+* **性能保证测试（PGR）**：在额定负载下连续 72 小时的测试窗口期内，验证特定的原材料消耗率、公用工程消耗和产品规格。`,
         category: "调试",
         date: "2026年4月",
         excerpt: "“机械完工”和“运营可行”之间的差距是大多数投资者亏损的地方。业主工程师如何弥合这一差距。",
@@ -1216,6 +1388,21 @@ export const insightsPage = {
       {
         id: "2",
         title: "曼海姆熔炉耐火材料养护的常见陷阱",
+        content: `## 曼海姆熔炉耐火材料：通过养护防止失效
+
+曼海姆熔炉在极端温度（500°C 至 650°C）以及高腐蚀性反应物（氯化钾与硫酸反应生成硫酸钾和氯化氢气体）下运行。炉腔内部的硅砖和高铝耐火内衬是极其关键的资产。在初始升温阶段进行适当的烘炉养护，决定了耐火砖是能承受多年的运行，还是会在几个月内开裂。
+
+### 烘炉养护曲线
+
+耐火材料的烘干和养护需要精确的温度控制，以首先排出游离水，然后排出化学结合水。
+
+* **环境温度至 110°C**：升温速率不超过 10°C/小时。在 110°C 保温 24 小时以蒸发游离水分。
+* **110°C 至 350°C**：升温速率不超过 15°C/小时。在 350°C 保温 18 小时以释放结合水，避免产生内部蒸汽压。
+* **350°C 至运行温度（约 550°C）**：升温速率为 20°C/小时。在运行温度下保温 24 小时以达到热平衡。
+
+### 现场常见故障
+
+在多次技术故障排除干预中，我们发现操作人员为了赶工期而加速烘炉曲线。这会导致“剥落”——残留的水分汽化为高压蒸汽，从而将耐火砖从内部胀裂。我们的团队通过采用经过认证的数字温度监控和独立的燃气燃烧器校准，彻底防止耐火材料失效。`,
         category: "技术故障排除",
         date: "2026年3月",
         excerpt: "SOP熔炉耐火材料的错误养护会导致过早失效和昂贵的停机时间。我们回顾标准程序以及通常出错的地方。",
@@ -1223,6 +1410,19 @@ export const insightsPage = {
       {
         id: "3",
         title: "针对高环境湿度优化NPK造粒",
+        content: `## 高环境湿度下的 NPK 造粒：挑战与控制
+
+NPK（氮、磷、钾）复合肥造粒对湿度极为敏感。在海湾地区或红海沿岸等高湿度沿海地区，肥料盐会迅速吸收空气中的水分。这会导致物料变粘，进而引起转鼓造粒机内部结疤、振动筛堵塞以及储料斗中的产品结块。
+
+### 肥料盐吸湿热力学
+
+每种 NPK 配方都有一个临界相对湿度（CRH）。如果周围空气的相对湿度超过该 CRH，肥料将主动吸湿。在沿海地区，环境湿度经常超过 80%，而含有尿素和硝酸铵的 NPK 配方的 CRH 可能低至 55-60%。
+
+### 避免结块的运营技巧
+
+1. **优化循环料比例**：增加干燥、冷却的细料返回造粒机的循环比例，有助于缓冲原材料中的水分波动。
+2. **控制干燥机排风温度**：提高干燥机排风温度，确保颗粒内部水分严格控制在 1.0% 以下。
+3. **后处理防结块包膜**：冷却后立即喷涂优质防结块剂（油-蜡-粉包裹），以在颗粒表面形成疏水保护层。`,
         category: "生产优化",
         date: "2026年2月",
         excerpt: "在海湾地区或红海沿岸运营造粒厂需要特定的运营调整，以保持产品质量并避免结块。",
