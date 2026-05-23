@@ -635,69 +635,187 @@ export const founderBio = {
 
 export const whoWeAre = {
   pageTitle: { en: "Who We Are", ar: "من نحن", zh: "关于我们" } as L,
-  heroEyebrow: { en: "About", ar: "حول", zh: "关于" } as L,
-  heroTitle: { en: "Who We Are", ar: "من نحن", zh: "关于我们" } as L,
-  heroSub: {
-    en: "An independent group of specialists — not project managers, not EPC subcontractors. Engineers who have operated these plants themselves.",
-    ar: "مجموعة مستقلة من المتخصصين — لسنا مدراء مشاريع ولا مقاولين من الباطن. مهندسون شغّلوا هذه المنشآت بأنفسهم.",
-    zh: "一群独立的专家——不是项目经理，不是EPC分包商。而是亲自运营过这些工厂的工程师。"
+  heroEyebrow: { en: "WHO WE ARE", ar: "من نحن", zh: "关于我们" } as L,
+  heroTitle: {
+    en: "An independent consultancy built inside real industrial plants.",
+    ar: "مكتب استشاري مستقل تأسس من قلب المصانع الإنتاجية الحقيقية.",
+    zh: "一个在真实工业厂房中建立起来的独立咨询机构。"
   } as L,
-  intro: {
-    en: "Kafaah Industrial Solutions is an independent Egyptian-founded consultancy specializing in inorganic chemical and fertilizer plant commissioning, startup, troubleshooting, and performance optimization.",
-    ar: "كفاءة للحلول الصناعية شركة استشارية مستقلة تأسّست في مصر، متخصصة في بدء تشغيل مصانع الكيماويات غير العضوية والأسمدة واستكشاف أعطالها وتحسين أدائها.",
-    zh: "Kafaah 工业解决方案是一家在埃及创立的独立咨询公司，专注于无机化工和化肥工厂的调试、启动、故障排除及性能优化。"
+  heroSub1: {
+    en: "Kafaah specializes in inorganic chemical and fertilizer plant commissioning, startup, troubleshooting, and performance optimization. We don't consult from a distance — we have managed startups, resolved production issues, optimized yields, and trained the operators who run these facilities every day.",
+    ar: "تتخصص كفاءة في بدء تشغيل وتجريب ومعالجة مشكلات وتحسين أداء مصانع الأسمدة والكيماويات غير العضوية. نحن لا نقدم استشاراتنا عن بُعد — بل أدرنا عمليات بدء التشغيل، وحللنا أعقد مشاكل الإنتاج، وحسّنا الكفاءة، ودرّبنا المشغلين الذين يديرون هذه المرافق يومياً.",
+    zh: "Kafaah 专注于无机化工与化肥厂的系统调试、启动运行、故障排除及性能优化。我们不进行远程空谈——我们曾亲手管理启动、解决生产瓶颈、优化产量产出，并培训着每天运行 these 设施的操作员们。"
   } as L,
-  p1: {
-    en: "We bring 20 years of direct operational expertise across H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants. Our team has not only consulted on these plants — we have operated them. We have managed startups, resolved production crises, optimized yields, and trained the operators who run these facilities every day.",
-    ar: "نمتلك 20 عامًا من الخبرة التشغيلية المباشرة في مصانع H₂SO₄ و H₃PO₄ و K₂SO₄ و NPK و MgSO₄ و SSP. فريقنا لم يكتفِ بتقديم الاستشارات لهذه المصانع — بل شغّلها بنفسه. أدرنا عمليات بدء التشغيل، وعالجنا أزمات الإنتاج، وحسّنّا الإنتاجية، ودرّبنا المشغّلين الذين يديرون هذه المرافق يوميًا.",
-    zh: "我们在 H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄ 和 SSP 工厂拥有20年直接运营经验。我们的团队不仅提供咨询——还亲自运营这些工厂。我们管理启动流程、解决生产危机、优化产量，并培训每天运行设施的操作员。"
+  heroSub2: {
+    en: "We bring nearly 20 years of direct operational expertise across H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, and SSP plants — not as observers, but as engineers who have operated them.",
+    ar: "نحن نجلب ما يقرب من 20 عاماً من الخبرة التشغيلية المباشرة عبر مصانع H₂SO₄ و H₃PO₄ و K₂SO₄ و NPK و MgSO₄ و SSP — ليس كمراقبين، بل كمهندسين قاموا بتشغيلها بأنفسهم.",
+    zh: "我们在 H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄ 和 SSP 工厂拥有近 20 年的直接运营经验——并非作为旁观者，而是作为亲自操作过这些工厂的工程师。"
   } as L,
-  p2: {
+  heroKafaahMean: {
     en: "The word Kafaah (كفاءة) means competence in Arabic. It is not a marketing name — it is our standard. Every engagement we accept must meet it.",
-    ar: "كلمة كفاءة تعني الجدارة والإتقان. ليست مجرد اسم تسويقي — بل هي معيارنا. كل مشروع نقبله يجب أن يرقى إلى هذا المعيار.",
-    zh: "Kafaah（كفاءة）在阿拉伯语中意为“能力与胜任”。这不是营销名称——而是我们的标准。我们承接的每个项目都必须达到这一标准。"
+    ar: "كلمة كفاءة (كفاءة) تعني الجدارة والقدرة باللغة العربية. إنها ليست مجرد اسم تسويقي — بل هي معيارنا الخاص. وكل مشروع نقبله يجب أن يرقى إليه.",
+    zh: "Kafaah（كفاءة）在阿拉伯语中意为“能力与胜任”。这不仅是一个营销名称——更是我们的标准。我们所承接的每个项目都必须达到这一标准。"
   } as L,
-  whatMakesDifferent: { en: "What Makes Us Different", ar: "ما يميّزنا", zh: "我们的独特之处" } as L,
-  diffFeatures: {
+  heroBuiltLabel: {
+    en: "BUILT INSIDE REAL PLANTS",
+    ar: "تأسست من قلب المصانع الإنتاجية",
+    zh: "源于真实的工业生产一线"
+  } as L,
+  heroBuiltSub: {
+    en: "H₂SO₄ · H₃PO₄ · K₂SO₄ · NPK · MgSO₄ · SSP\nEgypt · Saudi Arabia · MENA & Beyond",
+    ar: "H₂SO₄ · H₃PO₄ · K₂SO₄ · NPK · MgSO₄ · SSP\nمصر · المملكة العربية السعودية · الشرق الأوسط وشمال أفريقيا وخارجها",
+    zh: "H₂SO₄ · H₃PO₄ · K₂SO₄ · NPK · MgSO₄ · SSP\n埃及 · 沙特阿拉伯 · 中东北非及其他地区"
+  } as L,
+  founderEyebrow: { en: "THE FOUNDER", ar: "المؤسس", zh: "创始人" } as L,
+  founderName: { en: "Moustafa Abdelghaffar", ar: "مصطفى عبد الغفار", zh: "Moustafa Abdelghaffar" } as L,
+  founderRole: {
+    en: "FOUNDER & PRINCIPAL PROCESS ENGINEER",
+    ar: "المؤسس وكبير مهندسي العمليات",
+    zh: "创始人兼首席工艺工程师"
+  } as L,
+  founderQuote: {
+    en: "\"I have spent nearly two decades inside fertilizer and chemical plants across Egypt and Saudi Arabia — not managing from a distance, but on the floor, solving real problems. Over the years, I discovered that my deepest value isn't in following a process — it's in understanding why a plant isn't performing, and knowing exactly what to do about it. Kafaah was built on that conviction: that the most critical phases of any industrial project deserve engineers who have truly been there.\"",
+    ar: "\"لقد أمضيت ما يقرب من عقدين من الزمن داخل مصانع الكيماويات والأسمدة في مصر والمملكة العربية السعودية — لم أكن أديرها عن بُعد، بل كنت متواجداً في صالة الإنتاج لحل المشكلات الحقيقية. وعلى مر السنين، اكتشفت أن قيمتي الحقيقية لا تكمن في مجرد اتباع العمليات — بل في فهم سبب عدم أداء المصنع بالشكل المطلوب، ومعرفة ما يجب فعله بالضبط. لقد تأسست كفاءة بناءً على هذا الاقتناع: أن المراحل الأكثر أهمية في أي مشروع صناعي تستحق مهندسين عايشوا الواقع وتواجدوا هناك بالفعل.\"",
+    zh: "“我在埃及和沙特阿拉伯的化肥与化工厂里度过了近二十年的光阴——并非远距离管理，而是在生产车间一线解决实际问题。多年来，我发现自己最核心的价值并非在于按部就班，而是在于洞察工厂未能发挥应有性能的根本原因，并准确知晓如何加以解决。Kafaah 正是建立在这一信念之上：任何工业项目中最关键的阶段，都应当由那些真正经历过实操磨炼的工程师来保驾护航。”"
+  } as L,
+  founderBio: {
+    en: "Since 2006, Moustafa Abdelghaffar has worked hands-on inside sulfuric acid, phosphoric acid, potassium sulfate, and fertilizer plants across Egypt and Saudi Arabia — leading commissioning operations, resolving operational challenges, and optimizing plant performance from the inside. Kafaah was founded to bring that depth of operational experience directly to project owners and EPC contractors who need more than advice — they need engineers who know where the problems hide.",
+    ar: "منذ عام 2006، عمل مصطفى عبد الغفار بشكل مباشر وعملي داخل مصانع حمض الكبريتيك وحمض الفوسفوريك وكبريتات البوتاسيوم والأسمدة في مصر والمملكة العربية السعودية — حيث قاد عمليات تجريب التشغيل وحل التحديات التشغيلية وتحسين أداء المصانع من الداخل. تأسست كفاءة لجلب هذا العمق من الخبرة التشغيلية مباشرة إلى أصحاب المشاريع ومقاولي الهندسة والمشتريات والبناء (EPC) الذين يحتاجون إلى ما هو أكثر من مجرد المشورة — إنهم بحاجة إلى مهندسين يعرفون أين تكمن المشكلات.",
+    zh: "自2006年以来，Moustafa Abdelghaffar 一直在埃及和沙特阿拉伯的硫酸、磷酸、硫酸钾和化肥厂从事一线实操工作——从内部主导调试运营、解决运行难题并优化装置表现。创立 Kafaah 的宗旨是，将这种深厚的运营实战经验直接带给项目业主 and EPC 承包商。对于他们而言，不仅需要方案建议，更需要能够洞悉故障根源的实干工程师。"
+  } as L,
+  founderStats: {
     en: [
-      { title: "Independent", desc: "We have no relationships with EPC contractors, equipment vendors, or technology licensors. Our only obligation is to you." },
-      { title: "Operational", desc: "We have run these plants. When we troubleshoot, we draw on real experience — not theoretical knowledge." },
-      { title: "Chemical-Specific", desc: "We specialize in inorganic acids and specialty fertilizers. We do not try to cover every industry." },
-      { title: "Results-Documented", desc: "We measure before and after. Our recommendations are backed by data, and our results are documented." }
+      { label: "Since 2006", text: "Nearly 20 years of hands-on plant experience" },
+      { label: "6 Processes", text: "H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, SSP" },
+      { label: "Egypt & Saudi Arabia", text: "Direct operational presence across the region" },
+      { label: "Commissioning & Startup", text: "From cold systems to stable, on-spec production" }
     ],
     ar: [
-      { title: "مستقلون", desc: "لا نرتبط بأي مقاول EPC أو مورّد معدات أو مرخّص تكنولوجيا. التزامنا الوحيد هو خدمة مشروعك." },
-      { title: "تشغيليون", desc: "شغّلنا هذه المصانع بأنفسنا. حين نستكشف الأعطال نعتمد على خبرة واقعية، لا معرفة نظرية." },
-      { title: "متخصصون كيميائيًا", desc: "نركّز حصريًا على الأحماض غير العضوية والأسمدة المتخصصة. لا نحاول تغطية كل صناعة." },
-      { title: "نتائج موثّقة", desc: "نقيس الأداء قبل التدخّل وبعده. توصياتنا مدعومة بالبيانات، ونتائجنا موثّقة." }
+      { label: "منذ عام 2006", text: "ما يقرب من 20 عاماً من الخبرة العملية المباشرة" },
+      { label: "6 عمليات صناعية", text: "H₂SO₄، H₃PO₄، K₂SO₄، NPK، MgSO₄، SSP" },
+      { label: "مصر والسعودية", text: "تواجد تشغيلي مباشر عبر أنحاء المنطقة" },
+      { label: "بدء التشغيل والتجريب", text: "من الأنظمة الباردة إلى الإنتاج المستقر والمطابق للمواصفات" }
     ],
     zh: [
-      { title: "独立", desc: "我们与EPC承包商、设备供应商或技术许可方没有任何关系。我们的唯一义务是为您服务。" },
-      { title: "实操性", desc: "我们曾经运营过这些工厂。当我们排除故障时，我们依靠真实的经验——而不是理论知识。" },
-      { title: "专注于化学", desc: "我们专注于无机酸和特种肥料。我们不试图涵盖所有行业。" },
-      { title: "结果有据可查", desc: "我们在前后进行测量。我们的建议有数据支持，并且我们的结果有据可查。" }
+      { label: "始于 2006 年", text: "近 20 年的装置一线实操经验" },
+      { label: "6 大工艺流程", text: "H₂SO₄、H₃PO₄、K₂SO₄、NPK、MgSO₄、SSP" },
+      { label: "埃及与沙特阿拉伯", text: "在整个区域内拥有直接的运营足迹" },
+      { label: "调试与启动运行", text: "从冷态系统到稳定、达标的商业化生产" }
+    ]
+  } as Record<GatewayLocale, { label: string; text: string }[]>,
+  diffEyebrow: { en: "WHAT MAKES US DIFFERENT", ar: "ما يميّزنا عن غيرنا", zh: "我们的独特优势" } as L,
+  diffTitle: {
+    en: "Four things that set Kafaah apart from every other consultancy.",
+    ar: "أربعة أمور تميز كفاءة عن أي مكتب استشاري آخر.",
+    zh: "让 Kafaah 在众多咨询机构中脱颖而出的四个核心支柱。"
+  } as L,
+  diffFeatures: {
+    en: [
+      { title: "Independent by Structure", desc: "We serve both project owners and EPC contractors — but never on opposite sides of the same project. When we take an engagement, our full accountability is to one client only." },
+      { title: "Built Around Operations", desc: "Our expertise comes from inside operating plants, not from generic consulting frameworks. When we troubleshoot, we draw on real experience — not theoretical knowledge." },
+      { title: "Chemical-Specific Depth", desc: "We specialize exclusively in inorganic acids and specialty fertilizers. We do not try to cover every industry — because depth of expertise matters more than breadth of portfolio." },
+      { title: "Results Documented", desc: "We measure before and after. Our recommendations are backed by data, and our results are documented — because 'measured before and after' means more than any claim we could make." }
+    ],
+    ar: [
+      { title: "الاستقلالية الهيكلية", desc: "نحن نخدم أصحاب المشاريع ومقاولي الـ EPC — ولكن ليس أبداً على طرفي نقيض في المشروع نفسه. عندما نقبل أي مهمة، فإن مسؤوليتنا الكاملة تكون تجاه عميل واحد فقط." },
+      { title: "تأسست حول التشغيل", desc: "تأتي خبرتنا من داخل المصانع العاملة، وليس من أطر عمل استشارية عامة. عندما نقوم باستكشاف الأخطاء وإصلاحها، فإننا نعتمد على الخبرة الواقعية — وليس المعرفة النظرية." },
+      { title: "العمق التخصصي الكيميائي", desc: "نحن متخصصون حصرياً في الأحماض غير العضوية والأسمدة الخاصة. لا نحاول تغطية كل صناعة — لأن عمق الخبرة أكثر أهمية من اتساع محفظة الأعمال." },
+      { title: "النتائج الموثقة بالبيانات", desc: "نحن نقيس الأداء قبل وبعد عملنا. توصياتنا مدعومة بالبيانات، ونتائجنا موثقة — لأن مقياس 'قبل وبعد التعديل' يعني أكثر بكثير من أي ادعاء نطلقه." }
+    ],
+    zh: [
+      { title: "结构上高度独立", desc: "我们既服务于项目业主，也服务于 EPC 承包商——但绝不会在同一个项目中同时代表利益对立的两方。一旦我们接受委任，我们将对单一客户履行全部责任。" },
+      { title: "以现场运营为本", desc: "我们的专业知识提炼于正常运转的工厂内部，而非来自空泛 of 通用咨询框架。当我们排除故障时，我们依托的是实战经验——而非理论推导。" },
+      { title: "精细化工 of 专精深度", desc: "我们仅专注于无机酸与特种肥料领域。我们不谋求涵盖所有行业——因为专业深度远比业务范围的宽泛更加关键。" },
+      { title: "结果有据可查", desc: "我们坚持进行实施前后的数据比对。我们的所有建议均有客观数据支持，成果皆有案可查——因为“前后的实际数据对比”胜过一切空洞的承诺。" }
     ]
   } as Record<GatewayLocale, { title: string; desc: string }[]>,
-  ourDomain: { en: "Our Domain", ar: "مجال تخصصنا", zh: "我们的领域" } as L,
+  workEyebrow: { en: "HOW WE WORK", ar: "طريقة عملنا", zh: "工作模式" } as L,
+  workTitle: {
+    en: "One project. One client. No conflicts.",
+    ar: "مشروع واحد. عميل واحد. بدون تضارب مصالح.",
+    zh: "单一项目，单一客户，绝无利益冲突。"
+  } as L,
+  workP1: {
+    en: "Kafaah works alongside both project owners and EPC contractors — bringing independent technical expertise to whichever side we represent. Each engagement has one client, one scope, and full accountability.",
+    ar: "تعمل كفاءة جنباً إلى جنب مع كل من أصحاب المشاريع ومقاولي الـ EPC — جالبةً الخبرة الفنية المستقلة للطرف الذي نمثله. كل مشروع نلتزم به يتميز بوجود عميل واحد، نطاق عمل واحد، ومسؤولية كاملة.",
+    zh: "Kafaah 既能与项目业主并肩作战，也能为 EPC 承包商提供强力支撑——为我们代表的任意一方引入完全独立的专业技术力量。每一次合作都包含明确的客户、专注的范围以及百分之百的责任履行。"
+  } as L,
+  workP2: {
+    en: "We never represent both sides on the same project simultaneously. When we work for an owner, we work for the owner alone. When we support an EPC contractor, our accountability is to them alone.",
+    ar: "لا نمثل كلا الطرفين في المشروع نفسه في وقت واحد مطلقاً. عندما نعمل لصالح المالك، نعمل من أجل المالك وحده. وعندما ندعم مقاول الـ EPC، فإن مسؤوليتنا الكاملة تكون تجاهه وحده.",
+    zh: "We never represent both sides on the same project simultaneously. When we work for an owner, we work for the owner alone. When we support an EPC contractor, our accountability is to them alone."
+  } as L,
+  workQuote: {
+    en: "This isn't just a policy — it's the foundation of the independent advice you're paying for.",
+    ar: "هذه ليست مجرد سياسة متبعة — بل هي الأساس للاستشارة الفنية المستقلة التي تدفع مقابل الحصول عليها.",
+    zh: "这不仅仅是一项准则——更是您所付费获取的独立客观建议的坚实基石。"
+  } as L,
+  workOwnersTitle: { en: "FOR PROJECT OWNERS", ar: "لأصحاب المشاريع", zh: "面向项目业主" } as L,
+  workOwnersDesc: {
+    en: "Independent technical oversight that protects your investment — from design review through operational handover. We act as your dedicated technical representative throughout the project.",
+    ar: "إشراف فني مستقل يحمي استثمارك — من مراجعة التصاميم وحتى التسليم التشغيلي الفعلي. نحن نعمل كممثل فني مخصص لك طوال فترة المشروع.",
+    zh: "独立的工程技术监督，全力保障您的项目投资——从最初的设计审查直至最终的装置运营交接。我们在整个项目周期中充当您专属的技术护航代表。"
+  } as L,
+  workEpcTitle: { en: "FOR EPC CONTRACTORS", ar: "لمقاولي الـ EPC", zh: "面向 EPC 承包商" } as L,
+  workEpcDesc: {
+    en: "Specialist commissioning and startup support that closes the gap between mechanical completion and reliable, steady-state operations. We embed in your team with the operational depth you need.",
+    ar: "دعم تشغيل وتجريب متخصص يسد الفجوة بين الاكتمال الميكانيكي والتشغيل الموثوق والمستقر. نحن نندمج في فريقك لنمنحه العمق التشغيلي الذي تحتاج إليه.",
+    zh: "专业的系统调试与启动技术支持，弥合机械竣工与装置稳定、可靠运行之间的鸿沟。我们融入您的项目团队，为您提供亟需的现场深层运营能力。"
+  } as L,
+  domainEyebrow: { en: "OUR DOMAIN", ar: "مجالات تخصصنا", zh: "专业领域" } as L,
+  domainTitle: {
+    en: "Industrial Processes We've Operated, Commissioned & Optimized",
+    ar: "العمليات الصناعية التي قمنا بتشغيلها وتجريبها وتحسين أدائها",
+    zh: "我们曾亲自操作、调试和优化的工业流程"
+  } as L,
   domainSub: {
-    en: "We work exclusively in the inorganic chemical and fertilizer space. Our domain covers:",
-    ar: "نعمل حصريًا في مجال الكيماويات غير العضوية والأسمدة. يغطّي تخصّصنا:",
-    zh: "我们专注于无机化工和化肥领域。我们的领域涵盖："
+    en: "We work exclusively in the inorganic chemical and fertilizer space. This is not a limitation — it is a deliberate choice that ensures every client gets engineers who know their plant inside out.",
+    ar: "نحن نعمل حصرياً في قطاع الأسمدة والكيماويات غير العضوية. هذا ليس قيداً — بل هو خيار مدروس يضمن حصول كل عميل على مهندسين يعرفون مصانعهم وتفاصيلها من الداخل والخارج.",
+    zh: "我们专门服务于无机化工和化肥行业。这并非是局限性——而是一种深思熟虑的选择，旨在确保每一位客户都能获得彻底洞悉其工厂细节的实战型工程师的支持。"
   } as L,
-  whereWeWork: { en: "Where We Work", ar: "أين نعمل", zh: "我们的工作地点" } as L,
-  whereP1: {
-    en: "Kafaah is based in Cairo, Egypt. Our work spans the MENA region — from industrial zones in Egypt (Cairo, Suez) to Saudi Arabia (Yanbu Industrial City) and the broader Gulf.",
-    ar: "مقرّنا في القاهرة، مصر. يمتد عملنا عبر منطقة الشرق الأوسط وشمال أفريقيا — من المناطق الصناعية في مصر (القاهرة والسويس) إلى السعودية (مدينة ينبع الصناعية) ومنطقة الخليج العربي.",
-    zh: "Kafaah总部位于埃及开罗。我们的业务覆盖中东北非地区——从埃及的工业区（开罗、苏伊士）到沙特阿拉伯（延布工业城）以及更广泛的海湾地区。"
+  domainCards: {
+    en: [
+      { formula: "H₂SO₄", title: "SULFURIC ACID", desc: "From sulfur burning and converter systems to absorption and emission control — complete sulfuric acid plant experience." },
+      { formula: "H₃PO₄", title: "PHOSPHORIC ACID", desc: "Wet process across dihydrate and hemihydrate routes, from reactor systems to filtration, concentration, and purification." },
+      { formula: "K₂SO₄", title: "SULFATE OF POTASH", desc: "Mannheim process and double salt route — including successful SOP commissioning and operational stabilization." },
+      { formula: "NPK", title: "NPK FERTILIZERS", desc: "Complete granulation and finishing lines — blending, coating, quality control, and performance testing." },
+      { formula: "MgSO₄", title: "MAGNESIUM SULPHATE", desc: "Epsomite production across technical and agricultural grades — from commissioning through stable continuous operation." },
+      { formula: "SSP", title: "SINGLE SUPERPHOSPHATE", desc: "Acidulation, curing, granulation, and storage — complete startup and performance optimization support." }
+    ],
+    ar: [
+      { formula: "H₂SO₄", title: "حمض الكبريتيك", desc: "من حرق الكبريت وأنظمة المحولات إلى امتصاص التحكم في الانبعاثات — خبرة كاملة في مصانع حمض الكبريتيك." },
+      { formula: "H₃PO₄", title: "حمض الفوسفوريك", desc: "العملية الرطبة عبر مساري ثنائي الهيدرات ونصف الهيدرات، من أنظمة المفاعلات إلى الفلترة والتركيز والنقاء." },
+      { formula: "K₂SO₄", title: "كبريتات البوتاسيوم", desc: "طريقة فرن مانهايم ومسار الملح المزدوج — بما في ذلك تشغيل كبريتات البوتاسيوم بنجاح والاستقرار التشغيلي لها." },
+      { formula: "NPK", title: "الأسمدة المركبة NPK", desc: "خطوط التحبيب والتشطيب الكاملة — الخلط، والطلاء، ومراقبة الجودة، واختبارات الأداء." },
+      { formula: "MgSO₄", title: "كبريتات المغنيسيوم", desc: "إنتاج الإبسوميت (ملح إنجليزي) للدرجات الفنية والزراعية — من بدء التشغيل والتشغيل المستمر والمستقر." },
+      { formula: "SSP", title: "سوبر فوسفات أحادي", desc: "المعالجة بالحمض، والتعتيق، والتحبيب، والتخزين — دعم كامل لبدء التشغيل وتحسين الأداء." }
+    ],
+    zh: [
+      { formula: "H₂SO₄", title: "硫酸", desc: "从硫磺燃烧与转化器系统，到吸收与尾气排放控制——拥有硫酸工厂全套深厚的系统运营经验。" },
+      { formula: "H₃PO₄", title: "磷酸", desc: "涵盖二水法与半水法的湿法工艺，从反应器系统到过滤、浓缩及精制净化流程。" },
+      { formula: "K₂SO₄", title: "硫酸钾", desc: "曼海姆工艺与双盐路线——包括多次成功的硫酸钾（SOP）系统调试与装置稳定化运行。" },
+      { formula: "NPK", title: "氮磷钾复合肥", desc: "完整的造粒与后处理成品线——涵盖掺混、涂膜包衣、全面质控与整线性能测试。" },
+      { formula: "MgSO₄", title: "硫酸镁", desc: "涉及工业级与农业级的泻利盐生产——提供从系统调试直至稳定连续商业运行的全程服务。" },
+      { formula: "SSP", title: "普通过磷酸钙", desc: "酸解酸化、熟化化解、造粒以及仓储物流——提供成熟 of 启动运行与产量优化技术支持。" }
+    ]
+  } as Record<GatewayLocale, { formula: string; title: string; desc: string }[]>,
+  domainClosing: {
+    en: "If your plant is on this list, we've been inside one just like it — and we know where the problems hide.",
+    ar: "إذا كان مصنعك مدرجاً في هذه القائمة، فقد عملنا داخل مصنع مماثل تماماً له — ونحن نعرف جيداً أين تكمن المشكلات.",
+    zh: "如果您的装置属于上述工艺，那么我们必然曾身处同样的车间之中——并且，我们极具针对性地深知故障的隐蔽所在。"
   } as L,
-  whereP2: {
-    en: "We provide on-site services wherever the plant is located, with remote advisory and documentation review available between site visits.",
-    ar: "نقدّم خدماتنا في الموقع أينما كان المصنع، مع إتاحة الاستشارات عن بُعد ومراجعة الوثائق بين الزيارات الميدانية.",
-    zh: "无论工厂位于何处，我们都提供现场服务，并在现场访问之间提供远程咨询和文件审查。"
+  ctaTitle: {
+    en: "Ready to discuss your project?",
+    ar: "هل أنت مستعد لمناقشة مشروعك؟",
+    zh: "准备好探讨您的项目了吗？"
   } as L,
-  howCanWeHelp: { en: "How can we ", ar: "كيف يمكننا ", zh: "我们如何" } as L,
-  helpAccent: { en: "help you?", ar: "مساعدتك؟", zh: "帮助您？" } as L,
-  ctaSub: { en: "Whether you are building, operating, or investing — we bring 20 years of direct experience to your problem.", ar: "سواء كنت تبني أو تشغّل أو تستثمر — نضع 20 عاماً من الخبرة المباشرة في خدمتك.", zh: "无论您是在建设、运营还是投资——我们将20年的直接经验带到您的项目中。" } as L,
+  ctaDesc: {
+    en: "Let's talk about where your project stands — and where Kafaah can provide the technical support it needs.",
+    ar: "دعنا نتحدث عن تقدم سير مشروعك حالياً — وكيف يمكن لكفاءة تقديم الدعم الفني اللازم له.",
+    zh: "让我们开诚布公地聊聊您项目的当前进展——以及 Kafaah 如何为其注入所需的高价值技术支持。"
+  } as L,
+  btnContact: { en: "CONTACT KAFAAH", ar: "اتصل بكفاءة", zh: "联系 KAFAAH" } as L,
+  btnServices: { en: "VIEW OUR SERVICES", ar: "عرض خدماتنا", zh: "浏览我们的服务" } as L,
 };
 
 export const experiencePage = {

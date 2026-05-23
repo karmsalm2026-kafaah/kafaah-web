@@ -41,5 +41,17 @@
     - **Founder Biography Section**: Integrated a mini founder quote block with official image (`/FOUNDER & MANAGING DIRECTOR.webp`) and grayscale hover transitions.
     - **"How We Staff" Process Grid**: Showcased staffing categories with a stagger animated border highlighting.
     - **Production Build Integration**: Successfully compiled all routes, including static generation (SSG) for 11 dynamic paths (`/services/[slug]`) and automatic XML sitemap verification via `next-sitemap`.
+- **Multilingual "Who We Are" Page Redesign (May 2026)**:
+  - Created a new fully responsive and localized Who We Are page under `/who-we-are` using the exact layout style and premium dark/navy/gold glassmorphism of the services page.
+  - Added comprehensive translation dictionaries in `src/lib/i18n.ts` supporting English, Arabic, and Chinese locales for the hero text, founder biography, statistics, core pillars, conflict policy, domain processes, and closing CTAs.
+  - Implemented the client-side rendering shell `WhoWeAreClient.tsx`:
+    - **Hero Section**: Responsive split layout with letters hover scaling (`HoverWords` & `HoverSubcopy`), a quote highlighting the Arabic meaning of "Competence" (كفاءة), and a structured sidebar showing the founder's photo `/FOUNDER & MANAGING DIRECTOR.webp` and process technologies.
+    - **Founder Section**: Showcases Eng. Mostafa Abdel Ghaffar's hands-on profile, processes quote, bio, and a responsive grid of 4 stats cards with custom border glows on hover.
+    - **Core Pillars (What Makes Us Different)**: Interactive grid of 4 cards detailing structural independence, operational background, chemical specialization, and documented results with left glowing border indicator highlights.
+    - **How We Work (Independence & Conflict Policy)**: Dedicated split section demonstrating zero conflicts of interest with styled card capsules for project owners and EPC contractors.
+    - **Our Domain (Inorganic Processes)**: Interactive grid of 6 inorganic chemical process cards (H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, SSP) with formula headers and dynamic process icons.
+    - **CTA Section**: Styled CTA with circular gold glow gradient and interactive buttons with animated light sweeps.
+  - Simplified the server entry point `src/app/who-we-are/page.tsx` to delegating entire rendering structure to `WhoWeAreClient` for seamless scroll/header overlay integration.
+
 
 
