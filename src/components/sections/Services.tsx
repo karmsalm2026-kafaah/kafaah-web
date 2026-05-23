@@ -2,18 +2,18 @@
 
 import Link from "next/link";
 import { 
-  UserCheck, 
-  LineChart, 
-  Settings, 
-  Wrench, 
   ClipboardCheck, 
-  Zap, 
-  ShieldAlert, 
-  GraduationCap, 
   TrendingUp, 
-  Award, 
-  FileText, 
-  ArrowRight 
+  BarChart3, 
+  ArrowRight,
+  ShieldCheck,
+  Users,
+  FlaskConical,
+  Handshake,
+  ChevronRight,
+  ChevronLeft,
+  ChevronsRight,
+  ChevronsLeft
 } from "lucide-react";
 import { services as allServices } from "@/data/services";
 import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
@@ -21,18 +21,62 @@ import type { ServicesContent } from "@/data/roleContent";
 import { useRole } from "@/lib/RoleContext";
 import { services as svcDict, getFontClass, isRtl } from "@/lib/i18n";
 
-const serviceIcons: Record<string, any> = {
-  "owners-engineer": UserCheck,
-  "investor-advisory": LineChart,
-  "process-engineering-support": Settings,
-  "construction-commissioning-support": Wrench,
-  "operation-readiness": ClipboardCheck,
-  "commissioning": Zap,
-  "troubleshooting": ShieldAlert,
-  "operator-training": GraduationCap,
-  "production-optimization": TrendingUp,
-  "startup-performance-guarantee": Award,
-  "claims-technical-documentation": FileText,
+// Custom premium Crane SVG icon
+function CraneIcon({ className }: { className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="1.5" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      {/* Vertical Tower */}
+      <path d="M9 22V8h2v14" />
+      <path d="M8 22h4" />
+      {/* Horizontal Jib */}
+      <path d="M3 8h18" />
+      {/* Truss support */}
+      <path d="M9 8L5 4h8l-4 4" />
+      {/* Counterweight */}
+      <path d="M4 8v3h2V8" />
+      {/* Hook cable & hook */}
+      <path d="M17 8v5" />
+      <path d="M17 13a1 1 0 0 1-1 1" />
+    </svg>
+  );
+}
+
+const featureIcons = [
+  ShieldCheck,
+  Users,
+  FlaskConical,
+  Handshake
+];
+
+// Helper to get structured split title text for white and gold parts
+const getSplitTitle = (phaseNum: string, locale: string) => {
+  if (locale === "ar") {
+    if (phaseNum === "01") return { white: "مرحلة المشروع", gold: "والتصميم" };
+    if (phaseNum === "02") return { white: "البناء", gold: "وما قبل بدء التشغيل" };
+    if (phaseNum === "03") return { white: "بدء التشغيل", gold: "والاستقرار" };
+    if (phaseNum === "04") return { white: "الأداء", gold: "والتحسين" };
+  }
+  if (locale === "zh") {
+    if (phaseNum === "01") return { white: "项目与设计", gold: "阶段" };
+    if (phaseNum === "02") return { white: "建设与", gold: "启动前" };
+    if (phaseNum === "03") return { white: "启动与", gold: "稳定化" };
+    if (phaseNum === "04") return { white: "性能与", gold: "优化" };
+  }
+  // English default
+  if (phaseNum === "01") return { white: "PROJECT & DESIGN", gold: "PHASE" };
+  if (phaseNum === "02") return { white: "CONSTRUCTION &", gold: "PRE-STARTUP" };
+  if (phaseNum === "03") return { white: "STARTUP &", gold: "STABILIZATION" };
+  if (phaseNum === "04") return { white: "PERFORMANCE &", gold: "OPTIMIZATION" };
+  return { white: "", gold: "" };
 };
 
 interface Props {
@@ -43,41 +87,46 @@ export function ServicesSection({ content }: Props) {
   const { locale } = useRole();
   const fc = getFontClass(locale, "display");
   const fcBody = getFontClass(locale);
+  const fcUI = getFontClass(locale, "ui");
   const rtl = isRtl(locale);
   const isEn = locale === "en";
 
   // Headline & Labels
   const sectionLabel = content?.sectionLabel?.[locale] ?? svcDict.sectionLabel[locale];
-  const headline = content?.headline?.[locale] ?? svcDict.headline[locale];
-  const closingLine = svcDict.closingLine[locale];
-  const viewScopeLabel = svcDict.exploreService[locale];
+  const viewDetailsLabel = svcDict.viewDetails[locale];
 
   // Filter services by role-specific slugs, or show all if no content
   const filteredServices = content?.visibleSlugs
     ? allServices.filter((s) => content.visibleSlugs.includes(s.slug))
     : allServices;
 
-  // Group services by phase mapping
+  // Group services by phase mapping and specify Lucide icons
   const phaseMappings = [
     {
       num: "01",
-      slugs: ["owners-engineer", "investor-advisory", "process-engineering-support"]
+      slugs: ["owners-engineer", "investor-advisory", "process-engineering-support"],
+      icon: ClipboardCheck
     },
     {
       num: "02",
-      slugs: ["construction-commissioning-support", "operation-readiness"]
+      slugs: ["construction-commissioning-support", "operation-readiness"],
+      icon: CraneIcon
     },
     {
       num: "03",
-      slugs: ["commissioning", "troubleshooting", "operator-training"]
+      slugs: ["commissioning", "troubleshooting", "operator-training"],
+      icon: TrendingUp
     },
     {
       num: "04",
-      slugs: ["production-optimization", "startup-performance-guarantee", "claims-technical-documentation"]
+      slugs: ["production-optimization", "startup-performance-guarantee", "claims-technical-documentation"],
+      icon: BarChart3
     }
   ];
 
   const localizedPhases = svcDict.phases[locale];
+  const ChevronIcon = rtl ? ChevronLeft : ChevronRight;
+  const BulletChevron = rtl ? ChevronsLeft : ChevronsRight;
 
   return (
     <section id="services" dir={rtl ? "rtl" : "ltr"} className="relative py-20 sm:py-28 bg-navy-dark overflow-hidden border-b border-white/[0.05]">
@@ -88,113 +137,217 @@ export function ServicesSection({ content }: Props) {
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <FadeIn className="mb-16">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
-            <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
+        <FadeIn className="group/header mb-16 text-center">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="w-6 group-hover/header:w-16 h-px bg-gradient-to-r from-transparent to-gold transition-all duration-700 ease-out" />
+            <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcUI + " text-[13px] sm:text-[14px]"} font-semibold text-gold transition-all duration-500 group-hover/header:tracking-[0.35em] group-hover/header:scale-105 inline-block`}>
               {sectionLabel}
             </span>
+            <div className="w-6 group-hover/header:w-16 h-px bg-gradient-to-l from-transparent to-gold transition-all duration-700 ease-out" />
           </div>
-          <h2 className={`${fc} text-[clamp(28px,4vw,40px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white max-w-3xl`}>
-            {headline}
+
+          <h2 className={`${fc} text-[clamp(28px,4.5vw,46px)] leading-[1.2] text-white max-w-4xl mx-auto font-semibold transition-all duration-500 group-hover/header:text-shadow-[0_0_20px_rgba(240,160,32,0.15)] group-hover/header:-translate-y-0.5`}>
+            {locale === "en" && (
+              <>
+                Services Across the <span className="text-gold font-normal font-[family-name:var(--font-display)] italic">Full Project Lifecycle</span>
+              </>
+            )}
+            {locale === "ar" && (
+              <>
+                الخدمات عبر <span className="text-gold font-bold">دورة حياة المشروع الكاملة</span>
+              </>
+            )}
+            {locale === "zh" && (
+              <>
+                横跨 <span className="text-gold font-bold">整个项目生命周期</span> 的服务
+              </>
+            )}
           </h2>
+
+          <p className={`${fcBody} text-silver/60 text-[14px] sm:text-[15.5px] leading-relaxed max-w-3xl mx-auto mt-4 font-light transition-all duration-700 group-hover/header:text-silver/80`}>
+            {locale === "en" && "From early engineering decisions to stable plant operations, we support both Owners and EPCs with independent expertise at every critical stage."}
+            {locale === "ar" && "من القرارات الهندسية المبكرة وحتى استقرار عمليات المصنع، ندعم كلاً من الملاك ومقاولي EPC بخبرة مستقلة في كل مرحلة حرجة."}
+            {locale === "zh" && "从早期的工程决策到稳定的工厂运营，我们在每个关键阶段为业主和 EPC 提供独立的专业支持。"}
+          </p>
         </FadeIn>
 
-        {/* Phases Container */}
-        <div className="space-y-12 sm:space-y-16">
+        {/* Phase Cards Grid */}
+        <StaggerChildren 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" 
+          staggerDelay={0.06}
+        >
           {phaseMappings.map((pMap, idx) => {
             // Filter phase services
             const phaseServices = filteredServices.filter((s) => pMap.slugs.includes(s.slug));
             if (phaseServices.length === 0) return null;
 
             const localizedPhase = localizedPhases.find((p) => p.num === pMap.num) || localizedPhases[idx];
+            const splitTitle = getSplitTitle(pMap.num, locale);
+            const Icon = pMap.icon;
+
+            // RTL-aware diagonal cut and border path for card image
+            const cardClipPath = rtl 
+              ? "polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%)" 
+              : "polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 80%)";
+            const borderPath = rtl 
+              ? "M 0,100 L 85,100 L 100,80" 
+              : "M 100,100 L 15,100 L 0,80";
 
             return (
-              <div key={pMap.num} className="space-y-6">
-                {/* Phase Divider (except for first one) */}
-                {idx > 0 && <div className="border-t border-white/[0.06] pt-12 sm:pt-16" />}
-
-                {/* Phase Title & Subtitle */}
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3.5">
-                    <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.15em]" : fcBody + " text-[12px]"} font-bold text-gold`}>
-                      {pMap.num} —
-                    </span>
-                    <h3 className={`${isEn ? "font-[family-name:var(--font-display)] text-[16px] sm:text-[18px]" : fcBody + " text-[16px] sm:text-[18px] font-bold"} text-white uppercase tracking-wider`}>
-                      {localizedPhase.title}
-                    </h3>
+              <RevealItem key={pMap.num} className="relative h-full">
+                {/* Arrow between cards (desktop only) */}
+                {idx < 3 && (
+                  <div className={`hidden lg:flex absolute top-[110px] ${rtl ? "-left-[16px]" : "-right-[16px]"} z-20 w-8 h-8 rounded-full border border-gold/40 bg-navy-dark items-center justify-center text-gold shadow-lg`}>
+                    <ChevronIcon className="w-4 h-4" />
                   </div>
-                  <p className={`${fcBody} text-silver/70 text-[13px] sm:text-[14px] leading-relaxed max-w-2xl font-light`}>
+                )}
+
+                {/* Card Container */}
+                <div className="group/card relative flex flex-col bg-navy-deep border border-white/[0.12] p-5 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.15)] hover:border-gold/35 hover:-translate-y-2 rounded-sm transition-all duration-500 ease-out h-full overflow-hidden">
+                  {/* Subtle hover accent bar */}
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-md' : 'left-0 rounded-r-md'} top-6 bottom-6 w-[2px] bg-gold/10 group-hover/card:bg-gold group-hover/card:top-4 group-hover/card:bottom-4 transition-all duration-500`} />
+                  
+                  {/* Card Image Wrapper with Diagonal bottom-left/right cut */}
+                  <div 
+                    className="relative -mt-5 -mx-5 w-[calc(100%+2.5rem)] h-44 sm:h-48 overflow-hidden shrink-0"
+                    style={{
+                      clipPath: cardClipPath
+                    }}
+                  >
+                    <img 
+                      src={`/our_services_${parseInt(pMap.num)}.png`} 
+                      alt={localizedPhase.title}
+                      className="w-full h-full object-cover group-hover/card:scale-108 group-hover/card:opacity-90 transition-all duration-700 ease-out"
+                      loading="lazy"
+                    />
+                    {/* Absolute positioned Number Pill */}
+                    <div dir="ltr" className={`absolute top-4 ${rtl ? 'right-4' : 'left-4'} z-10 bg-navy-dark/95 border border-gold/30 px-3 py-1 rounded-sm shadow-md transition-colors duration-350 group-hover/card:border-gold`}>
+                      <span className="text-gold font-bold text-xs tracking-widest font-[family-name:var(--font-ui)]">
+                        {pMap.num}
+                      </span>
+                    </div>
+                    {/* Gold border line tracing the cut and bottom of image */}
+                    <svg 
+                      className="absolute inset-0 w-full h-full text-white/[0.25] group-hover/card:text-gold/35 transition-all duration-500 pointer-events-none overflow-visible -translate-y-[2px] drop-shadow-[0_3px_4px_rgba(0,0,0,0.75)] group-hover/card:drop-shadow-[0_0_8px_rgba(240,160,32,0.35)]" 
+                      viewBox="0 0 100 100" 
+                      preserveAspectRatio="none"
+                    >
+                      <path 
+                        d={borderPath} 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        fill="none" 
+                        vectorEffect="non-scaling-stroke"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* Icon & Title Row */}
+                  <div className="flex items-start gap-4 mt-6">
+                    <div className="w-12 h-12 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/card:border-gold group-hover/card:bg-gold/[0.06] group-hover/card:scale-110 group-hover/card:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
+                      <Icon className="w-5 h-5 transition-transform duration-500 group-hover/card:rotate-6" strokeWidth={1.5} />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <h4 className={`${locale === "ar" ? "text-base sm:text-lg font-bold leading-snug" : "text-[14px] sm:text-[15px] tracking-wider font-black uppercase leading-tight"} text-white transition-all duration-500 ${rtl ? "group-hover/card:-translate-x-1" : "group-hover/card:translate-x-1"} group-hover/card:text-gold`}>
+                        {splitTitle.white}
+                        <span className="text-gold block mt-0.5 transition-colors duration-500 group-hover/card:text-white">{splitTitle.gold}</span>
+                      </h4>
+                    </div>
+                  </div>
+
+                  {/* Subtitle / Description */}
+                  <p className={`${fcBody} text-silver/60 text-[12.5px] leading-relaxed mt-4 font-light text-justify h-auto md:h-12 transition-all duration-500 ${rtl ? "group-hover/card:-translate-x-0.5" : "group-hover/card:translate-x-0.5"} group-hover/card:text-silver/80`}>
                     {localizedPhase.sub}
                   </p>
+
+                  {/* Divider Line */}
+                  <div className="h-[2px] w-full bg-white/[0.12] group-hover/card:bg-gold/35 transition-all duration-500 my-5 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.5)] group-hover/card:shadow-[0_0_8px_rgba(240,160,32,0.25)]" />
+
+                  {/* Services List */}
+                  <ul className="space-y-3.5 flex-1 shrink-0">
+                    {phaseServices.map((svc) => {
+                      const localSvc = svcDict.serviceList[svc.slug] || { title: { [locale]: svc.title } };
+                      const svcTitle = localSvc.title[locale] || svc.title;
+
+                      return (
+                        <li key={svc.slug}>
+                          <Link 
+                            href={`/services/${svc.slug}/`}
+                            className="group/item flex items-start gap-2 text-silver/70 hover:text-gold transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-snug"
+                          >
+                            <BulletChevron className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5 transition-transform duration-300 group-hover/item:translate-x-1.5 rtl:group-hover/item:-translate-x-1.5" />
+                            <span className={`font-light transition-transform duration-300 ${rtl ? "group-hover/item:-translate-x-1" : "group-hover/item:translate-x-1"}`}>{svcTitle}</span>
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+
+                  {/* Card CTA Link at bottom */}
+                  <div className="mt-8 pt-4 shrink-0">
+                    <Link 
+                      href={`/services/${phaseServices[0].slug}/`}
+                      className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-[11px] font-bold tracking-wider transition-colors duration-300 uppercase font-[family-name:var(--font-ui)]"
+                    >
+                      <span>{viewDetailsLabel}</span>
+                      <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${rtl ? "rotate-180 group-hover/card:-translate-x-1.5" : "group-hover/card:translate-x-1.5"}`} />
+                    </Link>
+                  </div>
                 </div>
-
-                {/* Phase Services Grid */}
-                <StaggerChildren 
-                  className={`grid grid-cols-1 gap-4 ${
-                    phaseServices.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"
-                  }`} 
-                  staggerDelay={0.05}
-                >
-                  {phaseServices.map((svc) => {
-                    const localSvc = svcDict.serviceList[svc.slug] || { title: { [locale]: svc.title }, desc: { [locale]: svc.shortDesc } };
-                    const svcTitle = localSvc.title[locale] || svc.title;
-                    const svcDesc = localSvc.desc[locale] || svc.shortDesc;
-                    const Icon = serviceIcons[svc.slug] || Settings;
-
-                    return (
-                      <RevealItem key={svc.slug} className="h-full">
-                        <Link
-                          href={`/services/${svc.slug}/`}
-                          className="group relative flex flex-col justify-between bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 rounded-sm h-full overflow-hidden"
-                        >
-                          <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
-                          
-                          <div className="flex items-start gap-4 flex-1">
-                            <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
-                              <Icon className="w-4 h-4" strokeWidth={1.5} />
-                            </div>
-                            <div className="min-w-0 flex-1 space-y-2">
-                              <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase`}>
-                                {svcTitle}
-                              </h4>
-                              <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12px] sm:text-[12.5px] leading-[1.6] font-light text-justify`}>
-                                {svcDesc}
-                              </p>
-                            </div>
-                          </div>
-
-                          <div className={`mt-6 ${rtl ? 'pr-[52px]' : 'pl-[52px]'} flex items-center gap-1.5 text-gold/80 group-hover:text-gold text-[10px] sm:text-[11px] font-bold tracking-wider transition-colors duration-300`}>
-                            <span className={isEn ? "font-[family-name:var(--font-ui)]" : fcBody}>
-                              {viewScopeLabel}
-                            </span>
-                            <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${rtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
-                          </div>
-                        </Link>
-                      </RevealItem>
-                    );
-                  })}
-                </StaggerChildren>
-              </div>
+              </RevealItem>
             );
           })}
-        </div>
+        </StaggerChildren>
 
-        {/* Closing Line */}
-        <div className="mt-16 sm:mt-24 pt-8 border-t border-white/[0.06] flex items-start gap-4">
-          <div className="w-1.5 h-1.5 bg-gold shrink-0 mt-2 rounded-full" />
-          <p className={`${fcBody} text-silver/80 text-[13px] sm:text-[14px] leading-relaxed max-w-3xl`}>
-            {closingLine.split(" — ").map((part, index) => {
-              if (index === 1) {
-                return (
-                  <span key={index} className="text-gold font-medium">
-                    — {part}
-                  </span>
-                );
-              }
-              return part;
+        {/* Bottom Values/Features & Centered Closing line */}
+        <div className="mt-6">
+          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.06}>
+            {svcDict.features[locale].map((feat, idx) => {
+              const FeatIcon = featureIcons[idx];
+              return (
+                <RevealItem key={idx} className="h-full">
+                  <div 
+                    className="group/feat flex flex-col justify-between bg-navy-deep border border-white/[0.12] p-6 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.10)] hover:border-gold/35 hover:-translate-y-1.5 rounded-sm transition-all duration-500 ease-out h-full"
+                  >
+                    <div className="flex items-start gap-4">
+                      {/* Hexagon Outline Icon */}
+                      <div className="relative w-12 h-12 flex items-center justify-center shrink-0 transition-all duration-500 group-hover/feat:scale-110 group-hover/feat:rotate-6">
+                        <svg 
+                          className="absolute inset-0 w-full h-full text-gold/25 fill-none stroke-current transition-colors duration-300 group-hover/feat:text-gold" 
+                          viewBox="0 0 100 100" 
+                          strokeWidth="4"
+                        >
+                          <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
+                        </svg>
+                        <FeatIcon className="w-5 h-5 text-gold relative z-10" />
+                      </div>
+                      {/* Text Details */}
+                      <div className="min-w-0 flex-1">
+                        <h5 className={`${locale === "ar" ? "text-base sm:text-lg font-bold leading-snug" : "text-[14px] sm:text-[15px] tracking-wider font-black uppercase leading-tight"} text-white transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-1" : "group-hover/feat:translate-x-1"} group-hover/feat:text-gold`}>
+                          {feat.title}
+                        </h5>
+                        <h6 className={`text-silver/90 text-[13px] sm:text-[14px] font-semibold mt-1 transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-white`}>
+                          {feat.subtitle}
+                        </h6>
+                        <p className={`text-silver/50 text-[12px] sm:text-[12.5px] leading-relaxed mt-2.5 font-light transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-silver/70`}>
+                          {feat.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </RevealItem>
+              );
             })}
-          </p>
+          </StaggerChildren>
+          
+          {/* Centered Closing Line */}
+          <div className="group/closing flex items-center justify-center gap-6 mt-16 sm:mt-20">
+            <div className="h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
+            <span className="text-gold/90 text-[12px] sm:text-[13px] tracking-[0.2em] font-bold uppercase whitespace-nowrap transition-all duration-500 group-hover/closing:scale-105 group-hover/closing:text-white">
+              {svcDict.bottomClosing[locale]}
+            </span>
+            <div className="h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-l from-transparent to-gold/30 transition-all duration-500 ease-out" />
+          </div>
         </div>
 
       </div>

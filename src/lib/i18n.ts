@@ -72,6 +72,26 @@ export const footer = {
   forOwners: { en: "For Owners", ar: "للملاك والمشغلين", zh: "面向业主" } as L,
   sharedServices: { en: "Shared Services", ar: "خدمات مشتركة", zh: "共享服务" } as L,
   forEpc: { en: "For EPCs", ar: "لمقاولي EPC", zh: "面向 EPC 承包商" } as L,
+  servicesDesc: {
+    en: "Specialized engineering, commissioning, and advisory support across the full project lifecycle.",
+    ar: "دعم هندسي وتشغيلي واستشاري متخصص عبر كامل دورة حياة المشروع الصناعي.",
+    zh: "横跨整个项目生命周期的专业工程、调试和顾问支持。"
+  } as L,
+  exploreServices: {
+    en: "Explore All Services",
+    ar: "استكشف جميع الخدمات",
+    zh: "浏览所有服务"
+  } as L,
+  techDesc: {
+    en: "Expertise in core inorganic chemical processes, including sulfuric acid, phosphoric acid, and complex fertilizers.",
+    ar: "خبرة عميقة في العمليات الكيميائية غير العضوية الأساسية، بما في ذلك حمض الكبريتيك والفسفوريك والأسمدة المركبة.",
+    zh: "在核心无机化工工艺方面的专业知识，包括硫酸、磷酸和复合肥。"
+  } as L,
+  exploreTech: {
+    en: "Explore All Technologies",
+    ar: "استكشف جميع التقنيات",
+    zh: "浏览所有技术"
+  } as L,
 };
 
 /* ══════════════════════════════════════════════
@@ -332,6 +352,32 @@ export const services = {
       }
     }
   } as Record<string, { title: Record<GatewayLocale, string>; desc: Record<GatewayLocale, string> }>,
+  viewDetails: { en: "View Details", ar: "عرض التفاصيل", zh: "查看详情" } as L,
+  bottomClosing: {
+    en: "COMMITTED TO OPERATIONAL EXCELLENCE & RISK MITIGATION",
+    ar: "ملتزمون بالتميز التشغيلي والحد من المخاطر",
+    zh: "致力于卓越运营与降低风险"
+  } as L,
+  features: {
+    en: [
+      { title: "Independent Structure", subtitle: "Zero Conflict", desc: "We represent only one client per project to ensure fully independent oversight." },
+      { title: "Operational Depth", subtitle: "20+ Years On-Site", desc: "Our technical expertise comes from inside operating plants, not theoretical theory." },
+      { title: "Process-Specific Focus", subtitle: "Inorganic Acids & Fertilizers", desc: "Dedicated strictly to sulfuric acid, phosphoric acid, and complex fertilizer plants." },
+      { title: "Documented Results", subtitle: "Measured Before & After", desc: "We prove our performance gains and stabilization metrics with actual plant data." }
+    ],
+    ar: [
+      { title: "الاستقلالية الهيكلية", subtitle: "بدون تضارب مصالح", desc: "نحن نمثل طرفاً واحداً فقط في كل مشروع لضمان الحيادية." },
+      { title: "خبرة تشغيلية ميدانية", subtitle: "أكثر من 20 عاماً في المصانع", desc: "معرفتنا تنبع من داخل المصانع الحقيقية وليس من النظريات." },
+      { title: "تخصص كيميائي دقيق", subtitle: "الأحماض والأسمدة غير العضوية", desc: "تركيز كامل على العمليات الكيميائية المعقدة لضمان أعلى مستويات الكفاءة." },
+      { title: "نتائج موثقة بالأرقام", subtitle: "قياس الأداء قبل وبعد", desc: "زيادة الإنتاجية وتقليل الفاقد موثقين بالبيانات الواقعية." }
+    ],
+    zh: [
+      { title: "结构上高度独立", subtitle: "零利益冲突", desc: "我们在项目中仅代表单一客户，确保公正独立的立场。" },
+      { title: "现场实操经验", subtitle: "20余年工厂一线经验", desc: "我们的专业知识提炼于正常运转 of 工厂内部，而非理论推导。" },
+      { title: "专精化学工艺", subtitle: "无机酸与特种肥料", desc: "专注于特定的化工流程，深度掌握核心工艺细节。" },
+      { title: "结果有据可查", subtitle: "量化对比前后数据", desc: "通过实际运营数据对比，证明产量提升与能耗降低的成果。" }
+    ]
+  } as Record<GatewayLocale, { title: string; subtitle: string; desc: string }[]>,
 };
 
 export const tech = {

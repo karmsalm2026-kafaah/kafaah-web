@@ -47,7 +47,7 @@ export function Footer() {
                 className="h-[48px] w-auto object-contain brightness-110 group-hover:brightness-125 transition-all duration-300 drop-shadow-[0_0_15px_rgba(212,175,55,0.1)]"
               />
             </Link>
-            <p className={`${fc} ${isAr ? "text-[16px] leading-[2]" : "text-[15px] leading-[1.8]"} font-light text-silver/80 mb-10 max-w-[360px]`}>
+            <p className={`${fc} ${isAr ? "text-[16px] leading-[2]" : "text-[15px] leading-[1.8]"} font-light text-silver/80 mb-10 max-w-[360px] text-justify`}>
               {footer.brandDesc[locale]}
             </p>
 
@@ -120,94 +120,63 @@ export function Footer() {
             
             {/* Services */}
             <div className="md:col-span-1">
-              <h4 className={`${fc} ${isEn ? "text-[12px] tracking-[0.3em] uppercase" : "text-[15px]"} font-bold text-gold mb-8 flex items-center gap-4`}>
+              <h4 className={`${fc} ${isEn ? "text-[12px] tracking-[0.3em] uppercase" : "text-[15px]"} font-bold text-gold mb-6 flex items-center gap-4`}>
                 <span className="w-6 h-px bg-gold/50" />
                 {footer.services[locale]}
               </h4>
-              
-              <div className="space-y-8">
-                {/* Owners */}
-                {ownerServices.length > 0 && (
-                  <div>
-                    <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fc + " text-[12px] font-bold"} text-white/40 mb-4 pb-2 border-b border-white/[0.05]`}>
-                      {footer.forOwners[locale]}
-                    </h5>
-                    <ul className="space-y-3">
-                      {ownerServices.map((s) => (
-                        <li key={s.slug}>
-                          <Link href={`/services/${s.slug}/`} className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3">
-                            <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors shrink-0" />
-                            <span className="leading-[1.4]">{svcDict.serviceList[s.slug]?.title[locale] || s.title}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Both / General */}
-                {bothServices.length > 0 && (
-                  <div>
-                    <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fc + " text-[12px] font-bold"} text-white/40 mb-4 pb-2 border-b border-white/[0.05]`}>
-                      {footer.sharedServices[locale]}
-                    </h5>
-                    <ul className="space-y-3">
-                      {bothServices.map((s) => (
-                        <li key={s.slug}>
-                          <Link href={`/services/${s.slug}/`} className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3">
-                            <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors shrink-0" />
-                            <span className="leading-[1.4]">{svcDict.serviceList[s.slug]?.title[locale] || s.title}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* EPC */}
-                {epcServices.length > 0 && (
-                  <div>
-                    <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fc + " text-[12px] font-bold"} text-white/40 mb-4 pb-2 border-b border-white/[0.05]`}>
-                      {footer.forEpc[locale]}
-                    </h5>
-                    <ul className="space-y-3">
-                      {epcServices.map((s) => (
-                        <li key={s.slug}>
-                          <Link href={`/services/${s.slug}/`} className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3">
-                            <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors shrink-0" />
-                            <span className="leading-[1.4]">{svcDict.serviceList[s.slug]?.title[locale] || s.title}</span>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+              <p className={`${fc} ${isAr ? "text-[15px] leading-[1.8]" : "text-[13.5px] leading-[1.6]"} font-light text-silver/80 mb-6 text-justify`}>
+                {footer.servicesDesc[locale]}
+              </p>
+              <ul className="space-y-3 mb-6">
+                <li>
+                  <Link href="/services/" className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3">
+                    <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors shrink-0" />
+                    <span className="leading-[1.4]">{locale === "ar" ? "خدمات الملاك والمشغلين" : locale === "zh" ? "业主与运营商服务" : "Plant Owners & Operators"}</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/" className="group text-[14px] font-light text-silver hover:text-white transition-colors duration-300 flex items-center gap-3">
+                    <span className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-gold transition-colors shrink-0" />
+                    <span className="leading-[1.4]">{locale === "ar" ? "خدمات مقاولي EPC" : locale === "zh" ? "EPC 承包商服务" : "EPC Contractor Services"}</span>
+                  </Link>
+                </li>
+              </ul>
+              <div className="pt-2">
+                <Link 
+                  href="/services/" 
+                  className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-[11px] font-bold tracking-wider transition-all duration-300 uppercase font-[family-name:var(--font-ui)] group"
+                >
+                  <span>{footer.exploreServices[locale]}</span>
+                  <span className={`transition-transform duration-300 ${rtl ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}>→</span>
+                </Link>
               </div>
             </div>
 
             {/* Technologies */}
             <div className="md:col-span-1">
-              <h4 className={`${fc} ${isEn ? "text-[12px] tracking-[0.3em] uppercase" : "text-[15px]"} font-bold text-gold mb-8 flex items-center gap-4`}>
+              <h4 className={`${fc} ${isEn ? "text-[12px] tracking-[0.3em] uppercase" : "text-[15px]"} font-bold text-gold mb-6 flex items-center gap-4`}>
                 <span className="w-6 h-px bg-gold/50" />
                 {footer.technologies[locale]}
               </h4>
-              <ul className="grid grid-cols-2 md:grid-cols-1 gap-3 md:gap-4">
-                {technologies.map((t) => (
-                  <li key={t.slug}>
-                    <Link
-                      href={`/technologies/${t.slug}/`}
-                      className="group flex flex-col gap-1 text-[14px] font-light text-silver hover:text-white transition-all duration-300 bg-navy-card/40 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/55 p-3 rounded-sm shadow-[0_4px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_30px_rgba(212,175,55,0.08)] hover:-translate-y-0.5"
-                    >
-                      <span className="font-[family-name:var(--font-ui)] text-gold/80 text-[12px] font-bold tracking-widest group-hover:text-gold transition-colors">
-                        {t.formula}
-                      </span>
-                      <span className="opacity-90">
-                        {tech.list[t.slug]?.name[locale] || t.name}
-                      </span>
-                    </Link>
-                  </li>
+              <p className={`${fc} ${isAr ? "text-[15px] leading-[1.8]" : "text-[13.5px] leading-[1.6]"} font-light text-silver/80 mb-6 text-justify`}>
+                {footer.techDesc[locale]}
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {["H₂SO₄", "H₃PO₄", "K₂SO₄", "NPK", "SSP", "MgSO₄"].map((formula) => (
+                  <span key={formula} className="text-[11px] font-bold font-[family-name:var(--font-ui)] px-2.5 py-1 bg-navy-card/45 border border-white/[0.08] text-gold/80 rounded-sm">
+                    {formula}
+                  </span>
                 ))}
-              </ul>
+              </div>
+              <div className="pt-2">
+                <Link 
+                  href="/technologies/" 
+                  className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-[11px] font-bold tracking-wider transition-all duration-300 uppercase font-[family-name:var(--font-ui)] group"
+                >
+                  <span>{footer.exploreTech[locale]}</span>
+                  <span className={`transition-transform duration-300 ${rtl ? "group-hover:-translate-x-1" : "group-hover:translate-x-1"}`}>→</span>
+                </Link>
+              </div>
             </div>
 
             {/* Company */}
