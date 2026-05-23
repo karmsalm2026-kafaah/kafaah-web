@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowRight, CheckCircle2, ShieldCheck, Cpu, Database, Award, Milestone, User, Globe2, Briefcase, Zap, Flame, Settings } from "lucide-react";
+import { ArrowRight, CheckCircle2, ShieldCheck, Cpu, Database, Award, Milestone, User, Globe2, Briefcase, Zap, Flame, Settings, Mail } from "lucide-react";
 import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
 import { whoWeAre as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
@@ -409,46 +409,56 @@ export function WhoWeAreClient() {
         </div>
       </section>
 
-      {/* ── CTA SECTION ── */}
-      <section className="relative py-20 bg-navy-mid border-t border-white/[0.04]">
-        {/* Smooth radial gold glow overlay */}
-        <div className="absolute inset-0 bg-radial-glow opacity-30 pointer-events-none" />
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <FadeIn>
-            <h2 className={`${fc} text-[clamp(28px,4vw,44px)] leading-[1.2] text-cloud mb-4 font-semibold`}>
-              <HoverWords text={dict.ctaTitle[locale]} locale={locale} />
-            </h2>
-            <p className={`${fcBody} text-silver/70 text-sm sm:text-base font-light mb-8 max-w-2xl mx-auto`}>
-              <HoverSubcopy text={dict.ctaDesc[locale]} locale={locale} />
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href="/contact/"
-                className={`group btn-premium-gold ${fcUI} text-xs font-bold tracking-[0.12em] uppercase relative overflow-hidden`}
-              >
-                {/* Premium animated light sweep */}
-                <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
-                <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+      {/* ── CLOSING CTA SECTION ── */}
+      <section className="relative py-20 sm:py-28 bg-navy-deep/30 border-t border-white/[0.03]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
 
-                <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
-                  {dict.btnContact[locale]}
-                  <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />
-                </span>
-              </Link>
-
-              <Link
-                href="/services/"
-                className={`group btn-premium-outline ${fcUI} text-xs font-bold tracking-[0.12em] uppercase relative overflow-hidden`}
-              >
-                <span className={`relative z-10 flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
-                  {dict.btnServices[locale]}
-                  <ArrowRight className={`w-3.5 h-3.5 ${rtl ? "rotate-180" : ""}`} />
-                </span>
-              </Link>
+            <div className="lg:col-span-6">
+              <FadeIn>
+                <h2 className={`${fc} text-[28px] sm:text-[36px] text-white font-bold leading-[1.3] text-center lg:text-start`}>
+                  <HoverWords text={dict.ctaTitle[locale]} locale={locale} />
+                  <span className="block text-gold mt-1">
+                    <HoverWords text={dict.ctaTitleAccent[locale]} locale={locale} isGradient={true} />
+                  </span>
+                </h2>
+              </FadeIn>
             </div>
-          </FadeIn>
+
+            <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
+              <FadeIn delay={0.1}>
+                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
+                  <HoverSubcopy text={dict.ctaDesc[locale]} locale={locale} />
+                </p>
+              </FadeIn>
+
+              <FadeIn delay={0.2} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link
+                  href="/contact/"
+                  className={`group btn-premium-gold ${locale !== "en" ? fcUI + " text-[13px]" : "font-[family-name:var(--font-ui)] text-[11.5px] tracking-[0.12em] uppercase"} font-bold w-full sm:w-[270px] whitespace-nowrap justify-center`}
+                >
+                  {/* Premium animated light sweep */}
+                  <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+                  <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Mail className="w-4 h-4 shrink-0" />
+                    <span>{dict.btnContact[locale]}</span>
+                  </span>
+                </Link>
+                <Link
+                  href="/services/"
+                  className={`group btn-premium-glass border border-white/20 hover:border-white/40 ${locale !== "en" ? fcUI + " text-[13px]" : "font-[family-name:var(--font-ui)] text-[11.5px] tracking-[0.08em] uppercase"} font-semibold w-full sm:w-[270px] whitespace-nowrap justify-center`}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Award className="w-4 h-4 shrink-0 text-gold" />
+                    <span>{dict.btnServices[locale]}</span>
+                  </span>
+                </Link>
+              </FadeIn>
+            </div>
+
+          </div>
         </div>
       </section>
 

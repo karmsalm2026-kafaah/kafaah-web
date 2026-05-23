@@ -805,9 +805,14 @@ export const whoWeAre = {
     zh: "如果您的装置属于上述工艺，那么我们必然曾身处同样的车间之中——并且，我们极具针对性地深知故障的隐蔽所在。"
   } as L,
   ctaTitle: {
-    en: "Ready to discuss your project?",
-    ar: "هل أنت مستعد لمناقشة مشروعك؟",
-    zh: "准备好探讨您的项目了吗？"
+    en: "Ready to discuss",
+    ar: "هل أنت مستعد",
+    zh: "准备好探讨"
+  } as L,
+  ctaTitleAccent: {
+    en: "your project?",
+    ar: "لمناقشة مشروعك؟",
+    zh: "您的项目了吗？"
   } as L,
   ctaDesc: {
     en: "Let's talk about where your project stands — and where Kafaah can provide the technical support it needs.",
@@ -816,6 +821,7 @@ export const whoWeAre = {
   } as L,
   btnContact: { en: "CONTACT KAFAAH", ar: "اتصل بكفاءة", zh: "联系 KAFAAH" } as L,
   btnServices: { en: "VIEW OUR SERVICES", ar: "عرض خدماتنا", zh: "浏览我们的服务" } as L,
+
 };
 
 export const experiencePage = {
