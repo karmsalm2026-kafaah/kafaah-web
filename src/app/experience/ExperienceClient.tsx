@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
-  ArrowRight, Clock, MapPin, Factory, Award, CheckCircle2, Globe, Flame, Settings, Zap, Cpu, Database, FlaskConical, Beaker, Mail, ShieldCheck, Microscope
+  ArrowRight, Clock, MapPin, Factory, Award, CheckCircle2, Globe, Flame, Settings, Zap, Cpu, Database, Beaker, Mail, Microscope
 } from "lucide-react";
-import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
+import { FadeIn } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
 import { experiencePage as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
 
@@ -74,10 +75,28 @@ function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
   );
 }
 
-function InteractiveMap({ locale, rtl }: { locale: string; rtl: boolean }) {
+function InteractiveMap({ 
+  locale, 
+  rtl,
+  hoveredIdx,
+  setHoveredIdx
+}: { 
+  locale: string; 
+  rtl: boolean;
+  hoveredIdx: number | null;
+  setHoveredIdx: (idx: number | null) => void;
+}) {
   const isEn = locale === "en";
+  
+  const handleScrollTo = (idx: number) => {
+    const el = document.getElementById(`project-${idx}`);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
   return (
-    <div className="relative w-full h-[360px] sm:h-[400px] bg-navy-deep border border-white/[0.08] rounded-sm overflow-hidden bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+    <div className="relative w-full h-[380px] sm:h-[420px] bg-navy-deep border border-white/[0.08] rounded-sm overflow-hidden bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] select-none">
       {/* Radar rings and coordinate grid overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(19,40,64,0.45)_0%,transparent_75%)] pointer-events-none" />
       
@@ -88,50 +107,114 @@ function InteractiveMap({ locale, rtl }: { locale: string; rtl: boolean }) {
       </div>
 
       {/* Nodes and Connection visual */}
-      <div className="relative flex-1 flex items-center justify-center">
+      <div className="relative flex-1 w-full h-full">
         {/* Connection Line */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ minHeight: "100%" }}>
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 300" preserveAspectRatio="none">
           <defs>
             <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#f0a020" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="#e5c158" stopOpacity="0.85" />
+              <stop offset="50%" stopColor="#e5c158" stopOpacity={hoveredIdx !== null ? "0.95" : "0.75"} />
               <stop offset="100%" stopColor="#f0a020" stopOpacity="0.1" />
             </linearGradient>
           </defs>
           {/* Curved path representing connection Suez <-> Yanbu */}
           <path
-            d="M 120 120 Q 200 60 280 180"
+            d="M 100 105 Q 190 70 280 195"
             fill="none"
             stroke="url(#glowGrad)"
-            strokeWidth="2"
-            strokeDasharray="4 4"
-            className="animate-[dash_10s_linear_infinite]"
+            strokeWidth={hoveredIdx !== null ? "2.5" : "1.5"}
+            strokeDasharray={hoveredIdx !== null ? "6 3" : "4 4"}
+            className="transition-all duration-300"
           />
         </svg>
 
         {/* Pulse Node 1: Suez, Egypt */}
-        <div className="absolute left-[40px] top-[90px] sm:left-[60px] sm:top-[100px] flex flex-col items-center">
-          <span className="relative flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-gold"></span>
+        <div 
+          className={`absolute left-[25%] top-[35%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer transition-all duration-300 z-20 ${
+            hoveredIdx === 0 ? "scale-115" : "hover:scale-108"
+          }`}
+          onMouseEnter={() => setHoveredIdx(0)}
+          onMouseLeave={() => setHoveredIdx(null)}
+          onClick={() => handleScrollTo(0)}
+        >
+          <span className="relative flex h-5 w-5 justify-center items-center">
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 ${hoveredIdx === 0 ? "scale-150 duration-700" : ""}`}></span>
+            <span className={`relative inline-flex rounded-full h-3 w-3 transition-colors duration-300 ${hoveredIdx === 0 ? "bg-white" : "bg-gold"}`}></span>
           </span>
-          <span className="mt-2 text-[10.5px] font-bold text-white tracking-wider bg-navy-dark/95 px-2 py-0.5 border border-white/[0.12] rounded-sm whitespace-nowrap shadow-md">
+          <span className={`mt-2 text-[10px] font-bold tracking-wider px-2 py-0.5 border rounded-sm whitespace-nowrap shadow-md transition-all duration-300 ${
+            hoveredIdx === 0 ? "bg-gold text-navy-deep border-gold" : "bg-navy-dark/95 text-white border-white/[0.12]"
+          }`}>
             Suez, EG (K₂SO₄ SOP)
           </span>
           <span className="text-[8px] font-mono text-gold mt-0.5">29.96°N, 32.54°E</span>
         </div>
 
         {/* Pulse Node 2: Yanbu, Saudi Arabia */}
-        <div className="absolute right-[40px] bottom-[60px] sm:right-[80px] sm:bottom-[70px] flex flex-col items-center">
-          <span className="relative flex h-4 w-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-4 w-4 bg-gold"></span>
+        <div 
+          className={`absolute left-[70%] top-[65%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer transition-all duration-300 z-20 ${
+            hoveredIdx === 1 ? "scale-115" : "hover:scale-108"
+          }`}
+          onMouseEnter={() => setHoveredIdx(1)}
+          onMouseLeave={() => setHoveredIdx(null)}
+          onClick={() => handleScrollTo(1)}
+        >
+          <span className="relative flex h-5 w-5 justify-center items-center">
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 ${hoveredIdx === 1 ? "scale-150 duration-700" : ""}`}></span>
+            <span className={`relative inline-flex rounded-full h-3 w-3 transition-colors duration-300 ${hoveredIdx === 1 ? "bg-white" : "bg-gold"}`}></span>
           </span>
-          <span className="mt-2 text-[10.5px] font-bold text-white tracking-wider bg-navy-dark/95 px-2 py-0.5 border border-white/[0.12] rounded-sm whitespace-nowrap shadow-md">
+          <span className={`mt-2 text-[10px] font-bold tracking-wider px-2 py-0.5 border rounded-sm whitespace-nowrap shadow-md transition-all duration-300 ${
+            hoveredIdx === 1 ? "bg-gold text-navy-deep border-gold" : "bg-navy-dark/95 text-white border-white/[0.12]"
+          }`}>
             Yanbu, KSA (NPK Comp.)
           </span>
           <span className="text-[8px] font-mono text-gold mt-0.5">24.09°N, 38.06°E</span>
         </div>
+
+        {/* Interactive Tooltips */}
+        {hoveredIdx === 0 && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className={`absolute z-30 left-[25%] top-[45%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
+          >
+            <h4 className="text-white text-xs font-bold mb-1">Suez SOP Plant</h4>
+            <div className="text-[10px] text-gold font-semibold mb-1.5">K₂SO₄ · Mannheim Process</div>
+            <p className="text-[11px] text-silver/80 font-light leading-relaxed">
+              {locale === "ar" 
+                ? "تشغيل كامل من مرحلة ما قبل التشغيل إلى أول منتج بطاقة 40,000 طن/سنة." 
+                : locale === "zh" 
+                ? "从试运行前到首批产品的全面调试，产能 40,000 吨/年。" 
+                : "Full commissioning to first product. Capacity: 40,000 T/yr."}
+            </p>
+            <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+              {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
+            </div>
+          </motion.div>
+        )}
+
+        {hoveredIdx === 1 && (
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            className={`absolute z-30 left-[70%] top-[20%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
+          >
+            <h4 className="text-white text-xs font-bold mb-1">Yanbu Granulation Facility</h4>
+            <div className="text-[10px] text-gold font-semibold mb-1.5">NPK · Granulation</div>
+            <p className="text-[11px] text-silver/80 font-light leading-relaxed">
+              {locale === "ar" 
+                ? "أول مشروع لشركة كفاءة في منطقة الخليج. تشغيل وحدة تحبيب NPK في الموعد المحدد." 
+                : locale === "zh" 
+                ? "海湾地区首个项目，按期调试 NPK 造粒装置。" 
+                : "Kafaah's first Gulf project. NPK granulation commissioned on schedule."}
+            </p>
+            <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+              {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
+            </div>
+          </motion.div>
+        )}
+
       </div>
 
       {/* Coordinate footer */}
@@ -151,14 +234,16 @@ export function ExperienceClient() {
   const fcBody = getFontClass(locale);
   const isEn = locale === "en";
 
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+
   return (
     <div dir={rtl ? "rtl" : "ltr"} className="bg-navy-dark min-h-screen relative overflow-hidden">
       {/* Background Noise & Overlay */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
-      {/* ── HERO SECTION ── */}
-      <section className="relative min-h-[75vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
+      {/* ── HERO SECTION (90vh) ── */}
+      <section className="relative min-h-[90vh] lg:h-[90vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
         {/* Background Overlay Graphic */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <picture>
@@ -203,24 +288,45 @@ export function ExperienceClient() {
       <section className="py-20 lg:py-28 bg-navy">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-5xl">
           <FadeIn className="mb-12">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-gold rounded-full" />
-              <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase`}>
+            <motion.div 
+              className="inline-flex items-center gap-2 group cursor-default"
+              whileHover="hover"
+            >
+              <motion.span 
+                className="w-1.5 h-1.5 bg-gold rounded-full" 
+                variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
+              />
+              <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                 {dict.completedProjects[locale]}
               </span>
-            </div>
-            <h2 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}>
+            </motion.div>
+            <motion.h2 
+              className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}
+              whileHover={{ x: rtl ? -4 : 4, color: "#f3e1b3" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
               {isEn ? "Major Plant Deployments & Commissions" : dict.completedProjects[locale]}
-            </h2>
+            </motion.h2>
           </FadeIn>
 
           <div className="space-y-12">
             {dict.projects[locale].map((proj: any, idx: number) => (
               <FadeIn delay={0.1 * (idx + 1)} key={idx}>
-                <div className="relative group bg-navy-card/40 hover:bg-navy-card-hover/55 border border-white/[0.08] hover:border-gold/35 rounded-sm p-6 sm:p-8 lg:p-10 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_50px_rgba(229,193,88,0.04)] overflow-hidden">
+                <div 
+                  id={`project-${idx}`}
+                  onMouseEnter={() => setHoveredIdx(idx)}
+                  onMouseLeave={() => setHoveredIdx(null)}
+                  className={`relative group border rounded-sm p-6 sm:p-8 lg:p-10 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.3)] overflow-hidden ${
+                    hoveredIdx === idx 
+                      ? "bg-navy-card-hover/75 border-gold/50 shadow-[0_20px_50px_rgba(229,193,88,0.06)] -translate-y-1" 
+                      : "bg-navy-card/40 border-white/[0.08] hover:border-gold/35 hover:bg-navy-card-hover/55"
+                  }`}
+                >
                   
                   {/* Glowing Vertical accent line */}
-                  <div className="absolute top-0 bottom-0 left-0 w-[4px] bg-gradient-to-b from-gold/60 to-gold group-hover:w-[5px] transition-all duration-300" />
+                  <div className={`absolute top-0 bottom-0 left-0 w-[4px] transition-all duration-300 ${
+                    hoveredIdx === idx ? "bg-white w-[6px]" : "bg-gradient-to-b from-gold/60 to-gold"
+                  }`} />
                   
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left Column: Details */}
@@ -235,7 +341,7 @@ export function ExperienceClient() {
                         </span>
                       </div>
 
-                      <h3 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-medium leading-tight`}>
+                      <h3 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-medium leading-tight group-hover:text-gold transition-colors duration-300`}>
                         {proj.title}
                       </h3>
 
@@ -249,7 +355,7 @@ export function ExperienceClient() {
                     </div>
 
                     {/* Right Column: Dashboard Metrics block */}
-                    <div className="lg:col-span-4 bg-navy-deep/80 border border-white/[0.08] group-hover:border-gold/25 rounded-sm p-5 space-y-4 transition-colors duration-300">
+                    <div className="lg:col-span-4 bg-navy-deep/80 border border-white/[0.08] group-hover:border-gold/25 rounded-sm p-5 space-y-4 transition-all duration-300">
                       {/* Metric 1: Location */}
                       <div className="flex items-start gap-3">
                         <div className="p-1.5 bg-gold/10 rounded-sm border border-gold/15 shrink-0 mt-0.5">
@@ -326,30 +432,42 @@ export function ExperienceClient() {
 
             {/* Micro KPI grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto pt-8 border-t border-white/[0.08]">
-              <div className="text-center space-y-1">
+              <motion.div 
+                className="text-center space-y-1 cursor-default"
+                whileHover={{ scale: 1.05, y: -2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              >
                 <span className="block font-[family-name:var(--font-display)] text-3xl font-bold text-gold">
                   20+
                 </span>
                 <span className={`${fcUi} text-[10px] tracking-[0.15em] font-bold text-silver/50 uppercase block`}>
                   {isEn ? "Years Field Operations" : "عاماً من العمليات الميدانية"}
                 </span>
-              </div>
-              <div className="text-center space-y-1 border-t sm:border-t-0 sm:border-l sm:border-r border-white/[0.08] py-4 sm:py-0">
+              </motion.div>
+              <motion.div 
+                className="text-center space-y-1 border-t sm:border-t-0 sm:border-l sm:border-r border-white/[0.08] py-4 sm:py-0 cursor-default"
+                whileHover={{ scale: 1.05, y: -2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              >
                 <span className="block font-[family-name:var(--font-display)] text-3xl font-bold text-gold">
                   6
                 </span>
                 <span className={`${fcUi} text-[10px] tracking-[0.15em] font-bold text-silver/50 uppercase block`}>
                   {isEn ? "Core Plant Chemistries" : "عمليات صناعية متكاملة"}
                 </span>
-              </div>
-              <div className="text-center space-y-1">
+              </motion.div>
+              <motion.div 
+                className="text-center space-y-1 cursor-default"
+                whileHover={{ scale: 1.05, y: -2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              >
                 <span className="block font-[family-name:var(--font-display)] text-3xl font-bold text-gold">
                   100%
                 </span>
                 <span className={`${fcUi} text-[10px] tracking-[0.15em] font-bold text-silver/50 uppercase block`}>
                   {isEn ? "Independent Support" : "تمثيل فني مستقل"}
                 </span>
-              </div>
+              </motion.div>
             </div>
           </FadeIn>
         </div>
@@ -359,15 +477,25 @@ export function ExperienceClient() {
       <section className="py-20 lg:py-28 bg-navy">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-5xl">
           <FadeIn className="mb-12">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 bg-gold rounded-full" />
-              <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase`}>
+            <motion.div 
+              className="inline-flex items-center gap-2 group cursor-default"
+              whileHover="hover"
+            >
+              <motion.span 
+                className="w-1.5 h-1.5 bg-gold rounded-full" 
+                variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
+              />
+              <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                 {dict.techCovered[locale]}
               </span>
-            </div>
-            <h2 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}>
+            </motion.div>
+            <motion.h2 
+              className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}
+              whileHover={{ x: rtl ? -4 : 4, color: "#f3e1b3" }}
+              transition={{ type: "spring", stiffness: 300, damping: 15 }}
+            >
               {isEn ? "Chemical Plant Processes Covered" : dict.techCovered[locale]}
-            </h2>
+            </motion.h2>
           </FadeIn>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -377,13 +505,23 @@ export function ExperienceClient() {
               { formula: "K₂SO₄", name: { en: "Sulfate of Potash", ar: "كبريتات البوتاسيوم", zh: "硫酸钾" }, index: "03" },
               { formula: "NPK", name: { en: "NPK Fertilizers", ar: "سماد مركب NPK", zh: "氮磷钾复合肥" }, index: "04" },
               { formula: "MgSO₄", name: { en: "Magnesium Sulphate", ar: "كبريتات المغنيسيوم", zh: "硫酸镁" }, index: "05" },
-              { formula: "SSP", name: { en: "Single Superphosphate", ar: "سوبر فوسفات أحادي", zh: "普通过指酸钙" }, index: "06" },
+              { formula: "SSP", name: { en: "Single Superphosphate", ar: "سوبر فوسفات أحادي", zh: "普通过磷酸钙" }, index: "06" },
             ].map((tech) => {
               const Icon = techIcons[tech.formula] || Beaker;
               return (
-                <div 
+                <motion.div 
                   key={tech.formula} 
-                  className="relative group bg-navy-card/45 hover:bg-navy-card-hover/60 border border-white/[0.08] hover:border-gold/30 p-6 rounded-sm flex flex-col justify-between h-[160px] sm:h-[180px] transition-all duration-500 hover:-translate-y-1.5 shadow-md"
+                  className="relative group bg-navy-card/45 border border-white/[0.08] p-6 rounded-sm flex flex-col justify-between h-[160px] sm:h-[180px] shadow-md cursor-default"
+                  whileHover="hover"
+                  variants={{
+                    hover: { 
+                      y: -6, 
+                      borderColor: "rgba(229,193,88,0.45)", 
+                      backgroundColor: "rgba(19,40,64,0.6)",
+                      boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(229,193,88,0.05)"
+                    }
+                  }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   {/* Top line detail */}
                   <div className="flex justify-between items-start">
@@ -395,9 +533,16 @@ export function ExperienceClient() {
                   
                   {/* Chemical Element Symbol */}
                   <div className="text-center my-2">
-                    <span className="block font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-extrabold text-white tracking-wide group-hover:scale-105 transition-transform duration-500" dir="ltr">
+                    <motion.span 
+                      className="block font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-extrabold text-white tracking-wide" 
+                      dir="ltr"
+                      variants={{
+                        hover: { scale: 1.08, color: "#e5c158" }
+                      }}
+                      transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                    >
                       {tech.formula}
-                    </span>
+                    </motion.span>
                   </div>
 
                   {/* Chemical Name */}
@@ -406,7 +551,7 @@ export function ExperienceClient() {
                       {tech.name[locale]}
                     </span>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -421,12 +566,18 @@ export function ExperienceClient() {
             {/* Left: Text & Locations */}
             <div className="lg:col-span-5 space-y-6">
               <FadeIn>
-                <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-gold rounded-full" />
-                  <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase`}>
+                <motion.div 
+                  className="inline-flex items-center gap-2 group cursor-default"
+                  whileHover="hover"
+                >
+                  <motion.span 
+                    className="w-1.5 h-1.5 bg-gold rounded-full" 
+                    variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
+                  />
+                  <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                     {dict.geoFootprint[locale]}
                   </span>
-                </div>
+                </motion.div>
                 
                 <h2 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2 leading-tight`}>
                   {isEn ? "Serving Industrial Centers Across MENA" : dict.geoFootprint[locale]}
@@ -442,12 +593,19 @@ export function ExperienceClient() {
               {/* Geographic Tags */}
               <div className="flex flex-wrap gap-2.5 pt-2">
                 {dict.geoList[locale].map((loc) => (
-                  <span
+                  <motion.span
                     key={loc}
-                    className={`${fcUi} text-[10.5px] font-semibold tracking-wider uppercase text-silver bg-navy-deep border border-white/[0.08] px-4 py-2 rounded-sm shadow-sm`}
+                    className={`${fcUi} text-[10.5px] font-semibold tracking-wider uppercase text-silver bg-navy-deep border border-white/[0.08] px-4 py-2 rounded-sm shadow-sm cursor-default`}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      borderColor: "rgba(229,193,88,0.3)", 
+                      color: "#ffffff", 
+                      backgroundColor: "rgba(255,255,255,0.02)" 
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
                     {loc}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>
@@ -455,7 +613,7 @@ export function ExperienceClient() {
             {/* Right: Abstract Map Coordinate visual */}
             <div className="lg:col-span-7">
               <FadeIn delay={0.15}>
-                <InteractiveMap locale={locale} rtl={rtl} />
+                <InteractiveMap locale={locale} rtl={rtl} hoveredIdx={hoveredIdx} setHoveredIdx={setHoveredIdx} />
               </FadeIn>
             </div>
 
