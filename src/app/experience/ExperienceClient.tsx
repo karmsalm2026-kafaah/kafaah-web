@@ -743,28 +743,70 @@ export function ExperienceClient() {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-5xl">
-          <FadeIn className="space-y-4">
-            <div className="flex items-center gap-3">
-              <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em]" : fcUi + " text-[12px]"} font-bold text-gold uppercase`}>
-                {dict.pageTitle[locale]}
-              </span>
-              <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
-            </div>
-            <h1 className={`${fcDisplay} text-[clamp(32px,5.5vw,56px)] leading-[1.1] text-white font-medium`}>
-              <HoverWords text={isEn ? "Proven Operational Footprint." : dict.completedProjects[locale]} locale={locale} />
-            </h1>
-          </FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Title, Heading & Description */}
+            <div className="lg:col-span-5 space-y-6">
+              <FadeIn className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em]" : fcUi + " text-[12px]"} font-bold text-gold uppercase`}>
+                    {dict.pageTitle[locale]}
+                  </span>
+                  <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
+                </div>
+                <h1 className={`${fcDisplay} text-[clamp(32px,5vw,52px)] leading-[1.1] text-white font-semibold`}>
+                  <HoverWords text={isEn ? "Proven Operational Footprint." : dict.completedProjects[locale]} locale={locale} />
+                </h1>
+              </FadeIn>
 
-          <FadeIn delay={0.15} className="mt-6 max-w-2xl">
-            <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[17px] leading-[1.8] font-light`}>
-              <HoverSubcopy 
-                text={isEn 
-                  ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields." 
-                  : dict.backgroundText[locale]} 
-                locale={locale} 
-              />
-            </p>
-          </FadeIn>
+              <FadeIn delay={0.15}>
+                <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light text-justify`}>
+                  <HoverSubcopy 
+                    text={isEn 
+                      ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields." 
+                      : dict.backgroundText[locale]} 
+                    locale={locale} 
+                  />
+                </p>
+              </FadeIn>
+            </div>
+
+            {/* Right Column: Founder Display Card */}
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.2}>
+                <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-4 sm:p-5 flex flex-col sm:flex-row gap-5 items-center">
+                  {/* Founder photo with grayscale transition and scaling */}
+                  <div className="relative w-full sm:w-[130px] h-[145px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
+                    <div className="absolute inset-0 bg-navy-dark/10 z-10" />
+                    <img
+                      src="/founder.jpeg"
+                      alt="Eng. Mostafa Abdel Ghaffar - Managing Director & Chief Engineer"
+                      className="w-full h-full object-cover grayscale brightness-[0.98] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent z-25" />
+                  </div>
+
+                  {/* Caption & Title Details */}
+                  <div className="flex-1 min-w-0">
+                    <p className={`${fcUi} text-[10px] font-bold tracking-[0.15em] text-gold uppercase mb-1`}>
+                      {locale === "ar" ? "المدير التنفيذي وكبير المهندسين" : locale === "zh" ? "总经理兼总工程师" : "Managing Director & Chief Engineer"}
+                    </p>
+                    <p className={`${fcBody} text-[14px] text-white font-semibold mb-2`}>
+                      {locale === "ar" ? "م. مصطفى عبد الغفار" : locale === "zh" ? "莫斯塔法·阿卜杜勒·加法尔 工程师" : "Eng. Mostafa Abdel Ghaffar"}
+                    </p>
+                    <p className={`${fcBody} text-[12px] text-silver/70 leading-relaxed font-light text-justify`}>
+                      {locale === "ar" 
+                        ? "يقود العمليات التشغيلية وبدء التشغيل الميداني للمشاريع الكيميائية والأسمدة بخبرة تزيد عن 20 عاماً."
+                        : locale === "zh"
+                        ? "凭借20多年的现场经验，亲自领导无机化工和化肥项目的调试、启动与运行。"
+                        : "Leads on-site commissioning and startup operations for fertilizer and chemical plants with 20+ years of direct experience."}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
         </div>
       </section>
 
