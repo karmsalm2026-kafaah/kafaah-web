@@ -139,7 +139,7 @@ export function Navbar() {
                       <span className="text-gold font-[family-name:var(--font-body)] text-[13px] font-semibold tracking-normal min-w-[48px]">
                         {item.formula}
                       </span>
-                      <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
+                      <span className={`${fc} text-[10.5px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
                         {item.label}
                       </span>
                       <ArrowRight className={`w-3 h-3 ${rtl ? "mr-auto rotate-180" : "ml-auto"} text-gold/0 group-hover/item:text-gold translate-x-[-4px] group-hover/item:translate-x-0 transition-all duration-200`} />
@@ -171,7 +171,7 @@ export function Navbar() {
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
             {/* Mega Menu Dropdown */}
-            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[650px]`}>
+            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[820px]`}>
               <div className="bg-navy-deep border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
                 <div className="grid grid-cols-2 gap-2 p-4">
@@ -185,11 +185,11 @@ export function Navbar() {
                         {getServiceIcon(item.slug)}
                       </div>
                       <div>
-                        <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
+                        <span className={`${fc} text-[10.5px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
                           {item.label}
                         </span>
                         {item.sub && (
-                          <span className="block font-[family-name:var(--font-body)] text-[10px] text-gold/75 tracking-normal mt-0.5">
+                          <span className="block font-[family-name:var(--font-body)] text-[9.5px] text-gold/75 tracking-normal mt-0.5">
                             {item.sub}
                           </span>
                         )}

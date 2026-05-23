@@ -47,11 +47,12 @@
   - Implemented the client-side rendering shell `WhoWeAreClient.tsx`:
     - **Hero Section**: Responsive split layout with letters hover scaling (`HoverWords` & `HoverSubcopy`), a quote highlighting the Arabic meaning of "Competence" (كفاءة), and a structured sidebar showing the founder's photo `/FOUNDER & MANAGING DIRECTOR.webp` and process technologies.
     - **Founder Section**: Showcases Eng. Mostafa Abdel Ghaffar's hands-on profile, processes quote, bio, and a responsive grid of 4 stats cards with custom border glows on hover.
-    - **Core Pillars (What Makes Us Different)**: Interactive grid of 4 cards detailing structural independence, operational background, chemical specialization, and documented results with left glowing border indicator highlights.
-    - **How We Work (Independence & Conflict Policy)**: Dedicated split section demonstrating zero conflicts of interest with styled card capsules for project owners and EPC contractors.
-    - **Our Domain (Inorganic Processes)**: Interactive grid of 6 inorganic chemical process cards (H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, SSP) with formula headers and dynamic process icons.
-    - **CTA Section**: Styled CTA with circular gold glow gradient and interactive buttons with animated light sweeps.
+    - Core Pillars (What Makes Us Different): Interactive grid of 4 cards detailing structural independence, operational background, chemical specialization, and documented results with left glowing border indicator highlights.
+    - How We Work (Independence & Conflict Policy): Dedicated split section demonstrating zero conflicts of interest with styled card capsules for project owners and EPC contractors.
+    - Our Domain (Inorganic Processes): Interactive grid of 6 inorganic chemical process cards (H₂SO₄, H₃PO₄, K₂SO₄, NPK, MgSO₄, SSP) with formula headers and dynamic process icons.
+    - CTA Section: Styled CTA with circular gold glow gradient and interactive buttons with animated light sweeps.
   - Simplified the server entry point `src/app/who-we-are/page.tsx` to delegating entire rendering structure to `WhoWeAreClient` for seamless scroll/header overlay integration.
-
-
-
+- **Technologies Page, Unified Mega Menu & Visual Refinements (May 2026)**:
+  - Created a high-fidelity, photorealistic Technologies page (`/technologies`) showcasing the 6 core industrial plants (`H₂SO₄`, `H₃PO₄`, `K₂SO₄`, `NPK`, `MgSO₄`, `SSP`) with responsive WebP image assets and fallback support.
+  - Re-engineered the Services mega menu in `Navbar.tsx` into a unified, category-free 2-column grid with a wider footprint (`w-[820px]`) to ensure all service labels fit perfectly on single lines.
+  - Refined dropdown font styling across Technologies and Services dropdowns, decreasing font size slightly from `text-[11.5px]` to `text-[10.5px]` and subtext size to `text-[9.5px]` to maximize premium layout density and design appeal.
