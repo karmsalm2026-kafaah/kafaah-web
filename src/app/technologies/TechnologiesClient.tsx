@@ -26,6 +26,15 @@ const keyMap: Record<string, any> = {
   "ssp": "ssp"
 };
 
+const imageMap: Record<string, string> = {
+  "sulfuric-acid": "/h2so4_plant.png",
+  "phosphoric-acid": "/h3po4_plant.png",
+  "sulfate-of-potash": "/k2so4_plant.png",
+  "npk": "/npk_plant.png",
+  "magnesium-sulphate": "/mgso4_plant.png",
+  "ssp": "/ssp_plant.png"
+};
+
 function HoverWords({ text, locale, isGradient = false }: { text: string; locale: string; isGradient?: boolean }) {
   const isChinese = locale === "zh";
   const words = isChinese ? text.split("") : text.split(" ");
@@ -96,7 +105,7 @@ export function TechnologiesClient() {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/15 to-transparent" />
 
       {/* ── HERO SECTION ── */}
-      <section className="relative min-h-[70vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-20 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
+      <section className="relative min-h-[90vh] lg:h-[90vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-20 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
         {/* Background Overlay Graphic */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
           <img
@@ -151,7 +160,7 @@ export function TechnologiesClient() {
                         {/* Process rendered image */}
                         <div className="relative w-full h-[280px] sm:h-[350px] rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                           <img
-                            src={`/${tech.slug.replace(/-/g, "_")}_plant.png`}
+                            src={imageMap[tech.slug]}
                             alt={tech.fullName}
                             className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
                           />
