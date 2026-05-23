@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { 
@@ -86,8 +86,239 @@ function InteractiveMap({
   hoveredIdx: number | null;
   setHoveredIdx: (idx: number | null) => void;
 }) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const isEn = locale === "en";
-  
+  const pinCoordsRef = useRef<{ x: number; y: number; visible: boolean }[]>([]);
+  const hoveredIdxRef = useRef(hoveredIdx);
+
+  useEffect(() => {
+    hoveredIdxRef.current = hoveredIdx;
+  }, [hoveredIdx]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let localLambda = 0;
+    let animationFrameId: number;
+
+    // Generate land points for a dotted 3D world map representation
+    const landPoints: { lat: number; lon: number }[] = [];
+    const CONTINENTS = [
+      { clat: 10, clon: 20, r: 24 },    // Africa
+      { clat: 50, clon: 15, r: 18 },    // Europe
+      { clat: 40, clon: 85, r: 35 },    // Asia
+      { clat: -18, clon: -60, r: 24 },  // South America
+      { clat: 42, clon: -95, r: 28 },   // North America
+      { clat: -25, clon: 135, r: 16 },  // Australia
+      { clat: 22, clon: 45, r: 12 },    // Middle East / Arabia
+      { clat: 28, clon: 30, r: 9 },     // Egypt
+    ];
+
+    for (let lat = -65; lat <= 70; lat += 4.5) {
+      for (let lon = -180; lon <= 180; lon += 4.5) {
+        let isLand = false;
+        for (const c of CONTINENTS) {
+          const dLat = lat - c.clat;
+          const dLon = lon - c.clon;
+          if (Math.sqrt(dLat * dLat + dLon * dLon) < c.r) {
+            isLand = true;
+            break;
+          }
+        }
+        if (isLand) {
+          landPoints.push({ lat: lat * Math.PI / 180, lon: lon * Math.PI / 180 });
+        }
+      }
+    }
+
+    const cx = 225;
+    const cy = 225;
+    const R = 150;
+    const tilt = 22 * Math.PI / 180; // Earth axial tilt
+
+    // Coordinates of our projects
+    const pins = [
+      { lat: 29.9667 * Math.PI / 180, lon: 32.5498 * Math.PI / 180 }, // Suez
+      { lat: 24.0900 * Math.PI / 180, lon: 38.0633 * Math.PI / 180 }  // Yanbu
+    ];
+
+    let pulseScale = 0;
+
+    const render = () => {
+      // Clear with support for high DPI
+      ctx.clearRect(0, 0, 450, 450);
+
+      // Freeze globe rotation if user hovers on a pin
+      const activeIdx = hoveredIdxRef.current;
+      if (activeIdx === null) {
+        localLambda += 0.003;
+      }
+
+      pulseScale = (pulseScale + 0.04) % (2 * Math.PI);
+
+      // 1. Draw glowing space/ambient radial backdrop
+      const bgGlow = ctx.createRadialGradient(cx, cy, R * 0.4, cx, cy, R * 1.35);
+      bgGlow.addColorStop(0, "rgba(19, 40, 64, 0.4)");
+      bgGlow.addColorStop(1, "rgba(11, 22, 35, 0)");
+      ctx.fillStyle = bgGlow;
+      ctx.fillRect(0, 0, 450, 450);
+
+      // 2. Draw sphere backdrop mask (hides back-facing dots)
+      ctx.beginPath();
+      ctx.arc(cx, cy, R - 1, 0, 2 * Math.PI);
+      ctx.fillStyle = "#0c1b2d";
+      ctx.fill();
+
+      // 3. Draw Parallels (Latitudes)
+      ctx.strokeStyle = "rgba(229, 193, 88, 0.035)";
+      ctx.lineWidth = 1;
+      for (let latDeg = -60; latDeg <= 60; latDeg += 20) {
+        const latRad = latDeg * Math.PI / 180;
+        ctx.beginPath();
+        ctx.ellipse(
+          cx, 
+          cy - R * Math.sin(latRad) * Math.cos(tilt), 
+          R * Math.cos(latRad), 
+          R * Math.cos(latRad) * Math.sin(tilt), 
+          0, 0, 2 * Math.PI
+        );
+        ctx.stroke();
+      }
+
+      // 4. Draw Meridians (Longitudes)
+      for (let lonDeg = 0; lonDeg < 360; lonDeg += 30) {
+        const theta = lonDeg * Math.PI / 180 + localLambda;
+        ctx.beginPath();
+        for (let latDeg = -90; latDeg <= 90; latDeg += 5) {
+          const latRad = latDeg * Math.PI / 180;
+          const x3d = Math.cos(latRad) * Math.sin(theta);
+          const y3d = Math.sin(latRad);
+          const z3d = Math.cos(latRad) * Math.cos(theta);
+          
+          const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
+          const sx = cx + R * x3d;
+          const sy = cy - R * y3d_tilted;
+          
+          if (latDeg === -90) ctx.moveTo(sx, sy);
+          else ctx.lineTo(sx, sy);
+        }
+        ctx.strokeStyle = "rgba(229, 193, 88, 0.03)";
+        ctx.stroke();
+      }
+
+      // 5. Draw rotating Dotted landmasses (Continents)
+      for (const pt of landPoints) {
+        const theta = pt.lon + localLambda;
+        const x3d = Math.cos(pt.lat) * Math.sin(theta);
+        const y3d = Math.sin(pt.lat);
+        const z3d = Math.cos(pt.lat) * Math.cos(theta);
+
+        const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
+        const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
+
+        if (z3d_tilted > 0) {
+          const sx = cx + R * x3d;
+          const sy = cy - R * y3d_tilted;
+          
+          // Smooth fade out at the edges using z3d_tilted
+          ctx.fillStyle = `rgba(229, 193, 88, ${0.06 + z3d_tilted * 0.16})`;
+          ctx.fillRect(sx - 1, sy - 1, 2, 2);
+        }
+      }
+
+      // 6. Draw outer glowing sphere border
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, 2 * Math.PI);
+      ctx.strokeStyle = "rgba(229, 193, 88, 0.2)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // 7. Project and Draw interactive Suez & Yanbu Pins
+      const coords: any[] = [];
+      pins.forEach((pin, index) => {
+        const theta = pin.lon + localLambda;
+        const x3d = Math.cos(pin.lat) * Math.sin(theta);
+        const y3d = Math.sin(pin.lat);
+        const z3d = Math.cos(pin.lat) * Math.cos(theta);
+
+        const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
+        const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
+
+        const isVisible = z3d_tilted > -0.1; // Small threshold to fade near horizon
+        const sx = cx + R * x3d;
+        const sy = cy - R * y3d_tilted;
+
+        coords.push({ x: sx, y: sy, visible: isVisible });
+
+        if (isVisible) {
+          const isHovered = activeIdx === index;
+          const alpha = isHovered ? 1 : 0.65 + 0.35 * Math.sin(pulseScale * 2);
+          const size = isHovered ? 6 : 4.5;
+          
+          // Draw connector leader line to label
+          ctx.beginPath();
+          ctx.moveTo(sx, sy);
+          ctx.lineTo(sx, sy - 16);
+          ctx.strokeStyle = isHovered ? "rgba(255, 255, 255, 0.85)" : "rgba(229, 193, 88, 0.55)";
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+
+          // Draw label box
+          const labelText = index === 0 ? "Suez, EG" : "Yanbu, KSA";
+          ctx.font = "bold 9px monospace";
+          const textWidth = ctx.measureText(labelText).width;
+          
+          ctx.fillStyle = "rgba(11, 22, 35, 0.88)";
+          ctx.strokeStyle = isHovered ? "#ffffff" : "#e5c158";
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(sx - textWidth/2 - 4, sy - 31, textWidth + 8, 14, 2);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = isHovered ? "#ffffff" : "#e5c158";
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(labelText, sx, sy - 24);
+
+          // Draw pulse radar circle
+          ctx.beginPath();
+          ctx.arc(sx, sy, size + 5 * Math.sin(pulseScale * 1.5), 0, 2 * Math.PI);
+          ctx.strokeStyle = `rgba(229, 193, 88, ${0.4 * (1 - Math.sin(pulseScale * 1.5)/2)})`;
+          ctx.stroke();
+
+          // Draw core pin dot
+          ctx.beginPath();
+          ctx.arc(sx, sy, size, 0, 2 * Math.PI);
+          ctx.fillStyle = isHovered ? "#ffffff" : "#e5c158";
+          ctx.fill();
+          ctx.strokeStyle = "#0c1b2d";
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      });
+
+      pinCoordsRef.current = coords;
+
+      // Draw coordinates grid data
+      ctx.fillStyle = "rgba(255, 255, 255, 0.12)";
+      ctx.font = "8px monospace";
+      ctx.textAlign = "left";
+      ctx.fillText(`ROTATION: ${(localLambda * 180 / Math.PI % 360).toFixed(1)}°`, 20, 420);
+      
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
   const handleScrollTo = (idx: number) => {
     const el = document.getElementById(`project-${idx}`);
     if (el) {
@@ -95,130 +326,117 @@ function InteractiveMap({
     }
   };
 
+  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const scaleX = 450 / rect.width;
+    const scaleY = 450 / rect.height;
+    const canvasX = x * scaleX;
+    const canvasY = y * scaleY;
+
+    let matchedIdx: number | null = null;
+    pinCoordsRef.current.forEach((coord, idx) => {
+      if (coord.visible) {
+        const dx = canvasX - coord.x;
+        const dy = canvasY - (coord.y - 16); // offset for label height
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 18) {
+          matchedIdx = idx;
+        }
+      }
+    });
+
+    if (matchedIdx !== hoveredIdx) {
+      setHoveredIdx(matchedIdx);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredIdx(null);
+  };
+
+  const handleCanvasClick = () => {
+    if (hoveredIdx !== null) {
+      handleScrollTo(hoveredIdx);
+    }
+  };
+
   return (
-    <div className="relative w-full h-[380px] sm:h-[420px] bg-navy-deep border border-white/[0.08] rounded-sm overflow-hidden bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] select-none">
-      {/* Radar rings and coordinate grid overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(19,40,64,0.45)_0%,transparent_75%)] pointer-events-none" />
+    <div className="relative w-full h-[400px] sm:h-[450px] bg-navy-deep border border-white/[0.08] rounded-sm overflow-hidden p-6 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.55)]">
+      {/* Background World Grid Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
       
-      {/* Coordinate metrics */}
-      <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10">
-        <span>GRID RANGE: 20°N - 35°N / 25°E - 50°E</span>
-        <span>SYS STATUS: ACTIVE [LOCAL_GRID]</span>
+      {/* 3D Spinning Globe Canvas */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <canvas 
+          ref={canvasRef}
+          width={900}
+          height={900}
+          style={{ width: "450px", height: "450px" }}
+          className="cursor-pointer max-w-full aspect-square scale-90 sm:scale-100 origin-center"
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onClick={handleCanvasClick}
+        />
       </div>
 
-      {/* Nodes and Connection visual */}
-      <div className="relative flex-1 w-full h-full">
-        {/* Connection Line */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 400 300" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#f0a020" stopOpacity="0.1" />
-              <stop offset="50%" stopColor="#e5c158" stopOpacity={hoveredIdx !== null ? "0.95" : "0.75"} />
-              <stop offset="100%" stopColor="#f0a020" stopOpacity="0.1" />
-            </linearGradient>
-          </defs>
-          {/* Curved path representing connection Suez <-> Yanbu */}
-          <path
-            d="M 100 105 Q 190 70 280 195"
-            fill="none"
-            stroke="url(#glowGrad)"
-            strokeWidth={hoveredIdx !== null ? "2.5" : "1.5"}
-            strokeDasharray={hoveredIdx !== null ? "6 3" : "4 4"}
-            className="transition-all duration-300"
-          />
-        </svg>
-
-        {/* Pulse Node 1: Suez, Egypt */}
-        <div 
-          className={`absolute left-[25%] top-[35%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer transition-all duration-300 z-20 ${
-            hoveredIdx === 0 ? "scale-115" : "hover:scale-108"
-          }`}
-          onMouseEnter={() => setHoveredIdx(0)}
-          onMouseLeave={() => setHoveredIdx(null)}
-          onClick={() => handleScrollTo(0)}
-        >
-          <span className="relative flex h-5 w-5 justify-center items-center">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 ${hoveredIdx === 0 ? "scale-150 duration-700" : ""}`}></span>
-            <span className={`relative inline-flex rounded-full h-3 w-3 transition-colors duration-300 ${hoveredIdx === 0 ? "bg-white" : "bg-gold"}`}></span>
-          </span>
-          <span className={`mt-2 text-[10px] font-bold tracking-wider px-2 py-0.5 border rounded-sm whitespace-nowrap shadow-md transition-all duration-300 ${
-            hoveredIdx === 0 ? "bg-gold text-navy-deep border-gold" : "bg-navy-dark/95 text-white border-white/[0.12]"
-          }`}>
-            Suez, EG (K₂SO₄ SOP)
-          </span>
-          <span className="text-[8px] font-mono text-gold mt-0.5">29.96°N, 32.54°E</span>
-        </div>
-
-        {/* Pulse Node 2: Yanbu, Saudi Arabia */}
-        <div 
-          className={`absolute left-[70%] top-[65%] -translate-x-1/2 -translate-y-1/2 flex flex-col items-center cursor-pointer transition-all duration-300 z-20 ${
-            hoveredIdx === 1 ? "scale-115" : "hover:scale-108"
-          }`}
-          onMouseEnter={() => setHoveredIdx(1)}
-          onMouseLeave={() => setHoveredIdx(null)}
-          onClick={() => handleScrollTo(1)}
-        >
-          <span className="relative flex h-5 w-5 justify-center items-center">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75 ${hoveredIdx === 1 ? "scale-150 duration-700" : ""}`}></span>
-            <span className={`relative inline-flex rounded-full h-3 w-3 transition-colors duration-300 ${hoveredIdx === 1 ? "bg-white" : "bg-gold"}`}></span>
-          </span>
-          <span className={`mt-2 text-[10px] font-bold tracking-wider px-2 py-0.5 border rounded-sm whitespace-nowrap shadow-md transition-all duration-300 ${
-            hoveredIdx === 1 ? "bg-gold text-navy-deep border-gold" : "bg-navy-dark/95 text-white border-white/[0.12]"
-          }`}>
-            Yanbu, KSA (NPK Comp.)
-          </span>
-          <span className="text-[8px] font-mono text-gold mt-0.5">24.09°N, 38.06°E</span>
-        </div>
-
-        {/* Interactive Tooltips */}
-        {hoveredIdx === 0 && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className={`absolute z-30 left-[25%] top-[45%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
-          >
-            <h4 className="text-white text-xs font-bold mb-1">Suez SOP Plant</h4>
-            <div className="text-[10px] text-gold font-semibold mb-1.5">K₂SO₄ · Mannheim Process</div>
-            <p className="text-[11px] text-silver/80 font-light leading-relaxed">
-              {locale === "ar" 
-                ? "تشغيل كامل من مرحلة ما قبل التشغيل إلى أول منتج بطاقة 40,000 طن/سنة." 
-                : locale === "zh" 
-                ? "从试运行前到首批产品的全面调试，产能 40,000 吨/年。" 
-                : "Full commissioning to first product. Capacity: 40,000 T/yr."}
-            </p>
-            <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-              {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
-            </div>
-          </motion.div>
-        )}
-
-        {hoveredIdx === 1 && (
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className={`absolute z-30 left-[70%] top-[20%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.8)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
-          >
-            <h4 className="text-white text-xs font-bold mb-1">Yanbu Granulation Facility</h4>
-            <div className="text-[10px] text-gold font-semibold mb-1.5">NPK · Granulation</div>
-            <p className="text-[11px] text-silver/80 font-light leading-relaxed">
-              {locale === "ar" 
-                ? "أول مشروع لشركة كفاءة في منطقة الخليج. تشغيل وحدة تحبيب NPK في الموعد المحدد." 
-                : locale === "zh" 
-                ? "海湾地区首个项目，按期调试 NPK 造粒装置。" 
-                : "Kafaah's first Gulf project. NPK granulation commissioned on schedule."}
-            </p>
-            <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
-              {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
-            </div>
-          </motion.div>
-        )}
-
+      {/* Coordinate metrics header */}
+      <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10 pointer-events-none">
+        <span>3D_ORTHOGRAPHIC_SPHERE</span>
+        <span>SYS STATUS: SPINNING [LIVE]</span>
       </div>
+
+      {/* Interactive Tooltips overlay */}
+      {hoveredIdx === 0 && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          className={`absolute z-30 left-[22%] top-[35%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_25px_50px_rgba(0,0,0,0.85)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
+        >
+          <h4 className="text-white text-xs font-bold mb-1">Suez SOP Plant</h4>
+          <div className="text-[10px] text-gold font-semibold mb-1.5">K₂SO₄ · Mannheim Process</div>
+          <p className="text-[11px] text-silver/80 font-light leading-relaxed">
+            {locale === "ar" 
+              ? "تشغيل كامل من مرحلة ما قبل التشغيل إلى أول منتج بطاقة 40,000 طن/سنة." 
+              : locale === "zh" 
+              ? "从试运行前到首批产品的全面调试，产能 40,000 吨/年。" 
+              : "Full commissioning to first product. Capacity: 40,000 T/yr."}
+          </p>
+          <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+            {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
+          </div>
+        </motion.div>
+      )}
+
+      {hoveredIdx === 1 && (
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          className={`absolute z-30 left-[68%] top-[25%] -translate-x-1/2 bg-[#0c1b2d]/98 backdrop-blur-md border border-gold/40 p-4 rounded-sm shadow-[0_25px_50px_rgba(0,0,0,0.85)] w-[250px] ${rtl ? "text-right" : "text-left"}`}
+        >
+          <h4 className="text-white text-xs font-bold mb-1">Yanbu Granulation Facility</h4>
+          <div className="text-[10px] text-gold font-semibold mb-1.5">NPK · Granulation</div>
+          <p className="text-[11px] text-silver/80 font-light leading-relaxed">
+            {locale === "ar" 
+              ? "أول مشروع لشركة كفاءة في منطقة الخليج. تشغيل وحدة تحبيب NPK في الموعد المحدد." 
+              : locale === "zh" 
+              ? "海湾地区首个项目，按期调试 NPK 造粒装置。" 
+              : "Kafaah's first Gulf project. NPK granulation commissioned on schedule."}
+          </p>
+          <div className="mt-2.5 text-[9px] font-mono text-gold/70 flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
+            {locale === "ar" ? "انقر للتمرير إلى التفاصيل" : locale === "zh" ? "点击滚动查看详情" : "Click to scroll to details"}
+          </div>
+        </motion.div>
+      )}
 
       {/* Coordinate footer */}
-      <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10">
+      <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10 pointer-events-none">
         <span>SCALE: 1 : 12,500,000</span>
         <span>TARGETS: SUEZ_SOP | YANBU_NPK</span>
       </div>
