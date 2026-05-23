@@ -154,11 +154,14 @@ export function ServicesClient() {
       <section className="relative min-h-[95vh] lg:h-[80vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-20 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
         {/* Premium Background Image */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img
-            src="/services-hero-bg.png"
-            alt="Kafaah Industrial Services Background"
-            className="w-full h-full object-fill opacity-45 mix-blend-luminosity"
-          />
+          <picture>
+            <source srcSet="/services-hero-bg.webp" type="image/webp" />
+            <img
+              src="/services-hero-bg.png"
+              alt="Kafaah Industrial Services Background"
+              className="w-full h-full object-fill opacity-45 mix-blend-luminosity"
+            />
+          </picture>
           {/* Brand-aligned gradient overlays */}
           <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/35 via-navy-dark/40 to-navy-dark/30" />
           <div className={`absolute inset-0 ${rtl ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-navy-dark/50 via-navy-dark/20 to-transparent`} />

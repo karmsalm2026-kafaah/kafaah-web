@@ -27,6 +27,15 @@ const keyMap: Record<string, any> = {
 };
 
 const imageMap: Record<string, string> = {
+  "sulfuric-acid": "/h2so4_plant.webp",
+  "phosphoric-acid": "/h3po4_plant.webp",
+  "sulfate-of-potash": "/k2so4_plant.webp",
+  "npk": "/npk_plant.webp",
+  "magnesium-sulphate": "/mgso4_plant.webp",
+  "ssp": "/ssp_plant.webp"
+};
+
+const imageMapPng: Record<string, string> = {
   "sulfuric-acid": "/h2so4_plant.png",
   "phosphoric-acid": "/h3po4_plant.png",
   "sulfate-of-potash": "/k2so4_plant.png",
@@ -108,11 +117,14 @@ export function TechnologiesClient() {
       <section className="relative min-h-[90vh] lg:h-[90vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-20 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
         {/* Background Overlay Graphic */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <img
-            src="/services-hero-bg.png"
-            alt="Kafaah Technologies Background"
-            className="w-full h-full object-fill opacity-25 mix-blend-luminosity"
-          />
+          <picture>
+            <source srcSet="/services-hero-bg.webp" type="image/webp" />
+            <img
+              src="/services-hero-bg.png"
+              alt="Kafaah Technologies Background"
+              className="w-full h-full object-fill opacity-25 mix-blend-luminosity"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/40 via-navy-dark/45 to-navy-dark/35" />
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-navy-deep/80 to-transparent" />
         </div>
@@ -159,11 +171,14 @@ export function TechnologiesClient() {
                       <div className="relative group rounded-sm overflow-hidden border border-white/[0.08] bg-navy-card/15 backdrop-blur-md p-4 sm:p-5 flex flex-col gap-4">
                         {/* Process rendered image */}
                         <div className="relative w-full h-[280px] sm:h-[350px] rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
-                          <img
-                            src={imageMap[tech.slug]}
-                            alt={tech.fullName}
-                            className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
-                          />
+                          <picture>
+                            <source srcSet={imageMap[tech.slug]} type="image/webp" />
+                            <img
+                              src={imageMapPng[tech.slug]}
+                              alt={tech.fullName}
+                              className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
+                            />
+                          </picture>
                           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent z-10" />
                           
                           {/* Formula badge overlay */}
