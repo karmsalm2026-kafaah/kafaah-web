@@ -56,3 +56,10 @@
   - Created a high-fidelity, photorealistic Technologies page (`/technologies`) showcasing the 6 core industrial plants (`H₂SO₄`, `H₃PO₄`, `K₂SO₄`, `NPK`, `MgSO₄`, `SSP`) with responsive WebP image assets and fallback support.
   - Re-engineered the Services mega menu in `Navbar.tsx` into a unified, category-free 2-column grid with a wider footprint (`w-[820px]`) to ensure all service labels fit perfectly on single lines.
   - Refined dropdown font styling across Technologies and Services dropdowns, decreasing font size slightly from `text-[11.5px]` to `text-[10.5px]` and subtext size to `text-[9.5px]` to maximize premium layout density and design appeal.
+- **Experience Page Redesign (May 2026)**:
+  - Completely overhauled the `/experience` page from a plain static layout to a highly interactive, ultra-premium showcase.
+  - Simplified the routing entry point `src/app/experience/page.tsx` to delegate rendering directly to `ExperienceClient.tsx` to accommodate client-side animation overlays.
+  - Created detailed, dashboard-style metric boxes for completed contracts (Suez SOP, Yanbu Compaction) highlighting Location, Capacity, and Outcomes with specific glowing icons.
+  - Replaced the simple checkmark list with a periodic-table style elements grid for the 6 core process chemistries (`H₂SO₄`, `H₃PO₄`, etc.) with responsive hover effects.
+  - Engineered a custom interactive coordinate radar map dashboard utilizing inline CSS grids and SVG vector graphics to visually trace client deployments and regional foot-printing.
+
