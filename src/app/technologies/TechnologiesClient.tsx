@@ -322,6 +322,15 @@ export function TechnologiesClient() {
                     <span>{locale === "ar" ? "اتصل بكفاءة" : locale === "zh" ? "联系 KAFAAH" : "CONTACT KAFAAH"}</span>
                   </span>
                 </Link>
+                <Link
+                  href="/services/"
+                  className={`group btn-premium-glass border border-white/20 hover:border-white/40 ${locale !== "en" ? fcUI + " text-[13px]" : "font-[family-name:var(--font-ui)] text-[11.5px] tracking-[0.08em] uppercase"} font-semibold w-full sm:w-[270px] whitespace-nowrap justify-center`}
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    <Award className="w-4 h-4 shrink-0 text-gold" />
+                    <span>{locale === "ar" ? "عرض خدماتنا" : locale === "zh" ? "浏览我们的服务" : "VIEW OUR SERVICES"}</span>
+                  </span>
+                </Link>
               </FadeIn>
             </div>
 
