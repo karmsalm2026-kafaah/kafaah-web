@@ -128,11 +128,11 @@ export function Navbar() {
 
           {/* Technologies Dropdown */}
           <div className="nav-item-drop relative">
-            <span className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/technologies") ? "nav-link-active" : ""}`}>
+            <Link href="/technologies/" className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/technologies") ? "nav-link-active" : ""}`}>
               <FlaskConical className="w-3.5 h-3.5 opacity-50" />
               {t("technologies")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
-            </span>
+            </Link>
             <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px]`}>
               <div className="bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />

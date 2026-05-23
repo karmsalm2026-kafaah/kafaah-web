@@ -824,6 +824,200 @@ export const whoWeAre = {
 
 };
 
+export const technologiesPage = {
+  pageTitle: { en: "Technologies", ar: "التقنيات", zh: "技术" } as L,
+  heroEyebrow: { en: "TECHNICAL CAPABILITIES", ar: "القدرات الفنية", zh: "技术实力" } as L,
+  heroTitle: {
+    en: "Six industrial processes. Decades of operational command.",
+    ar: "ست عمليات صناعية. عقود من الريادة والقيادة التشغيلية.",
+    zh: "六大工业流程。数十年的现场运营掌控。"
+  } as L,
+  heroDesc: {
+    en: "We specialize exclusively in the chemical processes we have operated, commissioned, and optimized. We do not work from a distance — we deliver operational clarity where mechanical and chemical complexity is highest.",
+    ar: "نحن نتخصص حصرياً في العمليات الكيميائية التي قمنا بتشغيلها وتجريبها وتحسين كفاءتها. لا نقدم استشاراتنا عن بعد — بل نضمن الوضوح التشغيلي حيث تبلغ التعقيدات الميكانيكية والكيميائية ذروتها.",
+    zh: "我们专注于我们亲自操作、调试和优化过的化学工艺。我们绝非置身事外——我们在机械与化学复杂性最高的环节，为您带来清晰明确的现场运营掌控力。"
+  } as L,
+  chemistryLabel: { en: "Main Chemistry", ar: "التفاعلات الكيميائية الأساسية", zh: "核心化学反应" } as L,
+  equipmentLabel: { en: "Primary Systems", ar: "الأنظمة والمعدات الرئيسية", zh: "主要工艺系统" } as L,
+  challengesLabel: { en: "Critical Startup Gates", ar: "مراحل بدء التشغيل الحرجة", zh: "启动运行关键点" } as L,
+  experienceLabel: { en: "Kafaah Handprint", ar: "خبرة كفاءة الميدانية", zh: "Kafaah 现场实绩" } as L,
+  exploreBtn: { en: "EXPLORE DETAILED PROFILE", ar: "عرض الملف التقني التفصيلي", zh: "浏览详细技术档案" } as L,
+  
+  h2so4: {
+    title: { en: "Sulfuric Acid — H₂SO₄", ar: "حمض الكبريتيك — H₂SO₄", zh: "硫酸 — H₂SO₄" } as L,
+    sub: {
+      en: "Catalytic conversion, double absorption (DCDA), heat recovery, and mist control.",
+      ar: "الأكسدة الحفزية، الامتصاص المزدوج (DCDA)، استعادة الطاقة الحرارية، والتحكم في ضباب الحمض.",
+      zh: "催化转化、双转双吸 (DCDA)、余热回收及酸雾控制。"
+    } as L,
+    chemistry: {
+      en: "S + O₂ → SO₂ | Catalytic conversion: SO₂ + ½O₂ ⇌ SO₃ over V₂O₅ catalyst beds | Absorption: SO₃ + H₂O → H₂SO₄",
+      ar: "S + O₂ → SO₂ | الأكسدة الحفزية: SO₂ + ½O₂ ⇌ SO₃ فوق أسِرّة عامل حفاز V₂O₅ | الامتصاص: SO₃ + H₂O → H₂SO₄",
+      zh: "S + O₂ → SO₂ | 催化转化: V₂O₅ 催化床层上 SO₂ + ½O₂ ⇌ SO₃ | 吸收: SO₃ + H₂O → H₂SO₄"
+    } as L,
+    equipment: {
+      en: "Sulfur burning furnace, waste heat boilers, 4-pass catalytic converter vessel, interpass & final absorption towers, concentrated acid circulation pumps, plate & frame acid coolers.",
+      ar: "فرن حرق الكبريت، غلايات استعادة الحرارة المفقودة، وعاء المحول الحفزي ذو الأربع مراحل، أبراج الامتصاص البيني والنهائي، مضخات تدوير الحمض المركز، مبردات الحمض ذات الصفائح والإطار.",
+      zh: "硫磺燃烧炉、余热锅炉、四段催化转化器、中间与终点吸收塔、浓酸循环泵、板式酸冷却器。"
+    } as L,
+    challenges: {
+      en: "Refractory heat-up profiles, catalyst temperature management (avoiding cold bypass or catalyst sintering), acid concentration control (preventing absorption bypass), and gas dew point prevention.",
+      ar: "منحنيات تسخين الطوب الحراري، إدارة درجات حرارة العامل الحفاز (تجنب الالتفاف البارد أو تلبيد الحفاز)، التحكم في تركيز الحمض (منع التفاف الامتصاص)، وتجنب نقطة ندى الغاز.",
+      zh: "耐火材料升温曲线、催化剂温度管理（避免低温旁路或催化剂烧结）、酸浓度控制（防止吸收旁路）、防止气体露点结露。"
+    } as L,
+    experience: {
+      en: "Over 20 years of direct operation and commissioning of contact process plants across Egypt and the Middle East, resolving catalytic conversion bottlenecks and reducing emissions.",
+      ar: "أكثر من 20 عاماً من التشغيل المباشر وتجريب تشغيل مصانع العمليات التلامسية في مصر والشرق الأوسط، وحل اختناقات التحويل الحفزي وتقليل الانبعاثات.",
+      zh: "在埃及和中东地区拥有超过 20 年的接触法装置直接运营和调试经验，成功解决催化转化瓶颈并降低排放。"
+    } as L,
+  },
+
+  h3po4: {
+    title: { en: "Phosphoric Acid — H₃PO₄", ar: "حمض الفوسفوريك — H₃PO₄", zh: "磷酸 — H₃PO₄" } as L,
+    sub: {
+      en: "Wet process dihydrate/hemihydrate reaction, tilting pan/belt filtration, and vacuum evaporation.",
+      ar: "تفاعل العملية الرطبة ثنائي الهيدرات/نصف الهيدرات، فلترة الفلاتر الدوارة/الأحزمة، والتبخير تحت تفريغ الهواء.",
+      zh: "湿法二水物/半水物反应、翻盘式/带式过滤及真空蒸发。"
+    } as L,
+    chemistry: {
+      en: "Ca₅(PO₄)₃F + 5H₂SO₄ + 10H₂O → 3H₃PO₄ + 5CaSO₄·2H₂O (Gypsum) + HF",
+      ar: "Ca₅(PO₄)₃F + 5H₂SO₄ + 10H₂O → 3H₃PO₄ + 5CaSO₄·2H₂O (الجبس) + HF",
+      zh: "Ca₅(PO₄)₃F + 5H₂SO₄ + 10H₂O → 3H₃PO₄ + 5CaSO₄·2H₂O (石膏) + HF"
+    } as L,
+    equipment: {
+      en: "Agitated multi-compartment reactors, vacuum flash coolers, rotary tilting pan filters, multi-stage forced circulation vacuum evaporators, fluorine scrubbing and recovery units.",
+      ar: "مفاعلات مجهزة بمحرك وخلاطات متعددة الحجرات، مبردات تفريغ الهواء المفاجئة، فلاتر الفلاتر الدوارة المائلة، مبخرات تفريغ الهواء ذات الدوران القسري متعددة المراحل، وحدات غسيل واستعادة الفلور.",
+      zh: "搅拌式多格反应器、真空闪蒸冷却器、旋转翻盘式过滤器、多效强制循环真空蒸发器、氟洗涤与回收装置。"
+    } as L,
+    challenges: {
+      en: "Gypsum crystallization control (crystal size distribution directly dictates filtration speed), scale prevention (silicofluorides and calcium sulfate deposits) in evaporators, rock slurry density optimization.",
+      ar: "التحكم في بلورة الجبس (توزيع حجم البلورات يحدد بشكل مباشر سرعة الفلترة)، منع التكلس (ترسبات السليكوفلوريد وكبريتات الكالسيوم) في المبخرات، وتحسين كثافة ملاط الصخور.",
+      zh: "石膏结晶控制（晶体粒径分布直接决定过滤速度）、蒸发器防垢（氟硅酸盐和硫酸钙沉积）、矿浆浓度优化。"
+    } as L,
+    experience: {
+      en: "Expertise in optimizing reactor slurry chemistry, improving gypsum washing efficiency to minimize P₂O₅ loss, and implementing highly effective chemical cleaning (descaling) schedules.",
+      ar: "خبرة واسعة في تحسين كيمياء ملاط المفاعل، تحسين كفاءة غسيل الجبس لتقليل فقد P₂O₅، وتطبيق جداول تنظيف كيميائي (إزالة التكلس) عالية الفعالية.",
+      zh: "在优化反应器浆料化学性质、提高石膏洗涤效率以最大程度减少 P₂O₅ 损失、以及实施高效的化学清洗（除垢）计划方面拥有丰富经验。"
+    } as L,
+  },
+
+  k2so4: {
+    title: { en: "Sulfate of Potash (SOP) — K₂SO₄", ar: "كبريتات البوتاسيوم (SOP) — K₂SO₄", zh: "硫酸钾 (SOP) — K₂SO₄" } as L,
+    sub: {
+      en: "Mannheim muffle furnace process, high-temperature reaction, and gaseous HCl absorption.",
+      ar: "عملية فرن مانهايم غير المباشر، التفاعل عند درجات حرارة مرتفعة، وامتصاص غاز كلوريد الهيدروجين.",
+      zh: "曼海姆炉工艺、高温反应及气态 HCl 吸收。"
+    } as L,
+    chemistry: {
+      en: "2KCl + H₂SO₄ → K₂SO₄ + 2HCl (Endothermic reaction at 600°C–700°C inside the furnace muffle)",
+      ar: "2KCl + H₂SO₄ → K₂SO₄ + 2HCl (تفاعل ماص للحرارة عند 600-700 درجة مئوية داخل تجويف الفرن)",
+      zh: "2KCl + H₂SO₄ → K₂SO₄ + 2HCl (炉膛内 600°C–700°C 下的吸热反应)"
+    } as L,
+    equipment: {
+      en: "Mannheim muffle furnaces, central drive rabble arms with high-alloy mixing teeth, HCl gas cooling ducts, adiabatic HCl absorption towers, product cooling drums, screening & compaction units.",
+      ar: "أفران مانهايم، أذرع خلط مركزية ذات أسنان خلط مصنوعة من سبائك عالية التحمل، قنوات تبريد غاز HCl، أبراء امتصاص HCl الأديباتية، أسطوانات تبريد المنتج، وحدات الغربلة والكبس.",
+      zh: "曼海姆炉、带高合金搅拌齿的的中心传动耙臂、HCl 气体冷却管道、绝热 HCl 吸收塔、产品冷却滚筒、筛分与造粒挤压机。"
+    } as L,
+    challenges: {
+      en: "Mannheim furnace refractory curing (demanding 10+ days precise ramp), rabble arm mechanical alignment at high temperatures, maintaining furnace draft balance, handling hot, highly corrosive HCl gases.",
+      ar: "معالجة طوب أفران مانهايم الحراري (تتطلب تسخيناً دقيقاً لأكثر من 10 أيام)، محاذاة أذرع الخلط ميكانيكياً عند درجات حرارة مرتفعة، الحفاظ على توازن سحب الهواء بالفرن، والتعامل مع غازات HCl الساخنة وشديدة التآكل.",
+      zh: "曼海姆炉耐火材料烘炉（需 10 天以上精确升温）、高温下耙臂机械对中、维持炉膛负压平衡、处理高温且高腐蚀性的 HCl 气体。"
+    } as L,
+    experience: {
+      en: "Successfully commissioned a 40,000 T/yr SOP plant in Suez, Egypt (Nov 2025 – Jan 2026), supervising refractory curing, furnace first fire, HCl absorption setup, and final product quality stabilization.",
+      ar: "تم بنجاح تشغيل مصنع كبريتات البوتاسيوم بطاقة 40,000 طن/سنة في السويس، مصر (نوفمبر 2025 - يناير 2026)، والإشراف على معالجة الطوب الحراري، أول إشعال للفرن، إعداد امتصاص HCl، وتثبيت جودة المنتج النهائي.",
+      zh: "在埃及苏伊士成功调试了一套年产 4 万吨的硫酸钾装置（2025年11月 – 2026年1月），指导耐火材料烘炉、烘窑、炉窑点火、HCl 吸收装置安装以及最终产品质量稳定化。"
+    } as L,
+  },
+
+  npk: {
+    title: { en: "NPK Compound Fertilizers", ar: "الأسمدة المركبة NPK", zh: "氮磷钾复合肥" } as L,
+    sub: {
+      en: "Pipe reactor/pre-neutralizer drum granulation, rotary drying, and multi-stage classification.",
+      ar: "تحبيب أسطوانة المفاعل الأنبوبي/المعادل المسبق، التجفيف الدوار، والتصنيف متعدد المراحل للحبوب.",
+      zh: "管式反应器/前段中和器鼓式造粒、回转干燥及多级分级。"
+    } as L,
+    chemistry: {
+      en: "NH₃ + H₃PO₄ → NH₄H₂PO₄ | NH₃ + HNO₃ → NH₄NO₃ | Mixing of solid KCl / K₂SO₄ and filler elements",
+      ar: "NH₃ + H₃PO₄ → NH₄H₂PO₄ | NH₃ + HNO₃ → NH₄NO₃ | خلط أملاح KCl / K₂SO₄ الصلبة وعناصر الملء",
+      zh: "NH₃ + H₃PO₄ → NH₄H₂PO₄ | NH₃ + HNO₃ → NH₄NO₃ | 固体 KCl / K₂SO₄ 及填充元素的混合"
+    } as L,
+    equipment: {
+      en: "Rotary drum granulators, pipe reactors (cross-pipe designs), co-current rotary dryers, vibrating double-deck screens, counter-current rotary coolers, coating drums, scrubbing systems (cyclones and venturi).",
+      ar: "محصنات التحبيب الدوارة، المفاعلات الأنبوبية (تصميم الأنبوب المتقاطع)، مجففات دوارة ذات تدفق مشترك، غربال اهتزازي ذو طابقين، مبردات دوارة ذات تدفق معاكس، أسطوانات الطلاء، وأنظمة الغسيل (الأعاصير وفينتوري).",
+      zh: "回转转鼓造粒机、管式反应器（对喷管式设计）、并流回转干燥机、双层振动筛、逆流回转冷却器、包衣滚筒、洗涤系统（旋风分离器和文丘里洗涤器）。"
+    } as L,
+    challenges: {
+      en: "Establishing optimal recycle-to-feed ratio during startup, granule moisture control, temperature limits to prevent ammonium nitrate decomposition, dryer burner tuning, screening efficiency.",
+      ar: "تحديد النسبة المثلى للمواد المعاد تدويرها إلى التغذية أثناء بدء التشغيل، التحكم في رطوبة الحبيبات، حدود درجة الحرارة لمنع تحلل نترات الأمونيوم، ضبط حارق المجفف، وكفاءة الغربلة.",
+      zh: "启动期间建立最佳的返料与给料比、颗粒水分控制、防止硝酸铵分解的的温度限制、干燥机燃烧器调节、筛分效率。"
+    } as L,
+    experience: {
+      en: "Successfully commissioned an NPK granulation unit in Yanbu Industrial City, Saudi Arabia (March 2026), establishing recycle balances, adjusting pipe reactor steam injection, and stabilizing granule yields.",
+      ar: "تم بنجاح تجريب تشغيل وحدة تحبيب NPK في مدينة ينبع الصناعية، المملكة العربية السعودية (مارس 2026)، وتحديد توازنات إعادة التدوير، وضبط حقن البخار في المفاعل الأنبوبي، وتثبيت إنتاجية الحبيبات.",
+      zh: "在沙特阿拉伯延布工业城成功调试了一套 NPK 造粒装置（2026年3月），建立返料平衡、调整管式反应器蒸汽喷射并稳定颗粒收率。"
+    } as L,
+  },
+
+  mgso4: {
+    title: { en: "Magnesium Sulphate — MgSO₄", ar: "كبريتات المغنيسيوم — MgSO₄", zh: "硫酸镁 — MgSO₄" } as L,
+    sub: {
+      en: "Acid-base neutralization, vacuum crystallization, centrifugation, and fluid bed drying.",
+      ar: "التعادل الحمضي القاعدي، البلورة تحت تفريغ الهواء، الطرد المركزي، والتجفيف بالطبقة المميعة.",
+      zh: "酸碱中和、真空结晶、离心分离及流化床干燥。"
+    } as L,
+    chemistry: {
+      en: "MgO + H₂SO₄ + 6H₂O → MgSO₄·7H₂O (Epsomite / Epsom salt crystallization)",
+      ar: "MgO + H₂SO₄ + 6H₂O → MgSO₄·7H₂O (بلورة الإبسومات / ملح إنجليزي)",
+      zh: "MgO + H₂SO₄ + 6H₂O → MgSO₄·7H₂O (泻利盐/泻盐结晶)"
+    } as L,
+    equipment: {
+      en: "Neutralization reactor tanks with agitators, settler clarifiers, vacuum crystallizers / cooling crystallizers, continuous pusher centrifuges, fluid-bed dryers and product coolers.",
+      ar: "خزانات مفاعل التعادل مع خلاطات، مجاري الترسيب والتوضيح، مبلورات تفريغ الهواء / مبلورات التبريد، أجهزة الطرد المركزي ذات الدفع المستمر، مجففات ومبردات الطبقة المميعة.",
+      zh: "带搅拌的中和反应釜、沉降澄清槽、真空结晶器/冷却结晶器、连续活塞推料离心机、流化床干燥器及产品冷却器。"
+    } as L,
+    challenges: {
+      en: "Crystallization cooling curves control (critical for uniform grain size), preventing product caking and lump formation during centrifuging, optimizing fluid bed dryer inlet temperatures to prevent dehydration.",
+      ar: "التحكم في منحنيات تبريد البلورة (مهم جداً للحصول على حجم حبيبات موحد)، منع تكتل المنتج وتشكيل الكتل أثناء الطرد المركزي، وتحسين درجات حرارة مدخل مجفف الطبقة المميعة لمنع فقدان ماء التبلور.",
+      zh: "结晶冷却曲线控制（对于均匀粒径至关重要）、防止离心过程中产品结块和成团、优化流化床干燥器入口温度以防止脱水。"
+    } as L,
+    experience: {
+      en: "Operational expertise in adjusting crystallization residence times, resolving centrifuge salt moisture bottlenecks, and setting up multi-grade (technical and agricultural) processes.",
+      ar: "خبرة تشغيلية في ضبط أوقات بقاء المواد في المبلورات، حل اختناقات رطوبة ملح أجهزة الطرد المركزي، وإعداد عمليات لدرجات متعددة (الفنية والزراعية).",
+      zh: "在调整结晶停留时间、解决离心机盐水分瓶颈、以及配置多级（工业级和农业级）工艺流程方面拥有深厚的现场运营经验。"
+    } as L,
+  },
+
+  ssp: {
+    title: { en: "Single Superphosphate — SSP", ar: "سوبر فوسفات أحادي — SSP", zh: "普通过邻酸钙 — SSP" } as L,
+    sub: {
+      en: "Phosphate rock acidulation, continuous den curing, and aging stabilization.",
+      ar: "معالجة صخور الفوسفات بالحمض، التعتيق المستمر في حجرات خاصة، وتثبيت وتعتيق المنتج.",
+      zh: "磷矿石酸解、连续化熟化及老化稳定。"
+    } as L,
+    chemistry: {
+      en: "2Ca₅(PO₄)₃F + 7H₂SO₄ + 3H₂O → 3Ca(H₂PO₄)₂·H₂O + 7CaSO₄ + 2HF",
+      ar: "2Ca₅(PO₄)₃F + 7H₂SO₄ + 3H₂O → 3Ca(H₂PO₄)₂·H₂O + 7CaSO₄ + 2HF",
+      zh: "2Ca₅(PO₄)₃F + 7H₂SO₄ + 3H₂O → 3Ca(H₂PO₄)₂·H₂O + 7CaSO₄ + 2HF"
+    } as L,
+    equipment: {
+      en: "Phosphate rock roller mills, paddle mixers (acidulators), continuous conveyor curing dens, aging/curing shed excavators, rotary granulator drums, venturi gas scrubbers.",
+      ar: "طواحين صخور الفوسفات الأسطوانية، خلاطات ذات ريش (معالجة بالحمض)، سيور تعتيق مستمرة، حفارات عنابر التعتيق، أسطوانات التحبيب الدوارة، غسالات غاز فينتوري.",
+      zh: "磷矿辊式磨机、桨叶式混合器（酸解器）、连续输送熟化仓、熟化库挖掘机、回转造粒转鼓、文丘里气体洗涤器。"
+    } as L,
+    challenges: {
+      en: "Acidulation ratio monitoring (excess H₂SO₄ makes the den product sticky mud, insufficient acid leaves rock unreacted), managing curing pile thermics, gas ventilation & fluorine recovery.",
+      ar: "مراقبة نسبة المعالجة بالحمض (زيادة H₂SO₄ تحول منتج الحجرة إلى طين لزج، ونقص الحمض يترك الصخور دون تفاعل)، إدارة حراريات كومة التعتيق، تهوية الغاز واستعادة الفلور.",
+      zh: "酸解配比监控（过量 H₂SO₄ 会使熟化仓物料变成粘稠泥状，酸不足则会使矿石未反应）、管理熟化堆温、气体通风与氟回收。"
+    } as L,
+    experience: {
+      en: "Deep history in upgrading curing den configurations, optimizing acid concentration, and successfully converting cured SSP powder into high-quality granular fertilizer.",
+      ar: "تاريخ طويل في ترقية تكوينات حجرات التعتيق، تحسين تركيز الحمض، والنجاح في تحويل مسحوق SSP المعتّق إلى سماد حبيبي عالي الجودة.",
+      zh: "在升级熟化仓配置、优化酸浓度、以及成功将熟化后的 SSP 粉末转化为优质颗粒肥料方面拥有深厚业绩。"
+    } as L,
+  },
+};
+
 export const experiencePage = {
   pageTitle: { en: "Experience", ar: "الخبرات", zh: "经验" } as L,
   completedProjects: { en: "Completed Projects", ar: "المشاريع المُنجزة", zh: "已完成项目" } as L,
