@@ -215,7 +215,7 @@ export function ServicesSection({ content }: Props) {
                     }}
                   >
                     <img 
-                      src={`/our_services_${parseInt(pMap.num)}.png`} 
+                      src={`/our_services_${parseInt(pMap.num)}.webp`} 
                       alt={localizedPhase.title}
                       className="w-full h-full object-cover group-hover/card:scale-108 group-hover/card:opacity-90 transition-all duration-700 ease-out"
                       loading="lazy"

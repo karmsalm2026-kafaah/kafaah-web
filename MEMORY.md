@@ -62,4 +62,6 @@
   - Created detailed, dashboard-style metric boxes for completed contracts (Suez SOP, Yanbu Compaction) highlighting Location, Capacity, and Outcomes with specific glowing icons.
   - Replaced the simple checkmark list with a periodic-table style elements grid for the 6 core process chemistries (`H₂SO₄`, `H₃PO₄`, etc.) with responsive hover effects.
   - Engineered a custom interactive coordinate radar map dashboard utilizing inline CSS grids and SVG vector graphics to visually trace client deployments and regional foot-printing.
-
+- **Footer Redesign & Services Layout Compiling (May 2026)**:
+  - Simplified the footer by removing individual lists of 11 services and 6 technologies to eliminate excessive scrolling on mobile. Replaced them with category summaries, inline formula tags, and links redirecting to `/services` and `/technologies` index pages. Optimized layout by stacking the links directly under text blocks (removing empty heights) and justifying all paragraph margins (`text-justify`).
+  - Fixed typescript compiler errors in `Services.tsx` by adding missing `viewDetails`, `bottomClosing`, and `features` fields to the central `i18n.ts` translation dictionary.
