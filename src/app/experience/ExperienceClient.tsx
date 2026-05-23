@@ -754,19 +754,16 @@ export function ExperienceClient() {
                   </span>
                   <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
                 </div>
-                <h1 className={`${fcDisplay} text-[clamp(32px,5vw,52px)] leading-[1.1] text-white font-semibold`}>
+                <h1 className={`${fcDisplay} text-[clamp(30px,4.2vw,44px)] leading-[1.1] tracking-tight text-white font-semibold`}>
                   <HoverWords text={isEn ? "Proven Operational Footprint." : dict.completedProjects[locale]} locale={locale} />
                 </h1>
               </FadeIn>
 
               <FadeIn delay={0.15}>
                 <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light text-justify`}>
-                  <HoverSubcopy 
-                    text={isEn 
-                      ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields." 
-                      : dict.backgroundText[locale]} 
-                    locale={locale} 
-                  />
+                  {isEn 
+                    ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields." 
+                    : dict.backgroundText[locale]}
                 </p>
               </FadeIn>
             </div>
