@@ -146,9 +146,9 @@ export function ServicesSection({ content }: Props) {
                       <RevealItem key={svc.slug} className="h-full">
                         <Link
                           href={`/services/${svc.slug}/`}
-                          className="group relative flex flex-col justify-between bg-navy-card/20 border border-white/[0.06] p-5 hover:-translate-y-0.5 hover:border-gold/25 hover:bg-navy-card-hover/30 hover:shadow-[0_8px_24px_-8px_rgba(240,160,32,0.04)] transition-all duration-500 rounded-sm h-full overflow-hidden"
+                          className="group relative flex flex-col justify-between bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 rounded-sm h-full overflow-hidden"
                         >
-                          <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+                          <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
                           
                           <div className="flex items-start gap-4 flex-1">
                             <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">

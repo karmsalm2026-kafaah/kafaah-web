@@ -5,14 +5,11 @@ import {
   ArrowRight, 
   Cpu, 
   Shield, 
-  Award, 
   Factory, 
   Globe,
-  FlaskConical,
   Power,
   TrendingUp,
-  ShieldCheck,
-  BriefcaseBusiness
+  ShieldCheck
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
@@ -257,12 +254,6 @@ export function HeroSection({ content }: Props) {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4">
               {stats.map((stat, i) => {
-                let Icon = Award;
-                if (i === 0) Icon = Award;         // 20+ Years
-                if (i === 1) Icon = FlaskConical;  // 6 Industrial Processes
-                if (i === 2) Icon = BriefcaseBusiness; // 11 Service Offerings
-                if (i === 3) Icon = Globe;         // MENA & Beyond
-
                 return (
                   <div
                     key={stat.label}
@@ -271,8 +262,45 @@ export function HeroSection({ content }: Props) {
                       }`}
                   >
                     <div className="flex items-center gap-3 md:gap-4">
-                      {/* Premium Gold Outline Icon */}
-                      <Icon className="w-8 h-8 md:w-[38px] md:h-[38px] text-gold flex-shrink-0 transition-transform duration-500 group-hover:scale-110" strokeWidth={1.2} />
+                      {/* Premium Gold Outline SVG Icon */}
+                      {i === 0 && (
+                        <svg className="w-8 h-8 md:w-[38px] md:h-[38px] text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(229,193,88,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="9" r="6" strokeWidth={0.8} strokeDasharray="1.5 1.5" />
+                          <circle cx="12" cy="9" r="5" />
+                          <circle cx="12" cy="9" r="2.2" />
+                          <path d="M9 14.5v6.5l3-2.5 3 2.5v-6.5" />
+                          <path d="M12 4v1.5M7.5 7l1.1 1.1M16.5 7l-1.1 1.1" />
+                        </svg>
+                      )}
+                      {i === 1 && (
+                        <svg className="w-8 h-8 md:w-[38px] md:h-[38px] text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(229,193,88,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M10 2h4M12 2v3M7.8 19.5h8.4" />
+                          <path d="M10 5v2.8a2 2 0 01-.35 1.12l-4.13 6.2A3 3 0 008 19.5h8a3 3 0 002.48-4.38l-4.13-6.2A2 2 0 0114 7.8V5" />
+                          <circle cx="12" cy="15" r="0.8" strokeWidth={0.8} />
+                          <circle cx="10" cy="12" r="0.6" strokeWidth={0.6} />
+                          <circle cx="14" cy="16" r="0.6" strokeWidth={0.6} />
+                          <line x1="7.2" y1="14" x2="16.8" y2="14" strokeWidth={0.8} strokeDasharray="1.5 1.5" />
+                          <line x1="5.7" y1="16.5" x2="18.3" y2="16.5" strokeWidth={0.8} />
+                        </svg>
+                      )}
+                      {i === 2 && (
+                        <svg className="w-8 h-8 md:w-[38px] md:h-[38px] text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(229,193,88,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+                          <rect x="3" y="7" width="18" height="13" rx="1.5" />
+                          <path d="M3 11h18M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" />
+                          <rect x="7" y="11" width="2" height="2" rx="0.5" />
+                          <rect x="15" y="11" width="2" height="2" rx="0.5" />
+                          <line x1="3" y1="7" x2="21" y2="20" strokeWidth={0.5} strokeDasharray="2 2" />
+                        </svg>
+                      )}
+                      {i === 3 && (
+                        <svg className="w-8 h-8 md:w-[38px] md:h-[38px] text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:filter group-hover:drop-shadow-[0_0_8px_rgba(229,193,88,0.5)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round">
+                          <circle cx="12" cy="12" r="9" />
+                          <path d="M3.6 9h16.8M3.6 15h16.8" />
+                          <path d="M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
+                          <line x1="12" y1="3" x2="12" y2="21" strokeWidth={1} />
+                          <circle cx="14" cy="10.5" r="0.8" fill="currentColor" className="text-gold" />
+                        </svg>
+                      )}
                       
                       <div className="min-w-0 flex-1">
                         <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-[clamp(1.25rem,2.2vw,2.25rem)] text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>

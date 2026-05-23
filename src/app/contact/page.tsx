@@ -15,7 +15,7 @@ export default async function ContactPage() {
   const rtl = isRtl(locale);
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="pt-[68px]">
+    <div dir={rtl ? "rtl" : "ltr"}>
       <ContactClient />
     </div>
   );

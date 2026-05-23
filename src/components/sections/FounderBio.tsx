@@ -45,7 +45,7 @@ export function FounderBioSection() {
                 <div className="relative w-28 h-28 sm:w-36 sm:h-36 shrink-0 border border-gold/30 p-1 rounded-sm bg-navy-card/60">
                   <div className="relative w-full h-full overflow-hidden rounded-sm">
                     <Image
-                      src="/founder_portrait.png"
+                      src="/FOUNDER & MANAGING DIRECTOR.webp"
                       alt={bioDict.name[locale]}
                       fill
                       sizes="(max-width: 640px) 112px, 144px"
@@ -56,7 +56,7 @@ export function FounderBioSection() {
                 </div>
 
                 {/* Founder Name & Role */}
-                <div className="space-y-1.5 self-center sm:self-start">
+                <div className="space-y-1.5 self-start">
                   <h3 className={`${fc} text-[22px] sm:text-[26px] font-bold text-white leading-tight`}>
                     {bioDict.name[locale]}
                   </h3>
@@ -88,7 +88,7 @@ export function FounderBioSection() {
               const Icon = cardIcons[idx % cardIcons.length];
               return (
                 <RevealItem key={idx} className="h-full">
-                  <div className="group relative bg-navy-card/30 border border-white/[0.06] hover:border-gold/30 hover:bg-navy-card-hover/50 p-6 h-full transition-all duration-300 rounded-sm">
+                  <div className="group relative bg-navy-card/45 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/60 p-6 h-full transition-all duration-300 rounded-sm">
                     {/* Visual bar */}
                     <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[2.5px] bg-gold/50 group-hover:bg-gold transition-colors duration-300`} />
                     

@@ -17,9 +17,9 @@ export default async function InsightsPage() {
   const fcUi = getFontClass(locale, "ui");
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="pt-[68px]">
+    <div dir={rtl ? "rtl" : "ltr"}>
       {/* Hero */}
-      <section className="bg-navy-dark border-b border-divider py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-navy-dark border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-8 relative z-10">
           <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line`}>
             {dict.knowledge[locale]}

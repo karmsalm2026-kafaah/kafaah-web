@@ -46,6 +46,12 @@ export function RoleProvider({ children }: { children: ReactNode }) {
     setLocaleState(l);
   }, []);
 
+  useEffect(() => {
+    const isRtl = locale === "ar";
+    document.documentElement.dir = isRtl ? "rtl" : "ltr";
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   return (
     <LocaleCtx.Provider value={{ locale, setLocale }}>
       {children}

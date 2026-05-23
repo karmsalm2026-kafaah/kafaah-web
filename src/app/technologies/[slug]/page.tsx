@@ -34,9 +34,9 @@ export default async function TechnologyPage({ params }: Props) {
   );
 
   return (
-    <div className="pt-[68px]">
+    <div>
       {/* Hero */}
-      <section className="bg-navy border-b border-divider py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-navy border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
         <div
           className="absolute right-[-20px] top-1/2 -translate-y-1/2 font-[family-name:var(--font-display)] text-[clamp(120px,20vw,300px)] text-navy-mid/20 leading-none pointer-events-none select-none"
           aria-hidden="true"

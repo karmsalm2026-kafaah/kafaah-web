@@ -36,23 +36,35 @@ function CustomSelect({ placeholder }: { placeholder: string }) {
   return (
     <div className="relative" ref={dropdownRef}>
       <div
-        className={`w-full bg-navy-deep/50 border ${isOpen ? 'border-gold/60 bg-white/[0.03]' : 'border-white/[0.15] hover:border-white/[0.25]'} text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 transition-colors outline-none cursor-pointer flex justify-between items-center`}
+        className={`w-full bg-navy-deep/40 border ${
+          isOpen 
+            ? 'border-gold/50 bg-navy-deep/60 shadow-[0_0_15px_rgba(240,160,32,0.05)]' 
+            : 'border-white/[0.08] hover:border-white/[0.18]'
+        } text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm transition-all duration-300 outline-none cursor-pointer flex justify-between items-center`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={selected ? "text-white" : "text-silver/60"}>
+        <span className={selected ? "text-white" : "text-silver/45"}>
           {selected || placeholder}
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-silver/40'}`} />
       </div>
       
       <div 
-        className={`absolute z-50 top-full left-0 w-full mt-2 bg-[#1A2E44] border border-white/[0.12] shadow-2xl transition-all duration-200 origin-top ${isOpen ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}
+        className={`absolute z-50 top-full left-0 w-full mt-2 bg-navy-card/90 backdrop-blur-xl border border-white/[0.06] shadow-[0_12px_30px_-10px_rgba(240,160,32,0.05)] rounded-sm transition-all duration-300 origin-top ${
+          isOpen 
+            ? 'opacity-100 scale-y-100 pointer-events-auto' 
+            : 'opacity-0 scale-y-95 pointer-events-none'
+        }`}
       >
         <div className="max-h-[240px] overflow-y-auto py-2">
           {serviceOptions.map((opt) => (
             <div
               key={opt}
-              className={`px-4 py-3 text-[14px] font-light cursor-pointer transition-colors ${selected === opt ? 'bg-gold/10 text-gold' : 'text-silver/85 hover:bg-white/[0.08] hover:text-white'}`}
+              className={`px-4 py-3 text-[14px] font-light cursor-pointer transition-colors duration-200 ${
+                selected === opt 
+                  ? 'bg-gold/10 text-gold font-medium' 
+                  : 'text-silver/80 hover:bg-white/[0.05] hover:text-white'
+              }`}
               onClick={() => {
                 setSelected(opt);
                 setIsOpen(false);
@@ -84,7 +96,7 @@ export function ContactCTA({ content }: Props) {
   const subCopy = content?.subCopy?.[locale] ?? ctaDict.subCopy[locale];
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="bg-navy py-28 relative overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="bg-navy pt-28 pb-40 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
@@ -142,51 +154,48 @@ export function ContactCTA({ content }: Props) {
 
         {/* Right: Quick Contact Panel */}
         <FadeIn delay={0.15}>
-          <div className="relative">
-            <div className="bg-gradient-to-br from-navy-card/90 to-navy-deep/95 backdrop-blur-xl border border-white/[0.14] p-8 lg:p-10 relative group shadow-2xl z-10">
-              {/* Left custom border - shortened from edges, stable */}
-              <div className={`absolute ${rtl ? "right-0" : "left-0"} top-4 bottom-4 w-[4px] bg-gold rounded-${rtl ? "l" : "r"}-sm transition-all duration-500`} />
-              
-              {/* Top gold accent line - shortened from edges, appears on hover */}
-              <div className="absolute top-0 left-4 right-4 h-[4px] bg-gold rounded-b-sm opacity-0 group-hover:opacity-100 transition-all duration-500" />
+          <div className="relative group">
+            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
+              {/* Animated Vertical Accent bar */}
+              <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/90 block mb-2`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
                     {ctaDict.fullName[locale]}
                   </label>
                   <input
                     type="text"
                     placeholder={ctaDict.fullNamePlaceholder[locale]}
-                    className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/55 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
                     {ctaDict.company[locale]}
                   </label>
                   <input
                     type="text"
                     placeholder={ctaDict.companyPlaceholder[locale]}
-                    className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none ${rtl ? "text-right" : ""}`}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
               </div>
 
               <div className="mb-5">
-                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
                   {ctaDict.serviceOfInterest[locale]}
                 </label>
                 <CustomSelect placeholder={ctaDict.selectService[locale]} />
               </div>
 
               <div className="mb-6">
-                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[13px]"} font-bold text-silver/80 block mb-2`}>
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
                   {ctaDict.message[locale]}
                 </label>
                 <textarea
                   placeholder={ctaDict.messagePlaceholder[locale]}
-                  className={`w-full bg-navy-deep/50 border border-white/[0.15] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 placeholder:text-silver/40 focus:border-gold/60 focus:bg-white/[0.03] transition-colors outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
+                  className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
                   rows={3}
                 />
               </div>
@@ -199,14 +208,25 @@ export function ContactCTA({ content }: Props) {
                 <span className="relative z-10">{ctaDict.sendRequest[locale]}</span>
               </button>
 
-              <div className={`mt-8 pt-6 border-t border-white/[0.10] flex gap-x-6 gap-y-3 flex-wrap`}>
-                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+              <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap gap-3">
+                <span className={`${fcBody} text-[11px] px-2.5 py-1 rounded-[3px] bg-gold/[0.03] text-gold tracking-wide font-medium border border-gold/10 flex items-center gap-1.5 hover:bg-gold/[0.08] transition-colors duration-300`}>
+                  <svg className="w-3.5 h-3.5 text-gold/90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <circle cx="12" cy="11" r="3" strokeWidth="1.8" />
+                  </svg>
                   {ctaDict.locationLabel[locale]}
                 </span>
-                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+                <span className={`${fcBody} text-[11px] px-2.5 py-1 rounded-[3px] bg-gold/[0.03] text-gold tracking-wide font-medium border border-gold/10 flex items-center gap-1.5 hover:bg-gold/[0.08] transition-colors duration-300`}>
+                  <svg className="w-3.5 h-3.5 text-gold/90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
                   {ctaDict.responseTime[locale]}
                 </span>
-                <span className={`${fcBody} ${isAr ? "text-[13px]" : "text-[12px] uppercase tracking-[0.05em]"} font-light text-silver/70 flex items-center gap-1.5`}>
+                <span className={`${fcBody} text-[11px] px-2.5 py-1 rounded-[3px] bg-gold/[0.03] text-gold tracking-wide font-medium border border-gold/10 flex items-center gap-1.5 hover:bg-gold/[0.08] transition-colors duration-300`}>
+                  <svg className="w-3.5 h-3.5 text-gold/90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+                    <rect x="5" y="11" width="14" height="10" rx="2" ry="2" />
+                    <path d="M17 11V7a5 5 0 00-10 0v4" />
+                  </svg>
                   {ctaDict.confidential[locale]}
                 </span>
               </div>
@@ -214,7 +234,7 @@ export function ContactCTA({ content }: Props) {
 
             {/* Brand watermark - centered directly under the form */}
             <div
-              className="absolute left-1/2 -translate-x-1/2 -bottom-30 font-[family-name:var(--font-display)] text-[120px] text-white/[0.05] leading-none pointer-events-none select-none tracking-tighter uppercase z-0"
+              className="absolute left-1/2 -translate-x-1/2 -bottom-32 font-[family-name:var(--font-display)] italic text-[clamp(80px,12vw,140px)] text-white/[0.035] group-hover:text-gold/[0.07] leading-none pointer-events-none select-none tracking-wide normal-case transition-all duration-700 z-0"
               aria-hidden="true"
             >
               Kafaah

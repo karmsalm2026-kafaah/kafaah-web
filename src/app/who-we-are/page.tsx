@@ -16,9 +16,9 @@ export default async function WhoWeArePage() {
   const fcDisplay = getFontClass(locale, "display");
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="pt-[68px]">
+    <div dir={rtl ? "rtl" : "ltr"}>
       {/* Hero */}
-      <section className="bg-navy-dark border-b border-divider py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-navy-dark border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
         <div
           className={`absolute ${rtl ? "left-[-40px]" : "right-[-40px]"} top-1/2 -translate-y-1/2 font-[family-name:var(--font-display)] text-[clamp(100px,18vw,260px)] text-navy-mid/15 leading-none pointer-events-none select-none`}
           aria-hidden="true"

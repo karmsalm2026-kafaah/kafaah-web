@@ -92,3 +92,61 @@ export function RevealItem({ children, className = "" }: RevealItemProps) {
     </motion.div>
   );
 }
+
+export function HoverWords({ text, locale, isGradient = false }: { text: string; locale: string; isGradient?: boolean }) {
+  const isChinese = locale === "zh";
+  const words = isChinese ? text.split("") : text.split(" ");
+  
+  return (
+    <>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          className={`inline-block origin-center ${
+            isChinese ? "" : "mr-[0.28em] rtl:mr-0 rtl:ml-[0.28em]"
+          } ${
+            isGradient 
+              ? "bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold font-black" 
+              : ""
+          }`}
+          whileHover={{
+            scale: 1.08,
+            y: -3,
+            filter: isGradient ? "drop-shadow(0 0 8px rgba(229, 193, 88, 0.6))" : "drop-shadow(0 0 8px rgba(255, 255, 255, 0.4))",
+            color: isGradient ? undefined : "#f3e1b3",
+            transition: { type: "spring", stiffness: 350, damping: 10 }
+          }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
+export function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
+  const isChinese = locale === "zh";
+  const words = isChinese ? text.split("") : text.split(" ");
+  
+  return (
+    <>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          className={`inline-block origin-center ${
+            isChinese ? "" : "mr-[0.25em] rtl:mr-0 rtl:ml-[0.25em]"
+          }`}
+          whileHover={{
+            scale: 1.04,
+            y: -1,
+            color: "#ffffff",
+            textShadow: "0 0 4px rgba(255, 255, 255, 0.2)",
+            transition: { type: "spring", stiffness: 300, damping: 12 }
+          }}
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}

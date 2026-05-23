@@ -46,7 +46,7 @@ export function WhyKafaahSection() {
         <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.08}>
           {reasons.map((reason, i) => (
             <RevealItem key={i}>
-              <div className="group relative bg-navy-card/15 border border-white/[0.06] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/25 hover:bg-navy-card-hover/25 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.05)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
+              <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
                 {/* Index Indicator */}
                 <span className={`absolute top-4 ${rtl ? 'left-5' : 'right-5'} text-[36px] font-bold text-white/[0.06] group-hover:text-gold/[0.12] transition-all duration-500 select-none`}>
                   0{i + 1}

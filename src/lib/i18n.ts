@@ -69,6 +69,9 @@ export const footer = {
   independent: { en: "Independent", ar: "مستقلون", zh: "独立" } as L,
   technical: { en: "Technical", ar: "تقنيون", zh: "技术" } as L,
   operational: { en: "Operational", ar: "تشغيليون", zh: "运营" } as L,
+  forOwners: { en: "For Owners", ar: "للملاك والمشغلين", zh: "面向业主" } as L,
+  sharedServices: { en: "Shared Services", ar: "خدمات مشتركة", zh: "共享服务" } as L,
+  forEpc: { en: "For EPCs", ar: "لمقاولي EPC", zh: "面向 EPC 承包商" } as L,
 };
 
 /* ══════════════════════════════════════════════
@@ -208,8 +211,8 @@ export const problem = {
 };
 
 export const services = {
-  sectionLabel: { en: "02 — Services", ar: "02 — الخدمات", zh: "02 — 服务" } as L,
-  headline: { en: "Our Services — ", ar: "خدماتنا — ", zh: "我们的服务——" } as L,
+  sectionLabel: { en: "03 — Services", ar: "03 — الخدمات", zh: "03 — 服务" } as L,
+  headline: { en: "Our Services", ar: "خدماتنا", zh: "我们的服务" } as L,
   headlineAccent: { en: "Across the Full Project Lifecycle", ar: "عبر دورة حياة المشروع الكاملة", zh: "横跨整个项目生命周期" } as L,
   allServices: { en: "All Services", ar: "جميع الخدمات", zh: "所有服务" } as L,
   exploreService: { en: "VIEW SCOPE", ar: "عرض تفاصيل الخدمة", zh: "查看详情" } as L,
@@ -332,9 +335,9 @@ export const services = {
 };
 
 export const tech = {
-  sectionLabel: { en: "03 — Technologies", ar: "03 — التقنيات", zh: "03 — 技术" } as L,
-  headline: { en: "Our domain in ", ar: "مجال تخصّصنا في ", zh: "我们的领域：" } as L,
-  headlineAccent: { en: "inorganic chemistry", ar: "الكيمياء غير العضوية", zh: "无机化学" } as L,
+  sectionLabel: { en: "04 — Technologies", ar: "04 — التقنيات", zh: "04 — 技术" } as L,
+  headline: { en: "Industrial Processes We've ", ar: "العمليات الصناعية التي قمنا بـ ", zh: "我们 " } as L,
+  headlineAccent: { en: "Operated, Commissioned & Optimized", ar: "تشغيلها وتدشينها وتحسينها", zh: "运营、调试与优化的工业流程" } as L,
   viewTech: { en: "View technology", ar: "استعراض التقنية", zh: "查看技术" } as L,
   completedProject: { en: "Completed project", ar: "مشروع مُنجَز", zh: "已完成项目" } as L,
   closingLine: {
@@ -342,48 +345,110 @@ export const tech = {
     ar: "إذا كان مصنعك في هذه القائمة، فقد عملنا من داخل مصنع مثله تماماً — ونعرف أين تختبئ المشاكل.",
     zh: "如果您的工厂在此列表中，我们曾在与之相同的工厂内部工作过——我们知道问题隐藏在哪里。"
   } as L,
+  list: {
+    "sulfuric-acid": {
+      name: { en: "Sulfuric Acid", ar: "حمض الكبريتيك", zh: "硫酸" },
+      desc: {
+        en: "From sulfur burning and converter systems to absorption and emission control — complete sulfuric acid plant experience.",
+        ar: "من حرق الكبريت وأنظمة المحولات إلى التحكم في الامتصاص والانبعاثات — خبرة متكاملة في مصانع حمض الكبريتيك.",
+        zh: "从硫磺燃烧和转化器系统到吸收和排放控制——完整的硫酸厂实操经验。"
+      }
+    },
+    "phosphoric-acid": {
+      name: { en: "Phosphoric Acid", ar: "حمض الفوسفوريك", zh: "磷酸" },
+      desc: {
+        en: "Wet process across dihydrate and hemihydrate routes, from reactor systems to filtration, concentration, and purification.",
+        ar: "العملية الرطبة عبر مساري ثنائي الهيدرات ونصف الهيدرات، من أنظمة المفاعلات إلى الفلترة والتركيز والنقاء.",
+        zh: "涵盖二水和半水流程的湿法工艺，从反应器系统到过滤、浓缩和净化。"
+      }
+    },
+    "sulfate-of-potash": {
+      name: { en: "Sulfate of Potash", ar: "كبريتات البوتاسيوم", zh: "硫酸钾" },
+      desc: {
+        en: "Mannheim process and double salt route — including successful SOP commissioning and operational stabilization.",
+        ar: "طريقة مانهايم ومسار الملح المزدوج — بما في ذلك التشغيل الناجح واستقرار العمليات لكبريتات البوتاسيوم (SOP).",
+        zh: "曼海姆工艺和双盐路线——包括成功的硫酸钾（SOP）调试与运营稳定化。"
+      }
+    },
+    "npk": {
+      name: { en: "NPK Fertilizers", ar: "NPK سماد مركب", zh: "氮磷钾复合肥" },
+      desc: {
+        en: "Complete granulation and finishing lines — blending, coating, quality control, and performance testing.",
+        ar: "خطوط التحبيب والتشطيب المتكاملة — الخلط، والطلاء، ومراقبة الجودة، واختبارات الأداء.",
+        zh: "完整的造粒和精制生产线——混合、包裹机涂覆、质量控制和性能测试。"
+      }
+    },
+    "magnesium-sulphate": {
+      name: { en: "Magnesium Sulphate", ar: "كبريتات المغنيسيوم", zh: "硫酸镁" },
+      desc: {
+        en: "Epsomite production across technical and agricultural grades — from commissioning through stable continuous operation.",
+        ar: "إنتاج الإبسوميت عبر الدرجات التقنية والزراعية — من التشغيل التجريبي إلى التشغيل المستمر والمستقر.",
+        zh: "涵盖工业级和农业级七水硫酸镁（Epsomite）生产——从试车调试到稳定持续运行。"
+      }
+    },
+    "ssp": {
+      name: { en: "Single Superphosphate", ar: "سوبر فوسفات أحادي", zh: "普通过磷酸钙" },
+      desc: {
+        en: "Acidulation, curing, granulation, and storage — complete startup and performance optimization support.",
+        ar: "المعاملة الحمضية، والتعتيق، والتحبيب، والتخزين — دعم كامل لبدء التشغيل وتحسين الأداء (SSP).",
+        zh: "酸化反应、熟化、造粒和储存——提供完整的启动与性能优化支持。"
+      }
+    }
+  } as Record<string, { name: Record<GatewayLocale, string>; desc: Record<GatewayLocale, string> }>,
 };
 
 export const trackRecord = {
-  sectionLabel: { en: "04 — Experience", ar: "04 — الخبرات", zh: "04 — 经验" } as L,
-  headline: { en: "Selected ", ar: "مشاريع ", zh: "精选" } as L,
-  headlineAccent: { en: "Projects", ar: "مختارة", zh: "项目" } as L,
-  fullTrackRecord: { en: "Full track record", ar: "السجل الكامل", zh: "完整业绩" } as L,
+  sectionLabel: { en: "05 — Experience", ar: "05 — الخبرات", zh: "05 — 经验" } as L,
+  headline: { en: "Selected ", ar: "خبرة ", zh: "精选" } as L,
+  headlineAccent: { en: "Project Experience", ar: "المشاريع", zh: "项目经验" } as L,
+  description: {
+    en: "Kafaah assembles project-specific technical teams built around the exact operational expertise each plant requires. Our network includes process specialists, commissioning engineers, and operational experts with firsthand experience across fertilizer and chemical facilities in Egypt, the Gulf, and the wider MENA region.",
+    ar: "تقوم كفاءة بتشكيل فرق فنية مخصصة لكل مشروع تدور حول الخبرة التشغيلية الدقيقة التي يتطلبها كل مصنع. تضم شبكتنا أخصائيي عمليات، ومهندسي تشغيل، وخبراء تشغيل لديهم خبرة مباشرة في مصانع الأسمدة والمواد الكيميائية في مصر والخليج ومنطقة الشرق الأوسط وشمال أفريقيا الأوسع.",
+    zh: "Kafaah 根据每家工厂所需的具体运营专长，组建特定项目的技术团队。我们的网络包括工艺专家、调试工程师和运营专家，他们在埃及、海湾及更广泛的中东北非地区的化肥和化工设施中拥有第一手经验。"
+  } as L,
+  fullTrackRecord: { en: "FULL TRACK RECORD", ar: "السجل الكامل للمشاريع", zh: "完整业绩记录" } as L,
   quote: {
-    en: "\u201cWe are an independent group of specialists — not project managers, not EPC subcontractors. Engineers who have operated these plants themselves.\u201d",
-    ar: "\u201cنحن مجموعة مستقلة من المتخصصين — لسنا مدراء مشاريع ولا مقاولين من الباطن. مهندسون شغّلوا هذه المنشآت بأنفسهم.\u201d",
-    zh: "\u201c我们是一群独立的专家——不是项目经理，不是EPC分包商。而是亲自运营过这些工厂的工程师。\u201d",
+    en: "“Every project is supported by a dedicated team of named specialists — engineers who have operated these plants themselves, assembled specifically for your scope.”",
+    ar: "“كل مشروع مدعوم بفريق مخصص من متخصصين معروفين بالاسم — مهندسون قاموا بتشغيل هذه المصانع بأنفسهم، وتم تجميعهم خصيصًا لتغطية نطاق عملك.”",
+    zh: "“每个项目都由专属的实名专家团队提供支持——他们是亲自运营过这些工厂的工程师，专门为您的项目范围而组建。”",
+  } as L,
+  closingLine: {
+    en: "No fixed templates. No generic teams. — Only the expertise the plant actually requires.",
+    ar: "لا قوالب ثابتة. لا فرق عمل عامة. — فقط الخبرة التي يتطلبها المصنع بالفعل.",
+    zh: "无固定模板。无通用团队。 — 只有工厂实际需要的专业技术。"
   } as L,
   disciplines: {
     en: [
-      { label: "Process", desc: "Process engineering, commissioning, optimization" },
-      { label: "Mechanical", desc: "Equipment selection, FAT attendance, maintenance" },
-      { label: "Electrical", desc: "Instrumentation, control systems, safety systems" },
+      { label: "Process", desc: "Engineering, commissioning, optimization" },
+      { label: "Mechanical", desc: "Equipment selection, FAT, maintenance" },
+      { label: "Electrical", desc: "Instrumentation, control & safety systems" },
     ],
     ar: [
-      { label: "العمليات", desc: "هندسة العمليات، التشغيل، التحسين" },
+      { label: "العمليات", desc: "الهندسة، التشغيل التجريبي، التحسين" },
       { label: "الميكانيكا", desc: "اختيار المعدات، حضور FAT، الصيانة" },
-      { label: "الكهرباء", desc: "الأجهزة، أنظمة التحكم، أنظمة السلامة" },
+      { label: "الكهرباء", desc: "الأجهزة، أنظمة التحكم والسلامة" },
     ],
     zh: [
-      { label: "工艺", desc: "工艺工程、调试、优化" },
-      { label: "机械", desc: "设备选型、FAT出席、维护" },
-      { label: "电气", desc: "仪表、控制系统、安全系统" },
+      { label: "工艺", desc: "工程、调试、优化" },
+      { label: "机械", desc: "设备选型、FAT、维护" },
+      { label: "电气", desc: "仪表、控制与安全系统" },
     ],
   } as Record<GatewayLocale, { label: string; desc: string }[]>,
   projects: {
     en: [
       {
-        phase: "Commissioning & Startup · Nov 2025 – Jan 2026",
+        phase: "COMMISSIONING & STARTUP · NOV 2025 – JAN 2026",
         title: "Suez SOP Plant",
-        tech: "K₂SO₄ · Mannheim Process · Chinese EPC",
+        tags: ["K₂SO₄", "Mannheim Process", "International EPC"],
+        desc: "Provided independent commissioning and operational stabilization support for a 40,000 T/YR K₂SO₄ plant — working with an international EPC contractor through the critical startup phase to achieve stable, on-spec production.",
         location: "Suez, Egypt",
-        capacity: "40,000 T/yr"
+        capacity: "40,000 T/YR"
       },
       {
-        phase: "Granulation & Startup · March 2026",
-        title: "Yanbu Granulation Facility",
-        tech: "NPK · Granulation · Saudi Arabia",
+        phase: "COMMISSIONING & STARTUP · MARCH 2026",
+        title: "Yanbu Compaction Granulation Facility",
+        tags: ["Compaction Granulation", "Multi-grade Fertilizer", "KSA"],
+        desc: "Delivered commissioning and startup support for a fertilizer compaction granulation facility in Yanbu, KSA — ensuring stable operation across multiple fertilizer grades through ramp-up and into early continuous production.",
         location: "Yanbu, KSA"
       }
     ],
@@ -391,33 +456,37 @@ export const trackRecord = {
       {
         phase: "التشغيل التجريبي وبدء التشغيل · نوفمبر 2025 - يناير 2026",
         title: "مصنع سلفات البوتاسيوم بالسويس",
-        tech: "سلفات البوتاسيوم (K₂SO₄) · طريقة Mannheim · مقاول صيني",
+        tags: ["كبريتات البوتاسيوم K₂SO₄", "طريقة مانهايم", "مقاول EPC دولي"],
+        desc: "قدمنا دعماً مستقلاً للتشغيل التجريبي والاستقرار التشغيلي لمصنع كبريتات البوتاسيوم (K₂SO₄) بطاقة 40,000 طن/سنة — بالتعاون مع مقاول EPC دولي خلال مرحلة بدء التشغيل الحرجة لتحقيق إنتاج مستقر ومطابق للمواصفات.",
         location: "السويس، مصر",
         capacity: "40,000 طن/سنة"
       },
       {
-        phase: "التحبيب والتشغيل · مارس 2026",
-        title: "منشأة تحبيب الأسمدة بينبع",
-        tech: "NPK · التحبيب · المملكة العربية السعودية",
+        phase: "التشغيل التجريبي وبدء التشغيل · مارس 2026",
+        title: "منشأة تحبيب الأسمدة بالضغط بينبع",
+        tags: ["التحبيب بالضغط", "أسمدة متعددة الدرجات", "المملكة العربية السعودية"],
+        desc: "قدمنا دعماً للتشغيل التجريبي وبدء التشغيل لمنشأة تحبيب الأسمدة بالضغط في ينبع، المملكة العربية السعودية — لضمان التشغيل المستقر عبر درجات أسمدة متعددة خلال مرحلة زيادة الإنتاج والدخول في الإنتاج المستمر المبكر.",
         location: "ينبع، السعودية"
       }
     ],
     zh: [
       {
-        phase: "试车与启动 · 2025年11月 – 2026年1月",
+        phase: "调试与启动 · 2025年11月 – 2026年1月",
         title: "苏伊士 SOP 硫酸钾厂",
-        tech: "硫酸钾 (K₂SO₄) · 曼海姆法 · 中国总包商",
+        tags: ["硫酸钾 (K₂SO₄)", "曼海姆工艺", "国际 EPC 承包商"],
+        desc: "为 40,000 吨/年硫酸钾（K₂SO₄）工厂提供独立的调试和运营稳定化支持——在关键的启动阶段与国际 EPC 承包商合作，以实现稳定、合格的生产。",
         location: "埃及，苏伊士",
         capacity: "40,000 吨/年"
       },
       {
-        phase: "造粒与启动 · 2026年3月",
-        title: "延布造粒装置",
-        tech: "NPK · 造粒 · 沙特阿拉伯",
+        phase: "调试与启动 · 2026年3月",
+        title: "延布挤压造粒工厂",
+        tags: ["挤压造粒", "多级肥料", "沙特阿拉伯"],
+        desc: "为沙特延布的肥料挤压造粒设施提供调试和启动支持——确保在产能爬坡和早期连续生产过程中，多种肥料级别都能稳定运行。",
         location: "沙特，延布"
       }
     ]
-  } as Record<GatewayLocale, { phase: string; title: string; tech: string; location: string; capacity?: string }[]>,
+  } as Record<GatewayLocale, { phase: string; title: string; tags: string[]; desc: string; location: string; capacity?: string }[]>,
 };
 
 export const geography = {
@@ -458,9 +527,9 @@ export const contactCta = {
   message: { en: "Message", ar: "الرسالة", zh: "留言" } as L,
   messagePlaceholder: { en: "Briefly describe your situation or question…", ar: "صف بإيجاز وضعك أو سؤالك…", zh: "简要描述您的情况或问题…" } as L,
   sendRequest: { en: "Send Consultation Request", ar: "إرسال طلب استشارة", zh: "发送咨询请求" } as L,
-  locationLabel: { en: "📍 Cairo, Egypt", ar: "📍 القاهرة، مصر", zh: "📍 开罗，埃及" } as L,
-  responseTime: { en: "⚡ Response within 24 hours", ar: "⚡ الرد خلال 24 ساعة", zh: "⚡ 24小时内回复" } as L,
-  confidential: { en: "🔒 Confidential", ar: "🔒 سري", zh: "🔒 保密" } as L,
+  locationLabel: { en: "Cairo, Egypt", ar: "القاهرة، مصر", zh: "开罗，埃及" } as L,
+  responseTime: { en: "Response within 24 hours", ar: "الرد خلال 24 ساعة", zh: "24小时内回复" } as L,
+  confidential: { en: "Confidential", ar: "سري", zh: "保密" } as L,
 };
 
 export const whyKafaah = {
@@ -530,7 +599,7 @@ export const whyKafaah = {
 
 export const founderBio = {
   sectionLabel: { en: "06 — BUILT ON OPERATIONAL EXPERIENCE", ar: "06 — بنيت على الخبرة التشغيلية", zh: "06 — 立足于运营经验" } as L,
-  name: { en: "Eng. Karim Hisham", ar: "م. كريم هشام", zh: "卡里姆·希沙姆 工程师" } as L,
+  name: { en: "Eng. Mostafa Abdel Ghaffar", ar: "م. مصطفى عبد الغفار", zh: "莫斯塔法·阿卜杜勒·加法尔 工程师" } as L,
   role: { en: "FOUNDER & MANAGING DIRECTOR", ar: "المؤسس والمدير التنفيذي", zh: "创始人兼常务董事" } as L,
   quote: {
     en: "\"Kafaah was founded to bring technical accountability back to industrial projects. We operate inside the plant, because that is where the real problems are solved.\"",
@@ -844,6 +913,122 @@ export const insightsPage = {
   } as Record<GatewayLocale, any[]>
 };
 
+/* ══════════════════════════════════════════════
+   SERVICES PAGE
+   ══════════════════════════════════════════════ */
+export const servicesPage = {
+  eyebrow: { en: "SERVICES", ar: "الخدمات", zh: "服务" } as L,
+  heroTitle: { en: "Our Services", ar: "خدماتنا", zh: "我们的服务" } as L,
+  heroTitleAccent: { en: "Across the Full Project Lifecycle", ar: "عبر دورة حياة المشروع الكاملة", zh: "横跨整个项目生命周期" } as L,
+  heroDesc: {
+    en: "Kafaah supports both project owners and EPC contractors across every phase where industrial projects succeed or fail — from early design through commissioning, startup, and long-term performance.",
+    ar: "تدعم كفاءة كلاً من ملاك المشاريع ومقاولي EPC عبر كل مرحلة تنجح أو تفشل فيها المشاريع الصناعية — بدءاً من التصميم المبكر إلى التشغيل التجريبي، وبدء التشغيل، والأداء طويل المدى.",
+    zh: "Kafaah 在工业项目成败的每个阶段，包括从早期设计到调试、启动和长期性能，为项目业主和 EPC 承包商提供支持。"
+  } as L,
+  heroTagline: { en: "One project. One client. No conflicts — ever.", ar: "مشروع واحد. عميل واحد. لا تضارب في المصالح — أبداً.", zh: "一个项目。一个客户。无利益冲突——绝无例外。" } as L,
+  
+  // Legends
+  legendOwners: { en: "Project Owners", ar: "مُلاك المشاريع", zh: "项目业主" } as L,
+  legendEpc: { en: "EPC Contractors", ar: "مقاولو EPC", zh: "EPC 承包商" } as L,
+  legendBoth: { en: "Both", ar: "كلاهما", zh: "两者" } as L,
+
+  // Lifecycle Diagram text
+  lifecycleLabel: { en: "OPERATIONAL SUPPORT ACROSS", ar: "الدعم التشغيلي عبر", zh: "运营支持贯穿" } as L,
+  lifecyclePhases: [
+    {
+      num: "01",
+      title: { en: "Project & Design Phase", ar: "مرحلة المشروع والتصميم", zh: "项目与设计阶段" },
+      desc: { en: "Owner's Engineer · Investor Advisory · Process Support", ar: "مهندس المالك · الاستشارات الاستثمارية · دعم العمليات", zh: "业主工程师 · 投资者咨询 · 工艺支持" }
+    },
+    {
+      num: "02",
+      title: { en: "Construction & Pre-Startup", ar: "البناء وما قبل بدء التشغيل", zh: "建设与启动前" },
+      desc: { en: "Commissioning Support · Operation Readiness", ar: "دعم التشغيل التجريبي · جاهزية التشغيل", zh: "调试支持 · 运营准备就绪" }
+    },
+    {
+      num: "03",
+      title: { en: "Startup & Stabilization", ar: "بدء التشغيل والاستقرار", zh: "启动与稳定化" },
+      desc: { en: "Commissioning · Troubleshooting · Operator Training", ar: "التشغيل التجريبي · استكشاف الأعطال · تدريب المشغلين", zh: "调试 · 故障排除 · 操作员培训" }
+    },
+    {
+      num: "04",
+      title: { en: "Performance & Optimization", ar: "الأداء والتحسين", zh: "性能与优化" },
+      desc: { en: "Optimization · Performance Guarantee · Documentation", ar: "التحسين · ضمان الأداء · التوثيق", zh: "优化 · 性能保证 · 文件编制" }
+    }
+  ],
+
+  // Badge Translations
+  badgeHighestValue: { en: "HIGHEST VALUE", ar: "القيمة الأعلى", zh: "最高价值" } as L,
+  badgeOwner: { en: "OWNER", ar: "المالك", zh: "业主" } as L,
+  badgeEpc: { en: "EPC", ar: "مقاول EPC", zh: "EPC" } as L,
+  badgeBoth: { en: "OWNER & EPC", ar: "المالك ومقاول EPC", zh: "业主与 EPC" } as L,
+
+  // Proof texts mapping
+  proofs: {
+    "owners-engineer": { en: "K₂SO₄ SOP Plant · 40,000 T/YR · Suez", ar: "مصنع كبريتات البوتاسيوم K₂SO₄ · 40,000 طن/سنة · السويس", zh: "硫酸钾 (K₂SO₄) 厂 · 40,000 吨/年 · 苏伊士" } as L,
+    "process-engineering-support": { en: "H₂SO₄ · H₃PO₄ · K₂SO₄ process design", ar: "تصميم عمليات حمض الكبريتيك · الفوسفوريك · كبريتات البوتاسيوم", zh: "硫酸 · 磷酸 · 硫酸钾 工艺设计" } as L,
+    "commissioning": { en: "Mannheim K₂SO₄ · NPK Compaction Lines · Yanbu", ar: "كبريتات البوتاسيوم بطريقة مانهايم · خطوط تحبيب NPK بالضغط · ينبع", zh: "曼海姆 K₂SO₄ · NPK 挤压造粒线 · 延布" } as L,
+    "troubleshooting": { en: "Wet Process H₃PO₄ · SSP · MgSO₄", ar: "حمض الفوسفوريك بالعملية الرطبة · SSP · كبريتات المغنيسيوم MgSO₄", zh: "湿法磷酸 · SSP · 硫酸镁 MgSO₄" } as L,
+    "operator-training": { en: "H₂SO₄ · NPK · MgSO₄ operations", ar: "عمليات حمض الكبريتيك · NPK · كبريتات المغنيسيوم", zh: "硫酸 · NPK · 硫酸镁 运营" } as L,
+    "startup-performance-guarantee": { en: "Yanbu Compaction Granulation · Multi-grade Fertilizer", ar: "التحبيب بالضغط بينبع · أسمدة متعددة الدرجات", zh: "延布挤压造粒 · 多级肥料" } as L,
+  } as Record<string, L>,
+
+  // Founder Quote
+  founderQuote: {
+    en: "The most expensive mistakes in chemical plant projects happen in the phases most people underestimate — commissioning, startup, and the first months of operation. That's exactly where we focus.",
+    ar: "أكثر الأخطاء كلفة في مشاريع مصانع الكيماويات تحدث في المراحل التي يستهين بها معظم الناس — التشغيل التجريبي، وبدء التشغيل، والأشهر الأولى من التشغيل. هذا هو بالضبط موضع تركيزنا.",
+    zh: "化肥和化工项目中代价最昂贵的错误，往往发生在大多数人低估的阶段——调试、启动以及运营的最初几个月。这正是我们的关注焦点。"
+  } as L,
+  founderRole: {
+    en: "MOUSTAFA ABDELGHAFFAR — FOUNDER & PRINCIPAL PROCESS ENGINEER",
+    ar: "مصطفى عبد الغفار — المؤسس وكبير مهندسي العمليات",
+    zh: "莫斯塔法·阿卜杜勒·加法尔 — 创始人兼首席工艺工程师"
+  } as L,
+
+  // How We Staff
+  staffEyebrow: { en: "HOW WE STAFF EVERY ENGAGEMENT", ar: "كيفية تعيين فرق العمل لكل مشروع", zh: "我们如何配备每个项目的团队" } as L,
+  staffTitle: { en: "No fixed teams.", ar: "لا توجد فرق عمل ثابتة.", zh: "无固定团队。" } as L,
+  staffTitleAccent: { en: "Only the expertise your plant requires.", ar: "فقط الخبرات التي تتطلبها منشأتك.", zh: "فقط الخبرات التي تتطلبها منشأتك。" } as L,
+  staffDesc1: {
+    en: "Each engagement is staffed with engineers who have direct operational experience in your specific process — not generalists assembled from a roster.",
+    ar: "يتم تعيين مهندسين في كل مشروع ممن لديهم خبرة تشغيلية مباشرة في عمليتك الإنتاجية المحددة — وليس عامين أو إداريين يتم تجميعهم من قائمة عامة.",
+    zh: "每个项目均配备在您的特定工艺中拥有直接运营经验的工程师，而非从花名册中临时组建的通用人员。"
+  } as L,
+  staffDesc2: {
+    en: "Every assignment is matched to the plant, process, and project phase involved.",
+    ar: "يتم تكييف ومطابقة كل مهمة مع المصنع والعملية الإنتاجية ومرحلة المشروع المعنية.",
+    zh: "每项任务都与相关的工厂、工艺和项目阶段相匹配。"
+  } as L,
+  staffCategories: [
+    {
+      title: { en: "Process", ar: "العمليات", zh: "工艺" },
+      desc: { en: "Engineering, commissioning, optimization", ar: "الهندسة، التشغيل التجريبي، التحسين", zh: "工程、调试、优化" }
+    },
+    {
+      title: { en: "Mechanical", ar: "الميكانيكا", zh: "机械" },
+      desc: { en: "Equipment selection, FAT attendance, maintenance", ar: "اختيار المعدات، حضور اختبارات قبول المصنع (FAT)، الصيانة", zh: "设备选型、参加工厂验收测试（FAT）、维护" }
+    },
+    {
+      title: { en: "Electrical & Instrumentation", ar: "الكهرباء والأجهزة", zh: "电气与仪表" },
+      desc: { en: "Control systems, safety systems, DCS", ar: "أنظمة التحكم، أنظمة السلامة، نظام التحكم الموزع (DCS)", zh: "控制系统、安全系统、分散控制系统（DCS）" }
+    },
+    {
+      title: { en: "Operations & Training", ar: "العمليات والتدريب", zh: "运营与培训" },
+      desc: { en: "Operator readiness, procedures, plant-specific training", ar: "جاهزية المشغلين، الإجراءات، تدريب مخصص لكل مصنع", zh: "操作员准备就绪、规程、特定工厂培训" }
+    }
+  ],
+
+  // Bottom CTA
+  ctaTitle: { en: "Industrial projects rarely fail ", ar: "نادراً ما تفشل المشاريع الصناعية ", zh: "工业项目的失败很少 " } as L,
+  ctaTitleAccent: { en: "for one reason.", ar: "لسبب واحد.", zh: "是由于单一原因。" } as L,
+  ctaDesc: {
+    en: "Let's identify where technical execution, startup readiness, or operational performance may be at risk — and where Kafaah can make the difference.",
+    ar: "دعنا نحدد التحديات التي قد تعرض التنفيذ الفني، أو جاهزية بدء التشغيل، أو الأداء التشغيلي للخطر — ونبين أين يمكن لـ 'كفاءة' أن تصنع الفارق.",
+    zh: "让我们找出技术执行、启动准备就绪或运营绩效可能面临风险的环节——以及 Kafaah 在哪里可以发挥关键作用。"
+  } as L,
+  btnDiscuss: { en: "DISCUSS YOUR PROJECT", ar: "ناقش مشروعك معنا", zh: "商讨您的项目" } as L,
+  btnExperience: { en: "VIEW OUR EXPERIENCE", ar: "استعرض خبراتنا", zh: "查看我们的经验" } as L,
+};
 
 /* ── Shared CTA ── */
 export const shared = {

@@ -51,7 +51,7 @@ export function ContactClient() {
   const fcBody = getFontClass(locale, "body");
 
   return (
-    <section className="min-h-[calc(100vh-68px)] flex flex-col lg:flex-row">
+    <section className="min-h-screen flex flex-col lg:flex-row pt-[72px]">
       {/* Left side - Info */}
       <div className="flex-1 bg-navy-dark p-8 lg:p-16 xl:p-24 border-e border-divider flex flex-col justify-center relative overflow-hidden">
         <div

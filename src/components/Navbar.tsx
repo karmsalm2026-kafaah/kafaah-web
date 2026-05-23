@@ -98,8 +98,8 @@ export function Navbar() {
     <nav
       dir={rtl ? "rtl" : "ltr"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-navy-deep/95 backdrop-blur-xl border-b border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
-          : "bg-transparent border-b border-white/[0.08]"
+          ? "bg-navy-dark/95 backdrop-blur-xl border-b border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent border-b border-white/[0.05]"
         }`}
     >
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-[72px] flex items-center justify-between">
@@ -159,11 +159,14 @@ export function Navbar() {
 
           {/* Services Mega Menu */}
           <div className="nav-item-drop relative">
-            <span className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/services") ? "nav-link-active" : ""}`}>
+            <Link
+              href="/services/"
+              className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/services") ? "nav-link-active" : ""}`}
+            >
               <Wrench className="w-3.5 h-3.5 opacity-50" />
               {t("services")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
-            </span>
+            </Link>
             {/* Mega Menu Dropdown */}
             <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[650px]`}>
               <div className="bg-navy-deep border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
@@ -221,6 +224,16 @@ export function Navbar() {
                     </div>
                   </div>
                 </div>
+                {/* View all services footer link */}
+                <div className="border-t border-white/[0.08] px-4 py-3 bg-white/[0.01]">
+                  <Link
+                    href="/services/"
+                    className={`flex items-center gap-2 ${fc} text-[11px] font-semibold text-gold/80 hover:text-gold transition-colors duration-200 group/all`}
+                  >
+                    <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-200 group-hover/all:translate-x-1 ${rtl ? "rotate-180 group-hover/all:-translate-x-1 group-hover/all:translate-x-0" : ""}`} />
+                    {locale === "ar" ? "عرض جميع الخدمات" : locale === "zh" ? "查看所有服务" : "View all services"}
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -242,16 +255,17 @@ export function Navbar() {
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="group/lang flex items-center gap-1.5 bg-white/5 hover:bg-white/10 transition-all duration-300 px-3 py-1.5 rounded-sm"
+              className="group/lang flex items-center gap-1.5 bg-transparent text-silver/85 hover:text-gold transition-all duration-300 hover:scale-108 active:scale-95 py-1.5 px-1 origin-center"
               aria-label={nav.language[locale]}
             >
-              <Globe className="w-4 h-4 text-white group-hover/lang:text-gold transition-colors" />
-              <span className="hidden sm:inline text-[10px] font-[family-name:var(--font-ui)] font-bold tracking-[0.1em] uppercase text-white group-hover/lang:text-gold transition-colors">
+              <Globe className="w-4 h-4 text-current transition-colors" />
+              <span className="hidden sm:inline text-[10px] font-[family-name:var(--font-ui)] font-bold tracking-[0.1em] uppercase text-current transition-colors">
                 {locale.toUpperCase()}
               </span>
+              <ChevronDown className="w-3 h-3 text-current opacity-60 group-hover/lang:opacity-100 transition-opacity" />
             </button>
             {langOpen && (
-              <div className={`absolute top-full ${rtl ? "left-0" : "right-0"} mt-2 min-w-[140px] bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden z-50`}>
+              <div className={`absolute top-full ${rtl ? "left-0" : "right-0"} mt-[18px] min-w-[140px] bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden z-50`}>
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
                 <div className="p-1.5">
                   {LOCALES.map((l) => (

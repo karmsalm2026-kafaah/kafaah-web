@@ -58,6 +58,36 @@ body {
   overflow-x: hidden;
 }
 
+/* ── PREVENT TEXT I-BEAM CURSOR ON WORDS/LINKS ── */
+body, 
+h1, h2, h3, h4, h5, h6, 
+span, p, a, button, li, ul, ol, em, strong,
+.nav-link-premium {
+  cursor: default;
+}
+
+/* Pointer cursor for interactive elements */
+a, 
+button, 
+[role="button"],
+.cursor-pointer,
+.nav-link-premium {
+  cursor: pointer !important;
+}
+
+/* Re-enable text selection caret only for inputs and textareas */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input:not([type]),
+textarea,
+[contenteditable="true"] {
+  cursor: text !important;
+}
+
 /* ── SELECTION ── */
 ::selection {
   background: rgba(232, 146, 10, 0.3);
@@ -190,40 +220,55 @@ body {
 .nav-link-premium {
   font-size: 11.5px;
   font-weight: 500;
-  color: rgba(248, 250, 252, 0.85);
-  padding: 0 0.7rem;
+  color: rgba(248, 250, 252, 0.75);
+  padding: 0 0.85rem;
   height: 72px;
   display: flex;
   align-items: center;
   position: relative;
-  transition: color 0.3s;
   cursor: pointer;
   white-space: nowrap;
+  border-radius: 0;
+  transition: color 0.25s ease, background 0.25s ease;
+  /* top indicator dot – hidden by default */
 }
+.nav-link-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 24px;
+  height: 2px;
+  border-radius: 0 0 3px 3px;
+  background: var(--color-gold);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+/* remove old bottom underline */
+.nav-link-premium::after {
+  display: none;
+}
+
+/* Hover state: frosted glass pill + brighter text */
 .nav-link-premium:hover,
 .nav-item-drop:hover .nav-link-premium {
   color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
 }
-/* Gold underline animation on hover */
-.nav-link-premium::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--color-gold);
-  transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-link-premium:hover::after,
-.nav-item-drop:hover .nav-link-premium::after,
-.nav-link-active::after {
-  width: 100%;
-  left: 0;
-}
+
+/* Active state: gold top dot + gold text + very subtle gold tint */
 .nav-link-active {
-  color: #ffffff !important;
+  color: var(--color-gold) !important;
+  background: rgba(240, 160, 32, 0.08) !important;
+  border-radius: 4px;
 }
+.nav-link-active::before {
+  transform: translateX(-50%) scaleX(1) !important;
+  opacity: 1 !important;
+}
+
 
 /* ── NAV DROPDOWN ── */
 .nav-dropdown {
