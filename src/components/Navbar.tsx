@@ -133,7 +133,7 @@ export function Navbar() {
               {t("technologies")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
-            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[300px]`}>
+            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[360px]`}>
               <div className="bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
                 <div className="p-2">
@@ -152,6 +152,16 @@ export function Navbar() {
                       <ArrowRight className={`w-3 h-3 ${rtl ? "mr-auto rotate-180" : "ml-auto"} text-gold/0 group-hover/item:text-gold translate-x-[-4px] group-hover/item:translate-x-0 transition-all duration-200`} />
                     </Link>
                   ))}
+                </div>
+                {/* View all technologies link */}
+                <div className="border-t border-white/[0.08] px-4 py-3 bg-white/[0.01]">
+                  <Link
+                    href="/technologies/"
+                    className={`flex items-center gap-2 ${fc} text-[11px] font-semibold text-gold/80 hover:text-gold transition-colors duration-200 group/all`}
+                  >
+                    <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-200 group-hover/all:translate-x-1 ${rtl ? "rotate-180 group-hover/all:-translate-x-1 group-hover/all:translate-x-0" : ""}`} />
+                    {locale === "ar" ? "عرض جميع التقنيات" : locale === "zh" ? "查看所有技术" : "View all technologies"}
+                  </Link>
                 </div>
               </div>
             </div>
