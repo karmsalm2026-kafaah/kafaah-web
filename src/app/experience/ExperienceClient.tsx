@@ -746,7 +746,7 @@ export function ExperienceClient() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Column: Title, Heading & Description */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-6 space-y-6">
               <FadeIn className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em]" : fcUi + " text-[12px]"} font-bold text-gold uppercase`}>
@@ -772,11 +772,11 @@ export function ExperienceClient() {
             </div>
 
             {/* Right Column: Founder Display Card */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-6">
               <FadeIn delay={0.2}>
-                <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-4 sm:p-5 flex flex-col sm:flex-row gap-5 items-center">
+                <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-5 sm:p-6 lg:p-7 flex flex-col sm:flex-row gap-6 items-center">
                   {/* Founder photo with grayscale transition and scaling */}
-                  <div className="relative w-full sm:w-[130px] h-[145px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
+                  <div className="relative w-full sm:w-[155px] h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                     <div className="absolute inset-0 bg-navy-dark/10 z-10" />
                     <img
                       src="/founder.jpeg"
@@ -788,13 +788,13 @@ export function ExperienceClient() {
 
                   {/* Caption & Title Details */}
                   <div className="flex-1 min-w-0">
-                    <p className={`${fcUi} text-[10px] font-bold tracking-[0.15em] text-gold uppercase mb-1`}>
+                    <p className={`${fcUi} text-[11px] sm:text-[11.5px] font-bold tracking-[0.15em] text-gold uppercase mb-1.5`}>
                       {locale === "ar" ? "المدير التنفيذي وكبير المهندسين" : locale === "zh" ? "总经理兼总工程师" : "Managing Director & Chief Engineer"}
                     </p>
-                    <p className={`${fcBody} text-[14px] text-white font-semibold mb-2`}>
+                    <p className={`${fcBody} text-[15px] sm:text-[16.5px] text-white font-semibold mb-2.5`}>
                       {locale === "ar" ? "م. مصطفى عبد الغفار" : locale === "zh" ? "莫斯塔法·阿卜杜勒·加法尔 工程师" : "Eng. Mostafa Abdel Ghaffar"}
                     </p>
-                    <p className={`${fcBody} text-[12px] text-silver/70 leading-relaxed font-light text-justify`}>
+                    <p className={`${fcBody} text-[13px] sm:text-[13.5px] text-silver/80 leading-relaxed font-light text-justify`}>
                       {locale === "ar" 
                         ? "يقود العمليات التشغيلية وبدء التشغيل الميداني للمشاريع الكيميائية والأسمدة بخبرة تزيد عن 20 عاماً."
                         : locale === "zh"
