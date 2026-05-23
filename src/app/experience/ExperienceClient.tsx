@@ -251,9 +251,10 @@ function InteractiveMap({
           ctx.lineWidth = 1.2;
           ctx.stroke();
 
+          const t = pulseScale / (2 * Math.PI);
           ctx.beginPath();
-          ctx.arc(sx, sy, size + 5 * Math.sin(pulseScale * 1.5), 0, 2 * Math.PI);
-          ctx.strokeStyle = `rgba(229, 193, 88, ${0.4 * (1 - Math.sin(pulseScale * 1.5)/2)})`;
+          ctx.arc(sx, sy, size + 12 * t, 0, 2 * Math.PI);
+          ctx.strokeStyle = `rgba(229, 193, 88, ${0.4 * (1 - t)})`;
           ctx.stroke();
 
           ctx.beginPath();
