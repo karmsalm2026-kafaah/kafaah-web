@@ -3,6 +3,7 @@ import { streamText, generateText, stepCountIs, convertToModelMessages } from 'a
 import { tool } from 'ai';
 import { z } from 'zod';
 import { getChatbotKnowledge } from '@/lib/chatbotKnowledge';
+import { sendLeadEmail } from '@/lib/sendLeadEmail';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -60,6 +61,16 @@ export async function POST(req: Request) {
             }),
             execute: async ({ name, phoneOrEmail, inquiry }) => {
               console.log(`[LEAD CAPTURED] Name: ${name}, Contact: ${phoneOrEmail}, Inquiry: ${inquiry}`);
+              
+              // Send email notification (fire-and-forget, don't block the response)
+              const emailResult = await sendLeadEmail({ name, phoneOrEmail, inquiry });
+              
+              if (emailResult.success) {
+                console.log(`[LEAD EMAIL] Notification sent successfully for: ${name}`);
+              } else {
+                console.warn(`[LEAD EMAIL] Failed to send notification: ${emailResult.error}`);
+              }
+
               return {
                 status: 'success' as const,
                 message: 'Lead recorded successfully. We will contact you soon!',
