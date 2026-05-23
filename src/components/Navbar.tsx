@@ -21,14 +21,7 @@ const techDropdown = technologies.map((t) => ({
   label: t.name,
 }));
 
-const ownerServices = services.filter(s => s.audience === "owner" || s.audience === "both").map((s) => ({
-  href: `/services/${s.slug}/`,
-  label: s.title,
-  slug: s.slug,
-  sub: s.featured ? "Highest-value engagement" : undefined,
-}));
-
-const epcServices = services.filter(s => s.audience === "epc" || s.audience === "both").map((s) => ({
+const navServices = services.map((s) => ({
   href: `/services/${s.slug}/`,
   label: s.title,
   slug: s.slug,
@@ -181,58 +174,28 @@ export function Navbar() {
             <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[650px]`}>
               <div className="bg-navy-deep border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
-                <div className="grid grid-cols-2">
-                  {/* Owners Column */}
-                  <div className="p-4 border-e border-white/[0.10]">
-                    <div className={`mb-3 pb-2 border-b border-white/[0.10] ${fc} text-[11px] font-bold text-gold uppercase tracking-[0.1em]`}>
-                      {megaMenu.owners[locale]}
-                    </div>
-                    <div className="space-y-1">
-                      {ownerServices.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="flex items-start gap-3 px-3 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
-                        >
-                          <div className="mt-0.5 text-gold/60 group-hover/item:text-gold transition-colors shrink-0">
-                            {getServiceIcon(item.slug)}
-                          </div>
-                          <div>
-                            <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
-                              {item.label}
-                            </span>
-                            {item.sub && (
-                              <span className="block font-[family-name:var(--font-body)] text-[10.5px] text-gold/80 tracking-normal mt-0.5">
-                                {item.sub}
-                              </span>
-                            )}
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                  {/* EPC Column */}
-                  <div className="p-4 bg-white/[0.02]">
-                    <div className={`mb-3 pb-2 border-b border-white/[0.10] ${fc} text-[11px] font-bold text-silver/70 uppercase tracking-[0.1em]`}>
-                      {megaMenu.epc[locale]}
-                    </div>
-                    <div className="space-y-1">
-                      {epcServices.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="flex items-start gap-3 px-3 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
-                        >
-                          <div className="mt-0.5 text-gold/60 group-hover/item:text-gold transition-colors shrink-0">
-                            {getServiceIcon(item.slug)}
-                          </div>
-                          <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
-                            {item.label}
+                <div className="grid grid-cols-2 gap-2 p-4">
+                  {navServices.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-start gap-3 px-3 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
+                    >
+                      <div className="mt-0.5 text-gold/60 group-hover/item:text-gold transition-colors shrink-0">
+                        {getServiceIcon(item.slug)}
+                      </div>
+                      <div>
+                        <span className={`${fc} text-[12px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
+                          {item.label}
+                        </span>
+                        {item.sub && (
+                          <span className="block font-[family-name:var(--font-body)] text-[10px] text-gold/75 tracking-normal mt-0.5">
+                            {item.sub}
                           </span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                        )}
+                      </div>
+                    </Link>
+                  ))}
                 </div>
                 {/* View all services footer link */}
                 <div className="border-t border-white/[0.08] px-4 py-3 bg-white/[0.01]">
@@ -352,21 +315,8 @@ export function Navbar() {
                 <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileSvcOpen ? "rotate-180" : ""}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${mobileSvcOpen ? "max-h-[800px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
-                <div className={`mb-2 pt-1 ${rtl ? "pr-3" : "pl-3"} ${fc} text-[10px] font-bold text-gold uppercase tracking-[0.1em]`}>
-                  {megaMenu.owners[locale]}
-                </div>
-                {ownerServices.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-start gap-3 py-2 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
-                    <div className="mt-0.5 text-gold/50">{getServiceIcon(item.slug)}</div>
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
-
-                <div className={`mt-4 mb-2 ${rtl ? "pr-3" : "pl-3"} ${fc} text-[10px] font-bold text-silver/60 uppercase tracking-[0.1em]`}>
-                  {megaMenu.epc[locale]}
-                </div>
-                {epcServices.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-start gap-3 py-2 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
+                {navServices.map((item) => (
+                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-start gap-3 py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
                     <div className="mt-0.5 text-gold/50">{getServiceIcon(item.slug)}</div>
                     <span>{item.label}</span>
                   </Link>
