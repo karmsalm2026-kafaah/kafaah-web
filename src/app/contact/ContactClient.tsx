@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
-  Mail, MapPin, ArrowRight, Clock, Building, Check, ChevronDown, PhoneCall, Award
+  Mail, MapPin, ArrowRight, Clock, Building, Check, ChevronDown, PhoneCall, Award, Loader2
 } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
@@ -154,281 +154,335 @@ export function ContactClient() {
   };
 
   return (
-    <section className="min-h-screen flex flex-col lg:flex-row pt-[72px] bg-navy-dark overflow-hidden relative">
-      {/* Background Noise & Overlay */}
-      <div className="absolute inset-0 hero-noise opacity-15 pointer-events-none z-0" />
-
-      {/* Left side - Info Panel */}
-      <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 border-b lg:border-b-0 lg:border-e border-white/[0.06] flex flex-col justify-center relative overflow-hidden z-10">
+    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen relative overflow-hidden font-body">
+      
+      {/* Global Blueprint Grid Underlay & Glowing Blur Orbs */}
+      <div className="absolute inset-0 z-0">
+        <div
+          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(229,193,88,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(229,193,88,0.05) 1px, transparent 1px)`,
+            backgroundSize: "32px 32px",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/95 to-navy-dark" />
         
-        {/* Dark Industrial Hero Image underlay */}
-        <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <picture>
-            <source srcSet="/contact-hero-bg.webp" type="image/webp" />
-            <img
-              src="/contact-hero-bg.png"
-              alt="Kafaah Engineering Complex"
-              className="w-full h-full object-cover opacity-20 mix-blend-luminosity scale-105 transition-transform duration-1000 hover:scale-100"
-            />
-          </picture>
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy-dark/95 to-navy-dark/85" />
-          <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
+        {/* Soft glowing ambient lighting orbs */}
+        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] bg-gold/5 rounded-full blur-[120px] pointer-events-none animate-pulse duration-[8s]" />
+        <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[12s]" />
+      </div>
+
+      <div className="min-h-screen flex flex-col lg:flex-row pt-[72px] relative z-10">
+        
+        {/* Left side - Info Panel */}
+        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 border-b lg:border-b-0 lg:border-e border-white/[0.06] flex flex-col justify-center relative overflow-hidden">
+          
+          {/* Dark Industrial Hero Image underlay */}
+          <div className="absolute inset-0 z-0 select-none pointer-events-none">
+            <picture>
+              <source srcSet="/contact-hero-bg.webp" type="image/webp" />
+              <img
+                src="/contact-hero-bg.png"
+                alt="Kafaah Engineering Complex"
+                className="w-full h-full object-cover opacity-25 mix-blend-luminosity scale-105 transition-transform duration-[20s] ease-out hover:scale-100"
+              />
+            </picture>
+            <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy-dark/95 to-navy-dark/85" />
+            <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
+          </div>
+          
+          <div className="relative z-10 max-w-[520px] w-full mx-auto lg:mx-0">
+            <FadeIn className="space-y-6">
+              <div className="flex items-center gap-3">
+                <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase flex items-center gap-1.5`}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
+                  {dict.pageTitle[locale]}
+                </span>
+                <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
+              </div>
+
+              <h1 className={`${fcDisplay} text-[clamp(32px,4.5vw,56px)] leading-[1.1] text-white font-medium`}>
+                <HoverWords text={dict.letsTalk[locale]} locale={locale} />
+                <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
+              </h1>
+
+              <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light`}>
+                <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
+              </p>
+
+              {/* Premium Headquarters and Contact glassmorphic dashboard card */}
+              <div className="bg-navy-card/25 backdrop-blur-md border border-white/[0.06] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 shadow-[0_25px_50px_rgba(0,0,0,0.4)] space-y-6 mt-8 relative group overflow-hidden">
+                
+                {/* Architectural corner highlights */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
+
+                {/* Headquarters Info Item */}
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                      {dict.headquarters[locale]}
+                    </span>
+                    <span className={`${fcBody} text-base font-semibold text-white mt-1 block`}>
+                      {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
+                    </span>
+                    <span className="text-xs text-silver/50 font-light mt-0.5 block">
+                      {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Email Info Item */}
+                <div className="flex items-start gap-4 border-t border-white/[0.06] pt-5">
+                  <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                      {dict.email[locale]}
+                    </span>
+                    <a 
+                      href="mailto:info@kafaahsolutions.com" 
+                      className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
+                      dir="ltr"
+                    >
+                      info@kafaahsolutions.com
+                    </a>
+                  </div>
+                </div>
+
+                {/* Service response hours badge */}
+                <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5 text-[11px] font-mono text-silver/65">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  </span>
+                  <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة طوال أيام الأسبوع" : "Engineering mobilization available 24/7"}</span>
+                </div>
+
+              </div>
+            </FadeIn>
+          </div>
         </div>
-        
-        <div className="relative z-10 max-w-[520px]">
-          <FadeIn className="space-y-6">
-            <div className="flex items-center gap-3">
-              <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase`}>
-                {dict.pageTitle[locale]}
-              </span>
-              <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
-            </div>
 
-            <h1 className={`${fcDisplay} text-[clamp(32px,4.5vw,56px)] leading-[1.1] text-white font-medium`}>
-              <HoverWords text={dict.letsTalk[locale]} locale={locale} />
-              <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
-            </h1>
-
-            <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light`}>
-              <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
-            </p>
-
-            {/* Premium Headquarters and Contact card */}
-            <div className="bg-navy-card/35 backdrop-blur-sm border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/45 p-6 sm:p-8 rounded-sm transition-all duration-300 shadow-[0_15px_40px_rgba(0,0,0,0.35)] space-y-6 mt-8">
+        {/* Right side - Contact Form */}
+        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/20 flex flex-col justify-center relative">
+          
+          {/* Glow corner element */}
+          <div className="absolute -right-1/4 -bottom-1/4 w-[350px] h-[350px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
+          
+          <FadeIn delay={0.15}>
+            <div className="max-w-[520px] w-full mx-auto lg:mx-0">
               
-              {/* Headquarters */}
-              <div className="flex items-start gap-4">
-                <div className="p-2.5 bg-gold/10 rounded-sm border border-gold/15 shrink-0 mt-0.5 text-gold">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                    {dict.headquarters[locale]}
-                  </span>
-                  <span className={`${fcBody} text-sm font-semibold text-white mt-1 block`}>
-                    {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
-                  </span>
-                  <span className="text-xs text-silver/50 font-light mt-0.5 block">
-                    {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
-                  </span>
-                </div>
-              </div>
+              {/* Form Card wrapper */}
+              <div className="bg-navy-card/10 backdrop-blur-lg border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 shadow-[0_45px_90px_rgba(0,0,0,0.55)] relative overflow-hidden group">
+                
+                {/* Architectural corner highlights */}
+                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
+                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
+                
+                {/* Thin golden top border line */}
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent pointer-events-none" />
 
-              {/* Email */}
-              <div className="flex items-start gap-4 border-t border-white/[0.06] pt-5">
-                <div className="p-2.5 bg-gold/10 rounded-sm border border-gold/15 shrink-0 mt-0.5 text-gold">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <div>
-                  <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                    {dict.email[locale]}
-                  </span>
-                  <a 
-                    href="mailto:info@kafaahsolutions.com" 
-                    className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
-                    dir="ltr"
-                  >
-                    info@kafaahsolutions.com
-                  </a>
-                </div>
-              </div>
+                <AnimatePresence mode="wait">
+                  {isSuccess ? (
+                    <motion.div 
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="text-center py-10"
+                    >
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 border border-gold/30 text-gold mb-6 shadow-[0_0_20px_rgba(240,160,32,0.15)] animate-bounce">
+                        <Check className="w-8 h-8" />
+                      </div>
+                      <h3 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mb-4`}>
+                        {dict.successTitle[locale]}
+                      </h3>
+                      <p className={`${fcBody} text-sm sm:text-base text-silver/70 font-light leading-relaxed max-w-[420px] mx-auto`}>
+                        {dict.successDesc[locale]}
+                      </p>
+                    </motion.div>
+                  ) : (
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                      
+                      {/* Name & Company Grid */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                            <span className="w-1 h-1 rounded-full bg-gold/60" />
+                            {dict.fullName[locale]} <span className="text-gold">*</span>
+                          </label>
+                          <input
+                            {...register("name")}
+                            type="text"
+                            placeholder="John Doe"
+                            className={`w-full bg-white/[0.02] border ${
+                              errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                          />
+                          {errors.name && (
+                            <span className="text-red-400 text-[11px] mt-1 block">{errors.name.message}</span>
+                          )}
+                        </div>
+                        
+                        <div className="space-y-2">
+                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                            <span className="w-1 h-1 rounded-full bg-gold/60" />
+                            {dict.companyLabel[locale]} <span className="text-gold">*</span>
+                          </label>
+                          <input
+                            {...register("company")}
+                            type="text"
+                            placeholder="Acme Chemical Corp"
+                            className={`w-full bg-white/[0.02] border ${
+                              errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                          />
+                          {errors.company && (
+                            <span className="text-red-400 text-[11px] mt-1 block">{errors.company.message}</span>
+                          )}
+                        </div>
+                      </div>
 
-              {/* Service response hours badge */}
-              <div className="flex items-center gap-2.5 border-t border-white/[0.06] pt-5 text-[11px] font-mono text-silver/60">
-                <Clock className="w-4 h-4 text-gold/80" />
-                <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة طوال أيام الأسبوع" : "Engineering mobilization available 24/7"}</span>
+                      {/* Work Email */}
+                      <div className="space-y-2">
+                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                          <span className="w-1 h-1 rounded-full bg-gold/60" />
+                          {dict.workEmail[locale]} <span className="text-gold">*</span>
+                        </label>
+                        <input
+                          {...register("email")}
+                          type="email"
+                          placeholder="johndoe@company.com"
+                          className={`w-full bg-white/[0.02] border ${
+                            errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                          } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                        />
+                        {errors.email && (
+                          <span className="text-red-400 text-[11px] mt-1 block">{errors.email.message}</span>
+                        )}
+                      </div>
+
+                      {/* Custom Styled Select Dropdown */}
+                      <div ref={dropdownRef} className="relative space-y-2">
+                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                          <span className="w-1 h-1 rounded-full bg-gold/60" />
+                          {dict.serviceLabel[locale]} <span className="text-gold">*</span>
+                        </label>
+                        
+                        <div 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectOpen(!selectOpen);
+                          }}
+                          className={`w-full flex items-center justify-between bg-white/[0.02] border ${
+                            errors.service ? "border-red-500/40" : selectOpen ? "border-gold" : "border-white/[0.06] hover:border-white/15"
+                          } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
+                        >
+                          <span className={selectedService ? "text-white" : "text-silver/30"}>
+                            {selectedService 
+                              ? (serviceLabels[selectedService]?.[locale] || selectedService) 
+                              : dict.selectService[locale]}
+                          </span>
+                          <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
+                        </div>
+
+                        <AnimatePresence>
+                          {selectOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 5 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute z-30 left-0 right-0 mt-1.5 bg-navy-dark/95 backdrop-blur-xl border border-white/[0.12] rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden max-h-[250px] overflow-y-auto"
+                            >
+                              {selectOptions.map((opt) => (
+                                <div 
+                                  key={opt.value}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setValue("service", opt.value, { shouldValidate: true });
+                                    setSelectOpen(false);
+                                  }}
+                                  className={`px-4 py-3 text-xs sm:text-sm cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${
+                                    selectedService === opt.value 
+                                      ? "bg-gold/15 text-gold font-semibold" 
+                                      : "text-silver/80 hover:bg-white/[0.04] hover:text-white"
+                                  }`}
+                                >
+                                  <span>{serviceLabels[opt.value]?.[locale] || opt.value}</span>
+                                  {selectedService === opt.value && <Check className="w-4 h-4 text-gold" />}
+                                </div>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+
+                        {errors.service && (
+                          <span className="text-red-400 text-[11px] mt-1 block">{errors.service.message}</span>
+                        )}
+                      </div>
+
+                      {/* Message */}
+                      <div className="space-y-2">
+                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                          <span className="w-1 h-1 rounded-full bg-gold/60" />
+                          {dict.messageLabel[locale]} <span className="text-gold">*</span>
+                        </label>
+                        <textarea
+                          {...register("message")}
+                          rows={4}
+                          placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
+                          className={`w-full bg-white/[0.02] border ${
+                            errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                          } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
+                        ></textarea>
+                        {errors.message && (
+                          <span className="text-red-400 text-[11px] mt-1 block">{errors.message.message}</span>
+                        )}
+                      </div>
+
+                      {/* Submit Button */}
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className={`group w-full relative overflow-hidden rounded-lg bg-gradient-to-r from-gold via-gold-light to-gold hover:from-gold-light hover:to-gold text-navy py-4 transition-all duration-300 shadow-[0_10px_25px_rgba(240,160,32,0.2)] hover:shadow-[0_15px_30px_rgba(240,160,32,0.35)] hover:-translate-y-0.5 active:translate-y-0 ${fcUi} text-xs font-bold tracking-[0.18em] uppercase disabled:opacity-75 disabled:cursor-not-allowed`}
+                      >
+                        {/* Premium Shimmer Sweep */}
+                        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
+                        <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
+                        <span className="relative z-10 flex items-center justify-center gap-2">
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-4 h-4 animate-spin text-navy" />
+                              <span>{dict.sending[locale]}</span>
+                            </>
+                          ) : (
+                            <>
+                              <span>{dict.submit[locale]}</span>
+                              <ArrowRight className={`w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
+                            </>
+                          )}
+                        </span>
+                      </button>
+
+                    </form>
+                  )}
+                </AnimatePresence>
               </div>
 
             </div>
           </FadeIn>
         </div>
       </div>
-
-      {/* Right side - Contact Form */}
-      <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/40 flex flex-col justify-center relative z-10">
-        
-        {/* Glow corner element */}
-        <div className="absolute -right-1/4 -bottom-1/4 w-[350px] h-[350px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
-        
-        <FadeIn delay={0.15}>
-          <div className="max-w-[520px] w-full mx-auto lg:mx-0">
-            
-            <AnimatePresence mode="wait">
-              {isSuccess ? (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  className="bg-navy-card/45 backdrop-blur border border-gold/40 p-8 sm:p-10 text-center rounded-sm shadow-[0_20px_50px_rgba(229,193,88,0.04)]"
-                >
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gold/15 border border-gold/30 text-gold mb-5">
-                    <Check className="w-6 h-6" />
-                  </div>
-                  <h3 className={`${fcDisplay} text-2xl text-white font-semibold mb-3`}>
-                    {dict.successTitle[locale]}
-                  </h3>
-                  <p className={`${fcBody} text-sm text-silver/80 font-light leading-relaxed`}>
-                    {dict.successDesc[locale]}
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                  
-                  {/* Name & Company Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/45 block mb-2`}>
-                        {dict.fullName[locale]} <span className="text-gold">*</span>
-                      </label>
-                      <input
-                        {...register("name")}
-                        type="text"
-                        placeholder="John Doe"
-                        className={`w-full bg-navy-dark/60 backdrop-blur-sm border ${
-                          errors.name ? "border-red-500/50 focus:border-red-500" : "border-white/[0.08] focus:border-gold"
-                        } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-3 rounded-sm`}
-                      />
-                      {errors.name && (
-                        <span className="text-red-400 text-[11px] mt-1.5 block">{errors.name.message}</span>
-                      )}
-                    </div>
-                    
-                    <div>
-                      <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/45 block mb-2`}>
-                        {dict.companyLabel[locale]} <span className="text-gold">*</span>
-                      </label>
-                      <input
-                        {...register("company")}
-                        type="text"
-                        placeholder="Acme Chemical Corp"
-                        className={`w-full bg-navy-dark/60 backdrop-blur-sm border ${
-                          errors.company ? "border-red-500/50 focus:border-red-500" : "border-white/[0.08] focus:border-gold"
-                        } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-3 rounded-sm`}
-                      />
-                      {errors.company && (
-                        <span className="text-red-400 text-[11px] mt-1.5 block">{errors.company.message}</span>
-                      )}
-                    </div>
-                  </div>
-
-                  {/* Work Email */}
-                  <div>
-                    <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/45 block mb-2`}>
-                      {dict.workEmail[locale]} <span className="text-gold">*</span>
-                    </label>
-                    <input
-                      {...register("email")}
-                      type="email"
-                      placeholder="johndoe@company.com"
-                      className={`w-full bg-navy-dark/60 backdrop-blur-sm border ${
-                        errors.email ? "border-red-500/50 focus:border-red-500" : "border-white/[0.08] focus:border-gold"
-                      } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-3 rounded-sm`}
-                    />
-                    {errors.email && (
-                      <span className="text-red-400 text-[11px] mt-1.5 block">{errors.email.message}</span>
-                    )}
-                  </div>
-
-                  {/* Custom Styled Select Dropdown */}
-                  <div ref={dropdownRef} className="relative">
-                    <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/45 block mb-2`}>
-                      {dict.serviceLabel[locale]} <span className="text-gold">*</span>
-                    </label>
-                    
-                    <div 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setSelectOpen(!selectOpen);
-                      }}
-                      className={`w-full flex items-center justify-between bg-navy-dark/60 backdrop-blur-sm border ${
-                        errors.service ? "border-red-500/50" : selectOpen ? "border-gold" : "border-white/[0.08] hover:border-white/20"
-                      } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-3 rounded-sm cursor-pointer select-none`}
-                    >
-                      <span className={selectedService ? "text-white" : "text-silver/30"}>
-                        {selectedService 
-                          ? (serviceLabels[selectedService]?.[locale] || selectedService) 
-                          : dict.selectService[locale]}
-                      </span>
-                      <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
-                    </div>
-
-                    <AnimatePresence>
-                      {selectOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 5 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: 5 }}
-                          transition={{ duration: 0.15 }}
-                          className="absolute z-30 left-0 right-0 mt-1.5 bg-navy-dark border border-white/[0.12] rounded-sm shadow-[0_15px_40px_rgba(0,0,0,0.6)] overflow-hidden max-h-[250px] overflow-y-auto"
-                        >
-                          {selectOptions.map((opt) => (
-                            <div 
-                              key={opt.value}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setValue("service", opt.value, { shouldValidate: true });
-                                setSelectOpen(false);
-                              }}
-                              className={`px-4 py-3 text-xs sm:text-sm cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${
-                                selectedService === opt.value 
-                                  ? "bg-gold/15 text-gold font-semibold" 
-                                  : "text-silver/80 hover:bg-white/[0.04] hover:text-white"
-                              }`}
-                            >
-                              <span>{serviceLabels[opt.value]?.[locale] || opt.value}</span>
-                              {selectedService === opt.value && <Check className="w-4 h-4 text-gold" />}
-                            </div>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-
-                    {errors.service && (
-                      <span className="text-red-400 text-[11px] mt-1.5 block">{errors.service.message}</span>
-                    )}
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/45 block mb-2`}>
-                      {dict.messageLabel[locale]} <span className="text-gold">*</span>
-                    </label>
-                    <textarea
-                      {...register("message")}
-                      rows={4}
-                      placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
-                      className={`w-full bg-navy-dark/60 backdrop-blur-sm border ${
-                        errors.message ? "border-red-500/50 focus:border-red-500" : "border-white/[0.08] focus:border-gold"
-                      } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-3 rounded-sm resize-none`}
-                    ></textarea>
-                    {errors.message && (
-                      <span className="text-red-400 text-[11px] mt-1.5 block">{errors.message.message}</span>
-                    )}
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`group w-full relative overflow-hidden rounded-sm bg-gradient-to-r from-gold via-gold-light to-gold text-navy py-4 transition-all duration-300 shadow-md ${fcUi} text-xs font-bold tracking-[0.18em] uppercase disabled:opacity-75 disabled:cursor-not-allowed`}
-                  >
-                    {/* Animated Shimmer sweep */}
-                    <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
-                    <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
-
-                    <span className="relative z-10 flex items-center justify-center gap-2">
-                      <span>{isSubmitting ? dict.sending[locale] : dict.submit[locale]}</span>
-                      <ArrowRight className={`w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1`} />
-                    </span>
-                  </button>
-
-                </form>
-              )}
-            </AnimatePresence>
-
-          </div>
-        </FadeIn>
-      </div>
-    </section>
+    </div>
   );
 }

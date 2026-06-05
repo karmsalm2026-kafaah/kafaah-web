@@ -9,9 +9,19 @@ import { FadeIn } from "@/components/Animations";
 import { insightsPage as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
 
 const articleImages: Record<string, string> = {
-  "1": "/insights-commissioning.png",
-  "2": "/insights-refractory.png",
-  "3": "/insights-granulation.png",
+  "1": "/insights-construction-mistakes.png",
+  "2": "/insights-commissioning-meaning.png",
+  "3": "/insights-owners-engineer.png",
+  "4": "/h2so4_plant.png",
+  "5": "/insights-delayed-rampup.png",
+  "6": "/k2so4_plant.png",
+  "7": "/insights-epc-protection.png",
+  "8": "/insights-granulation.png",
+  "9": "/insights-handover-problem.png",
+  "10": "/insights-refractory.png",
+  "11": "/insights-handover-critical.png",
+  "12": "/insights-refractory.png",
+  "13": "/insights-granulation.png",
 };
 
 function HoverWords({ text, locale, isGradient = false }: { text: string; locale: string; isGradient?: boolean }) {
@@ -149,7 +159,7 @@ export function InsightsClient() {
   }, [activeArticle]);
 
   return (
-    <>
+    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start">
       {/* Animated Blueprint Hero */}
       <section className="bg-navy-dark border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
         {/* Schematic Grid Underlay */}
@@ -176,7 +186,7 @@ export function InsightsClient() {
             </h1>
             
             <p className={`${fcBody} text-base sm:text-lg font-light text-muted max-w-[640px] leading-relaxed`}>
-              {dict.subtitle[locale]}
+              <HoverSubcopy text={dict.subtitle[locale]} locale={locale} />
             </p>
           </FadeIn>
         </div>
@@ -223,19 +233,19 @@ export function InsightsClient() {
 
                         {/* Title */}
                         <h2 className={`${fcDisplay} text-xl sm:text-[22px] text-cloud leading-[1.3] mb-4 group-hover:text-gold transition-colors duration-300 font-medium`}>
-                          {article.title}
+                          <HoverWords text={article.title} locale={locale} />
                         </h2>
 
                         {/* Excerpt */}
                         <p className={`${fcBody} text-[13.5px] sm:text-[14.5px] font-light text-silver/80 leading-[1.7]`}>
-                          {article.excerpt}
+                          <HoverSubcopy text={article.excerpt} locale={locale} />
                         </p>
                       </div>
 
                       {/* Footer Read Button */}
                       <div className="pt-6 mt-6 border-t border-white/[0.05]">
                         <span className={`${fcUi} text-[10px] sm:text-[11px] font-bold tracking-[0.15em] uppercase text-silver/50 flex items-center gap-2 group-hover:text-gold transition-colors duration-300`}>
-                          <span className={`flex items-center gap-2 ${rtl ? "flex-row-reverse" : ""}`}>
+                          <span className="flex items-center gap-2">
                             {dict.readArticle[locale]}
                             <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
                           </span>
@@ -405,7 +415,7 @@ export function InsightsClient() {
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
                 <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
-                <span className={`relative z-10 flex items-center gap-2.5 ${rtl ? "flex-row-reverse" : ""}`}>
+                <span className="relative z-10 flex items-center gap-2.5">
                   {shared.getInTouch[locale]}
                   <ArrowRight className={`w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
                 </span>
@@ -414,6 +424,6 @@ export function InsightsClient() {
           </FadeIn>
         </div>
       </section>
-    </>
+    </div>
   );
 }
