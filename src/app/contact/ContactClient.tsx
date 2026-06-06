@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
+import {
   Mail, MapPin, ArrowRight, Clock, Building, Check, ChevronDown, PhoneCall, Award, Loader2
 } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
@@ -148,14 +148,14 @@ export function ContactClient() {
     setIsSubmitting(false);
     setIsSuccess(true);
     reset();
-    
+
     // Reset success message after 5 seconds
     setTimeout(() => setIsSuccess(false), 5000);
   };
 
   return (
     <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen relative overflow-hidden font-body">
-      
+
       {/* Global Blueprint Grid Underlay & Glowing Blur Orbs */}
       <div className="absolute inset-0 z-0">
         <div
@@ -166,17 +166,22 @@ export function ContactClient() {
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/95 to-navy-dark" />
-        
+
         {/* Soft glowing ambient lighting orbs */}
         <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] bg-gold/5 rounded-full blur-[120px] pointer-events-none animate-pulse duration-[8s]" />
         <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[12s]" />
       </div>
 
       <div className="min-h-screen flex flex-col lg:flex-row pt-[72px] relative z-10">
-        
+
+        {/* Desktop Premium Divider */}
+        <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-2/3 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent z-20">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
+        </div>
+
         {/* Left side - Info Panel */}
-        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 border-b lg:border-b-0 lg:border-e border-white/[0.06] flex flex-col justify-center relative overflow-hidden">
-          
+        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative overflow-hidden">
+
           {/* Dark Industrial Hero Image underlay */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
             <picture>
@@ -190,8 +195,8 @@ export function ContactClient() {
             <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy-dark/95 to-navy-dark/85" />
             <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
           </div>
-          
-          <div className="relative z-10 max-w-[520px] w-full mx-auto lg:mx-0">
+
+          <div className="relative z-10 max-w-[520px] w-full mx-auto">
             <FadeIn className="space-y-6">
               <div className="flex items-center gap-3">
                 <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase flex items-center gap-1.5`}>
@@ -212,7 +217,7 @@ export function ContactClient() {
 
               {/* Premium Headquarters and Contact glassmorphic dashboard card */}
               <div className="bg-navy-card/25 backdrop-blur-md border border-white/[0.06] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 shadow-[0_25px_50px_rgba(0,0,0,0.4)] space-y-6 mt-8 relative group overflow-hidden">
-                
+
                 {/* Architectural corner highlights */}
                 <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
                 <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
@@ -246,8 +251,8 @@ export function ContactClient() {
                     <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
                       {dict.email[locale]}
                     </span>
-                    <a 
-                      href="mailto:info@kafaahsolutions.com" 
+                    <a
+                      href="mailto:info@kafaahsolutions.com"
                       className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
                       dir="ltr"
                     >
@@ -272,28 +277,33 @@ export function ContactClient() {
 
         {/* Right side - Contact Form */}
         <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/20 flex flex-col justify-center relative">
-          
+
+          {/* Mobile Premium Divider */}
+          <div className="lg:hidden absolute top-0 left-1/2 -translate-x-1/2 w-3/5 h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent z-20">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
+          </div>
+
           {/* Glow corner element */}
           <div className="absolute -right-1/4 -bottom-1/4 w-[350px] h-[350px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
-          
+
           <FadeIn delay={0.15}>
-            <div className="max-w-[520px] w-full mx-auto lg:mx-0">
-              
+            <div className="max-w-[520px] w-full mx-auto">
+
               {/* Form Card wrapper */}
               <div className="bg-navy-card/10 backdrop-blur-lg border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 shadow-[0_45px_90px_rgba(0,0,0,0.55)] relative overflow-hidden group">
-                
+
                 {/* Architectural corner highlights */}
                 <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
                 <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
                 <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
-                
+
                 {/* Thin golden top border line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent pointer-events-none" />
 
                 <AnimatePresence mode="wait">
                   {isSuccess ? (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
@@ -311,7 +321,7 @@ export function ContactClient() {
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                      
+
                       {/* Name & Company Grid */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="space-y-2">
@@ -323,15 +333,14 @@ export function ContactClient() {
                             {...register("name")}
                             type="text"
                             placeholder="John Doe"
-                            className={`w-full bg-white/[0.02] border ${
-                              errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                            className={`w-full bg-white/[0.02] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                           />
                           {errors.name && (
                             <span className="text-red-400 text-[11px] mt-1 block">{errors.name.message}</span>
                           )}
                         </div>
-                        
+
                         <div className="space-y-2">
                           <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
@@ -341,9 +350,8 @@ export function ContactClient() {
                             {...register("company")}
                             type="text"
                             placeholder="Acme Chemical Corp"
-                            className={`w-full bg-white/[0.02] border ${
-                              errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                            className={`w-full bg-white/[0.02] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                           />
                           {errors.company && (
                             <span className="text-red-400 text-[11px] mt-1 block">{errors.company.message}</span>
@@ -361,9 +369,8 @@ export function ContactClient() {
                           {...register("email")}
                           type="email"
                           placeholder="johndoe@company.com"
-                          className={`w-full bg-white/[0.02] border ${
-                            errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                          } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                          className={`w-full bg-white/[0.02] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                         />
                         {errors.email && (
                           <span className="text-red-400 text-[11px] mt-1 block">{errors.email.message}</span>
@@ -376,19 +383,18 @@ export function ContactClient() {
                           <span className="w-1 h-1 rounded-full bg-gold/60" />
                           {dict.serviceLabel[locale]} <span className="text-gold">*</span>
                         </label>
-                        
-                        <div 
+
+                        <div
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectOpen(!selectOpen);
                           }}
-                          className={`w-full flex items-center justify-between bg-white/[0.02] border ${
-                            errors.service ? "border-red-500/40" : selectOpen ? "border-gold" : "border-white/[0.06] hover:border-white/15"
-                          } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
+                          className={`w-full flex items-center justify-between bg-white/[0.02] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold" : "border-white/[0.06] hover:border-white/15"
+                            } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
                         >
                           <span className={selectedService ? "text-white" : "text-silver/30"}>
-                            {selectedService 
-                              ? (serviceLabels[selectedService]?.[locale] || selectedService) 
+                            {selectedService
+                              ? (serviceLabels[selectedService]?.[locale] || selectedService)
                               : dict.selectService[locale]}
                           </span>
                           <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
@@ -404,18 +410,17 @@ export function ContactClient() {
                               className="absolute z-30 left-0 right-0 mt-1.5 bg-navy-dark/95 backdrop-blur-xl border border-white/[0.12] rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden max-h-[250px] overflow-y-auto"
                             >
                               {selectOptions.map((opt) => (
-                                <div 
+                                <div
                                   key={opt.value}
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setValue("service", opt.value, { shouldValidate: true });
                                     setSelectOpen(false);
                                   }}
-                                  className={`px-4 py-3 text-xs sm:text-sm cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${
-                                    selectedService === opt.value 
-                                      ? "bg-gold/15 text-gold font-semibold" 
+                                  className={`px-4 py-3 text-xs sm:text-sm cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${selectedService === opt.value
+                                      ? "bg-gold/15 text-gold font-semibold"
                                       : "text-silver/80 hover:bg-white/[0.04] hover:text-white"
-                                  }`}
+                                    }`}
                                 >
                                   <span>{serviceLabels[opt.value]?.[locale] || opt.value}</span>
                                   {selectedService === opt.value && <Check className="w-4 h-4 text-gold" />}
@@ -440,9 +445,8 @@ export function ContactClient() {
                           {...register("message")}
                           rows={4}
                           placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
-                          className={`w-full bg-white/[0.02] border ${
-                            errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                          } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
+                          className={`w-full bg-white/[0.02] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
                         ></textarea>
                         {errors.message && (
                           <span className="text-red-400 text-[11px] mt-1 block">{errors.message.message}</span>
