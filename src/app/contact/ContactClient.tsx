@@ -196,7 +196,13 @@ export function ContactClient() {
             <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
           </div>
 
-          <div className="relative z-10 max-w-[520px] w-full mx-auto">
+          <div className="relative z-10 max-w-[520px] w-full mx-auto p-8 sm:p-10 border border-white/[0.02] rounded-xl bg-navy-card/5 backdrop-blur-[5px]">
+            {/* Architectural L-shaped corner marks framing the left content */}
+            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/20 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 pointer-events-none" />
+
             <FadeIn className="space-y-6">
               <div className="flex items-center gap-3">
                 <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase flex items-center gap-1.5`}>
@@ -215,14 +221,14 @@ export function ContactClient() {
                 <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
               </p>
 
-              {/* Premium Headquarters and Contact glassmorphic dashboard card */}
-              <div className="bg-navy-card/25 backdrop-blur-md border border-white/[0.06] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 shadow-[0_25px_50px_rgba(0,0,0,0.4)] space-y-6 mt-8 relative group overflow-hidden">
+              {/* Premium Headquarters and Contact glassmorphic dashboard card with Live Gold Border */}
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 shadow-[0_25px_50px_rgba(0,0,0,0.4)] space-y-6 mt-8 relative group overflow-hidden">
 
-                {/* Architectural corner highlights */}
-                <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
-                <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
+                {/* Architectural corner highlights matching the card's rounded border (Bentley/ROSHN style) */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
 
                 {/* Headquarters Info Item */}
                 <div className="flex items-start gap-4">
@@ -289,14 +295,14 @@ export function ContactClient() {
           <FadeIn delay={0.15}>
             <div className="max-w-[520px] w-full mx-auto">
 
-              {/* Form Card wrapper */}
-              <div className="bg-navy-card/10 backdrop-blur-lg border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 shadow-[0_45px_90px_rgba(0,0,0,0.55)] relative overflow-hidden group">
+              {/* Form Card wrapper with true Glassmorphism and Live Gold corners */}
+              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 shadow-[0_45px_90px_rgba(0,0,0,0.55)] relative overflow-hidden group">
 
-                {/* Architectural corner highlights */}
-                <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
-                <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
+                {/* Architectural corner highlights matching the card's rounded border */}
+                <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
 
                 {/* Thin golden top border line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent pointer-events-none" />
@@ -307,17 +313,31 @@ export function ContactClient() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="text-center py-10"
+                      className="text-center py-12 px-6 sm:px-10 relative overflow-hidden"
                     >
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 border border-gold/30 text-gold mb-6 shadow-[0_0_20px_rgba(240,160,32,0.15)] animate-bounce">
-                        <Check className="w-8 h-8" />
+                      {/* Success Card corner highlights */}
+                      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
+                      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
+                      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
+                      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
+
+                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 border border-gold/30 text-gold mb-8 shadow-[0_0_30px_rgba(240,160,32,0.2)] animate-pulse">
+                        <Check className="w-10 h-10" />
                       </div>
-                      <h3 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mb-4`}>
+                      <h3 className={`${fcDisplay} text-3xl text-white font-semibold mb-6 tracking-wide`}>
                         {dict.successTitle[locale]}
                       </h3>
-                      <p className={`${fcBody} text-sm sm:text-base text-silver/70 font-light leading-relaxed max-w-[420px] mx-auto`}>
+                      <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6" />
+                      <p className={`${fcBody} text-base text-silver/85 font-light leading-relaxed max-w-[420px] mx-auto`}>
                         {dict.successDesc[locale]}
                       </p>
+
+                      <button
+                        onClick={() => setIsSuccess(false)}
+                        className={`mt-10 px-6 py-2.5 rounded-lg border border-gold/45 text-gold hover:bg-gold/10 transition-all duration-300 ${fcUi} text-xs font-bold tracking-[0.15em] uppercase`}
+                      >
+                        {locale === "ar" ? "إرسال رسالة أخرى" : locale === "zh" ? "发送另一条消息" : "Send Another Message"}
+                      </button>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -329,13 +349,17 @@ export function ContactClient() {
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.fullName[locale]} <span className="text-gold">*</span>
                           </label>
-                          <input
-                            {...register("name")}
-                            type="text"
-                            placeholder="John Doe"
-                            className={`w-full bg-white/[0.02] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
-                          />
+                          <div className="relative group">
+                            <input
+                              {...register("name")}
+                              type="text"
+                              placeholder="John Doe"
+                              className={`w-full bg-white/[0.02] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                            />
+                            {/* Underline animation expanding from center */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
+                          </div>
                           {errors.name && (
                             <span className="text-red-400 text-[11px] mt-1 block">{errors.name.message}</span>
                           )}
@@ -346,13 +370,17 @@ export function ContactClient() {
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.companyLabel[locale]} <span className="text-gold">*</span>
                           </label>
-                          <input
-                            {...register("company")}
-                            type="text"
-                            placeholder="Acme Chemical Corp"
-                            className={`w-full bg-white/[0.02] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
-                          />
+                          <div className="relative group">
+                            <input
+                              {...register("company")}
+                              type="text"
+                              placeholder="Acme Chemical Corp"
+                              className={`w-full bg-white/[0.02] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                            />
+                            {/* Underline animation expanding from center */}
+                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
+                          </div>
                           {errors.company && (
                             <span className="text-red-400 text-[11px] mt-1 block">{errors.company.message}</span>
                           )}
@@ -365,13 +393,17 @@ export function ContactClient() {
                           <span className="w-1 h-1 rounded-full bg-gold/60" />
                           {dict.workEmail[locale]} <span className="text-gold">*</span>
                         </label>
-                        <input
-                          {...register("email")}
-                          type="email"
-                          placeholder="johndoe@company.com"
-                          className={`w-full bg-white/[0.02] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
-                        />
+                        <div className="relative group">
+                          <input
+                            {...register("email")}
+                            type="email"
+                            placeholder="johndoe@company.com"
+                            className={`w-full bg-white/[0.02] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                          />
+                          {/* Underline animation expanding from center */}
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
+                        </div>
                         {errors.email && (
                           <span className="text-red-400 text-[11px] mt-1 block">{errors.email.message}</span>
                         )}
@@ -384,20 +416,24 @@ export function ContactClient() {
                           {dict.serviceLabel[locale]} <span className="text-gold">*</span>
                         </label>
 
-                        <div
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setSelectOpen(!selectOpen);
-                          }}
-                          className={`w-full flex items-center justify-between bg-white/[0.02] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold" : "border-white/[0.06] hover:border-white/15"
-                            } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
-                        >
-                          <span className={selectedService ? "text-white" : "text-silver/30"}>
-                            {selectedService
-                              ? (serviceLabels[selectedService]?.[locale] || selectedService)
-                              : dict.selectService[locale]}
-                          </span>
-                          <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
+                        <div className="relative group">
+                          <div
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectOpen(!selectOpen);
+                            }}
+                            className={`w-full flex items-center justify-between bg-white/[0.02] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold shadow-[0_0_15px_rgba(240,160,32,0.25)]" : "border-white/[0.06] hover:border-white/15"
+                              } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
+                          >
+                            <span className={selectedService ? "text-white" : "text-silver/30"}>
+                              {selectedService
+                                ? (serviceLabels[selectedService]?.[locale] || selectedService)
+                                : dict.selectService[locale]}
+                            </span>
+                            <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
+                          </div>
+                          {/* Underline animation expanding from center based on selectOpen state */}
+                          <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out rounded-full pointer-events-none ${selectOpen ? 'w-[80%]' : 'w-0'}`} />
                         </div>
 
                         <AnimatePresence>
@@ -441,13 +477,17 @@ export function ContactClient() {
                           <span className="w-1 h-1 rounded-full bg-gold/60" />
                           {dict.messageLabel[locale]} <span className="text-gold">*</span>
                         </label>
-                        <textarea
-                          {...register("message")}
-                          rows={4}
-                          placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
-                          className={`w-full bg-white/[0.02] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
-                            } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.1)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
-                        ></textarea>
+                        <div className="relative group">
+                          <textarea
+                            {...register("message")}
+                            rows={4}
+                            placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
+                            className={`w-full bg-white/[0.02] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
+                          ></textarea>
+                          {/* Underline animation expanding from center */}
+                          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
+                        </div>
                         {errors.message && (
                           <span className="text-red-400 text-[11px] mt-1 block">{errors.message.message}</span>
                         )}
@@ -459,9 +499,19 @@ export function ContactClient() {
                         disabled={isSubmitting}
                         className={`group w-full relative overflow-hidden rounded-lg bg-gradient-to-r from-gold via-gold-light to-gold hover:from-gold-light hover:to-gold text-navy py-4 transition-all duration-300 shadow-[0_10px_25px_rgba(240,160,32,0.2)] hover:shadow-[0_15px_30px_rgba(240,160,32,0.35)] hover:-translate-y-0.5 active:translate-y-0 ${fcUi} text-xs font-bold tracking-[0.18em] uppercase disabled:opacity-75 disabled:cursor-not-allowed`}
                       >
-                        {/* Premium Shimmer Sweep */}
-                        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
-                        <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+                        {/* Premium Automatic Looping Shimmer Sweep */}
+                        <motion.div
+                          className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                          initial={{ x: "-150%" }}
+                          animate={{ x: "150%" }}
+                          transition={{
+                            repeat: Infinity,
+                            repeatType: "loop",
+                            duration: 2.2,
+                            ease: "easeInOut",
+                            repeatDelay: 1.5
+                          }}
+                        />
 
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           {isSubmitting ? (

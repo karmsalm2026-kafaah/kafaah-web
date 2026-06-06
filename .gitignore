@@ -44,3 +44,6 @@ next-env.d.ts
 /scratch/
 
 .vercel
+
+# AI agent workspace configuration
+/.agent/
