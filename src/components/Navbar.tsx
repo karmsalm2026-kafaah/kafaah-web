@@ -21,12 +21,24 @@ const techDropdown = technologies.map((t) => ({
   label: t.name,
 }));
 
-const navServices = services.map((s) => ({
-  href: `/services/${s.slug}/`,
-  label: s.title,
-  slug: s.slug,
-  sub: s.featured ? "Highest-value engagement" : undefined,
-}));
+const navServices = [
+  { slug: "owners-engineer", sub: "Owner's representation" },
+  { slug: "investor-advisory", sub: "Feasibility & tech selection" },
+  { slug: "operation-readiness", sub: "HAZOP & operational prep" },
+  { slug: "commissioning", sub: "Pre-commissioning to startup" },
+  { slug: "troubleshooting", sub: "Root-cause diagnostics & fixes" },
+  { slug: "production-optimization", sub: "Yield & energy optimization" },
+  { slug: "operator-training", sub: "Competency training programs" },
+  { slug: "claims-technical-documentation", sub: "Root-cause reviews & manuals" },
+].map((item) => {
+  const s = services.find((srv) => srv.slug === item.slug);
+  return {
+    href: `/services/${item.slug}/`,
+    label: s ? s.title : "",
+    slug: item.slug,
+    sub: item.sub,
+  };
+});
 
 const getServiceIcon = (slug: string) => {
   switch (slug) {
@@ -171,25 +183,27 @@ export function Navbar() {
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
             {/* Mega Menu Dropdown */}
-            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} w-[820px]`}>
-              <div className="bg-navy-deep border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+            <div className={`nav-dropdown absolute top-[72px] ${rtl ? "right-0" : "left-0"} pt-4 w-[360px]`}>
+              <div className="bg-navy-deep/98 backdrop-blur-xl border border-white/[0.15] rounded-sm shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
-                <div className="grid grid-cols-2 gap-2 p-4">
+                <div className="flex flex-col gap-1 p-2">
                   {navServices.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-start gap-3 px-3 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
+                      className="flex items-center gap-3.5 px-4 py-3 rounded-sm hover:bg-gold/[0.08] transition-all duration-300 group/item border border-transparent hover:border-white/5"
                     >
-                      <div className="mt-0.5 text-gold/60 group-hover/item:text-gold transition-colors shrink-0">
-                        {getServiceIcon(item.slug)}
+                      <div className="w-8 h-8 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/item:border-gold group-hover/item:bg-gold/[0.06] group-hover/item:scale-110 group-hover/item:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
+                        <div className="transition-transform duration-500 group-hover/item:rotate-6">
+                          {getServiceIcon(item.slug)}
+                        </div>
                       </div>
-                      <div>
-                        <span className={`${fc} text-[10.5px] font-medium ${locale === "en" ? "tracking-[0.06em] uppercase" : ""} text-cloud/80 group-hover/item:text-white transition-colors`}>
+                      <div className="flex-1 min-w-0">
+                        <span className={`${fc} block text-[11px] font-bold uppercase tracking-wider text-cloud/85 group-hover/item:text-white transition-colors leading-tight`}>
                           {item.label}
                         </span>
                         {item.sub && (
-                          <span className="block font-[family-name:var(--font-body)] text-[9.5px] text-gold/75 tracking-normal mt-0.5">
+                          <span className="block font-[family-name:var(--font-body)] text-[9.5px] text-gold/70 tracking-normal mt-0.5 opacity-80 group-hover/item:opacity-100 transition-opacity">
                             {item.sub}
                           </span>
                         )}
@@ -198,7 +212,7 @@ export function Navbar() {
                   ))}
                 </div>
                 {/* View all services footer link */}
-                <div className="border-t border-white/[0.08] px-4 py-3 bg-white/[0.01]">
+                <div className="border-t border-white/[0.08] px-5 py-3 bg-white/[0.01]">
                   <Link
                     href="/services/"
                     className={`flex items-center gap-2 ${fc} text-[11px] font-semibold text-gold/80 hover:text-gold transition-colors duration-200 group/all`}
@@ -224,7 +238,7 @@ export function Navbar() {
 
         {/* CTA + Language + Mobile Toggle */}
         <div className="flex items-center gap-3">
-          {/* Language Picker */}
+          {/* Language Picker hidden for English-only release
           <div className="relative" ref={langRef}>
             <button
               onClick={() => setLangOpen(!langOpen)}
@@ -257,6 +271,7 @@ export function Navbar() {
               </div>
             )}
           </div>
+          */}
 
           <Link
             href="/contact/"
@@ -332,7 +347,7 @@ export function Navbar() {
               {t("insights")}
             </Link>
 
-            {/* Mobile Language Picker */}
+            {/* Mobile Language Picker hidden for English-only release
             <div className="py-3.5 border-b border-white/[0.06]">
               <div className={`${fc} text-[10px] font-bold tracking-[0.25em] uppercase text-gold mb-3`}>
                 {nav.language[locale]}
@@ -350,6 +365,7 @@ export function Navbar() {
                 ))}
               </div>
             </div>
+            */}
 
             <div className="pt-6 pb-2">
               <Link

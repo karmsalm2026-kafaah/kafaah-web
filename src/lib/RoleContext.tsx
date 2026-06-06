@@ -26,15 +26,8 @@ export function RoleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<GatewayLocale>("en");
 
   useEffect(() => {
-    // Read locale cookie client-side
-    const get = (name: string) => {
-      const m = document.cookie.match(new RegExp(`(^| )${name}=([^;]+)`));
-      return m ? decodeURIComponent(m[2]) : null;
-    };
-    const savedLocale = get("kafaah_locale") as GatewayLocale;
-    if (savedLocale) {
-      setLocaleState(savedLocale);
-    }
+    // English-only release: force locale to "en"
+    setLocaleState("en");
   }, []);
 
   const setLocale = useCallback((l: GatewayLocale) => {

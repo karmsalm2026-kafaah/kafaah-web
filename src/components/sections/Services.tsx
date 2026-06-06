@@ -209,7 +209,7 @@ export function ServicesSection({ content }: Props) {
                   
                   {/* Card Image Wrapper with Diagonal bottom-left/right cut */}
                   <div 
-                    className="relative -mt-5 -mx-5 w-[calc(100%+2.5rem)] h-44 sm:h-48 overflow-hidden shrink-0"
+                    className="relative -mt-5 -mx-5 w-[calc(100%+2.5rem)] h-52 sm:h-56 overflow-hidden shrink-0"
                     style={{
                       clipPath: cardClipPath
                     }}
@@ -244,8 +244,8 @@ export function ServicesSection({ content }: Props) {
 
                   {/* Icon & Title Row */}
                   <div className="flex items-start gap-4 mt-6">
-                    <div className="w-12 h-12 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/card:border-gold group-hover/card:bg-gold/[0.06] group-hover/card:scale-110 group-hover/card:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
-                      <Icon className="w-5 h-5 transition-transform duration-500 group-hover/card:rotate-6" strokeWidth={1.5} />
+                    <div className="w-10 h-10 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/card:border-gold group-hover/card:bg-gold/[0.06] group-hover/card:scale-110 group-hover/card:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
+                      <Icon className="w-4 h-4 transition-transform duration-500 group-hover/card:rotate-6" strokeWidth={1.5} />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className={`${locale === "ar" ? "text-base sm:text-lg font-bold leading-snug" : "text-[14px] sm:text-[15px] tracking-wider font-black uppercase leading-tight"} text-white transition-all duration-500 ${rtl ? "group-hover/card:-translate-x-1" : "group-hover/card:translate-x-1"} group-hover/card:text-gold`}>
@@ -301,44 +301,59 @@ export function ServicesSection({ content }: Props) {
 
         {/* Bottom Values/Features & Centered Closing line */}
         <div className="mt-6">
-          <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.06}>
-            {svcDict.features[locale].map((feat, idx) => {
-              const FeatIcon = featureIcons[idx];
-              return (
-                <RevealItem key={idx} className="h-full">
-                  <div 
-                    className="group/feat flex flex-col justify-between bg-navy-deep border border-white/[0.12] p-6 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.10)] hover:border-gold/35 hover:-translate-y-1.5 rounded-sm transition-all duration-500 ease-out h-full"
-                  >
-                    <div className="flex items-start gap-4">
-                      {/* Hexagon Outline Icon */}
-                      <div className="relative w-12 h-12 flex items-center justify-center shrink-0 transition-all duration-500 group-hover/feat:scale-110 group-hover/feat:rotate-6">
-                        <svg 
-                          className="absolute inset-0 w-full h-full text-gold/25 fill-none stroke-current transition-colors duration-300 group-hover/feat:text-gold" 
-                          viewBox="0 0 100 100" 
-                          strokeWidth="4"
-                        >
-                          <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
-                        </svg>
-                        <FeatIcon className="w-5 h-5 text-gold relative z-10" />
-                      </div>
-                      {/* Text Details */}
-                      <div className="min-w-0 flex-1">
-                        <h5 className={`${locale === "ar" ? "text-base sm:text-lg font-bold leading-snug" : "text-[14px] sm:text-[15px] tracking-wider font-black uppercase leading-tight"} text-white transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-1" : "group-hover/feat:translate-x-1"} group-hover/feat:text-gold`}>
-                          {feat.title}
-                        </h5>
-                        <h6 className={`text-silver/90 text-[13px] sm:text-[14px] font-semibold mt-1 transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-white`}>
-                          {feat.subtitle}
-                        </h6>
-                        <p className={`text-silver/50 text-[12px] sm:text-[12.5px] leading-relaxed mt-2.5 font-light transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-silver/70`}>
-                          {feat.desc}
-                        </p>
+          <RevealItem>
+            <div className="bg-navy-deep border border-white/[0.12] py-6 px-6 sm:py-7 sm:px-8 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_-15px_rgba(240,160,32,0.15)] hover:border-gold/30 rounded-sm transition-all duration-500">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-10 lg:gap-y-0 relative">
+                {svcDict.features[locale].map((feat, idx) => {
+                  const FeatIcon = featureIcons[idx];
+                  return (
+                    <div 
+                      key={idx} 
+                      className={`
+                        group/feat flex flex-col items-center lg:items-start text-center lg:text-start px-6 first:pl-0 last:pr-0
+                        /* Mobile: vertical stack separated by top border/padding */
+                        border-t border-white/10 first:border-t-0 pt-6 first:pt-0
+                        /* Tablet: 2x2 grid adjustments */
+                        md:border-t-0 md:pt-0
+                        ${idx === 1 ? 'md:border-l md:border-white/10 rtl:md:border-r rtl:md:border-l-0 md:pl-8 md:pr-0 rtl:md:pl-0 rtl:md:pr-8' : ''}
+                        ${idx === 2 ? 'md:border-t md:border-white/10 md:pt-6 lg:md:border-t-0 lg:md:pt-0' : ''}
+                        ${idx === 3 ? 'md:border-t md:border-l md:border-white/10 rtl:md:border-r rtl:md:border-l-0 md:pt-6 md:pl-8 md:pr-0 rtl:md:pl-0 rtl:md:pr-8 lg:md:border-t-0 lg:md:pt-0' : ''}
+                        /* Desktop: 1x4 horizontal row adjustments */
+                        lg:border-t-0 lg:border-l lg:border-white/10 lg:first:border-l-0 lg:pt-0 lg:px-8 lg:first:pl-0 lg:last:pr-0
+                        rtl:lg:border-l-0 rtl:lg:border-r rtl:lg:border-white/10 rtl:lg:first:border-r-0
+                      `}
+                    >
+                      <div className="flex flex-col items-center lg:items-start">
+                        {/* Hexagon Outline Icon */}
+                        <div className="relative w-10 h-10 flex items-center justify-center shrink-0 mb-3 transition-all duration-500 group-hover/feat:scale-110 group-hover/feat:rotate-6">
+                          <svg 
+                            className="absolute inset-0 w-full h-full text-gold/25 fill-none stroke-current transition-colors duration-300 group-hover/feat:text-gold" 
+                            viewBox="0 0 100 100" 
+                            strokeWidth="4"
+                          >
+                            <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
+                          </svg>
+                          <FeatIcon className="w-4 h-4 text-gold relative z-10" />
+                        </div>
+                        {/* Text Details */}
+                        <div className="min-w-0">
+                          <h5 className={`${locale === "ar" ? "text-base sm:text-lg font-bold leading-snug" : "text-[13px] sm:text-[14px] tracking-wider font-black uppercase leading-tight"} text-white transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-1" : "group-hover/feat:translate-x-1"} group-hover/feat:text-gold`}>
+                            {feat.title}
+                          </h5>
+                          <h6 className={`text-silver/90 text-[12.5px] sm:text-[13px] font-semibold mt-0.5 transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-white`}>
+                            {feat.subtitle}
+                          </h6>
+                          <p className={`text-silver/50 text-[12px] sm:text-[12.5px] leading-relaxed mt-2.5 font-light transition-all duration-500 ${rtl ? "group-hover/feat:-translate-x-0.5" : "group-hover/feat:translate-x-0.5"} group-hover/feat:text-silver/70`}>
+                            {feat.desc}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </RevealItem>
-              );
-            })}
-          </StaggerChildren>
+                  );
+                })}
+              </div>
+            </div>
+          </RevealItem>
           
           {/* Centered Closing Line */}
           <div className="group/closing flex items-center justify-center gap-6 mt-16 sm:mt-20">

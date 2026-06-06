@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const cookieStore = await cookies();
-  const locale = (cookieStore.get("kafaah_locale")?.value || "en") as Locale;
+  // English-only release: force locale to "en"
+  const locale = "en" as Locale;
   const rtl = isRtl(locale);
 
   return (

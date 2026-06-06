@@ -39,7 +39,7 @@ export function TechnologiesSection() {
         </StaggerChildren>
 
         {/* Tech Grid */}
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" staggerDelay={0.08}>
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr" staggerDelay={0.08}>
           {technologies.map((tech, i) => {
             const localizedName = techDict.list[tech.slug]?.name[locale] || tech.name;
             const localizedDesc = techDict.list[tech.slug]?.desc[locale] || tech.shortDesc;
