@@ -222,58 +222,61 @@ export function ContactClient() {
               </p>
 
               {/* Premium Headquarters and Contact glassmorphic dashboard card with Live Gold Border */}
-              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 shadow-[0_25px_50px_rgba(0,0,0,0.4)] space-y-6 mt-8 relative group overflow-hidden">
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 mt-8 relative group">
 
                 {/* Architectural corner highlights matching the card's rounded border (Bentley/ROSHN style) */}
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -right-[1px] w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
 
-                {/* Headquarters Info Item */}
-                <div className="flex items-start gap-4">
-                  <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                    <MapPin className="w-5 h-5" />
+                {/* Content wrapper to isolate space-y-6 from absolute positioned elements */}
+                <div className="space-y-6">
+                  {/* Headquarters Info Item */}
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                      <MapPin className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                        {dict.headquarters[locale]}
+                      </span>
+                      <span className={`${fcBody} text-base font-semibold text-white mt-1 block`}>
+                        {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
+                      </span>
+                      <span className="text-xs text-silver/50 font-light mt-0.5 block">
+                        {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
+                      </span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                      {dict.headquarters[locale]}
-                    </span>
-                    <span className={`${fcBody} text-base font-semibold text-white mt-1 block`}>
-                      {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
-                    </span>
-                    <span className="text-xs text-silver/50 font-light mt-0.5 block">
-                      {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
-                    </span>
-                  </div>
-                </div>
 
-                {/* Email Info Item */}
-                <div className="flex items-start gap-4 border-t border-white/[0.06] pt-5">
-                  <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                    <Mail className="w-5 h-5" />
+                  {/* Email Info Item */}
+                  <div className="flex items-start gap-4 border-t border-white/[0.06] pt-5">
+                    <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                      <Mail className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                        {dict.email[locale]}
+                      </span>
+                      <a
+                        href="mailto:info@kafaahsolutions.com"
+                        className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
+                        dir="ltr"
+                      >
+                        info@kafaahsolutions.com
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                      {dict.email[locale]}
-                    </span>
-                    <a
-                      href="mailto:info@kafaahsolutions.com"
-                      className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
-                      dir="ltr"
-                    >
-                      info@kafaahsolutions.com
-                    </a>
-                  </div>
-                </div>
 
-                {/* Service response hours badge */}
-                <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5 text-[11px] font-mono text-silver/65">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة طوال أيام الأسبوع" : "Engineering mobilization available 24/7"}</span>
+                  {/* Service response hours badge */}
+                  <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5 text-[11px] font-mono text-silver/65">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة طوال أيام الأسبوع" : "Engineering mobilization available 24/7"}</span>
+                  </div>
                 </div>
 
               </div>
@@ -296,13 +299,13 @@ export function ContactClient() {
             <div className="max-w-[520px] w-full mx-auto">
 
               {/* Form Card wrapper with true Glassmorphism and Live Gold corners */}
-              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 shadow-[0_45px_90px_rgba(0,0,0,0.55)] relative overflow-hidden group">
+              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 relative group">
 
                 {/* Architectural corner highlights matching the card's rounded border */}
-                <div className="absolute top-0 left-0 w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute top-0 right-0 w-10 h-10 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute bottom-0 left-0 w-10 h-10 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
-                <div className="absolute bottom-0 right-0 w-10 h-10 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none shadow-[0_0_4px_rgba(212,175,55,0.2)]" />
+                <div className="absolute -top-[1px] -left-[1px] w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -right-[1px] w-10 h-10 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -left-[1px] w-10 h-10 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -right-[1px] w-10 h-10 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
 
                 {/* Thin golden top border line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent pointer-events-none" />

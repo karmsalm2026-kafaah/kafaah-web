@@ -773,7 +773,7 @@ export function ExperienceClient() {
               <FadeIn delay={0.2}>
                 <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-5 sm:p-6 lg:p-7 flex flex-col sm:flex-row gap-6 items-center">
                   {/* Founder photo with grayscale transition and scaling */}
-                  <div className="relative w-full sm:w-[155px] h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
+                  <div className="relative w-[155px] h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                     <div className="absolute inset-0 bg-navy-dark/10 z-10" />
                     <img
                       src="/founder.jpeg"
