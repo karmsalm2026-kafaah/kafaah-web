@@ -742,11 +742,11 @@ export function ExperienceClient() {
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-navy-deep/80 to-transparent" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-5xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             {/* Left Column: Title, Heading & Description */}
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-5 space-y-6">
               <FadeIn className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.25em]" : fcUi + " text-[12px]"} font-bold text-gold uppercase`}>
@@ -769,11 +769,11 @@ export function ExperienceClient() {
             </div>
 
             {/* Right Column: Founder Display Card */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-7">
               <FadeIn delay={0.2}>
-                <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-5 sm:p-6 lg:p-7 flex flex-col sm:flex-row gap-6 items-center">
+                <div className="relative group overflow-hidden rounded-sm border border-white/[0.08] bg-navy-card/10 backdrop-blur-md p-4 sm:p-6 lg:p-7 flex flex-row gap-4 sm:gap-6 items-center">
                   {/* Founder photo with grayscale transition and scaling */}
-                  <div className="relative w-[155px] h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
+                  <div className="relative w-[110px] h-[130px] sm:w-[155px] sm:h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                     <div className="absolute inset-0 bg-navy-dark/10 z-10" />
                     <img
                       src="/founder.jpeg"
@@ -791,7 +791,7 @@ export function ExperienceClient() {
                     <p className={`${fcBody} text-[15px] sm:text-[16.5px] text-white font-semibold mb-2.5`}>
                       {locale === "ar" ? "م. مصطفى عبد الغفار" : locale === "zh" ? "莫斯塔法·阿卜杜勒·加法尔 工程师" : "Eng. Mostafa Abdel Ghaffar"}
                     </p>
-                    <p className={`${fcBody} text-[13px] sm:text-[13.5px] text-silver/80 leading-relaxed font-light text-justify`}>
+                    <p className={`${fcBody} text-[13px] sm:text-[13.5px] text-silver/80 leading-relaxed font-light text-start`}>
                       {locale === "ar" 
                         ? "يقود العمليات التشغيلية وبدء التشغيل الميداني للمشاريع الكيميائية والأسمدة بخبرة تزيد عن 20 عاماً."
                         : locale === "zh"
