@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import * as THREE from "three";
-import { 
+import {
   ArrowRight, Clock, MapPin, Factory, Award, CheckCircle2, Globe, Flame, Settings, Zap, Cpu, Database, Beaker, Mail, Microscope
 } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
@@ -78,7 +78,7 @@ function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
 
 function latLonToVector3(lat: number, lon: number, radius: number) {
   const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
+  const theta = (lon + 120) * (Math.PI / 180);
 
   const x = -radius * Math.sin(phi) * Math.cos(theta);
   const y = radius * Math.cos(phi);
@@ -87,20 +87,20 @@ function latLonToVector3(lat: number, lon: number, radius: number) {
   return new THREE.Vector3(x, y, z);
 }
 
-function InteractiveMap({ 
-  locale, 
+function InteractiveMap({
+  locale,
   rtl,
   hoveredIdx,
   setHoveredIdx
-}: { 
-  locale: string; 
+}: {
+  locale: string;
   rtl: boolean;
   hoveredIdx: number | null;
   setHoveredIdx: (idx: number | null) => void;
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  
+
   const hoveredIdxRef = useRef(hoveredIdx);
   const [cursorStyle, setCursorStyle] = useState("grab");
 
@@ -114,7 +114,7 @@ function InteractiveMap({
 
     // 1. Scene Setup
     const scene = new THREE.Scene();
-    
+
     // 2. Camera Setup
     const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
     camera.position.z = 5.5;
@@ -128,13 +128,13 @@ function InteractiveMap({
     // 4. Globe Mesh Creation
     const globeRadius = 1.8;
     const earthGeom = new THREE.SphereGeometry(globeRadius, 64, 64);
-    
+
     const loader = new THREE.TextureLoader();
     loader.setCrossOrigin("anonymous");
-    
+
     const texture = loader.load("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg");
     const bumpMap = loader.load("https://unpkg.com/three-globe/example/img/earth-topology.png");
-    
+
     const earthMat = new THREE.MeshStandardMaterial({
       map: texture,
       bumpMap: bumpMap,
@@ -142,9 +142,9 @@ function InteractiveMap({
       roughness: 0.75,
       metalness: 0.1
     });
-    
+
     const earthMesh = new THREE.Mesh(earthGeom, earthMat);
-    
+
     const globeGroup = new THREE.Group();
     globeGroup.add(earthMesh);
     scene.add(globeGroup);
@@ -175,7 +175,7 @@ function InteractiveMap({
       const normal = pos.clone().normalize();
 
       const pinGroup = new THREE.Group();
-      
+
       // Pin Stem
       const stemGeom = new THREE.CylinderGeometry(0.008, 0.008, 0.15, 8);
       const stemMat = new THREE.MeshBasicMaterial({ color: 0xf0a020 });
@@ -193,7 +193,7 @@ function InteractiveMap({
       pinGroup.position.copy(pos);
       const up = new THREE.Vector3(0, 1, 0);
       pinGroup.quaternion.setFromUnitVectors(up, normal);
-      
+
       // Attach metadata for raycasting
       pinGroup.userData = { index: coord.index };
       head.userData = { index: coord.index };
@@ -250,20 +250,20 @@ function InteractiveMap({
       if (isDragging) {
         const dx = e.clientX - dragStart.x;
         const dy = e.clientY - dragStart.y;
-        
+
         globeGroup.rotation.y = rotationStart.y + dx * 0.005;
         globeGroup.rotation.x = rotationStart.x + dy * 0.005;
-        
+
         // Clamp X rotation to avoid flipping
         globeGroup.rotation.x = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, globeGroup.rotation.x));
         lastInteracted = Date.now();
       } else {
         // Raycasting check for hover
         raycaster.setFromCamera(mouse, camera);
-        
+
         // Intersect recursive check (so it finds heads and stems)
         const intersects = raycaster.intersectObjects(pinsList, true);
-        
+
         if (intersects.length > 0) {
           const hitObj = intersects[0].object;
           const matchedIdx = hitObj.userData.index !== undefined ? hitObj.userData.index : hitObj.parent?.userData.index;
@@ -296,7 +296,7 @@ function InteractiveMap({
       if (!isDragging || e.touches.length !== 1) return;
       const dx = e.touches[0].clientX - dragStart.x;
       const dy = e.touches[0].clientY - dragStart.y;
-      
+
       globeGroup.rotation.y = rotationStart.y + dx * 0.005;
       globeGroup.rotation.x = rotationStart.x + dy * 0.005;
       globeGroup.rotation.x = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, globeGroup.rotation.x));
@@ -356,7 +356,7 @@ function InteractiveMap({
       // Tooltip position update
       const activeIdx = hoveredIdxRef.current;
       const tooltipEl = tooltipRef.current;
-      
+
       if (activeIdx !== null && activeIdx !== undefined && tooltipEl) {
         const activePin = pinsList[activeIdx];
         if (activePin) {
@@ -420,7 +420,7 @@ function InteractiveMap({
             const subtitleEl = tooltipEl.querySelector(".tooltip-subtitle") as HTMLDivElement;
             const descEl = tooltipEl.querySelector(".tooltip-desc") as HTMLDivElement;
             const actionEl = tooltipEl.querySelector(".tooltip-action") as HTMLDivElement;
-            
+
             if (titleEl) titleEl.innerText = title;
             if (subtitleEl) subtitleEl.innerText = subtitle;
             if (descEl) descEl.innerHTML = `${descLine1}<br/>${descLine2}`;
@@ -428,14 +428,14 @@ function InteractiveMap({
 
             const tw = 290;
             const th = 150;
-            
+
             let tooltipLeft = x - tw / 2;
             let tooltipTop = y - th - 24;
-            
+
             if (tooltipLeft < 10) tooltipLeft = 10;
             if (tooltipLeft + tw > canvasRect.width - 10) tooltipLeft = canvasRect.width - tw - 10;
             if (tooltipTop < 10) tooltipTop = y + 24;
-            
+
             tooltipEl.style.left = `${tooltipLeft}px`;
             tooltipEl.style.top = `${tooltipTop}px`;
             tooltipEl.style.display = "block";
@@ -504,17 +504,17 @@ function InteractiveMap({
   return (
     <div className="relative w-full h-[500px] sm:h-[550px] flex flex-col justify-between overflow-hidden">
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
-      
+
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative w-full max-w-[550px] aspect-square scale-95 sm:scale-100 select-none">
-          <canvas 
+          <canvas
             ref={canvasRef}
             style={{ cursor: cursorStyle }}
             className="w-full h-full select-none touch-action-none"
           />
-          
+
           {/* Crisp HTML/CSS Tooltip Overlay */}
-          <div 
+          <div
             ref={tooltipRef}
             style={{ display: "none", position: "absolute" }}
             onClick={handleTooltipClick}
@@ -522,11 +522,11 @@ function InteractiveMap({
           >
             {/* Gold accent line at the top */}
             <div className="h-[3px] bg-gold absolute top-0 left-0 right-0 rounded-t-sm" />
-            
+
             <div className="tooltip-title text-white font-bold text-[14px] leading-snug tracking-wide mb-1" />
             <div className="tooltip-subtitle text-gold font-mono font-bold text-[10px] uppercase tracking-wider mb-2.5" />
             <div className="tooltip-desc text-silver/90 text-[12px] leading-relaxed font-light mb-3" />
-            
+
             <div className="flex items-center gap-1.5 pt-2 border-t border-white/[0.06]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span className="tooltip-action text-gold/90 font-semibold text-[10px] uppercase tracking-wider" />
@@ -582,7 +582,7 @@ export function ExperienceClient() {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            
+
             {/* Left Column: Title, Heading & Description */}
             <div className="lg:col-span-5 space-y-6">
               <FadeIn className="space-y-4">
@@ -599,8 +599,8 @@ export function ExperienceClient() {
 
               <FadeIn delay={0.15}>
                 <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light text-justify`}>
-                  {isEn 
-                    ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields." 
+                  {isEn
+                    ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields."
                     : dict.backgroundText[locale]}
                 </p>
               </FadeIn>
@@ -630,11 +630,11 @@ export function ExperienceClient() {
                       {locale === "ar" ? "م. مصطفى عبد الغفار" : locale === "zh" ? "莫斯塔法·阿卜杜勒·加法尔 工程师" : "Eng. Mostafa Abdel Ghaffar"}
                     </p>
                     <p className={`${fcBody} text-[13px] sm:text-[13.5px] text-silver/80 leading-relaxed font-light text-start`}>
-                      {locale === "ar" 
+                      {locale === "ar"
                         ? "يقود العمليات التشغيلية وبدء التشغيل الميداني للمشاريع الكيميائية والأسمدة بخبرة تزيد عن 20 عاماً."
                         : locale === "zh"
-                        ? "凭借20多年的现场经验，亲自领导无机化工和化肥项目的调试、启动与运行。"
-                        : "Leads on-site commissioning and startup operations for fertilizer and chemical plants with 20+ years of direct experience."}
+                          ? "凭借20多年的现场经验，亲自领导无机化工和化肥项目的调试、启动与运行。"
+                          : "Leads on-site commissioning and startup operations for fertilizer and chemical plants with 20+ years of direct experience."}
                     </p>
                   </div>
                 </div>
@@ -649,19 +649,19 @@ export function ExperienceClient() {
       <section className="py-20 lg:py-28 bg-navy">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-5xl">
           <FadeIn className="mb-12">
-            <motion.div 
+            <motion.div
               className="inline-flex items-center gap-2 group cursor-default"
               whileHover="hover"
             >
-              <motion.span 
-                className="w-1.5 h-1.5 bg-gold rounded-full" 
+              <motion.span
+                className="w-1.5 h-1.5 bg-gold rounded-full"
                 variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
               />
               <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                 {dict.completedProjects[locale]}
               </span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}
               whileHover={{ x: rtl ? -4 : 4, color: "#f3e1b3" }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -673,22 +673,20 @@ export function ExperienceClient() {
           <div className="space-y-12">
             {dict.projects[locale].map((proj: any, idx: number) => (
               <FadeIn delay={0.1 * (idx + 1)} key={idx}>
-                <div 
+                <div
                   id={`project-${idx}`}
                   onMouseEnter={() => setHoveredIdx(idx)}
                   onMouseLeave={() => setHoveredIdx(null)}
-                  className={`relative group border rounded-sm p-6 sm:p-8 lg:p-10 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.3)] overflow-hidden ${
-                    hoveredIdx === idx 
-                      ? "bg-navy-card-hover/75 border-gold/50 shadow-[0_20px_50px_rgba(229,193,88,0.06)] -translate-y-1" 
+                  className={`relative group border rounded-sm p-6 sm:p-8 lg:p-10 transition-all duration-500 shadow-[0_10px_40px_rgba(0,0,0,0.3)] overflow-hidden ${hoveredIdx === idx
+                      ? "bg-navy-card-hover/75 border-gold/50 shadow-[0_20px_50px_rgba(229,193,88,0.06)] -translate-y-1"
                       : "bg-navy-card/40 border-white/[0.08] hover:border-gold/35 hover:bg-navy-card-hover/55"
-                  }`}
+                    }`}
                 >
-                  
+
                   {/* Glowing Vertical accent line */}
-                  <div className={`absolute top-0 bottom-0 left-0 w-[4px] transition-all duration-300 ${
-                    hoveredIdx === idx ? "bg-white w-[6px]" : "bg-gradient-to-b from-gold/60 to-gold"
-                  }`} />
-                  
+                  <div className={`absolute top-0 bottom-0 left-0 w-[4px] transition-all duration-300 ${hoveredIdx === idx ? "bg-white w-[6px]" : "bg-gradient-to-b from-gold/60 to-gold"
+                    }`} />
+
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     {/* Left Column: Details */}
                     <div className="lg:col-span-8 space-y-4">
@@ -780,20 +778,20 @@ export function ExperienceClient() {
       <section className="relative py-24 bg-navy-dark border-t border-b border-white/[0.06] overflow-hidden">
         {/* Glow circle overlay */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-4xl text-center relative z-10">
           <FadeIn>
             <div className="inline-flex items-center justify-center p-3 bg-gold/10 border border-gold/20 rounded-full mb-6 text-gold">
               <Microscope className="w-6 h-6" />
             </div>
-            
+
             <h3 className={`${fcDisplay} text-[clamp(20px,3vw,30px)] text-white leading-[1.5] font-light italic mb-8 max-w-3xl mx-auto`}>
               "{dict.backgroundText[locale]}"
             </h3>
 
             {/* Micro KPI grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto pt-8 border-t border-white/[0.08]">
-              <motion.div 
+              <motion.div
                 className="text-center space-y-1 cursor-default"
                 whileHover={{ scale: 1.05, y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -805,7 +803,7 @@ export function ExperienceClient() {
                   {isEn ? "Years Field Operations" : "عاماً من العمليات الميدانية"}
                 </span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="text-center space-y-1 border-t sm:border-t-0 sm:border-l sm:border-r border-white/[0.08] py-4 sm:py-0 cursor-default"
                 whileHover={{ scale: 1.05, y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -817,7 +815,7 @@ export function ExperienceClient() {
                   {isEn ? "Core Plant Chemistries" : "عمليات صناعية متكاملة"}
                 </span>
               </motion.div>
-              <motion.div 
+              <motion.div
                 className="text-center space-y-1 cursor-default"
                 whileHover={{ scale: 1.05, y: -2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
@@ -838,19 +836,19 @@ export function ExperienceClient() {
       <section className="py-20 lg:py-28 bg-navy">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-5xl">
           <FadeIn className="mb-12">
-            <motion.div 
+            <motion.div
               className="inline-flex items-center gap-2 group cursor-default"
               whileHover="hover"
             >
-              <motion.span 
-                className="w-1.5 h-1.5 bg-gold rounded-full" 
+              <motion.span
+                className="w-1.5 h-1.5 bg-gold rounded-full"
                 variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
               />
               <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                 {dict.techCovered[locale]}
               </span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2`}
               whileHover={{ x: rtl ? -4 : 4, color: "#f3e1b3" }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
@@ -870,14 +868,14 @@ export function ExperienceClient() {
             ].map((tech) => {
               const Icon = techIcons[tech.formula] || Beaker;
               return (
-                <motion.div 
-                  key={tech.formula} 
+                <motion.div
+                  key={tech.formula}
                   className="relative group bg-navy-card/45 border border-white/[0.08] p-6 rounded-sm flex flex-col justify-between h-[160px] sm:h-[180px] shadow-md cursor-default"
                   whileHover="hover"
                   variants={{
-                    hover: { 
-                      y: -6, 
-                      borderColor: "rgba(229,193,88,0.45)", 
+                    hover: {
+                      y: -6,
+                      borderColor: "rgba(229,193,88,0.45)",
                       backgroundColor: "rgba(19,40,64,0.6)",
                       boxShadow: "0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(229,193,88,0.05)"
                     }
@@ -891,11 +889,11 @@ export function ExperienceClient() {
                     </span>
                     <Icon className="w-5 h-5 text-gold/30 group-hover:text-gold/80 transition-colors duration-300" />
                   </div>
-                  
+
                   {/* Chemical Element Symbol */}
                   <div className="text-center my-2">
-                    <motion.span 
-                      className="block font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-extrabold text-white tracking-wide" 
+                    <motion.span
+                      className="block font-[family-name:var(--font-display)] text-3xl sm:text-4xl font-extrabold text-white tracking-wide"
                       dir="ltr"
                       variants={{
                         hover: { scale: 1.08, color: "#e5c158" }
@@ -923,29 +921,29 @@ export function ExperienceClient() {
       <section className="py-20 lg:py-28 bg-navy-dark border-t border-white/[0.06]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left: Text & Locations */}
             <div className="lg:col-span-5 space-y-6">
               <FadeIn>
-                <motion.div 
+                <motion.div
                   className="inline-flex items-center gap-2 group cursor-default"
                   whileHover="hover"
                 >
-                  <motion.span 
-                    className="w-1.5 h-1.5 bg-gold rounded-full" 
+                  <motion.span
+                    className="w-1.5 h-1.5 bg-gold rounded-full"
                     variants={{ hover: { scale: 1.5, backgroundColor: "#ffffff" } }}
                   />
                   <span className={`${fcUi} text-[10.5px] font-bold tracking-[0.25em] text-gold uppercase transition-colors duration-300 group-hover:text-white`}>
                     {dict.geoFootprint[locale]}
                   </span>
                 </motion.div>
-                
+
                 <h2 className={`${fcDisplay} text-2xl sm:text-3xl text-white font-semibold mt-2 leading-tight`}>
                   {isEn ? "Serving Industrial Centers Across MENA" : dict.geoFootprint[locale]}
                 </h2>
-                
+
                 <p className={`${fcBody} text-sm text-silver/80 font-light leading-relaxed mt-4`}>
-                  {isEn 
+                  {isEn
                     ? "Our engineers actively deploy directly to client sites in critical industrial zones. We coordinate site mobilization across Egypt, Saudi Arabia, and regional hubs."
                     : "ينتشر مهندسونا مباشرة في مواقع العملاء في المناطق الصناعية الحيوية. نقوم بالتنسيق وحشد الكفاءات الهندسية عبر مصر والسعودية والمحاور الإقليمية."}
                 </p>
@@ -957,11 +955,11 @@ export function ExperienceClient() {
                   <motion.span
                     key={loc}
                     className={`${fcUi} text-[10.5px] font-semibold tracking-wider uppercase text-silver bg-navy-deep border border-white/[0.08] px-4 py-2 rounded-sm shadow-sm cursor-default`}
-                    whileHover={{ 
-                      scale: 1.05, 
-                      borderColor: "rgba(229,193,88,0.3)", 
-                      color: "#ffffff", 
-                      backgroundColor: "rgba(255,255,255,0.02)" 
+                    whileHover={{
+                      scale: 1.05,
+                      borderColor: "rgba(229,193,88,0.3)",
+                      color: "#ffffff",
+                      backgroundColor: "rgba(255,255,255,0.02)"
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
@@ -986,7 +984,7 @@ export function ExperienceClient() {
       <section className="relative py-20 sm:py-28 bg-navy-deep/30 border-t border-white/[0.03]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-5xl mx-auto">
-            
+
             <div className="lg:col-span-6">
               <FadeIn>
                 <h2 className={`${fcDisplay} text-[28px] sm:text-[36px] text-white font-bold leading-[1.3] text-center lg:text-start`}>
@@ -1001,11 +999,11 @@ export function ExperienceClient() {
             <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
               <FadeIn delay={0.1}>
                 <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
-                  {dict.discussProject[locale]} {locale === "ar" 
-                    ? "تواصل معنا لمراجعة تحديات مصنعك أو التشغيل التجريبي المقبل لمشروعك، وسيقوم أحد مهندسي العمليات لدينا بمراجعة طلبك والرد فوريًا." 
-                    : locale === "zh" 
-                    ? "与我们的技术团队取得联系，审查您的运营挑战或即将开始的项目调试，我们的工艺工程师将在24小时内与您对接。" 
-                    : "Get in touch with our technical team to review your operational challenges or upcoming project commissioning. A principal process engineer will review your situation."}
+                  {dict.discussProject[locale]} {locale === "ar"
+                    ? "تواصل معنا لمراجعة تحديات مصنعك أو التشغيل التجريبي المقبل لمشروعك، وسيقوم أحد مهندسي العمليات لدينا بمراجعة طلبك والرد فوريًا."
+                    : locale === "zh"
+                      ? "与我们的技术团队取得联系，审查您的运营挑战或即将开始的项目调试，我们的工艺工程师将在24小时内与您对接。"
+                      : "Get in touch with our technical team to review your operational challenges or upcoming project commissioning. A principal process engineer will review your situation."}
                 </p>
               </FadeIn>
 
