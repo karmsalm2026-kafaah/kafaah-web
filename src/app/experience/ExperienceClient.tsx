@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import * as THREE from "three";
 import { 
   ArrowRight, Clock, MapPin, Factory, Award, CheckCircle2, Globe, Flame, Settings, Zap, Cpu, Database, Beaker, Mail, Microscope
 } from "lucide-react";
@@ -75,90 +76,16 @@ function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
   );
 }
 
-// Polygon point-in-polygon helper
-function isPointInPolygon(pt: [number, number], polygon: [number, number][]) {
-  const x = pt[0], y = pt[1];
-  let inside = false;
-  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const xi = polygon[i][0], yi = polygon[i][1];
-    const xj = polygon[j][0], yj = polygon[j][1];
-    const intersect = ((yi > y) !== (yj > y))
-        && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
-    if (intersect) inside = !inside;
-  }
-  return inside;
+function latLonToVector3(lat: number, lon: number, radius: number) {
+  const phi = (90 - lat) * (Math.PI / 180);
+  const theta = (lon + 180) * (Math.PI / 180);
+
+  const x = -radius * Math.sin(phi) * Math.cos(theta);
+  const y = radius * Math.cos(phi);
+  const z = radius * Math.sin(phi) * Math.sin(theta);
+
+  return new THREE.Vector3(x, y, z);
 }
-
-// Safe rounded rectangle drawing helper
-const drawRoundRect = (
-  ctx: CanvasRenderingContext2D,
-  x: number,
-  y: number,
-  w: number,
-  h: number,
-  r: number
-) => {
-  if (typeof ctx.roundRect === "function") {
-    ctx.roundRect(x, y, w, h, r);
-  } else {
-    ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.lineTo(x + w - r, y);
-    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-    ctx.lineTo(x + w, y + h - r);
-    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    ctx.lineTo(x + r, y + h);
-    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-    ctx.lineTo(x, y + r);
-    ctx.quadraticCurveTo(x, y, x + r, y);
-    ctx.closePath();
-  }
-};
-
-const landPolygons: [number, number][][] = [
-  // Africa
-  [[-17, 32], [-13, 31], [-9, 35], [11, 37], [20, 32], [34, 31], [33, 27], [43, 12], [51, 11], [46, -3], [40, -15], [33, -28], [20, -34], [18, -34], [12, -22], [9, 4], [-13, 8], [-17, 14]],
-  // Arabia
-  [[34, 30], [45, 31], [48, 30], [60, 25], [59, 22], [54, 16], [45, 13], [43, 12], [38, 20], [34, 28]],
-  // Eurasia
-  [[-9, 36], [-9, 43], [-3, 43], [-2, 49], [-5, 48], [-5, 55], [0, 58], [5, 58], [5, 62], [10, 60], [15, 68], [25, 71], [40, 68], [60, 70], [80, 73], [100, 77], [120, 77], [140, 72], [160, 70], [170, 66], [190, 65], [170, 60], [140, 50], [142, 43], [130, 35], [121, 31], [120, 22], [109, 18], [107, 10], [99, 5], [97, 15], [89, 22], [80, 8], [76, 8], [68, 24], [60, 25], [48, 30], [45, 31], [34, 30], [35, 32], [26, 40], [15, 38], [9, 38], [3, 36]],
-  // North America
-  [[-168, 65], [-150, 70], [-120, 70], [-80, 70], [-60, 80], [-55, 60], [-50, 50], [-60, 46], [-80, 25], [-82, 23], [-98, 16], [-83, 8], [-80, 8], [-90, 14], [-100, 15], [-105, 20], [-110, 22], [-115, 32], [-125, 48], [-140, 60], [-160, 55]],
-  // Greenland
-  [[-60, 60], [-40, 60], [-30, 70], [-20, 83], [-60, 83], [-70, 75]],
-  // South America
-  [[-80, 8], [-72, 12], [-60, 10], [-50, -5], [-35, -5], [-40, -22], [-60, -38], [-65, -53], [-75, -55], [-73, -42], [-81, -15], [-81, -5], [-80, 5]],
-  // Australia
-  [[113, -26], [114, -35], [120, -35], [135, -34], [145, -38], [151, -34], [153, -28], [143, -11], [136, -12], [136, -16], [128, -15], [121, -20]],
-  // Madagascar
-  [[49, -12], [50, -15], [47, -25], [43, -25], [45, -16]],
-  // United Kingdom
-  [[-6, 50], [-8, 55], [-4, 58], [-1, 58], [2, 51]],
-  // Japan
-  [[130, 31], [132, 33], [136, 35], [140, 38], [142, 43], [141, 45], [138, 40], [135, 35]],
-  // Sumatra
-  [[95, 5], [100, 0], [105, -5], [102, -5], [96, 2]],
-  // Borneo
-  [[109, 0], [115, 6], [118, 4], [119, -3], [111, -3]],
-  // Java
-  [[105, -6], [115, -7], [115, -8], [105, -8]],
-  // New Guinea
-  [[131, -1], [140, -3], [150, -10], [140, -8], [135, -4]],
-  // Philippines
-  [[120, 15], [122, 18], [125, 13], [122, 10], [120, 13]]
-];
-
-const landPolygonsWithBBox = landPolygons.map(poly => {
-  let minLon = Infinity, maxLon = -Infinity;
-  let minLat = Infinity, maxLat = -Infinity;
-  for (const [lon, lat] of poly) {
-    if (lon < minLon) minLon = lon;
-    if (lon > maxLon) maxLon = lon;
-    if (lat < minLat) minLat = lat;
-    if (lat > maxLat) maxLat = lat;
-  }
-  return { poly, minLon, maxLon, minLat, maxLat };
-});
 
 function InteractiveMap({ 
   locale, 
@@ -173,19 +100,8 @@ function InteractiveMap({
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const pinCoordsRef = useRef<{ x: number; y: number; visible: boolean }[]>([]);
   
-  // Ref-based state to keep values stable and readable inside requestAnimationFrame
   const hoveredIdxRef = useRef(hoveredIdx);
-  const isDraggingRef = useRef(false);
-  const dragMovedRef = useRef(false);
-  const dragStartRef = useRef({ x: 0, y: 0 });
-  const rotationRef = useRef({ 
-    // Start rotated slightly so that the Middle East (Suez/Yanbu) is centered
-    lambda: -35 * Math.PI / 180, 
-    tilt: 22 * Math.PI / 180 
-  });
-  const lastInteractedRef = useRef(0);
   const [cursorStyle, setCursorStyle] = useState("grab");
 
   useEffect(() => {
@@ -195,304 +111,339 @@ function InteractiveMap({
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
 
-    let animationFrameId: number;
+    // 1. Scene Setup
+    const scene = new THREE.Scene();
+    
+    // 2. Camera Setup
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 1000);
+    camera.position.z = 5.5;
 
-    // Generate high-fidelity land points from polygons using bounding-box culling
-    const landPoints: { lat: number; lon: number }[] = [];
-    const step = 2.2;
-    for (let lat = -60; lat <= 75; lat += step) {
-      for (let lon = -180; lon <= 180; lon += step) {
-        let isLand = false;
-        for (const { poly, minLon, maxLon, minLat, maxLat } of landPolygonsWithBBox) {
-          if (lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat) {
-            if (isPointInPolygon([lon, lat], poly)) {
-              isLand = true;
-              break;
-            }
-          }
-        }
-        if (isLand) {
-          landPoints.push({ lat: lat * Math.PI / 180, lon: lon * Math.PI / 180 });
-        }
-      }
-    }
+    // 3. Renderer Setup
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const rect = canvas.getBoundingClientRect();
+    renderer.setSize(rect.width, rect.height);
 
-    const cx = 275; // Centered on a 550x550 canvas
-    const cy = 275;
-    const R = 200; // Radius increased to 200 for a larger map
+    // 4. Globe Mesh Creation
+    const globeRadius = 1.8;
+    const earthGeom = new THREE.SphereGeometry(globeRadius, 64, 64);
+    
+    const loader = new THREE.TextureLoader();
+    loader.setCrossOrigin("anonymous");
+    
+    const texture = loader.load("https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg");
+    const bumpMap = loader.load("https://unpkg.com/three-globe/example/img/earth-topology.png");
+    
+    const earthMat = new THREE.MeshStandardMaterial({
+      map: texture,
+      bumpMap: bumpMap,
+      bumpScale: 0.04,
+      roughness: 0.75,
+      metalness: 0.1
+    });
+    
+    const earthMesh = new THREE.Mesh(earthGeom, earthMat);
+    
+    const globeGroup = new THREE.Group();
+    globeGroup.add(earthMesh);
+    scene.add(globeGroup);
 
-    // Suez (Egypt) and Yanbu (Saudi Arabia)
-    const pins = [
-      { lat: 29.9667 * Math.PI / 180, lon: 32.5498 * Math.PI / 180 },
-      { lat: 24.0900 * Math.PI / 180, lon: 38.0633 * Math.PI / 180 }
+    // Initial Rotation to center Suez/Yanbu (Middle East)
+    globeGroup.rotation.y = -35 * Math.PI / 180;
+    globeGroup.rotation.x = 22 * Math.PI / 180;
+
+    // 5. Lights Setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.45);
+    scene.add(ambientLight);
+
+    const dirLight = new THREE.DirectionalLight(0xffffff, 1.3);
+    dirLight.position.set(5, 3, 5);
+    scene.add(dirLight);
+
+    // 6. Create Interactive Pins
+    const pinCoords = [
+      { lat: 29.9668, lon: 32.5498, index: 0 }, // Suez
+      { lat: 24.0232, lon: 38.1900, index: 1 }  // Yanbu
     ];
 
-    let pulseScale = 0;
+    const pinsList: THREE.Group[] = [];
+    const pulsesList: THREE.Mesh[] = [];
+
+    pinCoords.forEach(coord => {
+      const pos = latLonToVector3(coord.lat, coord.lon, globeRadius);
+      const normal = pos.clone().normalize();
+
+      const pinGroup = new THREE.Group();
+      
+      // Pin Stem
+      const stemGeom = new THREE.CylinderGeometry(0.008, 0.008, 0.15, 8);
+      const stemMat = new THREE.MeshBasicMaterial({ color: 0xf0a020 });
+      const stem = new THREE.Mesh(stemGeom, stemMat);
+      stem.position.y = 0.075;
+      pinGroup.add(stem);
+
+      // Pin Head (glowing sphere)
+      const headGeom = new THREE.SphereGeometry(0.035, 16, 16);
+      const headMat = new THREE.MeshBasicMaterial({ color: 0xff3b30 });
+      const head = new THREE.Mesh(headGeom, headMat);
+      head.position.y = 0.15;
+      pinGroup.add(head);
+
+      pinGroup.position.copy(pos);
+      const up = new THREE.Vector3(0, 1, 0);
+      pinGroup.quaternion.setFromUnitVectors(up, normal);
+      
+      // Attach metadata for raycasting
+      pinGroup.userData = { index: coord.index };
+      head.userData = { index: coord.index };
+      stem.userData = { index: coord.index };
+
+      globeGroup.add(pinGroup);
+      pinsList.push(pinGroup);
+
+      // Pulsing Ring at base
+      const pulseGeom = new THREE.RingGeometry(0.015, 0.07, 32);
+      const pulseMat = new THREE.MeshBasicMaterial({
+        color: 0xf0a020,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.8
+      });
+      const pulseMesh = new THREE.Mesh(pulseGeom, pulseMat);
+      pulseMesh.position.copy(pos.clone().add(normal.clone().multiplyScalar(0.005)));
+      pulseMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), normal);
+      globeGroup.add(pulseMesh);
+      pulsesList.push(pulseMesh);
+    });
+
+    // 7. Interaction State
+    let isDragging = false;
+    let dragStart = { x: 0, y: 0 };
+    let rotationStart = { y: globeGroup.rotation.y, x: globeGroup.rotation.x };
+    let lastInteracted = 0;
+
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+
+    const handleResize = () => {
+      const rect = canvas.getBoundingClientRect();
+      camera.aspect = 1;
+      camera.updateProjectionMatrix();
+      renderer.setSize(rect.width, rect.height);
+    };
+    window.addEventListener("resize", handleResize);
+
+    const onMouseDown = (e: MouseEvent) => {
+      isDragging = true;
+      dragStart = { x: e.clientX, y: e.clientY };
+      rotationStart = { y: globeGroup.rotation.y, x: globeGroup.rotation.x };
+      lastInteracted = Date.now();
+      setCursorStyle("grabbing");
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      if (isDragging) {
+        const dx = e.clientX - dragStart.x;
+        const dy = e.clientY - dragStart.y;
+        
+        globeGroup.rotation.y = rotationStart.y + dx * 0.005;
+        globeGroup.rotation.x = rotationStart.x + dy * 0.005;
+        
+        // Clamp X rotation to avoid flipping
+        globeGroup.rotation.x = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, globeGroup.rotation.x));
+        lastInteracted = Date.now();
+      } else {
+        // Raycasting check for hover
+        raycaster.setFromCamera(mouse, camera);
+        
+        // Intersect recursive check (so it finds heads and stems)
+        const intersects = raycaster.intersectObjects(pinsList, true);
+        
+        if (intersects.length > 0) {
+          const hitObj = intersects[0].object;
+          const matchedIdx = hitObj.userData.index !== undefined ? hitObj.userData.index : hitObj.parent?.userData.index;
+          if (matchedIdx !== undefined && matchedIdx !== null) {
+            setHoveredIdx(matchedIdx);
+            setCursorStyle("pointer");
+          }
+        } else {
+          setHoveredIdx(null);
+          setCursorStyle("grab");
+        }
+      }
+    };
+
+    const onMouseUp = () => {
+      isDragging = false;
+      setCursorStyle("grab");
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        dragStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+        rotationStart = { y: globeGroup.rotation.y, x: globeGroup.rotation.x };
+        lastInteracted = Date.now();
+      }
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - dragStart.x;
+      const dy = e.touches[0].clientY - dragStart.y;
+      
+      globeGroup.rotation.y = rotationStart.y + dx * 0.005;
+      globeGroup.rotation.x = rotationStart.x + dy * 0.005;
+      globeGroup.rotation.x = Math.max(-Math.PI / 3, Math.min(Math.PI / 3, globeGroup.rotation.x));
+      lastInteracted = Date.now();
+    };
+
+    const onTouchEnd = () => {
+      isDragging = false;
+    };
+
+    const onCanvasClick = () => {
+      raycaster.setFromCamera(mouse, camera);
+      const intersects = raycaster.intersectObjects(pinsList, true);
+      if (intersects.length > 0) {
+        const hitObj = intersects[0].object;
+        const matchedIdx = hitObj.userData.index !== undefined ? hitObj.userData.index : hitObj.parent?.userData.index;
+        if (matchedIdx !== undefined && matchedIdx !== null) {
+          const targetEl = document.getElementById(`project-${matchedIdx}`);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }
+      }
+    };
+
+    canvas.addEventListener("mousedown", onMouseDown);
+    canvas.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    canvas.addEventListener("touchstart", onTouchStart, { passive: true });
+    canvas.addEventListener("touchmove", onTouchMove, { passive: true });
+    canvas.addEventListener("touchend", onTouchEnd);
+    canvas.addEventListener("click", onCanvasClick);
+
+    // 8. Render Loop
+    let animationFrameId: number;
 
     const render = () => {
-      ctx.clearRect(0, 0, 550, 550); // Clears the 550x550 canvas
-
-      const activeIdx = hoveredIdxRef.current;
-      const isDragging = isDraggingRef.current;
-      const timeSinceInteraction = Date.now() - lastInteractedRef.current;
-
-      // Rotate automatically if not dragging, not hovering a pin, and after initial delay
-      if (activeIdx !== null && !isDragging) {
-        // Smoothly rotate the globe to center the hovered project pin
-        const targetPin = pins[activeIdx];
-        const targetLambda = -targetPin.lon;
-        
-        let diff = targetLambda - rotationRef.current.lambda;
-        diff = Math.atan2(Math.sin(diff), Math.cos(diff)); // Shortest rotation direction
-        rotationRef.current.lambda += diff * 0.08;
-
-        const targetTilt = 22 * Math.PI / 180;
-        rotationRef.current.tilt += (targetTilt - rotationRef.current.tilt) * 0.08;
-      } else if (!isDragging && timeSinceInteraction > 1500) {
-        rotationRef.current.lambda += 0.003;
-
-        // Easing back to default premium tilt (22 deg)
-        const targetTilt = 22 * Math.PI / 180;
-        rotationRef.current.tilt += (targetTilt - rotationRef.current.tilt) * 0.01;
+      // Auto rotation if not dragged recently
+      if (!isDragging && Date.now() - lastInteracted > 5000) {
+        globeGroup.rotation.y += 0.0012;
       }
 
-      const lambda = rotationRef.current.lambda;
-      const tilt = rotationRef.current.tilt;
-
-      pulseScale = (pulseScale + 0.04) % (2 * Math.PI);
-
-      // Sphere background glow
-      const bgGlow = ctx.createRadialGradient(cx, cy, R * 0.4, cx, cy, R * 1.35);
-      bgGlow.addColorStop(0, "rgba(19, 40, 64, 0.45)");
-      bgGlow.addColorStop(1, "rgba(11, 22, 35, 0)");
-      ctx.fillStyle = bgGlow;
-      ctx.fillRect(0, 0, 550, 550);
-
-      // Solid sphere back
-      ctx.beginPath();
-      ctx.arc(cx, cy, R - 1, 0, 2 * Math.PI);
-      ctx.fillStyle = "#0c1b2d";
-      ctx.fill();
-
-      // Draw latitude lines (parallels)
-      ctx.strokeStyle = "rgba(229, 193, 88, 0.02)";
-      ctx.lineWidth = 1;
-      for (let latDeg = -60; latDeg <= 60; latDeg += 20) {
-        const latRad = latDeg * Math.PI / 180;
-        ctx.beginPath();
-        let pathStarted = false;
-        for (let lonDeg = 0; lonDeg <= 360; lonDeg += 5) {
-          const theta = lonDeg * Math.PI / 180 + lambda;
-          const x3d = Math.cos(latRad) * Math.sin(theta);
-          const y3d = Math.sin(latRad);
-          const z3d = Math.cos(latRad) * Math.cos(theta);
-
-          const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
-          const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
-
-          if (z3d_tilted > 0) {
-            const sx = cx + R * x3d;
-            const sy = cy - R * y3d_tilted;
-            if (!pathStarted) {
-              ctx.moveTo(sx, sy);
-              pathStarted = true;
-            } else {
-              ctx.lineTo(sx, sy);
-            }
-          } else {
-            pathStarted = false;
-          }
-        }
-        ctx.stroke();
-      }
-
-      // Draw longitude lines (meridians)
-      ctx.strokeStyle = "rgba(229, 193, 88, 0.02)";
-      for (let lonDeg = 0; lonDeg < 360; lonDeg += 30) {
-        const theta = lonDeg * Math.PI / 180 + lambda;
-        ctx.beginPath();
-        let first = true;
-        for (let latDeg = -80; latDeg <= 80; latDeg += 5) {
-          const latRad = latDeg * Math.PI / 180;
-          const x3d = Math.cos(latRad) * Math.sin(theta);
-          const y3d = Math.sin(latRad);
-          const z3d = Math.cos(latRad) * Math.cos(theta);
-
-          const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
-          const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
-
-          if (z3d_tilted > 0) {
-            const sx = cx + R * x3d;
-            const sy = cy - R * y3d_tilted;
-            if (first) {
-              ctx.moveTo(sx, sy);
-              first = false;
-            } else {
-              ctx.lineTo(sx, sy);
-            }
-          } else {
-            first = true;
-          }
-        }
-        ctx.stroke();
-      }
-
-      // Render world map land points
-      for (const pt of landPoints) {
-        const theta = pt.lon + lambda;
-        const x3d = Math.cos(pt.lat) * Math.sin(theta);
-        const y3d = Math.sin(pt.lat);
-        const z3d = Math.cos(pt.lat) * Math.cos(theta);
-
-        const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
-        const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
-
-        if (z3d_tilted > 0) {
-          const sx = cx + R * x3d;
-          const sy = cy - R * y3d_tilted;
-          
-          ctx.fillStyle = `rgba(229, 193, 88, ${0.06 + z3d_tilted * 0.16})`;
-          ctx.fillRect(sx - 1, sy - 1, 2, 2);
-        }
-      }
-
-      // Sphere border stroke
-      ctx.beginPath();
-      ctx.arc(cx, cy, R, 0, 2 * Math.PI);
-      ctx.strokeStyle = "rgba(229, 193, 88, 0.25)";
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-
-      // Render pins and tooltips
-      const coords: any[] = [];
-      pins.forEach((pin, index) => {
-        const theta = pin.lon + lambda;
-        const x3d = Math.cos(pin.lat) * Math.sin(theta);
-        const y3d = Math.sin(pin.lat);
-        const z3d = Math.cos(pin.lat) * Math.cos(theta);
-
-        const y3d_tilted = y3d * Math.cos(tilt) - z3d * Math.sin(tilt);
-        const z3d_tilted = y3d * Math.sin(tilt) + z3d * Math.cos(tilt);
-
-        const isVisible = z3d_tilted > -0.1;
-        const sx = cx + R * x3d;
-        const sy = cy - R * y3d_tilted;
-
-        coords.push({ x: sx, y: sy, visible: isVisible });
-
-        if (isVisible) {
-          const isHovered = activeIdx === index;
-          // Substantially larger markers
-          const size = isHovered ? 13 : 9.5; 
-          
-          ctx.beginPath();
-          ctx.moveTo(sx, sy);
-          ctx.lineTo(sx, sy - 28); // Taller pin line
-          ctx.strokeStyle = isHovered ? "rgba(255, 255, 255, 0.95)" : "rgba(229, 193, 88, 0.75)";
-          ctx.lineWidth = 2.5; // Thicker pin line
-          ctx.stroke();
-
-          // Larger ping pulse
-          const t = pulseScale / (2 * Math.PI);
-          ctx.beginPath();
-          ctx.arc(sx, sy, size + 25 * t, 0, 2 * Math.PI);
-          ctx.strokeStyle = `rgba(229, 193, 88, ${0.45 * (1 - t)})`;
-          ctx.lineWidth = 1.5;
-          ctx.stroke();
-
-          // Main dot
-          ctx.beginPath();
-          ctx.arc(sx, sy, size, 0, 2 * Math.PI);
-          ctx.fillStyle = isHovered ? "#ffffff" : "#e5c158";
-          ctx.fill();
-          ctx.strokeStyle = "#0c1b2d";
-          ctx.lineWidth = 2.0; // Thicker dot border
-          ctx.stroke();
-
-          // Update absolute HTML/CSS tooltip overlay
-          if (isHovered) {
-            const tooltipEl = tooltipRef.current;
-            if (tooltipEl) {
-              let title = "";
-              let subtitle = "";
-              let descLine1 = "";
-              let descLine2 = "";
-              let actionText = "";
-
-              if (index === 0) {
-                title = "Suez SOP Plant";
-                subtitle = "K₂SO₄ · Mannheim Process";
-                if (locale === "ar") {
-                  descLine1 = "تشغيل كامل للمصنع من مرحلة ما قبل التشغيل إلى أول";
-                  descLine2 = "منتج تجاري. الطاقة الإنتاجية المصممة: 40,000 طن/سنوياً.";
-                  actionText = "انقر للتمرير إلى تفاصيل المشروع";
-                } else if (locale === "zh") {
-                  descLine1 = "从试运行前到首批商业化产品的全面调试。";
-                  descLine2 = "设计 SOP 硫酸钾厂年产能为 40,000 吨。";
-                  actionText = "点击滚动查看项目详情";
-                } else {
-                  descLine1 = "Full commissioning from pre-startup to first commercial";
-                  descLine2 = "product. Designed SOP plant capacity: 40,000 Tons/year.";
-                  actionText = "Click to scroll to project details";
-                }
-              } else {
-                title = "Yanbu Granulation Facility";
-                subtitle = "NPK · Granulation";
-                if (locale === "ar") {
-                  descLine1 = "مشروع كفاءة البارز في الخليج. تشغيل وحدة تحبيب سماد";
-                  descLine2 = "NPK عالي الكفاءة بنجاح ووفقًا للجدول المخطط له.";
-                  actionText = "انقر للتمرير إلى تفاصيل المشروع";
-                } else if (locale === "zh") {
-                  descLine1 = "Kafaah 在海湾地区的里程碑项目。";
-                  descLine2 = "高效率 NPK 复合肥造粒装置按期成功调试。";
-                  actionText = "点击滚动查看项目详情";
-                } else {
-                  descLine1 = "Kafaah's landmark project in the Gulf region. High-efficiency";
-                  descLine2 = "NPK granulation unit commissioned successfully on schedule.";
-                  actionText = "Click to scroll to project details";
-                }
-              }
-
-              const titleEl = tooltipEl.querySelector(".tooltip-title") as HTMLDivElement;
-              const subtitleEl = tooltipEl.querySelector(".tooltip-subtitle") as HTMLDivElement;
-              const descEl = tooltipEl.querySelector(".tooltip-desc") as HTMLDivElement;
-              const actionEl = tooltipEl.querySelector(".tooltip-action") as HTMLDivElement;
-              
-              if (titleEl) titleEl.innerText = title;
-              if (subtitleEl) subtitleEl.innerText = subtitle;
-              if (descEl) descEl.innerHTML = `${descLine1}<br/>${descLine2}`;
-              if (actionEl) actionEl.innerText = actionText;
-
-              const rect = canvas.getBoundingClientRect();
-              const tw = 290;
-              const th = 150;
-              
-              let left = (sx / 550) * rect.width - tw / 2;
-              let top = (sy / 550) * rect.height + 34; // Offset below the pin (adjusted for taller stem)
-              
-              // Keep within bounds of the canvas
-              if (left < 10) left = 10;
-              if (left + tw > rect.width - 10) left = rect.width - tw - 10;
-              if (top + th > rect.height - 10) {
-                top = (sy / 550) * rect.height - th - 34; // Show above the pin if going below bounds
-              }
-              
-              tooltipEl.style.left = `${left}px`;
-              tooltipEl.style.top = `${top}px`;
-              tooltipEl.style.display = "block";
-            }
-          }
+      // Animate pulses
+      pulsesList.forEach(pulse => {
+        pulse.scale.addScalar(0.012);
+        const mat = pulse.material as THREE.MeshBasicMaterial;
+        mat.opacity -= 0.012;
+        if (pulse.scale.x > 3.0) {
+          pulse.scale.set(1, 1, 1);
+          mat.opacity = 0.8;
         }
       });
 
-      pinCoordsRef.current = coords;
+      // Render scene
+      renderer.render(scene, camera);
 
-      // Hide HTML tooltip if nothing is hovered
+      // Tooltip position update
+      const activeIdx = hoveredIdxRef.current;
       const tooltipEl = tooltipRef.current;
-      if (tooltipEl && activeIdx === null) {
+      
+      if (activeIdx !== null && activeIdx !== undefined && tooltipEl) {
+        const activePin = pinsList[activeIdx];
+        if (activePin) {
+          const worldPos = new THREE.Vector3();
+          activePin.getWorldPosition(worldPos);
+
+          const cameraDir = new THREE.Vector3();
+          camera.getWorldDirection(cameraDir);
+          const pinToCamera = camera.position.clone().sub(worldPos).normalize();
+          const dot = worldPos.clone().normalize().dot(pinToCamera);
+
+          if (dot > 0.15) { // Only show if on facing side
+            const vector = worldPos.clone();
+            vector.project(camera);
+
+            const canvasRect = canvas.getBoundingClientRect();
+            const x = (vector.x * 0.5 + 0.5) * canvasRect.width;
+            const y = (-(vector.y * 0.5) + 0.5) * canvasRect.height;
+
+            let title = "";
+            let subtitle = "";
+            let descLine1 = "";
+            let descLine2 = "";
+            let actionText = "";
+
+            if (activeIdx === 0) {
+              title = "Suez SOP Plant";
+              subtitle = "K₂SO₄ · Mannheim Process";
+              if (locale === "ar") {
+                descLine1 = "تشغيل كامل للمصنع من مرحلة ما قبل التشغيل إلى أول";
+                descLine2 = "منتج تجاري. الطاقة الإنتاجية المصممة: 40,000 طن/سنوياً.";
+                actionText = "انقر للتمرير إلى تفاصيل المشروع";
+              } else if (locale === "zh") {
+                descLine1 = "从试运行前 to 首批商业化产品的全面调试。";
+                descLine2 = "设计 SOP 硫酸钾厂年产能为 40,000 吨。";
+                actionText = "点击滚动查看项目详情";
+              } else {
+                descLine1 = "Full commissioning from pre-startup to first commercial";
+                descLine2 = "product. Designed SOP plant capacity: 40,000 Tons/year.";
+                actionText = "Click to scroll to project details";
+              }
+            } else {
+              title = "Yanbu Granulation Facility";
+              subtitle = "NPK · Granulation";
+              if (locale === "ar") {
+                descLine1 = "مشروع كفاءة البارز في الخليج. تشغيل وحدة تحبيب سماد";
+                descLine2 = "NPK عالي الكفاءة بنجاح ووفقًا للجدول المخطط له.";
+                actionText = "انقر للتمرير إلى تفاصيل المشروع";
+              } else if (locale === "zh") {
+                descLine1 = "Kafaah 在海湾地区的里程碑项目。";
+                descLine2 = "高效率 NPK 复合肥造粒装置按期成功调试。";
+                actionText = "点击滚动查看项目详情";
+              } else {
+                descLine1 = "Kafaah's landmark project in the Gulf region. High-efficiency";
+                descLine2 = "NPK granulation unit commissioned successfully on schedule.";
+                actionText = "Click to scroll to project details";
+              }
+            }
+
+            const titleEl = tooltipEl.querySelector(".tooltip-title") as HTMLDivElement;
+            const subtitleEl = tooltipEl.querySelector(".tooltip-subtitle") as HTMLDivElement;
+            const descEl = tooltipEl.querySelector(".tooltip-desc") as HTMLDivElement;
+            const actionEl = tooltipEl.querySelector(".tooltip-action") as HTMLDivElement;
+            
+            if (titleEl) titleEl.innerText = title;
+            if (subtitleEl) subtitleEl.innerText = subtitle;
+            if (descEl) descEl.innerHTML = `${descLine1}<br/>${descLine2}`;
+            if (actionEl) actionEl.innerText = actionText;
+
+            const tw = 290;
+            const th = 150;
+            
+            let tooltipLeft = x - tw / 2;
+            let tooltipTop = y - th - 24;
+            
+            if (tooltipLeft < 10) tooltipLeft = 10;
+            if (tooltipLeft + tw > canvasRect.width - 10) tooltipLeft = canvasRect.width - tw - 10;
+            if (tooltipTop < 10) tooltipTop = y + 24;
+            
+            tooltipEl.style.left = `${tooltipLeft}px`;
+            tooltipEl.style.top = `${tooltipTop}px`;
+            tooltipEl.style.display = "block";
+          } else {
+            tooltipEl.style.display = "none";
+          }
+        }
+      } else if (tooltipEl) {
         tooltipEl.style.display = "none";
       }
 
@@ -501,155 +452,52 @@ function InteractiveMap({
 
     render();
 
+    // 9. Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("mousedown", onMouseDown);
+      canvas.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      canvas.removeEventListener("touchstart", onTouchStart);
+      canvas.removeEventListener("touchmove", onTouchMove);
+      canvas.removeEventListener("touchend", onTouchEnd);
+      canvas.removeEventListener("click", onCanvasClick);
+
+      earthGeom.dispose();
+      earthMat.dispose();
+      texture.dispose();
+      bumpMap.dispose();
+
+      pinsList.forEach(pin => {
+        pin.traverse(child => {
+          if (child instanceof THREE.Mesh) {
+            child.geometry.dispose();
+            if (Array.isArray(child.material)) {
+              child.material.forEach(m => m.dispose());
+            } else {
+              child.material.dispose();
+            }
+          }
+        });
+      });
+
+      pulsesList.forEach(pulse => {
+        pulse.geometry.dispose();
+        (pulse.material as THREE.Material).dispose();
+      });
+
+      renderer.dispose();
     };
   }, [locale, rtl]);
 
-  const handleScrollTo = (idx: number) => {
-    const el = document.getElementById(`project-${idx}`);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "center" });
-    }
-  };
-
-  const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    isDraggingRef.current = true;
-    dragMovedRef.current = false;
-    dragStartRef.current = { x, y };
-    lastInteractedRef.current = Date.now();
-    setCursorStyle("grabbing");
-  };
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const canvasX = x * scaleX;
-    const canvasY = y * scaleY;
-
-    if (isDraggingRef.current) {
-      const dx = x - dragStartRef.current.x;
-      const dy = y - dragStartRef.current.y;
-      
-      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-        dragMovedRef.current = true;
-      }
-
-      const sensitivity = 0.005;
-      rotationRef.current.lambda += dx * sensitivity;
-      rotationRef.current.tilt -= dy * sensitivity;
-      
-      // Clamp tilt to avoid flipping
-      const maxTilt = 60 * Math.PI / 180;
-      if (rotationRef.current.tilt > maxTilt) rotationRef.current.tilt = maxTilt;
-      if (rotationRef.current.tilt < -maxTilt) rotationRef.current.tilt = -maxTilt;
-
-      dragStartRef.current = { x, y };
-      lastInteractedRef.current = Date.now();
-      setCursorStyle("grabbing");
-    } else {
-      let matchedIdx: number | null = null;
-      pinCoordsRef.current.forEach((coord, idx) => {
-        if (coord.visible) {
-          const dx = canvasX - coord.x;
-          const dy = canvasY - (coord.y - 28); // Updated collision check offset
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 26) { // Slightly wider hover radius for larger pins
-            matchedIdx = idx;
-          }
-        }
-      });
-
-      if (matchedIdx !== hoveredIdx) {
-        setHoveredIdx(matchedIdx);
-      }
-      setCursorStyle(matchedIdx !== null ? "pointer" : "grab");
-    }
-  };
-
-  const handleMouseUp = () => {
-    isDraggingRef.current = false;
-    setCursorStyle("grab");
-  };
-
-  const handleMouseLeave = () => {
-    isDraggingRef.current = false;
-    setCursorStyle("grab");
-    setHoveredIdx(null);
-  };
-
-  const handleCanvasClick = () => {
-    if (hoveredIdx !== null && !dragMovedRef.current) {
-      handleScrollTo(hoveredIdx);
-    }
-  };
-
-  const handleTouchStart = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas || e.touches.length === 0) return;
-    const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    isDraggingRef.current = true;
-    dragMovedRef.current = false;
-    dragStartRef.current = { x, y };
-    lastInteractedRef.current = Date.now();
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLCanvasElement>) => {
-    const canvas = canvasRef.current;
-    if (!canvas || e.touches.length === 0) return;
-    const rect = canvas.getBoundingClientRect();
-    const touch = e.touches[0];
-    const x = touch.clientX - rect.left;
-    const y = touch.clientY - rect.top;
-
-    if (isDraggingRef.current) {
-      const dx = x - dragStartRef.current.x;
-      const dy = y - dragStartRef.current.y;
-
-      if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-        dragMovedRef.current = true;
-      }
-
-      const sensitivity = 0.005;
-      rotationRef.current.lambda += dx * sensitivity;
-      rotationRef.current.tilt -= dy * sensitivity;
-
-      const maxTilt = 60 * Math.PI / 180;
-      if (rotationRef.current.tilt > maxTilt) rotationRef.current.tilt = maxTilt;
-      if (rotationRef.current.tilt < -maxTilt) rotationRef.current.tilt = -maxTilt;
-
-      dragStartRef.current = { x, y };
-      lastInteractedRef.current = Date.now();
-    }
-  };
-
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
-    if (!dragMovedRef.current && hoveredIdx !== null) {
-      handleScrollTo(hoveredIdx);
-    }
-  };
-
   const handleTooltipClick = () => {
     const activeIdx = hoveredIdxRef.current;
-    if (activeIdx !== null) {
-      handleScrollTo(activeIdx);
+    if (activeIdx !== null && activeIdx !== undefined) {
+      const targetEl = document.getElementById(`project-${activeIdx}`);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
     }
   };
 
@@ -661,18 +509,8 @@ function InteractiveMap({
         <div className="relative w-full max-w-[550px] aspect-square scale-95 sm:scale-100 select-none">
           <canvas 
             ref={canvasRef}
-            width={550}
-            height={550}
             style={{ cursor: cursorStyle }}
             className="w-full h-full select-none touch-action-none"
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
-            onClick={handleCanvasClick}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           />
           
           {/* Crisp HTML/CSS Tooltip Overlay */}
@@ -698,8 +536,8 @@ function InteractiveMap({
       </div>
 
       <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10 pointer-events-none">
-        <span>3D_ORTHOGRAPHIC_SPHERE</span>
-        <span>SYS STATUS: {isDraggingRef.current ? "DRAGGING" : hoveredIdx !== null ? "FOCUSED" : "SPINNING [LIVE]"}</span>
+        <span>3D_WEBGL_SPHERE_GRID</span>
+        <span>SYS STATUS: {cursorStyle === "grabbing" ? "DRAGGING" : hoveredIdx !== null ? "FOCUSED" : "ROTATING [LIVE]"}</span>
       </div>
 
       <div className="flex justify-between text-[9px] font-mono text-silver/40 relative z-10 pointer-events-none">
