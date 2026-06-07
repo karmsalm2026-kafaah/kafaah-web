@@ -36,13 +36,13 @@ export default async function TechnologyPage({ params }: Props) {
   return (
     <div>
       {/* Immersive Hero Section */}
-      <section className="relative h-[95vh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
+      <section className="relative h-[100vh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
         {/* Background Image with authoritative overlay */}
         <div className="absolute inset-0 z-0">
           <img
             src={tech.heroImage}
             alt={tech.name}
-            className="w-full h-full object-cover opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
+            className="w-full h-full object-fill opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
           />
           {/* Multi-layered Softer Gradients to increase image visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
@@ -68,7 +68,7 @@ export default async function TechnologyPage({ params }: Props) {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] border-y md:border-y-0 md:border-x border-white/[0.08] max-md:divide-x-0 max-md:border-x-0">
               {tech.keyStats.map((stat, i) => (
                 <div key={i} className="py-6 px-4 md:px-6 lg:px-8 group hover:bg-white/[0.02] transition-colors duration-300">
-                  <div className="text-[clamp(1.1rem,1.8vw,2rem)] text-white font-bold font-[family-name:var(--font-display)] leading-none mb-1 group-hover:text-gold transition-colors duration-300 truncate">
+                  <div className="text-[clamp(0.9rem,1.25vw,1.4rem)] text-white font-bold font-[family-name:var(--font-display)] leading-tight mb-2 group-hover:text-gold transition-colors duration-300">
                     {stat.value}
                   </div>
                   <div className="text-[9px] md:text-[10px] tracking-[0.1em] uppercase font-[family-name:var(--font-ui)] text-silver/50 group-hover:text-silver/85 transition-colors duration-300">
