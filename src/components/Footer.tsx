@@ -223,33 +223,33 @@ export function Footer() {
               
               <div className="flex flex-col gap-2 pt-2 border-t border-white/[0.06] text-[11px]">
                 {/* General Email */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-silver/40 text-[10px] shrink-0">{locale === "ar" ? "العام:" : locale === "zh" ? "一般:" : "General:"}</span>
-                  <a href="mailto:info@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate max-w-[200px] lg:max-w-[160px]`} title="info@kafaahsolutions.com">
+                <div className="flex items-center justify-start gap-2">
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "العام:" : locale === "zh" ? "一般:" : "General:"}</span>
+                  <a href="mailto:info@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="info@kafaahsolutions.com">
                     info@kafaahsolutions.com
                   </a>
                 </div>
                 
                 {/* Admin Email */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-silver/40 text-[10px] shrink-0">{locale === "ar" ? "الإدارة:" : locale === "zh" ? "行政:" : "Admin:"}</span>
-                  <a href="mailto:admin@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate max-w-[200px] lg:max-w-[160px]`} title="admin@kafaahsolutions.com">
+                <div className="flex items-center justify-start gap-2">
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الإدارة:" : locale === "zh" ? "行政:" : "Admin:"}</span>
+                  <a href="mailto:admin@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="admin@kafaahsolutions.com">
                     admin@kafaahsolutions.com
                   </a>
                 </div>
 
                 {/* Support Email */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-silver/40 text-[10px] shrink-0">{locale === "ar" ? "الدعم الفني:" : locale === "zh" ? "技术支持:" : "Support:"}</span>
-                  <a href="mailto:support@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate max-w-[200px] lg:max-w-[160px]`} title="support@kafaahsolutions.com">
+                <div className="flex items-center justify-start gap-2">
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الدعم الفني:" : locale === "zh" ? "技术支持:" : "Support:"}</span>
+                  <a href="mailto:support@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="support@kafaahsolutions.com">
                     support@kafaahsolutions.com
                   </a>
                 </div>
 
                 {/* Sales Email */}
-                <div className="flex items-center justify-between gap-2">
-                  <span className="text-silver/40 text-[10px] shrink-0">{locale === "ar" ? "المبيعات:" : locale === "zh" ? "销售:" : "Sales:"}</span>
-                  <a href="mailto:sales@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate max-w-[200px] lg:max-w-[160px]`} title="sales@kafaahsolutions.com">
+                <div className="flex items-center justify-start gap-2">
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "المبيعات:" : locale === "zh" ? "销售:" : "Sales:"}</span>
+                  <a href="mailto:sales@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="sales@kafaahsolutions.com">
                     sales@kafaahsolutions.com
                   </a>
                 </div>
