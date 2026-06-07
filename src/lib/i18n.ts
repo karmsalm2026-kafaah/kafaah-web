@@ -433,7 +433,7 @@ export const tech = {
       }
     },
     "ssp": {
-      name: { en: "Single Superphosphate", ar: "سوبر فوسفات أحادي", zh: "普通过磷酸钙" },
+      name: { en: "Sulfate of Potash", ar: "كبريتات البوتاسيوم", zh: "硫酸钾" },
       desc: {
         en: "Acidulation, curing, granulation, and storage — complete startup and performance optimization support.",
         ar: "المعاملة الحمضية، والتعتيق، والتحبيب، والتخزين — دعم كامل لبدء التشغيل وتحسين الأداء (SSP).",
@@ -826,7 +826,7 @@ export const whoWeAre = {
       { formula: "K₂SO₄", title: "SULFATE OF POTASH", desc: "Mannheim process and double salt route — including successful SOP commissioning and operational stabilization." },
       { formula: "NPK", title: "NPK FERTILIZERS", desc: "Complete granulation and finishing lines — blending, coating, quality control, and performance testing." },
       { formula: "MgSO₄", title: "MAGNESIUM SULPHATE", desc: "Epsomite production across technical and agricultural grades — from commissioning through stable continuous operation." },
-      { formula: "SSP", title: "SINGLE SUPERPHOSPHATE", desc: "Acidulation, curing, granulation, and storage — complete startup and performance optimization support." }
+      { formula: "SSP", title: "SULFATE OF POTASH", desc: "Acidulation, curing, granulation, and storage — complete startup and performance optimization support." }
     ],
     ar: [
       { formula: "H₂SO₄", title: "حمض الكبريتيك", desc: "من حرق الكبريت وأنظمة المحولات إلى امتصاص التحكم في الانبعاثات — خبرة كاملة في مصانع حمض الكبريتيك." },
@@ -834,7 +834,7 @@ export const whoWeAre = {
       { formula: "K₂SO₄", title: "كبريتات البوتاسيوم", desc: "طريقة فرن مانهايم ومسار الملح المزدوج — بما في ذلك تشغيل كبريتات البوتاسيوم بنجاح والاستقرار التشغيلي لها." },
       { formula: "NPK", title: "الأسمدة المركبة NPK", desc: "خطوط التحبيب والتشطيب الكاملة — الخلط، والطلاء، ومراقبة الجودة، واختبارات الأداء." },
       { formula: "MgSO₄", title: "كبريتات المغنيسيوم", desc: "إنتاج الإبسوميت (ملح إنجليزي) للدرجات الفنية والزراعية — من بدء التشغيل والتشغيل المستمر والمستقر." },
-      { formula: "SSP", title: "سوبر فوسفات أحادي", desc: "المعالجة بالحمض، والتعتيق، والتحبيب، والتخزين — دعم كامل لبدء التشغيل وتحسين الأداء." }
+      { formula: "SSP", title: "كبريتات البوتاسيوم", desc: "المعالجة بالحمض، والتعتيق، والتحبيب، والتخزين — دعم كامل لبدء التشغيل وتحسين الأداء." }
     ],
     zh: [
       { formula: "H₂SO₄", title: "硫酸", desc: "从硫磺燃烧与转化器系统，到吸收与尾气排放控制——拥有硫酸工厂全套深厚的系统运营经验。" },
@@ -842,7 +842,7 @@ export const whoWeAre = {
       { formula: "K₂SO₄", title: "硫酸钾", desc: "曼海姆工艺与双盐路线——包括多次成功的硫酸钾（SOP）系统调试与装置稳定化运行。" },
       { formula: "NPK", title: "氮磷钾复合肥", desc: "完整的造粒与后处理成品线——涵盖掺混、涂膜包衣、全面质控与整线性能测试。" },
       { formula: "MgSO₄", title: "硫酸镁", desc: "涉及工业级与农业级的泻利盐生产——提供从系统调试直至稳定连续商业运行的全程服务。" },
-      { formula: "SSP", title: "普通过磷酸钙", desc: "酸解酸化、熟化化解、造粒以及仓储物流——提供成熟 of 启动运行与产量优化技术支持。" }
+      { formula: "SSP", title: "硫酸钾", desc: "酸解酸化、熟化化解、造粒以及仓储物流——提供成熟 of 启动运行与产量优化技术支持。" }
     ]
   } as Record<GatewayLocale, { formula: string; title: string; desc: string }[]>,
   domainClosing: {
@@ -1106,7 +1106,7 @@ Every NPK formulation has a Critical Relative Humidity (CRH). If the ambient air
   },
 
   ssp: {
-    title: { en: "Single Superphosphate — SSP", ar: "سوبر فوسفات أحادي — SSP", zh: "普通过邻酸钙 — SSP" } as L,
+    title: { en: "Sulfate of Potash — SOP", ar: "كبريتات البوتاسيوم — SOP", zh: "硫酸钾 — SOP" } as L,
     sub: {
       en: "Phosphate rock acidulation, continuous den curing, and aging stabilization.",
       ar: "معالجة صخور الفوسفات بالحمض، التعتيق المستمر في حجرات خاصة، وتثبيت وتعتيق المنتج.",

@@ -21,9 +21,9 @@
 
   --color-divider: rgba(160, 180, 200, 0.2);
 
-  --font-display: 'DM Serif Display', serif;
-  --font-ui: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: var(--font-display), serif;
+  --font-ui: var(--font-ui), sans-serif;
+  --font-body: var(--font-body), sans-serif;
 }
 
 /* ── BASE ── */

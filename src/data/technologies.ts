@@ -314,11 +314,11 @@ export const technologies: Technology[] = [
   },
   {
     formula: "SSP",
-    name: "Single Superphosphate",
+    name: "Sulfate of Potash",
     slug: "ssp",
-    fullName: "Single Superphosphate — SSP",
+    fullName: "Sulfate of Potash",
     shortDesc: "Acidulation · Curing · Granulation · Storage",
-    heroTagline: "Single Superphosphate Plant Acidulation, Curing & Off-Gas Scrubbing Support",
+    heroTagline: "Sulfate of Potash Plant Acidulation, Curing & Off-Gas Scrubbing Support",
     heroImage: "/ssp_plant.webp",
     capacity: "50,000–300,000 TPA",
     keyStats: [
@@ -360,8 +360,8 @@ export const technologies: Technology[] = [
       "We troubleshoot chemical formulation imbalances, design dust mitigation and scrubbing systems, and help facilities upgrade powder operations to granular production."
     ],
     relatedServices: ["troubleshooting", "production-optimization", "operator-training"],
-    seoTitle: "Single Superphosphate Plant Operations — SSP Specialists",
-    seoDescription: "Specialists in Single Superphosphate (SSP) plant operations, troubleshooting, and optimization. Acidulation, curing, granulation expertise.",
-    seoKeywords: ["SSP plant operations", "single superphosphate production", "SSP granulation", "superphosphate plant consultant"],
+    seoTitle: "Sulfate of Potash Plant Operations — SOP Specialists",
+    seoDescription: "Specialists in Sulfate of Potash (SOP) plant operations, troubleshooting, and optimization. Acidulation, curing, granulation expertise.",
+    seoKeywords: ["SOP plant operations", "sulfate of potash production", "SOP granulation", "sulfate of potash plant consultant"],
   },
 ];
