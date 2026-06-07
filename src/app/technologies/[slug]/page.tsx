@@ -47,6 +47,8 @@ export default async function TechnologyPage({ params }: Props) {
           {/* Multi-layered Softer Gradients to increase image visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />
+          {/* Top dark overlay layer for navbar readability */}
+          <div className="absolute top-0 left-0 right-0 h-[10vh] bg-gradient-to-b from-navy-deep/90 to-transparent pointer-events-none" />
         </div>
 
         {/* Content Container */}
@@ -68,10 +70,10 @@ export default async function TechnologyPage({ params }: Props) {
             <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] border-y md:border-y-0 md:border-x border-white/[0.08] max-md:divide-x-0 max-md:border-x-0">
               {tech.keyStats.map((stat, i) => (
                 <div key={i} className="py-6 px-4 md:px-6 lg:px-8 group hover:bg-white/[0.02] transition-colors duration-300">
-                  <div className="text-[clamp(0.9rem,1.25vw,1.4rem)] text-white font-bold font-[family-name:var(--font-display)] leading-tight mb-2 group-hover:text-gold transition-colors duration-300">
+                  <div className="text-[clamp(0.8rem,1.05vw,1.15rem)] text-white font-medium font-[family-name:var(--font-display)] leading-snug mb-2 group-hover:text-gold transition-colors duration-300">
                     {stat.value}
                   </div>
-                  <div className="text-[9px] md:text-[10px] tracking-[0.1em] uppercase font-[family-name:var(--font-ui)] text-silver/50 group-hover:text-silver/85 transition-colors duration-300">
+                  <div className="text-[9px] tracking-[0.15em] uppercase font-[family-name:var(--font-ui)] text-silver/50 group-hover:text-silver/85 transition-colors duration-300">
                     {stat.label}
                   </div>
                 </div>

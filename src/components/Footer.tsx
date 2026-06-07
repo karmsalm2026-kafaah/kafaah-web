@@ -245,6 +245,14 @@ export function Footer() {
                     support@kafaahsolutions.com
                   </a>
                 </div>
+
+                {/* Sales Email */}
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-silver/40 text-[10px] shrink-0">{locale === "ar" ? "المبيعات:" : locale === "zh" ? "销售:" : "Sales:"}</span>
+                  <a href="mailto:sales@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate max-w-[200px] lg:max-w-[160px]`} title="sales@kafaahsolutions.com">
+                    sales@kafaahsolutions.com
+                  </a>
+                </div>
               </div>
             </div>
           </div>
