@@ -72,7 +72,7 @@ export default async function ServicePage({ params }: Props) {
           <img
             src={heroImage}
             alt={service.title}
-            className="w-full h-full object-fill opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
+            className="w-full h-full object-cover opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
           />
           {/* Multi-layered Gradients for ultimate readability */}
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
