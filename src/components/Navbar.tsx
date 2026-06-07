@@ -102,7 +102,7 @@ export function Navbar() {
   return (
     <nav
       dir={rtl ? "rtl" : "ltr"}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || mobileOpen
           ? "bg-navy-dark/95 backdrop-blur-xl border-b border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
           : "bg-transparent border-b border-white/[0.05]"
         }`}

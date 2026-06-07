@@ -78,7 +78,7 @@ export default async function ServicePage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />
           {/* Top dark overlay layer for navbar readability */}
-          <div className="absolute top-0 left-0 right-0 h-[10vh] bg-gradient-to-b from-navy-deep/90 to-transparent pointer-events-none" />
+          <div className="absolute top-0 left-0 right-0 h-[20vh] bg-gradient-to-b from-navy-deep/90 to-transparent pointer-events-none" />
         </div>
 
 
