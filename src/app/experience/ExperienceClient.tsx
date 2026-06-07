@@ -124,8 +124,9 @@ function InteractiveMap({
     // 3. Renderer Setup
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    const rect = canvas.getBoundingClientRect();
-    renderer.setSize(rect.width, rect.height);
+    const parent = canvas.parentElement;
+    const size = parent && parent.offsetWidth > 0 ? parent.offsetWidth : 450;
+    renderer.setSize(size, size);
 
     // 4. Globe Mesh Creation
     const globeRadius = 1.8;
@@ -231,10 +232,11 @@ function InteractiveMap({
     const mouse = new THREE.Vector2();
 
     const handleResize = () => {
-      const rect = canvas.getBoundingClientRect();
+      const parent = canvas.parentElement;
+      const size = parent && parent.offsetWidth > 0 ? parent.offsetWidth : 450;
       camera.aspect = 1;
       camera.updateProjectionMatrix();
-      renderer.setSize(rect.width, rect.height);
+      renderer.setSize(size, size);
     };
     window.addEventListener("resize", handleResize);
 
@@ -510,11 +512,11 @@ function InteractiveMap({
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
 
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-full max-w-[550px] aspect-square scale-95 sm:scale-100 select-none mx-auto">
+        <div className="relative w-full max-w-[550px] aspect-square scale-95 sm:scale-100 select-none mx-auto flex items-center justify-center">
           <canvas
             ref={canvasRef}
             style={{ cursor: cursorStyle }}
-            className="w-full h-full select-none touch-action-none"
+            className="w-full h-full select-none touch-action-none mx-auto block"
           />
 
           {/* Crisp HTML/CSS Tooltip Overlay */}
