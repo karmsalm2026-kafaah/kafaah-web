@@ -10,6 +10,7 @@ import {
 import { FadeIn } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
 import { experiencePage as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 // Map domain icons
 const techIcons: Record<string, any> = {
@@ -574,14 +575,12 @@ export function ExperienceClient() {
       <section className="relative min-h-[90vh] lg:h-[90vh] flex flex-col justify-center pt-28 pb-16 sm:pt-36 sm:pb-24 border-b border-white/[0.06] bg-navy-deep overflow-hidden">
         {/* Background Overlay Graphic */}
         <div className="absolute inset-0 z-0 select-none pointer-events-none">
-          <picture>
-            <source srcSet="/services-hero-bg.webp" type="image/webp" />
-            <img
-              src="/services-hero-bg.png"
-              alt="Kafaah Experience Background"
-              className="w-full h-full object-fill opacity-25 mix-blend-luminosity"
-            />
-          </picture>
+          <ImageWithSkeleton
+            src="/services-hero-bg.webp"
+            alt="Kafaah Experience Background"
+            className="w-full h-full object-fill opacity-25 mix-blend-luminosity"
+            containerClassName="w-full h-full"
+          />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/40 via-navy-dark/45 to-navy-dark/35" />
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-navy-deep/80 to-transparent" />
         </div>
@@ -619,10 +618,11 @@ export function ExperienceClient() {
                   {/* Founder photo with grayscale transition and scaling */}
                   <div className="relative w-[110px] h-[130px] sm:w-[155px] sm:h-[175px] shrink-0 rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                     <div className="absolute inset-0 bg-navy-dark/10 z-10" />
-                    <img
+                    <ImageWithSkeleton
                       src="/founder.jpeg"
                       alt="Eng. Mostafa Abdel Ghaffar - Managing Director & Chief Engineer"
                       className="w-full h-full object-cover grayscale brightness-[0.98] group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out object-top"
+                      containerClassName="w-full h-full"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent z-25" />
                   </div>

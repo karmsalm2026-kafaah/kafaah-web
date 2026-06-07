@@ -7,6 +7,7 @@ import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
 import { technologiesPage as dict, getFontClass, isRtl } from "@/lib/i18n";
 import { technologies } from "@/data/technologies";
+import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 
 const domainIcons: Record<string, any> = {
   "H₂SO₄": Flame,
@@ -171,14 +172,12 @@ export function TechnologiesClient() {
                       <div className="relative group rounded-sm overflow-hidden border border-white/[0.08] bg-navy-card/15 backdrop-blur-md p-4 sm:p-5 flex flex-col gap-4">
                         {/* Process rendered image */}
                         <div className="relative w-full h-[280px] sm:h-[350px] rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
-                          <picture>
-                            <source srcSet={imageMap[tech.slug]} type="image/webp" />
-                            <img
-                              src={imageMapPng[tech.slug]}
-                              alt={tech.fullName}
-                              className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
-                            />
-                          </picture>
+                          <ImageWithSkeleton
+                            src={imageMap[tech.slug]}
+                            alt={tech.fullName}
+                            className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
+                            containerClassName="w-full h-full"
+                          />
                           <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/70 via-transparent to-transparent z-10" />
                           
                           {/* Formula badge overlay */}
