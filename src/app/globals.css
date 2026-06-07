@@ -33,6 +33,13 @@ html {
   color-scheme: dark;
 }
 
+/* Fix word-spacing for display font headings to ensure spaces are visible and words do not touch */
+[class*="var(--font-display)"],
+.font-display {
+  word-spacing: 0.22em;
+}
+
+
 /* ── DARK SELECT / OPTION — Prevents white flash ── */
 select,
 select option,
