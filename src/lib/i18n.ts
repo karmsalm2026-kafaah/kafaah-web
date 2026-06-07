@@ -155,7 +155,7 @@ export const hero = {
 export const ticker = {
   label: { en: "Technologies", ar: "التقنيات", zh: "技术" } as L,
   names: {
-    en: ["Sulfuric Acid", "Phosphoric Acid", "Sulfate of Potash", "Nitrogen Phosphorus Potassium", "Magnesium Sulphate", "Single Superphosphate"],
+    en: ["Sulfuric Acid", "Phosphoric Acid", "Sulfate of Potash", "Compound Fertilizers (Multi-nutrient)", "Magnesium Sulphate", "Single Superphosphate"],
     ar: ["حمض الكبريتيك", "حمض الفوسفوريك", "كبريتات البوتاسيوم", "NPK سماد مركب", "كبريتات المغنيسيوم", "سوبر فوسفات أحادي"],
     zh: ["硫酸", "磷酸", "硫酸钾", "氮磷钾复合肥", "硫酸镁", "普通过磷酸钙"],
   } as LArr,
