@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, X, Calendar, Clock, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, Layers, Award, Terminal } from "lucide-react";
 import Link from "next/link";
 import { useRole } from "@/lib/RoleContext";
 import { FadeIn } from "@/components/Animations";
 import { insightsPage as dict, shared, getFontClass, isRtl } from "@/lib/i18n";
+import { slugify } from "@/lib/slugify";
 
 const articleImages: Record<string, string> = {
   "1": "/insights-construction-mistakes.png",
@@ -79,53 +80,6 @@ function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
   );
 }
 
-function parseMarkdown(content: string, fcDisplay: string, fcBody: string) {
-  if (!content) return null;
-  const blocks = content.split("\n\n");
-  return blocks.map((block, index) => {
-    const trimmed = block.trim();
-    if (trimmed.startsWith("## ")) {
-      return (
-        <h2 key={index} className={`${fcDisplay} text-xl sm:text-2xl text-white font-semibold mt-8 mb-4 border-b border-white/10 pb-2`}>
-          {trimmed.replace("## ", "")}
-        </h2>
-      );
-    }
-    if (trimmed.startsWith("### ")) {
-      return (
-        <h3 key={index} className={`${fcDisplay} text-lg sm:text-xl text-gold font-medium mt-6 mb-3`}>
-          {trimmed.replace("### ", "")}
-        </h3>
-      );
-    }
-    if (trimmed.startsWith("* ") || trimmed.startsWith("- ")) {
-      const items = trimmed.split("\n").map(item => item.replace(/^[*-\s]+/, ""));
-      return (
-        <ul key={index} className="list-disc pl-5 rtl:pl-0 rtl:pr-5 text-silver/85 space-y-2 mb-4">
-          {items.map((item, i) => (
-            <li key={i} className={`${fcBody} text-sm sm:text-base font-light leading-relaxed`}>{item}</li>
-          ))}
-        </ul>
-      );
-    }
-    if (/^\d+\.\s/.test(trimmed)) {
-      const items = trimmed.split("\n").map(item => item.replace(/^\d+\.\s+/, ""));
-      return (
-        <ol key={index} className="list-decimal pl-5 rtl:pl-0 rtl:pr-5 text-silver/85 space-y-2 mb-4">
-          {items.map((item, i) => (
-            <li key={i} className={`${fcBody} text-sm sm:text-base font-light leading-relaxed`}>{item}</li>
-          ))}
-        </ol>
-      );
-    }
-    return (
-      <p key={index} className={`${fcBody} text-silver/85 text-sm sm:text-base font-light leading-relaxed mb-4`}>
-        {trimmed}
-      </p>
-    );
-  });
-}
-
 export function InsightsClient() {
   const { locale } = useRole();
   const rtl = isRtl(locale);
@@ -133,134 +87,290 @@ export function InsightsClient() {
   const fcUi = getFontClass(locale, "ui");
   const fcBody = getFontClass(locale);
 
-  const [activeArticle, setActiveArticle] = useState<any | null>(null);
+  // Dynamic filter state
+  const allLabel = locale === "ar" ? "الكل" : locale === "zh" ? "全部" : "All";
+  const [selectedCategory, setSelectedCategory] = useState(allLabel);
 
-  // Close modal on Escape key press
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveArticle(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  const allArticles = useMemo(() => dict.articles[locale] || [], [locale]);
+  
+  // Highlight the flagship article as Featured in the Hero
+  const featuredArticle = useMemo(() => allArticles[0], [allArticles]);
+  const featuredSlug = useMemo(() => {
+    if (!featuredArticle) return "";
+    const englishArticle = dict.articles["en"].find((a: any) => a.id === featuredArticle.id);
+    return englishArticle ? slugify(englishArticle.title) : featuredArticle.id;
+  }, [featuredArticle]);
 
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (activeArticle) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
-  }, [activeArticle]);
+  // Rest of articles go to grid
+  const gridArticles = useMemo(() => allArticles.slice(1), [allArticles]);
+
+  // Extract unique categories dynamically based on the current locale
+  const categories = useMemo(() => {
+    const list = new Set<string>();
+    gridArticles.forEach((a: any) => {
+      if (a.category) list.add(a.category);
+    });
+    return [allLabel, ...Array.from(list)];
+  }, [gridArticles, allLabel]);
+
+  // Filter grid articles dynamically
+  const filteredArticles = useMemo(() => {
+    if (selectedCategory === allLabel) return gridArticles;
+    return gridArticles.filter((a: any) => a.category === selectedCategory);
+  }, [gridArticles, selectedCategory, allLabel]);
+
+  if (!featuredArticle) return null;
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start">
-      {/* Animated Blueprint Hero */}
-      <section className="bg-navy-dark border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
-        {/* Schematic Grid Underlay */}
+    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy">
+      
+      {/* ── IMMERSIVE EDITORIAL SPLIT HERO ── */}
+      <section className="relative bg-navy-deep border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-24 overflow-hidden">
+        
+        {/* Schematic Grid and Ambient Orbs underlay */}
         <div className="absolute inset-0 z-0">
           <div
-            className="absolute inset-0 opacity-[0.18]"
+            className="absolute inset-0 opacity-[0.14]"
             style={{
-              backgroundImage: `linear-gradient(to right, rgba(229, 193, 88, 0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(229, 193, 88, 0.055) 1px, transparent 1px)`,
-              backgroundSize: "48px 48px",
+              backgroundImage: `linear-gradient(to right, rgba(229, 193, 88, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(229, 193, 88, 0.05) 1px, transparent 1px)`,
+              backgroundSize: "60px 60px",
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/40 via-navy-dark/80 to-navy-dark" />
-          <div className="absolute -left-12 top-10 w-[300px] h-[300px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
+          {/* Subtle scanning laser line inside background */}
+          <div className="absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/15 to-transparent top-[40%] animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-navy-deep/60 to-navy-deep" />
+          
+          {/* Neon gold radial glows */}
+          <div className="absolute top-1/4 -left-20 w-[450px] h-[450px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-1/4 -right-20 w-[450px] h-[450px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
         </div>
 
-        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
-          <FadeIn className="space-y-4">
-            <div className={`${fcUi} text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-2 gold-line`}>
-              {dict.knowledge[locale]}
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Editorial context & Stats */}
+            <div className="lg:col-span-6 space-y-6 sm:space-y-8">
+              <FadeIn className="space-y-4">
+                <div className={`${fcUi} text-[10px] font-bold tracking-[0.25em] uppercase text-gold flex items-center gap-3 gold-line`}>
+                  {dict.knowledge[locale]}
+                </div>
+                
+                <h1 className={`${fcDisplay} text-[clamp(34px,4.5vw,56px)] leading-[1.1] text-cloud font-medium tracking-tight`}>
+                  <HoverWords text={dict.pageTitle[locale]} locale={locale} />
+                </h1>
+                
+                <p className={`${fcBody} text-sm sm:text-base font-light text-silver/80 leading-relaxed max-w-[540px]`}>
+                  <HoverSubcopy text={dict.subtitle[locale]} locale={locale} />
+                </p>
+              </FadeIn>
+
+              {/* Schematic details/Stats grid for Owner's Engineer theme */}
+              <FadeIn delay={0.15} className="pt-4">
+                <div className="grid grid-cols-3 gap-4 border-t border-white/[0.08] pt-6 max-w-[480px]">
+                  <div className="space-y-1">
+                    <span className="block font-mono text-[9px] text-gold/50 tracking-widest uppercase">database</span>
+                    <span className="block font-sans text-lg sm:text-xl font-bold text-white leading-none">13 Insights</span>
+                  </div>
+                  <div className="space-y-1 border-x border-white/[0.08] px-4">
+                    <span className="block font-mono text-[9px] text-gold/50 tracking-widest uppercase">field depth</span>
+                    <span className="block font-sans text-lg sm:text-xl font-bold text-white leading-none">20+ Years</span>
+                  </div>
+                  <div className="space-y-1 px-2">
+                    <span className="block font-mono text-[9px] text-gold/50 tracking-widest uppercase">operational base</span>
+                    <span className="block font-sans text-xs font-semibold text-white leading-normal uppercase">Cairo, Egypt</span>
+                  </div>
+                </div>
+              </FadeIn>
             </div>
-            
-            <h1 className={`${fcDisplay} text-[clamp(36px,5vw,64px)] leading-[1.05] text-cloud font-medium`}>
-              <HoverWords text={dict.pageTitle[locale]} locale={locale} />
-            </h1>
-            
-            <p className={`${fcBody} text-base sm:text-lg font-light text-muted max-w-[640px] leading-relaxed`}>
-              <HoverSubcopy text={dict.subtitle[locale]} locale={locale} />
-            </p>
-          </FadeIn>
+
+            {/* Right Column: Featured flagship article card */}
+            <div className="lg:col-span-6">
+              <FadeIn delay={0.25}>
+                <Link
+                  href={`/insights/${featuredSlug}/`}
+                  className="group block bg-navy-card/60 backdrop-blur-xl border border-gold/25 hover:border-gold transition-all duration-500 rounded-sm overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)] relative hover:shadow-[0_25px_60px_rgba(240,160,32,0.08)]"
+                >
+                  {/* Decorative corners to look like a blueprint spec drawing */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-gold/45 rounded-tl-sm pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-gold/45 rounded-tr-sm pointer-events-none" />
+                  <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-gold/45 rounded-bl-sm pointer-events-none" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-gold/45 rounded-br-sm pointer-events-none" />
+
+                  {/* Pulsing Featured Badge */}
+                  <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 bg-navy-deep/80 backdrop-blur-md px-3 py-1.5 rounded-sm border border-gold/20">
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold animate-ping" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-gold absolute" />
+                    <span className="font-mono text-[9px] font-bold text-gold tracking-widest uppercase">Featured Case Study</span>
+                  </div>
+
+                  {/* Cover image */}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/[0.08]">
+                    <img
+                      src={articleImages[featuredArticle.id] || "/insights-commissioning.png"}
+                      alt={featuredArticle.title}
+                      className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-103 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-transparent" />
+                    {/* Light shine animation */}
+                    <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />
+                  </div>
+
+                  {/* Card Info */}
+                  <div className="p-6 sm:p-8 space-y-4">
+                    <div className="flex items-center gap-3">
+                      <span className={`${fcUi} text-[9px] font-bold tracking-[0.15em] uppercase text-gold bg-gold/10 px-2 rounded-sm border border-gold/10`}>
+                        {featuredArticle.category}
+                      </span>
+                      <span className={`${fcUi} text-[10px] text-silver/50 tracking-wider`} dir="ltr">
+                        {featuredArticle.date}
+                      </span>
+                    </div>
+
+                    <h2 className={`${fcDisplay} text-xl sm:text-2xl text-white group-hover:text-gold transition-colors duration-300 font-medium leading-snug`}>
+                      {featuredArticle.title}
+                    </h2>
+
+                    <p className={`${fcBody} text-xs sm:text-sm font-light text-silver/70 leading-relaxed line-clamp-3`}>
+                      {featuredArticle.excerpt}
+                    </p>
+
+                    <div className="pt-4 border-t border-white/[0.05] flex items-center justify-between">
+                      <span className={`${fcUi} text-[10px] font-bold tracking-[0.15em] uppercase text-gold flex items-center gap-1.5`}>
+                        {dict.readArticle[locale]}
+                        <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 ${rtl ? "rotate-180" : ""}`} />
+                      </span>
+                      <Terminal className="w-3.5 h-3.5 text-gold/30" />
+                    </div>
+                  </div>
+                </Link>
+              </FadeIn>
+            </div>
+
+          </div>
         </div>
       </section>
 
-      {/* Articles Grid Section */}
-      <section className="py-20 bg-navy relative">
-        <div className="max-w-[1280px] mx-auto px-8">
-          <FadeIn>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10">
-              {dict.articles[locale].map((article: any) => {
-                const coverImage = articleImages[article.id] || "/insights-commissioning.png";
+      {/* ── ARTICLES DIRECTORY + CATEGORY FILTERS ── */}
+      <section className="py-20 sm:py-28 bg-navy relative border-b border-divider">
+        <div className="max-w-[1280px] mx-auto px-6 sm:px-8">
+          
+          {/* Header & Filter Controls Row */}
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-12 border-b border-white/[0.06] pb-8">
+            <FadeIn className="space-y-2">
+              <span className="font-mono text-[9px] text-gold/50 tracking-[0.25em] uppercase">technical resources</span>
+              <h2 className={`${fcDisplay} text-2xl sm:text-3xl text-cloud font-medium tracking-tight`}>
+                {locale === "ar" ? "دليل المعرفة الميدانية" : locale === "zh" ? "现场知识指南" : "Field Knowledge Directory"}
+              </h2>
+            </FadeIn>
+
+            {/* Category Filter Tabs */}
+            <FadeIn delay={0.1} className="flex flex-wrap gap-2">
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat;
                 return (
-                  <div
-                    key={article.id}
-                    onClick={() => setActiveArticle(article)}
-                    className="bg-navy-card/45 backdrop-blur-sm border border-white/[0.08] hover:border-gold/45 hover:bg-navy-card-hover/60 transition-all duration-500 rounded-sm overflow-hidden flex flex-col h-full group relative shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_40px_rgba(229,193,88,0.06)] cursor-pointer"
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-4 py-2 rounded-sm text-xs font-semibold uppercase tracking-wider transition-all duration-300 border ${
+                      isActive
+                        ? "bg-gold border-gold text-navy-deep font-bold shadow-[0_0_15px_rgba(240,160,32,0.2)]"
+                        : "border-white/[0.08] hover:border-gold/30 text-silver/60 hover:text-white bg-navy-card/10"
+                    }`}
                   >
-                    {/* Card Cover Image */}
-                    <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.06] z-0">
-                      <img
-                        src={coverImage}
-                        alt={article.title}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/90 via-navy-dark/30 to-transparent" />
-                      
-                      {/* Premium Hover Light Sweep */}
-                      <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />
-                    </div>
+                    {cat}
+                  </button>
+                );
+              })}
+            </FadeIn>
+          </div>
 
-                    {/* Card Content */}
-                    <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between relative z-10">
-                      <div>
-                        {/* Meta Tags */}
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className={`${fcUi} text-[9px] font-bold tracking-[0.15em] uppercase text-gold bg-gold/10 px-2.5 py-1 rounded-sm border border-gold/10`}>
-                            {article.category}
-                          </span>
-                          <span className={`${fcUi} text-[10px] text-silver/60 uppercase tracking-[0.1em]`} dir="ltr">
-                            {article.date}
-                          </span>
-                        </div>
-
-                        {/* Title */}
-                        <h2 className={`${fcDisplay} text-xl sm:text-[22px] text-cloud leading-[1.3] mb-4 group-hover:text-gold transition-colors duration-300 font-medium`}>
-                          <HoverWords text={article.title} locale={locale} />
-                        </h2>
-
-                        {/* Excerpt */}
-                        <p className={`${fcBody} text-[13.5px] sm:text-[14.5px] font-light text-silver/80 leading-[1.7]`}>
-                          <HoverSubcopy text={article.excerpt} locale={locale} />
-                        </p>
+          {/* Staggered Grid of Remaining Articles */}
+          <AnimatePresence mode="popLayout">
+            <motion.div 
+              layout
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {filteredArticles.map((article: any) => {
+                const coverImage = articleImages[article.id] || "/insights-commissioning.png";
+                const englishArticle = dict.articles["en"].find((a: any) => a.id === article.id);
+                const slug = englishArticle ? slugify(englishArticle.title) : article.id;
+                
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                    key={article.id}
+                  >
+                    <Link
+                      href={`/insights/${slug}/`}
+                      className="bg-navy-card/45 backdrop-blur-sm border border-white/[0.08] hover:border-gold/45 hover:bg-navy-card-hover/70 transition-all duration-500 rounded-sm overflow-hidden flex flex-col h-full group relative shadow-[0_10px_35px_rgba(0,0,0,0.35)] hover:shadow-[0_15px_45px_rgba(240,160,32,0.05)] cursor-pointer"
+                    >
+                      {/* Cover Image */}
+                      <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.06] z-0">
+                        <img
+                          src={coverImage}
+                          alt={article.title}
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />
+                        {/* Premium shimmer beam */}
+                        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />
                       </div>
 
-                      {/* Footer Read Button */}
-                      <div className="pt-6 mt-6 border-t border-white/[0.05]">
-                        <span className={`${fcUi} text-[10px] sm:text-[11px] font-bold tracking-[0.15em] uppercase text-silver/50 flex items-center gap-2 group-hover:text-gold transition-colors duration-300`}>
-                          <span className="flex items-center gap-2">
+                      {/* Content details */}
+                      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between relative z-10 space-y-4">
+                        <div className="space-y-3">
+                          <div className="flex items-center gap-3">
+                            <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.15em] uppercase text-gold bg-gold/10 px-2 py-0.5 rounded-sm border border-gold/10`}>
+                              {article.category}
+                            </span>
+                            <span className={`${fcUi} text-[9.5px] text-silver/50 tracking-wider`} dir="ltr">
+                              {article.date}
+                            </span>
+                          </div>
+
+                          <h3 className={`${fcDisplay} text-lg sm:text-[20px] text-cloud leading-[1.3] group-hover:text-gold transition-colors duration-300 font-medium`}>
+                            {article.title}
+                          </h3>
+
+                          <p className={`${fcBody} text-xs sm:text-[13px] font-light text-silver/75 leading-[1.65] line-clamp-3`}>
+                            {article.excerpt}
+                          </p>
+                        </div>
+
+                        <div className="pt-4 border-t border-white/[0.05]">
+                          <span className={`${fcUi} text-[10px] font-bold tracking-[0.15em] uppercase text-silver/50 flex items-center gap-1.5 group-hover:text-gold transition-colors duration-300`}>
                             {dict.readArticle[locale]}
                             <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
                           </span>
-                        </span>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    </Link>
+                  </motion.div>
                 );
               })}
-            </div>
-          </FadeIn>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* No results placeholder */}
+          {filteredArticles.length === 0 && (
+            <FadeIn>
+              <div className="text-center py-16 border border-dashed border-white/10 rounded-sm bg-navy-card/5">
+                <Layers className="w-8 h-8 text-gold/30 mx-auto mb-4" />
+                <p className="text-silver/50 font-light text-sm">
+                  {locale === "ar" ? "لا توجد مقالات ضمن هذا القسم حالياً." : locale === "zh" ? "此类别下暂无文章。" : "No articles published under this category yet."}
+                </p>
+              </div>
+            </FadeIn>
+          )}
 
           <FadeIn delay={0.2}>
-            <div className="mt-16 text-center border-t border-divider pt-16">
-              <p className="text-silver/50 font-light text-sm tracking-wide">
+            <div className="mt-16 text-center border-t border-white/[0.06] pt-16">
+              <p className="text-silver/45 font-light text-xs tracking-wide">
                 {dict.moreInsights[locale]}
               </p>
             </div>
@@ -268,142 +378,35 @@ export function InsightsClient() {
         </div>
       </section>
 
-      {/* Lightbox / Reader Modal */}
-      <AnimatePresence>
-        {activeArticle && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            {/* Modal Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setActiveArticle(null)}
-              className="absolute inset-0 bg-navy-dark/90 backdrop-blur-md"
-            />
-
-            {/* Modal Container */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.96, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 15 }}
-              transition={{ type: "spring", duration: 0.5 }}
-              className="bg-navy-dark/95 backdrop-blur border border-gold/30 rounded-sm shadow-[0_25px_60px_rgba(0,0,0,0.8),0_0_50px_rgba(229,193,88,0.04)] w-full max-w-[840px] max-h-[85vh] overflow-hidden flex flex-col relative z-10"
-            >
-              {/* Close Button */}
-              <button
-                onClick={() => setActiveArticle(null)}
-                className={`absolute top-4 ${rtl ? "left-4" : "right-4"} z-20 p-2 bg-navy-dark/60 border border-white/[0.08] hover:border-gold hover:text-gold rounded-full text-white/70 transition-all duration-300 focus:outline-none`}
-                aria-label="Close reader"
-              >
-                <X className="w-5 h-5 transition-transform duration-300 hover:rotate-90" />
-              </button>
-
-              {/* Scrollable Content Container */}
-              <div className="overflow-y-auto flex-1 custom-scrollbar">
-                {/* Banner Image */}
-                <div className="relative aspect-[21/9] w-full overflow-hidden border-b border-white/[0.08]">
-                  <img
-                    src={articleImages[activeArticle.id] || "/insights-commissioning.png"}
-                    alt={activeArticle.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-navy-dark/45 to-transparent" />
-                  
-                  {/* Category overlay */}
-                  <div className="absolute bottom-6 left-8 right-8 flex flex-wrap items-center gap-3">
-                    <span className={`${fcUi} text-[9px] font-bold tracking-[0.18em] uppercase text-gold bg-gold/15 border border-gold/25 px-2.5 py-1 rounded-sm`}>
-                      {activeArticle.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Main Body Content */}
-                <div className="p-6 sm:p-10 md:p-12 space-y-6">
-                  {/* Article Metadata */}
-                  <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-silver/45 border-b border-white/[0.06] pb-5">
-                    <div className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-gold/80" />
-                      <span>{activeArticle.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <Clock className="w-3.5 h-3.5 text-gold/80" />
-                      <span>{locale === "ar" ? "قراءة في 5 دقائق" : locale === "zh" ? "5分钟阅读" : "5 min read"}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      <BookOpen className="w-3.5 h-3.5 text-gold/80" />
-                      <span>Kafaah Operations</span>
-                    </div>
-                  </div>
-
-                  {/* Title */}
-                  <h1 className={`${fcDisplay} text-2xl sm:text-3xl md:text-[34px] leading-[1.2] text-white font-medium`}>
-                    {activeArticle.title}
-                  </h1>
-
-                  {/* Excerpt Blockquote */}
-                  <div className="border-s-2 border-gold/50 ps-4 py-1 my-4">
-                    <p className={`${fcBody} text-silver/65 text-sm sm:text-base font-light italic leading-relaxed`}>
-                      {activeArticle.excerpt}
-                    </p>
-                  </div>
-
-                  {/* Render Rich Markdown Content */}
-                  <div className="mt-8 space-y-6">
-                    {parseMarkdown(activeArticle.content, fcDisplay, fcBody)}
-                  </div>
-                </div>
-              </div>
-
-              {/* Modal Footer */}
-              <div className="p-4 sm:px-10 border-t border-white/[0.06] bg-navy-deep/60 flex items-center justify-between">
-                <span className={`${fcUi} text-[10px] text-silver/45 tracking-wider`}>
-                  {locale === "ar"
-                    ? "حلول كفاءة الصناعية - المعرفة الميدانية"
-                    : locale === "zh"
-                    ? "Kafaah 工业解决方案 - 现场实战见解"
-                    : "Kafaah Industrial Solutions - Direct Field Knowledge"}
-                </span>
-                <button
-                  onClick={() => setActiveArticle(null)}
-                  className={`${fcUi} text-[10px] sm:text-xs font-bold tracking-[0.1em] text-gold hover:text-gold-light uppercase transition-colors duration-200`}
-                >
-                  {locale === "ar" ? "إغلاق القارئ" : locale === "zh" ? "关闭阅读器" : "Close Reader"}
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
-      {/* CTA Section */}
+      {/* ── CAPABILITIES / CTA SECTION ── */}
       <section className="py-24 bg-navy-deep border-t border-divider relative overflow-hidden">
-        {/* Decorative Grid backdrop */}
+        {/* Backdrop Grid */}
         <div
-          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(229,193,88,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(229,193,88,0.1) 1px, transparent 1px)`,
-            backgroundSize: "32px 32px",
+            backgroundSize: "40px 40px",
           }}
         />
-        {/* Golden radial glows */}
+        {/* Ambient background halos */}
         <div className="absolute -left-1/4 -top-1/4 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute -right-1/4 -bottom-1/4 w-[500px] h-[500px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
 
-        <div className="max-w-[960px] mx-auto px-8 relative z-10">
+        <div className="max-w-[960px] mx-auto px-6 sm:px-8 relative z-10">
           <FadeIn>
-            <div className="bg-navy-card/30 backdrop-blur-md border border-white/[0.08] hover:border-gold/30 transition-all duration-500 rounded-sm p-8 sm:p-12 md:p-16 text-center relative shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
-              {/* Corner decorative borders */}
+            <div className="bg-navy-card/50 backdrop-blur-md border border-white/[0.08] hover:border-gold/20 transition-all duration-500 rounded-sm p-8 sm:p-12 md:p-16 text-center relative shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+              {/* Engineering corners */}
               <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-gold/30 rounded-tl-sm pointer-events-none" />
               <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-gold/30 rounded-tr-sm pointer-events-none" />
               <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
               <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
 
-              <h2 className={`${fcDisplay} text-[clamp(26px,3.5vw,42px)] leading-[1.2] text-white mb-4`}>
+              <h2 className={`${fcDisplay} text-[clamp(24px,3.5vw,38px)] leading-[1.2] text-white mb-4`}>
                 <HoverWords text={dict.ctaTitle[locale]} locale={locale} />
                 <HoverWords text={dict.ctaAccent[locale]} locale={locale} isGradient={true} />
               </h2>
               
-              <p className={`${fcBody} text-sm sm:text-base font-light text-silver/85 mb-8 max-w-[540px] mx-auto leading-relaxed`}>
+              <p className={`${fcBody} text-xs sm:text-sm font-light text-silver/80 mb-8 max-w-[500px] mx-auto leading-relaxed`}>
                 <HoverSubcopy text={dict.ctaDesc[locale]} locale={locale} />
               </p>
               
@@ -411,13 +414,12 @@ export function InsightsClient() {
                 href="/contact/"
                 className={`group btn-premium-gold ${fcUi} text-xs font-bold tracking-[0.15em] uppercase inline-flex`}
               >
-                {/* Premium animated light sweep */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-25 group-hover:animate-shimmer" />
                 <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
                 <span className="relative z-10 flex items-center gap-2.5">
                   {shared.getInTouch[locale]}
-                  <ArrowRight className={`w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
+                  <ArrowRight className={`w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5 rtl:group-hover:-translate-x-1.5 ${rtl ? "rotate-180" : ""}`} />
                 </span>
               </Link>
             </div>
