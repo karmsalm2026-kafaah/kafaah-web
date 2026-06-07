@@ -35,24 +35,49 @@ export default async function TechnologyPage({ params }: Props) {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="bg-navy border-b border-divider pt-28 pb-20 lg:pt-36 lg:pb-28 relative overflow-hidden">
-        <div
-          className="absolute right-[-20px] top-1/2 -translate-y-1/2 font-[family-name:var(--font-display)] text-[clamp(120px,20vw,300px)] text-navy-mid/20 leading-none pointer-events-none select-none"
-          aria-hidden="true"
-        >
-          {tech.formula}
+      {/* Immersive Hero Section */}
+      <section className="relative h-[95vh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
+        {/* Background Image with authoritative overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={tech.heroImage}
+            alt={tech.name}
+            className="w-full h-full object-cover opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
+          />
+          {/* Multi-layered Softer Gradients to increase image visibility */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />
         </div>
-        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+
+        {/* Content Container */}
+        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 mt-auto pb-12 lg:pb-16">
           <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line">
-            Technology
+            Technology Specialist
           </div>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(36px,5vw,64px)] leading-[1.05] text-cloud mb-2">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(36px,5.5vw,72px)] leading-[1.02] text-cloud mb-4 tracking-tight">
             {tech.fullName}
           </h1>
-          <p className="text-lg font-light text-muted max-w-[640px] leading-relaxed mt-4">
+          <p className="text-lg md:text-xl font-light text-silver/90 max-w-[720px] leading-relaxed">
             {tech.heroTagline}
           </p>
+        </div>
+
+        {/* Bottom Key Stats Bar */}
+        <div className="relative z-10 border-t border-white/[0.15]" style={{ backgroundColor: "rgba(78, 96, 120, 0.96)" }}>
+          <div className="max-w-[1280px] mx-auto px-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] border-y md:border-y-0 md:border-x border-white/[0.08] max-md:divide-x-0 max-md:border-x-0">
+              {tech.keyStats.map((stat, i) => (
+                <div key={i} className="py-6 px-4 md:px-6 lg:px-8 group hover:bg-white/[0.02] transition-colors duration-300">
+                  <div className="text-[clamp(1.1rem,1.8vw,2rem)] text-white font-bold font-[family-name:var(--font-display)] leading-none mb-1 group-hover:text-gold transition-colors duration-300 truncate">
+                    {stat.value}
+                  </div>
+                  <div className="text-[9px] md:text-[10px] tracking-[0.1em] uppercase font-[family-name:var(--font-ui)] text-silver/50 group-hover:text-silver/85 transition-colors duration-300">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
