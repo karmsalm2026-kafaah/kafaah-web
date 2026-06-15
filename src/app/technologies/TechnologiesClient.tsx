@@ -36,6 +36,10 @@ const imageMap: Record<string, string> = {
   "ssp": "/ssp_plant.webp"
 };
 
+const mobileImageMap: Record<string, string> = {
+  "sulfate-of-potash": "/k2so4_plant-mobile.webp"
+};
+
 const imageMapPng: Record<string, string> = {
   "sulfuric-acid": "/h2so4_plant.png",
   "phosphoric-acid": "/h3po4_plant.png",
@@ -174,6 +178,7 @@ export function TechnologiesClient() {
                         <div className="relative w-full h-[280px] sm:h-[350px] rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                           <ImageWithSkeleton
                             src={imageMap[tech.slug]}
+                            mobileSrc={mobileImageMap[tech.slug]}
                             alt={tech.fullName}
                             className="w-full h-full object-cover grayscale brightness-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-[1.5s] ease-out"
                             containerClassName="w-full h-full"

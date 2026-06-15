@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnesium Sulfate Production Plant — Interactive PFD</title>
+  <style>
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #334155;
+      --color-text-tertiary: #64748b;
+      --color-border-tertiary: #e2e8f0;
+      --color-background-secondary: #f8fafc;
+      
+      /* System Badges */
+      --color-background-info: #e0f2fe; --color-text-info: #0369a1;
+      --color-background-warning: #fef3c7; --color-text-warning: #b45309;
+      --color-background-danger: #fee2e2; --color-text-danger: #b91c1c;
+      --color-background-success: #dcfce7; --color-text-success: #15803d;
+
+      /* Process Flow Line Colors */
+      --flow-acid: #dc2626;       /* Red for Sulfuric Acid */
+      --flow-solids: #475569;     /* Gray for MgO and crystalline salt */
+      --flow-liquor: #0ea5e9;     /* Blue for MgSO4 liquor / streams */
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body { background: #ffffff; padding: 2rem 1rem; }
+    .root{font-family:var(--font-sans);padding:1rem; max-width: 550px; margin: 0 auto;}
+    
+    /* SVG styling classes */
+    .node { cursor: pointer; fill: #ffffff; transition: transform 0.2s ease; }
+    .node rect { stroke: #cbd5e1; fill: #ffffff; transition: all 0.2s ease; }
+    
+    /* Color themes for PFD blocks */
+    .c-blue rect { stroke: var(--flow-liquor); }
+    .c-red rect { stroke: var(--flow-acid); fill: #fef2f2; }
+    .c-teal rect { stroke: #14b8a6; }
+    .c-green rect { stroke: #10b981; fill: #f0fdf4; }
+    .c-amber rect { stroke: #f59e0b; fill: #fffbeb; }
+    .c-gray rect { stroke: #94a3b8; }
+
+    .node:hover rect { stroke-width: 1.5px; filter: drop-shadow(0 4px 6px -1px rgb(0 0 0 / 0.05)); }
+    .node.active rect { stroke-width: 2px; fill: #f0fdfa; stroke: #0d9488 !important; }
+
+    .th { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+    .ts { font-size: 11px; fill: var(--color-text-secondary); }
+
+    /* Details Panel UI */
+    .detail-panel{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:8px;padding:16px 20px;margin-top:16px;min-height:90px;transition:all .2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);}
+    .detail-panel h3{font-size:15px;font-weight:600;color:var(--color-text-primary);margin-bottom:8px; display: flex; align-items: center; justify-content: space-between;}
+    .detail-panel p{font-size:13.5px;color:var(--color-text-secondary);line-height:1.6; margin-bottom: 8px;}
+    .badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:9999px;font-weight:500; text-transform: uppercase; letter-spacing: 0.05em;}
+    
+    .badge-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+    .badge-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+    .badge-info{background:var(--color-background-info);color:var(--color-text-info)}
+    .badge-ok{background:var(--color-background-success);color:var(--color-text-success)}
+    
+    .kafaah-note{margin-top:10px;font-size:12.5px;color:var(--color-text-secondary);border-top:1px dashed var(--color-border-tertiary);padding-top:10px}
+    .kafaah-note b{color: #0d9488}
+    .challenge-note{margin-top:6px;font-size:12.5px;color:var(--color-text-secondary);}
+    .challenge-note b{color: #dc2626}
+  </style>
+</head>
+<body>
+
+<div class="root">
+<svg width="100%" viewBox="0 0 520 920" role="img">
+  <title>Magnesium Sulfate Production Plant — Process Flow Diagram</title>
+  <desc>Process flow chart showing raw material feeding, exothermic neutralization, crystallizer phase growth, centrifuge filtration separation, and product drying.</desc>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="30" font-size="14" font-weight="700" fill="var(--color-text-primary)">STEP 1: RAW MATERIAL PREPARATION</text>
+  <rect x="10" y="40" width="490" height="140" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <g id="node-mgosilo" class="node c-gray" onclick="showDetail('mgosilo')">
+    <rect x="30" y="65" width="180" height="60" rx="6"/>
+    <text class="th" x="120" y="86" text-anchor="middle" dominant-baseline="central">MgO Powder Silo</text>
+    <text class="ts" x="120" y="106" text-anchor="middle" dominant-baseline="central">Magnesium Oxide Dosing</text>
+  </g>
+  
+  <g id="node-acidsilo" class="node c-red" onclick="showDetail('acidsilo')">
+    <rect x="290" y="65" width="180" height="60" rx="6" stroke-width="1.5"/>
+    <text class="th" x="380" y="86" text-anchor="middle" dominant-baseline="central">H₂SO₄ Storage Tank</text>
+    <text class="ts" x="380" y="106" text-anchor="middle" dominant-baseline="central">Sulfuric Acid Feed (Dilute)</text>
+  </g>
+
+
+  <text x="20" y="225" font-size="14" font-weight="700" fill="var(--color-text-primary)">STEP 2: EXOTHERMIC NEUTRALIZATION</text>
+  <rect x="10" y="235" width="490" height="165" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <path d="M120 125 L120 260 L200 260 L200 280" fill="none" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <path d="M380 125 L380 260 L240 260 L240 280" fill="none" stroke="var(--flow-acid)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-reactor" class="node c-amber" onclick="showDetail('reactor')">
+    <rect x="135" y="280" width="170" height="70" rx="6" stroke-width="1.5"/>
+    <text class="th" x="220" y="305" text-anchor="middle" dominant-baseline="central">Neutralization Reactor</text>
+    <text class="ts" x="220" y="325" text-anchor="middle" dominant-baseline="central">Batch Agitated / Exothermic</text>
+    <text class="ts" x="220" y="338" text-anchor="middle" dominant-baseline="central">MgO + H₂SO₄ → MgSO₄ + H₂O</text>
+  </g>
+
+
+  <text x="20" y="445" font-size="14" font-weight="700" fill="var(--color-text-primary)">STEP 3: CRYSTALLIZATION TRAIN</text>
+  <rect x="10" y="455" width="490" height="150" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <line x1="220" y1="350" x2="220" y2="485" stroke="var(--flow-liquor)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="230" y="415" fill="var(--color-text-secondary)">Hot Saturated Liquor</text>
+
+  <g id="node-crystallizer" class="node c-blue" onclick="showDetail('crystallizer')">
+    <rect x="105" y="485" width="230" height="65" rx="6" stroke-width="1.5"/>
+    <text class="th" x="220" y="510" text-anchor="middle" dominant-baseline="central">Cooling Crystallizer Unit</text>
+    <text class="ts" x="220" y="532" text-anchor="middle" dominant-baseline="central">Controlled Temperature Crystal Growth</text>
+  </g>
+
+
+  <text x="20" y="645" font-size="14" font-weight="700" fill="var(--color-text-primary)">STEP 4: CENTRIFUGE FILTRATION & DRYING</text>
+  <rect x="10" y="655" width="490" height="215" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <line x1="220" y1="550" x2="220" y2="685" stroke="var(--flow-liquor)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="230" y="615" fill="var(--color-text-secondary)">Crystalline Slurry</text>
+
+  <g id="node-centrifuge" class="node c-teal" onclick="showDetail('centrifuge')">
+    <rect x="50" y="685" width="190" height="65" rx="6" stroke-width="2"/>
+    <text class="th" x="145" y="708" text-anchor="middle" dominant-baseline="central">Centrifuge Filter</text>
+    <text class="ts" x="145" y="728" text-anchor="middle" dominant-baseline="central">High-Speed Cake Separation</text>
+  </g>
+
+  <path d="M50 717 L25 717 L25 315 L135 315" fill="none" stroke="var(--flow-liquor)" stroke-width="1.2" stroke-dasharray="4 4" marker-end="url(#ar)"/>
+  <text class="ts" x="30" y="210" fill="var(--color-text-secondary)" transform="rotate(-90 30 210)">Mother Liquor Recycle Loop</text>
+
+  <line x1="240" y1="717" x2="295" y2="717" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="268" y="702" text-anchor="middle" fill="var(--color-text-secondary)">Wet Cake</text>
+
+  <g id="node-dryer" class="node c-green" onclick="showDetail('dryer')">
+    <rect x="295" y="685" width="185" height="65" rx="6"/>
+    <text class="th" x="387" y="708" text-anchor="middle" dominant-baseline="central">Fluidized Bed Dryer</text>
+    <text class="ts" x="387" y="728" text-anchor="middle" dominant-baseline="central">Epsom Salt Final Dressing</text>
+  </g>
+
+  <line x1="387" y1="750" x2="387" y2="800" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-packing" class="node c-green" onclick="showDetail('packing')">
+    <rect x="280" y="800" width="210" height="50" rx="6"/>
+    <text class="th" x="385" y="825" text-anchor="middle" dominant-baseline="central">Product Bagging Station</text>
+  </g>
+
+  <text class="ts" x="260" y="890" text-anchor="middle" fill="var(--color-text-secondary)" opacity="0.7" style="font-weight: 500;">↑ Click any process node above to view core technical advisory details.</text>
+</svg>
+
+<div class="detail-panel" id="detail-box">
+  <p style="color:var(--color-text-tertiary); font-style: italic;">Click any process node above to see technical detail and advisory focuses.</p>
+</div>
+</div>
+
+<script>
+const data = {
+  mgosilo: {
+    title: 'Magnesium Oxide (MgO) Storage & Pneumatic Dosing Silo',
+    badge: ['Solid Feedstock','info'],
+    body: 'Manages bulk chemical raw Magnesium Oxide powder. Features continuous gravimetric loss-in-weight discharge feeders to match stoichiometry balances inside the downstream neutralization reactor vessel.',
+    kafaah: 'Powder flow fluidization index evaluation, raw material assay validation, and anti-bridging throat geometry reviews.',
+    challenge: 'Fine powder compaction causing hopper rat-holing, leading to uneven stoichiometry dosing into the liquid reactor.'
+  },
+  acidsilo: {
+    title: 'Sulfuric Acid (H₂SO₄) Storage & Metering Matrix',
+    badge: ['Liquid Feedstock','danger'],
+    body: 'Stores concentrated or diluted Sulfuric Acid streams safely. Automated chemical dosing pumps regulate delivery into the batch reactor loop to maintain target acid levels.',
+    kafaah: 'Alloy lining integrity corrosion monitoring, dosing pump loop tuning, and safety mitigation reviews.',
+    challenge: 'Exothermic heat spikes localized at the raw water dilution point can accelerate pipeline corrosion if velocity rules are bypassed.'
+  },
+  reactor: {
+    title: 'Exothermic Batch Neutralization Reactor Tank',
+    badge: ['Reaction Core','danger'],
+    body: 'Blends MgO powder directly with diluted H₂SO₄ under strong mechanical agitation. The reaction is strongly exothermic, driving temperatures up to 85–95 °C, which speeds up dissolution and yields a highly saturated liquid Magnesium Sulfate solution.',
+    kafaah: 'Batch cycle retention optimization, heat exchanger cooling load allocation, and pH endpoint logging.',
+    challenge: 'Unreacted heavy MgO settling at the bottom of the tank if the agitator tip speed drops, causing off-spec batch acidity and material loss.'
+  },
+  crystallizer: {
+    title: 'Temperature-Regulated Cooling Crystallizer Train',
+    badge: ['Phase Growth','info'],
+    body: 'Receives hot, clarified saturated liquor and cools it according to a strict thermal ramp. This process drives crystal formation to produce uniform Magnesium Sulfate Heptahydrate (Epsom salt, MgSO₄·7H₂O).',
+    kafaah: 'Cooling curve setpoint tuning, cooling jacket scale prevention audits, and crystal sizing checks.',
+    challenge: 'Cooling too quickly forms fine micro-crystals that trap impurities and resist dewatering in the centrifuge loop.'
+  },
+  centrifuge: {
+    title: 'Mechanical Basket/Pusher Centrifuge Filtration System',
+    badge: ['Solid Separation','warn'],
+    body: 'Separates the crystal slurry at high speeds. Mechanical centrifugal force throws out the mother liquor while isolating a low-moisture crystalline cake inside the drum.',
+    kafaah: 'Centrifugal G-force optimization, filter screen wear profiling, and cake washing balance tracking.',
+    challenge: 'Uneven slurry feeding creating mechanical basket imbalances, causing high-vibration trips and bearing wear.'
+  },
+  dryer: {
+    title: 'Low-Temperature Fluidized Bed Crystal Dryer',
+    badge: ['Moisture Polish','info'],
+    body: 'Gently conditions the centrifuge wet cake with warm air currents. The operating temperature is kept strictly below 45–50 °C to prevent dehydration of the heptahydrate structure into lower, less soluble hydrates.',
+    kafaah: 'Air temperature automation loop tuning, product moisture profiling, and energy balance audits.',
+    challenge: 'High air temperatures causing crystal melting or partial dehydration, resulting in sticky product surfaces that cake in storage.'
+  },
+  packing: {
+    title: 'Direct Bagging & Final Inventory Station',
+    badge: ['Inventory Stream','ok'],
+    body: 'Weighs and packages the dried crystalline product into moisture-barrier bags to maintain stability and prevent compaction during warehousing.',
+    kafaah: 'Packaging line scale calibration, relative humidity tracking, and storage stack stability reviews.',
+    challenge: 'High ambient humidity during bagging causing surface moisture absorption, triggering severe product caking inside standard bags.'
+  }
+};
+
+function showDetail(key) {
+  const d = data[key];
+  if (!d) return;
+  const [badgeLabel, badgeType] = d.badge;
+  
+  const panel = document.getElementById('detail-box');
+  panel.innerHTML = `
+    <h3>${d.title} <span class="badge badge-${badgeType}">${badgeLabel}</span></h3>
+    <p>${d.body}</p>
+    <p class="kafaah-note"><b>Kafaah Optimization Focus:</b> ${d.kafaah}</p>
+    <p class="challenge-note"><b>Operational Challenge:</b> ${d.challenge}</p>
+  `;
+  
+  document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+  const activeNode = document.getElementById(`node-${key}`);
+  if (activeNode) activeNode.classList.add('active');
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+</body>
+</html>

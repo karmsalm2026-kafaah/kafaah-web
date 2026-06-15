@@ -13,9 +13,9 @@ const articleImages: Record<string, string> = {
   "1": "/insights-construction-mistakes.png",
   "2": "/insights-commissioning-meaning.png",
   "3": "/insights-owners-engineer.png",
-  "4": "/h2so4_plant.png",
+  "4": "/h2so4_plant.webp",
   "5": "/insights-delayed-rampup.png",
-  "6": "/k2so4_plant.png",
+  "6": "/k2so4_plant.webp",
   "7": "/insights-epc-protection.png",
   "8": "/insights-granulation.png",
   "9": "/insights-handover-problem.png",
@@ -205,11 +205,14 @@ export function InsightsClient() {
 
                   {/* Cover image */}
                   <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-white/[0.08]">
-                    <img
-                      src={articleImages[featuredArticle.id] || "/insights-commissioning.png"}
-                      alt={featuredArticle.title}
-                      className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-103 group-hover:brightness-105"
-                    />
+                    <picture>
+                      <source media="(max-width: 768px)" srcSet={featuredArticle.id === "6" ? "/k2so4_plant-mobile.webp" : undefined} />
+                      <img
+                        src={articleImages[featuredArticle.id] || "/insights-commissioning.png"}
+                        alt={featuredArticle.title}
+                        className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-103 group-hover:brightness-105"
+                      />
+                    </picture>
                     <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-transparent to-transparent" />
                     {/* Light shine animation */}
                     <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />
@@ -310,12 +313,15 @@ export function InsightsClient() {
                     >
                       {/* Cover Image */}
                       <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.06] z-0">
-                        <img
-                          src={coverImage}
-                          alt={article.title}
-                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
-                          loading="lazy"
-                        />
+                        <picture>
+                          <source media="(max-width: 768px)" srcSet={article.id === "6" ? "/k2so4_plant-mobile.webp" : undefined} />
+                          <img
+                            src={coverImage}
+                            alt={article.title}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
+                            loading="lazy"
+                          />
+                        </picture>
                         <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-transparent" />
                         {/* Premium shimmer beam */}
                         <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Single Superphosphate (SSP) Plant — Interactive PFD</title>
+  <style>
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #334155;
+      --color-text-tertiary: #64748b;
+      --color-border-tertiary: #e2e8f0;
+      --color-background-secondary: #f8fafc;
+      
+      /* System Badges */
+      --color-background-info: #e0f2fe; --color-text-info: #0369a1;
+      --color-background-warning: #fef3c7; --color-text-warning: #b45309;
+      --color-background-danger: #fee2e2; --color-text-danger: #b91c1c;
+      --color-background-success: #dcfce7; --color-text-success: #15803d;
+
+      /* Process Flow Line Colors */
+      --flow-solids: #475569;     /* Gray for Rock / Powder / Granules */
+      --flow-gas: #8b5cf6;        /* Purple for SiF4 / Fluorine Gases */
+      --flow-utility: #0ea5e9;    /* Blue for Water / Steam / Scrubbing Liquor */
+      --flow-acid: #e11d48;       /* Deep Red for Sulfuric Acid */
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body { background: #ffffff; padding: 2rem 1rem; }
+    .root{font-family:var(--font-sans);padding:1rem; max-width: 750px; margin: 0 auto;}
+    
+    /* SVG styling classes */
+    .node { cursor: pointer; fill: #ffffff; transition: transform 0.2s ease; }
+    .node rect { stroke: #cbd5e1; fill: #ffffff; transition: all 0.2s ease; }
+    
+    /* Color themes for PFD blocks */
+    .c-blue rect { stroke: var(--flow-utility); }
+    .c-coral rect { stroke: var(--flow-acid); fill: #fff1f2; }
+    .c-teal rect { stroke: #14b8a6; }
+    .c-purple rect { stroke: var(--flow-gas); fill: #f5f3ff; }
+    .c-green rect { stroke: #10b981; fill: #f0fdf4; }
+    .c-amber rect { stroke: #f59e0b; }
+    .c-gray rect { stroke: #94a3b8; }
+
+    .node:hover rect { stroke-width: 1.5px; filter: drop-shadow(0 4px 6px -1px rgb(0 0 0 / 0.05)); }
+    .node.active rect { stroke-width: 2px; fill: #f0fdfa; stroke: #0d9488 !important; }
+
+    .th { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+    .ts { font-size: 11px; fill: var(--color-text-secondary); }
+
+    /* Details Panel UI */
+    .detail-panel{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:8px;padding:16px 20px;margin-top:16px;min-height:90px;transition:all .2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);}
+    .detail-panel h3{font-size:15px;font-weight:600;color:var(--color-text-primary);margin-bottom:8px; display: flex; align-items: center; justify-content: space-between;}
+    .detail-panel p{font-size:13.5px;color:var(--color-text-secondary);line-height:1.6; margin-bottom: 8px;}
+    .badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:9999px;font-weight:500; text-transform: uppercase; letter-spacing: 0.05em;}
+    
+    .badge-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+    .badge-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+    .badge-info{background:var(--color-background-info);color:var(--color-text-info)}
+    .badge-ok{background:var(--color-background-success);color:var(--color-text-success)}
+    
+    .hint{font-size:12px;color:var(--color-text-tertiary);text-align:center;margin-top:10px}
+    .kafaah-note{margin-top:10px;font-size:12.5px;color:var(--color-text-secondary);border-top:1px dashed var(--color-border-tertiary);padding-top:10px}
+    .kafaah-note b{color: #0d9488}
+    .challenge-note{margin-top:6px;font-size:12.5px;color:var(--color-text-secondary);}
+    .challenge-note b{color: #dc2626}
+  </style>
+</head>
+<body>
+
+<div class="root">
+<svg width="100%" viewBox="0 0 720 1120" role="img">
+  <title>Single Superphosphate (SSP) Production Process — PFD</title>
+  <desc>Interactive PFD illustrating Powder Stage production, Drum Granulation loop, and integrated multi-stage Fluorine Scrubbing technology.</desc>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text x="20" y="25" font-size="14" font-weight="700" fill="var(--color-text-primary)">STAGE 1: POWDER SSP PRODUCTION (RUN-OF-PILE)</text>
+  <rect x="10" y="35" width="480" height="425" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <g id="node-rockfeed" class="node c-blue" onclick="showDetail('rockfeed')">
+    <rect x="30" y="55" width="180" height="50" rx="6"/>
+    <text class="th" x="120" y="72" text-anchor="middle" dominant-baseline="central">Ground Phosphate Rock</text>
+    <text class="ts" x="120" y="90" text-anchor="middle" dominant-baseline="central">d₉₀ < 150 µm Feed</text>
+  </g>
+
+  <g id="node-acidfeed" class="node c-coral" onclick="showDetail('acidfeed')">
+    <rect x="280" y="55" width="180" height="50" rx="6"/>
+    <text class="th" x="370" y="72" text-anchor="middle" dominant-baseline="central">Dilute Sulfuric Acid</text>
+    <text class="ts" x="370" y="90" text-anchor="middle" dominant-baseline="central">65–70% H₂SO₄ Matrix</text>
+  </g>
+
+  <line x1="120" y1="105" x2="120" y2="145" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <line x1="370" y1="105" x2="370" y2="145" stroke="var(--flow-acid)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M370 145 L250 145" fill="none" stroke="var(--flow-acid)" stroke-width="1.2"/>
+  <path d="M120 145 L230 145" fill="none" stroke="var(--flow-solids)" stroke-width="1.2"/>
+
+  <g id="node-acidmixer" class="node c-coral" onclick="showDetail('acidmixer')">
+    <rect x="130" y="155" width="220" height="55" rx="6" stroke-width="1.5"/>
+    <text class="th" x="240" y="174" text-anchor="middle" dominant-baseline="central">High-Speed Paddle Mixer</text>
+    <text class="ts" x="240" y="194" text-anchor="middle" dominant-baseline="central">Rapid Exothermic Digestion Initiation</text>
+  </g>
+  <line x1="240" y1="210" x2="240" y2="240" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-sspden" class="node c-amber" onclick="showDetail('sspden')">
+    <rect x="130" y="242" width="220" height="55" rx="6" stroke-width="1.5"/>
+    <text class="th" x="240" y="260" text-anchor="middle" dominant-baseline="central">Continuous SSP Den</text>
+    <text class="ts" x="240" y="280" text-anchor="middle" dominant-baseline="central">Solidification & Cutter Extractor</text>
+  </g>
+  <line x1="240" y1="297" x2="240" y2="335" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-curingpile" class="node c-green" onclick="showDetail('curingpile')">
+    <rect x="130" y="337" width="220" height="55" rx="6"/>
+    <text class="th" x="240" y="356" text-anchor="middle" dominant-baseline="central">Curing Maturation Pile</text>
+    <text class="ts" x="240" y="376" text-anchor="middle" dominant-baseline="central">2–4 Weeks Free P₂O₅ Conversion</text>
+  </g>
+
+  <path d="M350 182 L490 182" fill="none" stroke="var(--flow-gas)" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <path d="M350 270 L490 270 L490 182" fill="none" stroke="var(--flow-gas)" stroke-width="1.2" stroke-dasharray="3 3"/>
+  <path d="M490 182 L530 182" fill="none" stroke="var(--flow-gas)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <text x="20" y="490" font-size="14" font-weight="700" fill="var(--color-text-primary)">STAGE 2: DRUM GRANULATION LOOP</text>
+  <rect x="10" y="500" width="480" height="435" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <path d="M240 392 L240 520" fill="none" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="180" y="450" fill="var(--color-text-secondary)">Matured Powder Feed</text>
+
+  <g id="node-granulator" class="node c-teal" onclick="showDetail('granulator')">
+    <rect x="130" y="522" width="220" height="55" rx="6" stroke-width="1.5"/>
+    <text class="th" x="240" y="540" text-anchor="middle" dominant-baseline="central">Rotary Granulation Drum</text>
+    <text class="ts" x="240" y="560" text-anchor="middle" dominant-baseline="central">Steam & Water Injection Bed</text>
+  </g>
+  <line x1="240" y1="577" x2="240" y2="615" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-dryerdrum" class="node c-amber" onclick="showDetail('dryerdrum')">
+    <rect x="130" y="617" width="220" height="55" rx="6"/>
+    <text class="th" x="240" y="636" text-anchor="middle" dominant-baseline="central">Rotary Drying Drum</text>
+    <text class="ts" x="240" y="656" text-anchor="middle" dominant-baseline="central">Co-Current Hot Air Moisture Cut</text>
+  </g>
+  <line x1="240" y1="672" x2="240" y2="705" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-classification" class="node c-gray" onclick="showDetail('classification')">
+    <rect x="130" y="707" width="220" height="55" rx="6"/>
+    <text class="th" x="240" y="726" text-anchor="middle" dominant-baseline="central">Screening & Classification Matrix</text>
+    <text class="ts" x="240" y="746" text-anchor="middle" dominant-baseline="central">Oversize Crushing & Fines Recycle</text>
+  </g>
+  <line x1="240" y1="762" x2="240" y2="800" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <path d="M130 735 L60 735 L60 550 L130 550" fill="none" stroke="var(--flow-solids)" stroke-width="1" stroke-dasharray="4 2" marker-end="url(#ar)"/>
+  <text class="ts" x="95" y="600" fill="var(--color-text-secondary)" transform="rotate(-90 95 600)">Fines / Oversize Return</text>
+
+  <g id="node-coolerdrum" class="node c-blue" onclick="showDetail('coolerdrum')">
+    <rect x="130" y="802" width="220" height="55" rx="6"/>
+    <text class="th" x="240" y="820" text-anchor="middle" dominant-baseline="central">Rotary Product Cooler</text>
+    <text class="ts" x="240" y="840" text-anchor="middle" dominant-baseline="central">Counter-Current Ambient Air Bed</text>
+  </g>
+  <line x1="240" y1="857" x2="240" y2="890" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-finalproduct" class="node c-green" onclick="showDetail('finalproduct')">
+    <rect x="130" y="892" width="220" height="38" rx="6" stroke-width="1.2"/>
+    <text class="th" x="240" y="911" text-anchor="middle" dominant-baseline="central">Granular SSP Storage Silo</text>
+  </g>
+
+  <path d="M350 550 L470 550" fill="none" stroke="var(--flow-gas)" stroke-width="1" stroke-dasharray="3 3"/>
+  <path d="M350 644 L470 644 L470 550" fill="none" stroke="var(--flow-gas)" stroke-width="1" stroke-dasharray="3 3"/>
+  <path d="M470 550 L530 550" fill="none" stroke="var(--flow-gas)" stroke-width="1" marker-end="url(#ar)"/>
+
+  <text x="515" y="25" font-size="14" font-weight="700" fill="var(--color-text-primary)">GAS SCRUBBING PATH</text>
+  <rect x="505" y="35" width="205" height="900" rx="8" fill="none" stroke="#e2e8f0" stroke-dasharray="4 4"/>
+
+  <g id="node-primaryscrub" class="node c-purple" onclick="showDetail('primaryscrub')">
+    <rect x="520" y="150" width="175" height="70" rx="6" stroke-width="1.5"/>
+    <text class="th" x="607" y="175" text-anchor="middle" dominant-baseline="central">Void Spray Tower</text>
+    <text class="ts" x="607" y="195" text-anchor="middle" dominant-baseline="central">Stage 1: Primary SiF₄</text>
+    <text class="ts" x="607" y="208" text-anchor="middle" dominant-baseline="central">Fluosilicic Acid Generation</text>
+  </g>
+  <line x1="607" y1="220" x2="607" y2="350" stroke="var(--flow-gas)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-secondaryscrub" class="node c-purple" onclick="showDetail('secondaryscrub')">
+    <rect x="520" y="352" width="175" height="70" rx="6"/>
+    <text class="th" x="607" y="375" text-anchor="middle" dominant-baseline="central">Packed Scrubber Bed</text>
+    <text class="ts" x="607" y="395" text-anchor="middle" dominant-baseline="central">Stage 2: Trace Absorption</text>
+    <text class="ts" x="607" y="408" text-anchor="middle" dominant-baseline="central">Interfacial Clean Envelope</text>
+  </g>
+  <line x1="607" y1="422" x2="607" y2="520" stroke="var(--flow-gas)" stroke-width="1.2" marker-end="url(#ar)"/>
+  
+  <path d="M607 520 L580 520 L580 550" fill="none" stroke="var(--flow-gas)" stroke-width="1.2"/>
+
+  <g id="node-granulationscrub" class="node c-purple" onclick="showDetail('granulationscrub')">
+    <rect x="520" y="522" width="175" height="70" rx="6"/>
+    <text class="th" x="607" y="545" text-anchor="middle" dominant-baseline="central">Venturi Gas Coalescer</text>
+    <text class="ts" x="607" y="565" text-anchor="middle" dominant-baseline="central">Stage 3: Granulator Venting</text>
+    <text class="ts" x="607" y="578" text-anchor="middle" dominant-baseline="central">Particulate & Ammonia Scrub</text>
+  </g>
+  <line x1="607" y1="592" x2="607" y2="760" stroke="var(--flow-gas)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-exhauststack" class="node c-gray" onclick="showDetail('exhauststack')">
+    <rect x="520" y="762" width="175" height="60" rx="6" stroke-width="1.5"/>
+    <text class="th" x="607" y="785" text-anchor="middle" dominant-baseline="central">Exhaust Fan & Stack</text>
+    <text class="ts" x="607" y="805" text-anchor="middle" dominant-baseline="central">F Emissions &lt; 10 mg/Nm³</text>
+  </g>
+
+  <text class="ts" x="360" y="970" text-anchor="middle" fill="var(--color-text-secondary)" opacity="0.7" style="font-weight: 500;">↑ Click any process node above to view core technical advisory details.</text>
+</svg>
+
+<div class="detail-panel" id="detail-box">
+  <p style="color:var(--color-text-tertiary); font-style: italic;">Click any process node above to see technical detail and advisory focuses.</p>
+</div>
+</div>
+
+<script>
+const data = {
+  rockfeed: {
+    title: 'Ground Phosphate Rock Delivery Matrix',
+    badge: ['Raw Stock Feed','info'],
+    body: 'Dry pulverized fluorapatite rock is delivered into the system. Fine milling parameters require a strict particle size distribution profile (d₉₀ < 150 µm) to achieve complete surface contact with sulfuric acid, guaranteeing optimal P₂O₅ conversion yields.',
+    kafaah: 'Milling screen checks, particle size distribution tracking, and moisture content validation.',
+    challenge: 'Coarse rock over-sizing drops reaction velocity inside the paddle mixer, triggering unreacted rock carryover into the curing pile and lowering water-soluble P₂O₅ metrics.'
+  },
+  acidfeed: {
+    title: 'Sulfuric Acid Dilution Loop',
+    badge: ['Chemical Reagent','info'],
+    body: 'Concentrated sulfuric acid is diluted to a steady operational baseline of 65–70% H₂SO₄. Dilution water management is used to control temperature balances, as heat from dilution helps ignite the subsequent decomposition kinetics.',
+    kafaah: 'Concentration loop verification, alloy life tracking, and temperature balancing logs.',
+    challenge: 'Localized concentration dips below 62% H₂SO₄ introduce excess moisture, altering crystallization kinetics and transforming the SSP into a sticky, unmanageable sludge.'
+  },
+  acidmixer: {
+    title: 'High-Speed Paddle Acidulation Mixer',
+    badge: ['Digestion Step','danger'],
+    body: 'Ground rock and 65–70% H₂SO₄ are intensely blended here. The reaction (Ca₁₀(PO₄)₆F₂ + 7H₂SO₄ + 3H₂O → 3Ca(H₂PO₄)₂·H₂O + 7CaSO₄) initiates instantly, starting an energetic exotherm that triggers the rapid release of silicon tetrafluoride (SiF₄) vapor.',
+    kafaah: 'Paddle blade wear indexing, shaft vibration diagnostics, and accurate mass flow synchronization.',
+    challenge: 'High mechanical wear and scaling on paddle tips, creating dead spaces that lead to localized blockages and inconsistent acidulation ratios.'
+  },
+  sspden: {
+    title: 'Continuous Solidification SSP Den',
+    badge: ['Phase Transition','warn'],
+    body: 'The active fluid mixture moves onto a slow-moving conveyor den channel where it sets into a solid mass. At the discharge head, a mechanical cutter cuts the fresh, hot matrix into a uniform powder before dispatching it to the storage building.',
+    kafaah: 'Drive gear load tracking, cutter blade profiling, and exhaust draft validation.',
+    challenge: 'Inadequate retention time due to mechanical over-speeding, causing the fluid slurry to reach the discharge cutter before fully setting, which clogs the cutter chamber.'
+  },
+  curingpile: {
+    title: 'Curing Maturation Yard',
+    badge: ['Chemical Finish','ok'],
+    body: 'Fresh powder SSP is transferred to an open indoor floor for 2 to 4 weeks of maturation. This slow curing window allows free unreacted phosphoric acid to finish digesting remaining rock crystals, maximizing the plant water-soluble P₂O₅ yields.',
+    kafaah: 'Pile turnover logging, chemical conversion analysis, and moisture tracking indices.',
+    challenge: 'High baseline pile moisture conditions that cause premature compaction or hard crusting, stopping gas diffusion and extending the required curing time.'
+  },
+  granulator: {
+    title: 'Rotary Drum Granulation Unit',
+    badge: ['Granulation Core','danger'],
+    body: 'Matured powder SSP is loaded into a rotating drum granulator. Injection arrays apply steam and water directly into the tumbling product bed, modifying plasticity and rolling fine powder particles into robust, spherical granules.',
+    kafaah: 'Steam-to-water injection ratios, drum shell alignment, and flight layout configuration.',
+    challenge: 'Improper water balancing that causes localized over-wetting, generating oversize mud lumps that blind the drum and overload downstream conveyors.'
+  },
+  dryerdrum: {
+    title: 'Co-Current Rotary Drying Drum',
+    badge: ['Thermal Loop','warn'],
+    body: 'Wet granules are dried using a co-current stream of hot air from an automated combustion furnace. Moisture content must be lowered to less than 4–5% to ensure structural integrity and prevent granule caking during storage.',
+    kafaah: 'Furnace temperature loop tuning, lifter efficiency profiling, and exhaust duct velocity logs.',
+    challenge: 'Excessive inlet gas temperatures that overheat the granules, causing chemical decomposition of monocalcium phosphate into water-insoluble pyrophosphates.'
+  },
+  classification: {
+    title: 'Screening & Milling Matrix',
+    badge: ['Quality Isolation','info'],
+    body: 'Dried product is sorted via double-deck mechanical screens. Correctly sized granules are sent to final cooling, oversize materials are directed to chain mills for crushing, and fines are recycled back to the granulator drum feed.',
+    kafaah: 'Screen cloth condition tracking, mill hammer life metrics, and recycle ratio balances.',
+    challenge: 'Blinded screen meshes caused by damp granule carryover, which compromises product size consistency and causes off-spec materials to enter the final product storage silo.'
+  },
+  coolerdrum: {
+    title: 'Rotary Product Cooler',
+    badge: ['Product Cooling','ok'],
+    body: 'Warm granules move through a rotary drum against a counter-current air stream. Lowering the product temperature prevents post-precipitates and stops granules from caking or clumping during final storage and bag loading.',
+    kafaah: 'Cooling fan draft verification, product discharge logs, and dewpoint monitoring.',
+    challenge: 'High seasonal humidity in ambient intake cooling air streams, introducing condensation onto the granule surface and decreasing product hardness.'
+  },
+  finalproduct: {
+    title: 'Granular SSP Storage Silo',
+    badge: ['Inventory Stream','ok'],
+    body: 'Finished granular Single Superphosphate is stored in ventilated bulk silos, ready for automated bagging or direct bulk transport.',
+    kafaah: 'Granule crush resistance tracking, inventory monitoring, and bagging scale calibration.',
+    challenge: 'Granule breakdown and dust generation during high-drop filling operations, caused by low initial hardness parameters in the granulation section.'
+  },
+  primaryscrub: {
+    title: 'Stage 1: Void Gas Spray Tower',
+    badge: ['HSE Scrubber','danger'],
+    body: 'High-strength off-gases from the mixer and den pass through a void tower. Water sprays hydrolyze the silicon tetrafluoride (3SiF₄ + 2H₂O → 2H₂SiF₆ + SiO₂). This step generates fluosilicic acid while precipitating free silica solid particles.',
+    kafaah: 'Spray header pressure logging, recycle liquor concentration control, and nozzle geometry tracking.',
+    challenge: 'Silica gel solids sticking to the inner tower walls and choking the recycling lines, requiring frequent cleanouts to maintain pressure balances.'
+  },
+  secondaryscrub: {
+    title: 'Stage 2: Packed Bed Polish Scrubber',
+    badge: ['Emission Polish','danger'],
+    body: 'Vapors pass up through a high-efficiency packed scrubber bed against a dilute water or alkaline spray loop. This packing design captures remaining fluorides, ensuring environmental compliance before gas release.',
+    kafaah: 'Packing differential pressure tracking, spray header distribution, and effluent pH tracking.',
+    challenge: 'Silica gel particulate carryover from Stage 1 depositing onto the packing faces, increasing pressure drop and causing severe gas channeling.'
+  },
+  granulationscrub: {
+    title: 'Stage 3: Venturi Gas Coalescer',
+    badge: ['Dust Recovery','warn'],
+    body: 'Exhaust air streams from the granulation drum and rotary dryer carry high particulate loads. A high-energy Venturi scrubber uses high-velocity liquid shearing to trap airborne dust and reclaim residual chemical vapors.',
+    kafaah: 'Venturi throat pressure monitoring, nozzle wear indexing, and solids bleed control.',
+    challenge: 'Accelerated abrasive wear on the Venturi throat section from high rock dust recycling loops, decreasing dust collection efficiency.'
+  },
+  exhauststack: {
+    title: 'Main Exhaust Fan & Stack Assembly',
+    badge: ['Regulatory Compliance','danger'],
+    body: 'An induced draft fan draws gases from the scrubbers and discharges clean air through an emission stack. Continuous Emission Monitoring Systems (CEMS) track gas data to guarantee total fluorine values stay safely below 10 mg/Nm³.',
+    kafaah: 'CEMS analyzer tracking, draft fan power profiles, and environmental report logging.',
+    challenge: 'Fan impeller unbalance from mineral scale deposits, causing high vibration alerts that require manual shutdown and cleanouts.'
+  }
+};
+
+function showDetail(key) {
+  const d = data[key];
+  if (!d) return;
+  const [badgeLabel, badgeType] = d.badge;
+  
+  const panel = document.getElementById('detail-box');
+  panel.innerHTML = `
+    <h3>${d.title} <span class="badge badge-${badgeType}">${badgeLabel}</span></h3>
+    <p>${d.body}</p>
+    <p class="kafaah-note"><b>Optimization Focus:</b> ${d.kafaah}</p>
+    <p class="challenge-note"><b>Operational Challenge:</b> ${d.challenge}</p>
+  `;
+  
+  document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+  const activeNode = document.getElementById(`node-${key}`);
+  if (activeNode) activeNode.classList.add('active');
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+</body>
+</html>

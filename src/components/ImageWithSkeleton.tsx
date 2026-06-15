@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type ImgHTMLAttributes } from "react";
 
 interface ImageWithSkeletonProps extends ImgHTMLAttributes<HTMLImageElement> {
   containerClassName?: string;
+  mobileSrc?: string;
 }
 
 export function ImageWithSkeleton({
@@ -11,6 +12,7 @@ export function ImageWithSkeleton({
   alt,
   className = "",
   containerClassName = "",
+  mobileSrc,
   ...props
 }: ImageWithSkeletonProps) {
   const [loaded, setLoaded] = useState(false);
@@ -25,14 +27,17 @@ export function ImageWithSkeleton({
 
   return (
     <div className={`relative overflow-hidden ${!loaded ? "shimmer-skeleton" : ""} ${containerClassName}`}>
-      <img
-        ref={imgRef}
-        src={src}
-        alt={alt}
-        onLoad={() => setLoaded(true)}
-        className={`transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
-        {...props}
-      />
+      <picture>
+        {mobileSrc && <source media="(max-width: 768px)" srcSet={mobileSrc} />}
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          onLoad={() => setLoaded(true)}
+          className={`transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"} ${className}`}
+          {...props}
+        />
+      </picture>
     </div>
   );
 }

@@ -33,11 +33,11 @@ export function Footer() {
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-gold/50 to-transparent" />
       <div className="absolute -top-[500px] left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-6">
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-28 md:pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-between items-start gap-8 mb-8">
           
           {/* Brand & Contact (Column 1) */}
-          <div className="w-full max-w-[340px] flex flex-col items-start text-justify">
+          <div className="w-full lg:max-w-[340px] flex flex-col items-start text-justify">
             <Link href="/" className="inline-block mb-3 group">
               <Image
                 src="/logo1.webp"
@@ -114,7 +114,7 @@ export function Footer() {
           </div>
 
           {/* Services (Column 2) */}
-          <div className="w-full max-w-[340px] lg:max-w-[260px] flex flex-col items-start text-start">
+          <div className="w-full lg:max-w-[260px] flex flex-col items-start text-start">
             <h4 className={`${fc} ${isEn ? "text-[10.5px] tracking-[0.2em] uppercase" : "text-[13px]"} font-bold text-gold mb-2.5 flex items-center gap-2.5 w-full`}>
               <span className="w-1.5 h-1.5 bg-gold rotate-45 shrink-0 shadow-[0_0_8px_rgba(212,175,55,0.7)]" />
               <span>{footer.services[locale]}</span>
@@ -149,7 +149,7 @@ export function Footer() {
           </div>
 
           {/* Technologies (Column 3) */}
-          <div className="w-full max-w-[340px] lg:max-w-[260px] flex flex-col items-start text-start">
+          <div className="w-full lg:max-w-[260px] flex flex-col items-start text-start">
             <h4 className={`${fc} ${isEn ? "text-[10.5px] tracking-[0.2em] uppercase" : "text-[13px]"} font-bold text-gold mb-2.5 flex items-center gap-2.5 w-full`}>
               <span className="w-1.5 h-1.5 bg-gold rotate-45 shrink-0 shadow-[0_0_8px_rgba(212,175,55,0.7)]" />
               <span>{footer.technologies[locale]}</span>
@@ -188,7 +188,7 @@ export function Footer() {
           </div>
 
           {/* Company (Column 4) */}
-          <div className="w-full max-w-[340px] lg:max-w-[260px] flex flex-col items-start text-start">
+          <div className="w-full lg:max-w-[260px] flex flex-col items-start text-start">
             <h4 className={`${fc} ${isEn ? "text-[10.5px] tracking-[0.2em] uppercase" : "text-[13px]"} font-bold text-gold mb-2.5 flex items-center gap-2.5 w-full`}>
               <span className="w-1.5 h-1.5 bg-gold rotate-45 shrink-0 shadow-[0_0_8px_rgba(212,175,55,0.7)]" />
               <span>{footer.company[locale]}</span>
@@ -221,9 +221,9 @@ export function Footer() {
                 </h5>
               </div>
               
-              <div className="flex flex-col gap-2 pt-2 border-t border-white/[0.06] text-[11px]">
+              <div className="flex flex-col gap-2 pt-2 border-t border-white/[0.06] text-[11px] w-full min-w-0">
                 {/* General Email */}
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2 w-full min-w-0">
                   <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "العام:" : locale === "zh" ? "一般:" : "General:"}</span>
                   <a href="mailto:info@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="info@kafaahsolutions.com">
                     info@kafaahsolutions.com
@@ -231,7 +231,7 @@ export function Footer() {
                 </div>
                 
                 {/* Admin Email */}
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2 w-full min-w-0">
                   <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الإدارة:" : locale === "zh" ? "行政:" : "Admin:"}</span>
                   <a href="mailto:admin@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="admin@kafaahsolutions.com">
                     admin@kafaahsolutions.com
@@ -239,7 +239,7 @@ export function Footer() {
                 </div>
 
                 {/* Support Email */}
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2 w-full min-w-0">
                   <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الدعم الفني:" : locale === "zh" ? "技术支持:" : "Support:"}</span>
                   <a href="mailto:support@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="support@kafaahsolutions.com">
                     support@kafaahsolutions.com
@@ -247,7 +247,7 @@ export function Footer() {
                 </div>
 
                 {/* Sales Email */}
-                <div className="flex items-center justify-start gap-2">
+                <div className="flex items-center justify-start gap-2 w-full min-w-0">
                   <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "المبيعات:" : locale === "zh" ? "销售:" : "Sales:"}</span>
                   <a href="mailto:sales@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="sales@kafaahsolutions.com">
                     sales@kafaahsolutions.com
@@ -259,19 +259,19 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/[0.08] flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-          <Link href="/" className={`${fc} ${isEn ? "text-[11px] tracking-[0.15em] uppercase" : "text-[13px]"} font-medium text-silver/60 hover:text-gold transition-colors`}>
+        <div className="pt-8 border-t border-white/[0.08] flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-start w-full">
+          <Link href="/" className={`${fc} ${isEn ? "text-[11px] tracking-[0.15em] uppercase" : "text-[13px]"} font-medium text-silver/60 hover:text-gold transition-colors w-full md:w-auto`}>
             {footer.copyright[locale]}
           </Link>
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-x-4 gap-y-2 md:gap-6 w-full md:w-auto px-2 md:px-0">
             <Link href="/who-we-are/" className={`${fc} ${isEn ? "text-[11px] tracking-[0.2em] uppercase" : "text-[13px]"} font-medium text-silver/60 hover:text-gold transition-colors`}>
               {footer.independent[locale]}
             </Link>
-            <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
+            <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-gold/40" />
             <Link href="/who-we-are/" className={`${fc} ${isEn ? "text-[11px] tracking-[0.2em] uppercase" : "text-[13px]"} font-medium text-silver/60 hover:text-gold transition-colors`}>
               {footer.technical[locale]}
             </Link>
-            <div className="w-1.5 h-1.5 rounded-full bg-gold/40" />
+            <div className="hidden sm:block w-1.5 h-1.5 rounded-full bg-gold/40" />
             <Link href="/who-we-are/" className={`${fc} ${isEn ? "text-[11px] tracking-[0.2em] uppercase" : "text-[13px]"} font-medium text-silver/60 hover:text-gold transition-colors`}>
               {footer.operational[locale]}
             </Link>

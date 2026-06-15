@@ -39,11 +39,14 @@ export default async function TechnologyPage({ params }: Props) {
       <section className="relative h-[100vh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
         {/* Background Image with authoritative overlay */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={tech.heroImage}
-            alt={tech.name}
-            className="w-full h-full object-fill opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={tech.slug === "sulfate-of-potash" ? "/k2so4_plant-mobile.webp" : tech.heroImage} />
+            <img
+              src={tech.heroImage}
+              alt={tech.name}
+              className="w-full h-full object-fill opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
+            />
+          </picture>
           {/* Multi-layered Softer Gradients to increase image visibility */}
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />

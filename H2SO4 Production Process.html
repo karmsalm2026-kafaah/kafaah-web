@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sulfuric Acid Production — Interactive DCDA PFD</title>
+  <style>
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #334155;
+      --color-text-tertiary: #64748b;
+      --color-border-tertiary: #e2e8f0;
+      --color-background-secondary: #f8fafc;
+      
+      /* System Badges */
+      --color-background-info: #e0f2fe; --color-text-info: #0369a1;
+      --color-background-warning: #fef3c7; --color-text-warning: #b45309;
+      --color-background-danger: #fee2e2; --color-text-danger: #b91c1c;
+      --color-background-success: #dcfce7; --color-text-success: #15803d;
+
+      /* DCDA Process Flow Line Colors */
+      --flow-sulfur: #eab308;     /* Bright Yellow for Elemental Sulfur */
+      --flow-gas: #f97316;        /* Orange for SO2/SO3 Process Gases */
+      --flow-acid: #dc2626;       /* Red for Corrosive H₂SO₄ Liquid Streams */
+      --flow-utility: #0ea5e9;    /* Blue for Air/Water Utilities */
+      --flow-exhaust: #94a3b8;    /* Gray for Tail Gas Stack */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-sans); background: #ffffff; padding: 2rem 1rem; }
+    .root { max-width: 760px; margin: 0 auto; }
+    
+    /* SVG Interactive Node Styling */
+    .node { cursor: pointer; fill: #ffffff; }
+    .node rect { stroke: #cbd5e1; fill: #ffffff; transition: all 0.2s ease; }
+    
+    /* Color Themes for PFD Blocks */
+    .c-yellow rect { stroke: var(--flow-sulfur); fill: #fefcf0; }
+    .c-orange rect { stroke: var(--flow-gas); fill: #fffaf5; }
+    .c-red rect { stroke: var(--flow-acid); fill: #fff5f5; }
+    .c-blue rect { stroke: var(--flow-utility); }
+    .c-gray rect { stroke: var(--flow-exhaust); }
+
+    .node:hover rect { stroke-width: 1.5px; filter: drop-shadow(0 4px 6px -1px rgb(0 0 0 / 0.05)); }
+    .node.active rect { stroke-width: 2.5px; fill: #f0fdfa; stroke: #0d9488 !important; }
+
+    .th { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+    .ts { font-size: 11px; fill: var(--color-text-secondary); }
+
+    /* Details Panel UI Layout */
+    .detail-panel { background: var(--color-background-secondary); border: 1px solid var(--color-border-tertiary); border-radius: 8px; padding: 16px 20px; margin-top: 16px; min-height: 90px; transition: all .2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02); }
+    .detail-panel h3 { font-size: 15px; font-weight: 600; color: var(--color-text-primary); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; }
+    .detail-panel p { font-size: 13.5px; color: var(--color-text-secondary); line-height: 1.6; }
+    .badge { display: inline-block; font-size: 11px; padding: 3px 10px; border-radius: 9999px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 8px; }
+    
+    .badge-warn { background: var(--color-background-warning); color: var(--text-warning); }
+    .badge-danger { background: var(--color-background-danger); color: var(--text-danger); }
+    .badge-info { background: var(--color-background-info); color: var(--text-info); }
+    .badge-ok { background: var(--color-background-success); color: var(--text-success); }
+    
+    .hint { font-size: 12px; color: var(--color-text-tertiary); text-align: center; margin-top: 10px; }
+    .kafaah-note { margin-top: 12px; font-size: 12.5px; color: var(--color-text-secondary); border-top: 1px dashed var(--color-border-tertiary); padding-top: 10px; }
+    .kafaah-note b { color: #0d9488; }
+  </style>
+</head>
+<body>
+
+<div class="root">
+  <svg width="100%" viewBox="0 0 720 1020" role="img">
+    <title>Sulfuric Acid Production — DCDA Process Flow Diagram</title>
+    <desc>Interactive PFD illustrating a modern double-contact double-absorption sulfuric acid plant featuring a sulfur melter, waste heat boiler, 4-pass V₂O₅ converter, interpass tower, and final absorption tower.</desc>
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </marker>
+    </defs>
+
+    <g id="node-air" class="node c-blue" onclick="showDetail('air')">
+      <rect x="40" y="30" width="160" height="58" rx="8" stroke-width="1"/>
+      <text class="th" x="120" y="52" text-anchor="middle" dominant-baseline="central">Air Drying Tower</text>
+      <text class="ts" x="120" y="72" text-anchor="middle" dominant-baseline="central">98% H₂SO₄ circulation</text>
+    </g>
+    <line x1="120" y1="88" x2="120" y2="140" stroke="var(--flow-utility)" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="75" y="115" fill="var(--color-text-secondary)">Dry Air</text>
+
+    <g id="node-melter" class="node c-yellow" onclick="showDetail('melter')">
+      <rect x="260" y="30" width="160" height="58" rx="8" stroke-width="1"/>
+      <text class="th" x="340" y="52" text-anchor="middle" dominant-baseline="central">Sulfur Melter & Filter</text>
+      <text class="ts" x="340" y="72" text-anchor="middle" dominant-baseline="central">Solid S → Liquid S (135–145°C)</text>
+    </g>
+    <path d="M340 88 L340 140" fill="none" stroke="var(--flow-sulfur)" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="390" y="115" fill="var(--color-text-secondary)">Molten Sulfur</text>
+
+    <g id="node-burner" class="node c-orange" onclick="showDetail('burner')">
+      <rect x="100" y="142" width="340" height="65" rx="8" stroke-width="1.2"/>
+      <text class="th" x="270" y="165" text-anchor="middle" dominant-baseline="central">Sulfur Burner (Combustor)</text>
+      <text class="ts" x="270" y="185" text-anchor="middle" dominant-baseline="central">S + O₂ → SO₂ | Exothermic (~1000–1100°C)</text>
+    </g>
+    <line x1="270" y1="207" x2="270" y2="245" stroke="var(--flow-gas)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <g id="node-whb" class="node c-blue" onclick="showDetail('whb')">
+      <rect x="140" y="247" width="260" height="58" rx="8" stroke-width="1"/>
+      <text class="th" x="270" y="268" text-anchor="middle" dominant-baseline="central">Waste Heat Boiler (WHB)</text>
+      <text class="ts" x="270" y="288" text-anchor="middle" dominant-baseline="central">Cooling gas to ~420°C | High-P Steam</text>
+    </g>
+    <line x1="270" y1="305" x2="270" y2="345" stroke="var(--flow-gas)" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="210" y="325" fill="var(--color-text-secondary)">SO₂ Gas Feed</text>
+
+    <g id="node-converter1" class="node c-orange" onclick="showDetail('converter1')">
+      <rect x="120" y="347" width="300" height="150" rx="10" stroke-width="1.5"/>
+      <text class="th" x="270" y="370" text-anchor="middle" dominant-baseline="central">V₂O₅ Converter (Passes I, II, III)</text>
+      <text class="ts" x="270" y="395" text-anchor="middle" dominant-baseline="central">Pass I: SO₂ → SO₃ (~60-65% conversion)</text>
+      <text class="ts" x="270" y="420" text-anchor="middle" dominant-baseline="central">Pass II & III: Inter-pass cooling recovery</text>
+      <text class="ts" x="270" y="445" text-anchor="middle" dominant-baseline="central">Accumulated Conversion Rate: ~95%</text>
+      <text class="ts" x="270" y="470" text-anchor="middle" dominant-baseline="central" fill="#b45309">Critical Catalyst Zone</text>
+    </g>
+
+    <path d="M420 422 L540 422 L540 495" fill="none" stroke="var(--flow-gas)" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="485" y="410" fill="var(--color-text-secondary)">Rich SO₃ Gas</text>
+
+    <g id="node-interpass" class="node c-red" onclick="showDetail('interpass')">
+      <rect x="440" y="497" width="200" height="70" rx="8" stroke-width="1.2"/>
+      <text class="th" x="540" y="522" text-anchor="middle" dominant-baseline="central">Interpass Absorber</text>
+      <text class="ts" x="540" y="542" text-anchor="middle" dominant-baseline="central">98% H₂SO₄ counter-current</text>
+    </g>
+    
+    <path d="M540 567 L540 615 L320 615 L320 645" fill="none" stroke="var(--flow-gas)" stroke-width="1.5" stroke-dasharray="4 2" marker-end="url(#ar)"/>
+    <text class="ts" x="430" y="605" fill="var(--color-text-secondary)">Unreacted SO₂ Loop</text>
+
+    <g id="node-converter2" class="node c-orange" onclick="showDetail('converter2')">
+      <rect x="120" y="647" width="300" height="65" rx="8" stroke-width="1.2"/>
+      <text class="th" x="270" y="670" text-anchor="middle" dominant-baseline="central">V₂O₅ Converter (Pass IV)</text>
+      <text class="ts" x="270" y="690" text-anchor="middle" dominant-baseline="central">Final equilibrium conversion to &gt;99.7%</text>
+    </g>
+    <path d="M270 712 L270 765 L440 765" fill="none" stroke="var(--flow-gas)" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text class="ts" x="330" y="750" fill="var(--color-text-secondary)">Residual SO₃ Gas</text>
+
+    <g id="node-finalabs" class="node c-red" onclick="showDetail('finalabs')">
+      <rect x="440" y="730" width="200" height="70" rx="8" stroke-width="1.2"/>
+      <text class="th" x="540" y="755" text-anchor="middle" dominant-baseline="central">Final Absorber Tower</text>
+      <text class="ts" x="540" y="775" text-anchor="middle" dominant-baseline="central">Remaining SO₃ scrubbed</text>
+    </g>
+    <line x1="540" y1="800" x2="540" y2="855" stroke="var(--flow-exhaust)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <g id="node-stack" class="node c-gray" onclick="showDetail('stack')">
+      <rect x="450" y="857" width="180" height="52" rx="6" stroke-width="1"/>
+      <text class="th" x="540" y="875" text-anchor="middle" dominant-baseline="central">Exhaust Stack</text>
+      <text class="ts" x="540" y="893" text-anchor="middle" dominant-baseline="central">Compliant tail gas vent</text>
+    </g>
+
+    <path d="M440 532 L60 532 L60 760 L120 760" fill="none" stroke="var(--flow-acid)" stroke-width="1.5"/>
+    <path d="M440 775 L60 775 L120 775" fill="none" stroke="var(--flow-acid)" stroke-width="1.5" marker-end="url(#ar)"/>
+    
+    <g id="node-acidcooler" class="node c-red" onclick="showDetail('acidcooler')">
+      <rect x="120" y="742" width="220" height="65" rx="8" stroke-width="1"/>
+      <text class="th" x="230" y="765" text-anchor="middle" dominant-baseline="central">Acid Cooling & Dilution</text>
+      <text class="ts" x="230" y="785" text-anchor="middle" dominant-baseline="central">Heat exchangers + Trim water injection</text>
+    </g>
+    <line x1="230" y1="807" x2="230" y2="855" stroke="var(--flow-acid)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+    <g id="node-product" class="node c-green" onclick="showDetail('product')">
+      <rect x="110" y="857" width="240" height="58" rx="8" stroke-width="1.2"/>
+      <text class="th" x="230" y="878" text-anchor="middle" dominant-baseline="central">98.4% H₂SO₄ Storage Tanks</text>
+      <text class="ts" x="230" y="898" text-anchor="middle" dominant-baseline="central">Product dispatch & distribution</text>
+    </g>
+
+    <text class="ts" x="360" y="960" text-anchor="middle" fill="var(--color-text-secondary)" opacity="0.7" style="font-weight: 500;">↑ Click any process node above to view technical audit parameters.</text>
+  </svg>
+
+  <div class="detail-panel" id="detail-box">
+    <p style="color:var(--color-text-tertiary); font-style: italic;">Click any process block above to see technical detail and asset optimization focuses.</p>
+  </div>
+  <div class="hint">All process streams normalized for a modern, industrial high-yield DCDA plant configuration.</div>
+</div>
+
+<script>
+const data = {
+  air: {
+    title: 'Air Drying Tower',
+    badge: ['Feed Conditioning','info'],
+    body: 'Atmospheric process air must be thoroughly dehydrated before entering the combustor. Moisture reacts with downstream sulfur gases to form highly corrosive sulfuric acid mist (H₂SO₄), which destroys downstream ducting and asset metallurgy. Drying is accomplished by circulating concentrated 98% H₂SO₄ counter-currently through packed columns to lower the dewpoint below -40°C. Kafaah audits prioritize tower pressure drop checks, acid spray distribution patterns, and concentration telemetry validation.',
+    kafaah: 'Acid circulation rate controls, moisture breakthrough telemetry, and cross-flow packing checks.'
+  },
+  melter: {
+    title: 'Sulfur Melter & Filtration Unit',
+    badge: ['Feed Preparation','info'],
+    body: 'Solid elemental sulfur is melted using low-pressure steam coils to reach its optimum pumping viscosity window at 135–145°C. Outside this window, elemental sulfur polymerizes and experiences a sharp viscosity increase. Pre-coat leaf filters clean the molten stream of organic impurities and ash content to prevent fouling the converter catalyst bed. Kafaah verifies steam trace integrity, filtration cycle profiles, and molten sulfur pump seal reliability.',
+    kafaah: 'Viscosity control loops, steam jacket maintenance validation, ash filtration efficiency indexes.'
+  },
+  burner: {
+    title: 'Sulfur Burner (Combustor)',
+    badge: ['Exothermic Reaction','warn'],
+    body: 'S(l) + O₂(g) → SO₂(g) | ΔH = -297 kJ/mol. Molten sulfur is atomized into dry air inside a refractory-lined furnace. Temperatures run between 1000°C and 1100°C to achieve an efficient 10.5–11.5% SO₂ gas concentration matrix. Excursions above 1200°C risk thermal structural degradation of the refractory wall lining and generation of unwanted NOx emissions. Kafaah evaluates flame signature analytics, combustion air balancing, and structural outer shell thermography.',
+    kafaah: 'Burner nozzle wear patterns, refractory hot-spot checks via thermography, SO₂/O₂ input ratio control.'
+  },
+  whb: {
+    title: 'Waste Heat Boiler (WHB)',
+    badge: ['Energy Recovery','ok'],
+    body: 'The ultra-hot combustion gas must be cooled to the thermodynamic threshold required for the first catalytic bed entry (~420°C). This is achieved through a smoke-tube or water-tube waste heat boiler, generating high-pressure superheated steam (typically 40–60 bar) that drives a co-generation turbo-generator. Kafaah focuses heavily on water chemistry audits to eliminate scale formation, tracking bypass dampener responsiveness, and assessing gas-side thermal stress.',
+    kafaah: 'Boiler feed-water treatment specs, steam-side scale auditing, bypass butterfly-valve automation.'
+  },
+  converter1: {
+    title: 'Converter Columns — Passes I, II & III',
+    badge: ['Catalytic Conversion','danger'],
+    body: 'SO₂ + 1/2 O₂ ⇌ SO₃ | ΔH = -99 kJ/mol. The primary reaction utilizes a porous Vanadium Pentoxide (V₂O₅) catalyst matrix promoted with potassium salts. Because the conversion reaction is highly exothermic and equilibrium-limited, it is split over multiple stages. Gases exit Pass I at over 600°C and pass through gas-to-gas heat exchangers to drop back to ~430°C before entering Pass II and Pass III. By Pass III, accumulated conversion hits ~95%. Kafaah audits catalyst bed screening cycles, structural pressure drops (ΔP), and bed temperature distribution matrices.',
+    kafaah: 'Catalytic conversion profiles per bed, catalyst dusting/screening optimization, and gas-to-gas heat exchanger effectiveness loops.'
+  },
+  interpass: {
+    title: 'Interpass Absorption Tower (Stage 1 Absorption)',
+    badge: ['Equilibrium Shift','danger'],
+    body: 'To bypass the thermodynamic equilibrium ceiling of the SO₂ → SO₃ conversion, gas from Pass III is pulled out of the converter, cooled to ~180°C, and directed to the Interpass Absorber Tower. Here, SO₃ gas is absorbed in counter-currently flowing 98.4% H₂SO₄ to form oleum or high-concentration acid. Removing the product gas completely resets the equilibrium conditions according to Le Chatelier\'s Principle, allowing the remaining unreacted SO₂ gas to be re-processed. Kafaah assesses acid distribution grids, mist eliminator efficiencies, and pump tank level dynamics.',
+    kafaah: 'Mist eliminator breakthrough analytics, cross-flow velocity curves, acid pump tank circuit loops.'
+  },
+  converter2: {
+    title: 'Converter Column — Pass IV',
+    badge: ['Final Conversion','warn'],
+    body: 'The lean gas loop returning from the Interpass Tower contains unreacted SO₂ alongside residual O₂. It is reheated to ~420°C and routed through the final V₂O₅ catalyst bed (Pass IV). Often, a specialized cesium-promoted catalyst is deployed here to lower activation temperature and drive equilibrium conversion efficiency past 99.7%. Kafaah targets tracking Pass IV conversion performance, emission reduction yields, and low-temperature bed tracking.',
+    kafaah: 'Cesium catalyst activity index tracking, low-temperature reaction profiling, conversion performance verification.'
+  },
+  finalabs: {
+    title: 'Final Absorption Tower (Stage 2 Absorption)',
+    badge: ['Gas Scrubbing','info'],
+    body: 'Gas exiting Pass IV, rich in newly converted SO₃, is cooled and swept into the Final Absorber Tower. Counter-current scrubbing with 98% H₂SO₄ captures the remaining SO₃. Any trace acid mist is caught by heavy-duty Brink dimple-style candle demisters located at the top of the column to minimize emissions. Kafaah evaluates absorption mass transfer rates, packing alignment stability, and demister differential pressures.',
+    kafaah: 'Acid concentration balancing, candle filter health tracking, total SO₃ capture compliance.'
+  },
+  stack: {
+    title: 'Exhaust Vent Stack',
+    badge: ['Environmental HSE','danger'],
+    body: 'The scrubbed tail gas, consisting primarily of inert nitrogen and oxygen with fractional trace levels of unreacted SO₂, is vented to the atmosphere through the main stack. Continuous Emissions Monitoring Systems (CEMS) measure compliance in real-time. Regulatory ceilings in standard GCC and Egyptian jurisdictions require emissions below 200–350 ppm of SO₂. Kafaah specializes in CEMS analyzer calibration validation and environmental regulatory compliance audits.',
+    kafaah: 'CEMS analyzer calibration, SO₂ emission trend analysis, local environmental code alignment verification.'
+  },
+  acidcooler: {
+    title: 'Acid Cooling & Dilution Circuit',
+    badge: ['Thermal Management','warn'],
+    body: 'The absorption loops generate highly exothermic heat from both gas-liquid absorption and water dilution steps. Heavy-duty plate-and-frame heat exchangers (often fabricated from specialized alloys like Hastelloy or anodized stainless steel) cool the circulating acid loops from ~110°C to ~75°C. Automated injection valves introduce demineralized trim water to hold the product acid concentration steady at 98.4%. Kafaah provides heat exchanger efficiency curves, dilution control loop tuning, and corrosion monitoring.',
+    kafaah: 'Anodized plate heat exchanger heat balances, concentration control loop tuning, corrosion sensor verification.'
+  },
+  product: {
+    title: '98.4% H₂SO₄ Storage & Logistics',
+    badge: ['Asset Management','ok'],
+    body: 'Finished commercial-grade concentrated Sulfuric Acid (98.4% H₂SO₄) is safely transferred into large-scale carbon steel or specialized alloy storage tanks. Proper concentration monitoring is vital because slight drops toward 93–95% significantly accelerate the corrosion rate of conventional carbon steel tank walls. Kafaah monitors storage tank wall thicknesses via non-destructive testing (NDT), tank vent breathers, and modern, safe loading terminal protocols.',
+    kafaah: 'NDT tank thickness trending, ultrasonic corrosion array checks, loading bay high-level alarm configurations.'
+  }
+};
+
+function showDetail(key) {
+  const d = data[key];
+  if (!d) return;
+  const [badgeLabel, badgeType] = d.badge;
+  
+  const panel = document.getElementById('detail-box');
+  panel.innerHTML = `
+    <h3>${d.title} <span class="badge badge-${badgeType}">${badgeLabel}</span></h3>
+    <p>${d.body}</p>
+    <p class="kafaah-note"><b>Optimization Advisory Focus:</b> ${d.kafaah}</p>
+  `;
+  
+  document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+  const activeNode = document.getElementById(`node-${key}`);
+  if (activeNode) activeNode.classList.add('active');
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>

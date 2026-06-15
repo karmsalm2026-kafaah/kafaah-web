@@ -23,9 +23,9 @@ const articleImages: Record<string, string> = {
   "1": "/insights-construction-mistakes.png",
   "2": "/insights-commissioning-meaning.png",
   "3": "/insights-owners-engineer.png",
-  "4": "/h2so4_plant.png",
+  "4": "/h2so4_plant.webp",
   "5": "/insights-delayed-rampup.png",
-  "6": "/k2so4_plant.png",
+  "6": "/k2so4_plant.webp",
   "7": "/insights-epc-protection.png",
   "8": "/insights-granulation.png",
   "9": "/insights-handover-problem.png",
@@ -374,11 +374,14 @@ export function ArticlePageClient({ articleId }: ArticlePageClientProps) {
       <section className="relative h-[75vh] min-h-[550px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
         {/* Background cover image with multi-layered blending */}
         <div className="absolute inset-0 z-0">
-          <img
-            src={coverImage}
-            alt={article.title}
-            className="w-full h-full object-cover opacity-60 mix-blend-luminosity scale-105 animate-subtle-zoom"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={articleId === "6" ? "/k2so4_plant-mobile.webp" : undefined} />
+            <img
+              src={coverImage}
+              alt={article.title}
+              className="w-full h-full object-cover opacity-60 mix-blend-luminosity scale-105 animate-subtle-zoom"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-t from-navy-deep via-navy-deep/60 to-navy-deep/20" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />
           <div className="absolute top-0 left-0 right-0 h-[20vh] bg-gradient-to-b from-navy-deep/90 to-transparent pointer-events-none" />
@@ -532,11 +535,14 @@ export function ArticlePageClient({ articleId }: ArticlePageClientProps) {
                   >
                     {/* Cover Image */}
                     <div className="relative aspect-[16/10] overflow-hidden border-b border-white/[0.06]">
-                      <img
-                        src={img}
-                        alt={art.title}
-                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
-                      />
+                      <picture>
+                        <source media="(max-width: 768px)" srcSet={art.id === "6" ? "/k2so4_plant-mobile.webp" : undefined} />
+                        <img
+                          src={img}
+                          alt={art.title}
+                          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 group-hover:rotate-1"
+                        />
+                      </picture>
                       <div className="absolute inset-0 bg-gradient-to-t from-navy-dark/95 via-navy-dark/30 to-transparent" />
                       <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-10 group-hover:animate-shimmer" />
                     </div>
