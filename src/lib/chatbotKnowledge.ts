@@ -50,7 +50,11 @@ const arabicPrompt = `
 
 ### بيانات التواصل:
 - رقم الواتساب: +201018081191.
-- البريد الإلكتروني: info@kafaahsolutions.com
+- البريد الإلكتروني:
+  - استعلامات عامة: info@kafaahsolutions.com
+  - المدير التنفيذي (م. مصطفى): moustafa@kafaahsolutions.com
+  - المشاريع: projects@kafaahsolutions.com
+  - تطوير الأعمال: business@kafaahsolutions.com
 
 ### آلية جمع بيانات العملاء المهتمين (Lead Generation):
 إذا طلب العميل تواصل أو أسعار:
@@ -101,7 +105,11 @@ Kafaah is an independent consultant specializing in inorganic chemical and ferti
 ### Management & Company Information:
 - Kafaah is led by **Eng. Mostafa Abdel Ghaffar**, Managing Director & Chief Engineer. He brings 20+ years of direct on-site commissioning and startup operations experience across fertilizer and chemical plants, personally steering field activities to stable commercial yields.
 - Contact WhatsApp: +201018081191.
-- Contact Email: info@kafaahsolutions.com
+- Contact Emails:
+  - General Inquiries: info@kafaahsolutions.com
+  - CEO Direct (Eng. Mostafa): moustafa@kafaahsolutions.com
+  - Projects: projects@kafaahsolutions.com
+  - Business Development: business@kafaahsolutions.com
 
 ### Track Record (Projects):
 - **Suez SOP Plant (Egypt)**: 40,000 T/yr capacity, Mannheim process. Worked with a Chinese EPC from Nov 2025 to Jan 2026. Handled full commissioning and startup to first product.
@@ -156,7 +164,11 @@ Kafaah 是一独立咨询公司，专长于无机化工和化肥厂的试车、�
 ### 管理与公司背景：
 - Kafaah 由总经理兼总工程师 **莫斯塔法·阿卜杜勒·加法尔 (Eng. Mostafa Abdel Ghaffar)** 领导。他在化肥和化工装置的现场调试、启动和运行方面拥有超过 20 年的直接一线经验，并亲自指挥现场的工程操作，以确保实现稳定的商业化产出。
 - WhatsApp 联系方式：+201018081191。
-- 邮箱联系方式：info@kafaahsolutions.com
+- 邮箱联系方式：
+  - 一般咨询：info@kafaahsolutions.com
+  - 首席执行官（莫斯塔法工程师）：moustafa@kafaahsolutions.com
+  - 项目：projects@kafaahsolutions.com
+  - 商务拓展：business@kafaahsolutions.com
 
 ### 项目业绩：
 - **苏伊士 SOP 硫酸钾厂（埃及）**：年产4万吨，曼海姆法。自2025年11月至2026年1月与中国总承包商 (Chinese EPC) 合作，完成从预试车到产出合格产品的全过程，业主和总包方均高度满意。

@@ -2,26 +2,34 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { ArrowRight, Mail, ChevronDown } from "lucide-react";
+import { ArrowRight, Mail, ChevronDown, Loader2, Check } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
 import type { ContactContent } from "@/data/roleContent";
 import { useRole } from "@/lib/RoleContext";
 import { contactCta as ctaDict, getFontClass, isRtl } from "@/lib/i18n";
 
 const serviceOptions = [
-  "Owner's Engineer",
-  "Commissioning & Startup",
-  "Operation Readiness",
-  "Technical Troubleshooting",
-  "Production Optimization",
-  "Operator Training",
-  "Investor Advisory"
+  { value: "owners-engineer", label: "Owner's Engineer" },
+  { value: "commissioning", label: "Commissioning & Startup" },
+  { value: "readiness", label: "Operation Readiness" },
+  { value: "troubleshooting", label: "Technical Troubleshooting" },
+  { value: "optimization", label: "Production Optimization" },
+  { value: "training", label: "Operator Training" },
+  { value: "advisory", label: "Investor Advisory" },
 ];
 
-function CustomSelect({ placeholder }: { placeholder: string }) {
+function CustomSelect({
+  placeholder,
+  value,
+  onChange,
+}: {
+  placeholder: string;
+  value: string;
+  onChange: (val: string) => void;
+}) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const selectedOption = serviceOptions.find((o) => o.value === value);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -43,8 +51,8 @@ function CustomSelect({ placeholder }: { placeholder: string }) {
         } text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm transition-all duration-300 outline-none cursor-pointer flex justify-between items-center`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={selected ? "text-white" : "text-silver/45"}>
-          {selected || placeholder}
+        <span className={selectedOption ? "text-white" : "text-silver/45"}>
+          {selectedOption?.label || placeholder}
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-silver/40'}`} />
       </div>
@@ -59,18 +67,18 @@ function CustomSelect({ placeholder }: { placeholder: string }) {
         <div className="max-h-[240px] overflow-y-auto py-2">
           {serviceOptions.map((opt) => (
             <div
-              key={opt}
+              key={opt.value}
               className={`px-4 py-3 text-[14px] font-light cursor-pointer transition-colors duration-200 ${
-                selected === opt 
+                value === opt.value 
                   ? 'bg-gold/10 text-gold font-medium' 
                   : 'text-silver/80 hover:bg-white/[0.05] hover:text-white'
               }`}
               onClick={() => {
-                setSelected(opt);
+                onChange(opt.value);
                 setIsOpen(false);
               }}
             >
-              {opt}
+              {opt.label}
             </div>
           ))}
         </div>
@@ -94,6 +102,68 @@ export function ContactCTA({ content }: Props) {
   const headline = content?.headline?.[locale] ?? ctaDict.headline[locale];
   const headlineAccent = content?.headlineAccent?.[locale] ?? ctaDict.headlineAccent[locale];
   const subCopy = content?.subCopy?.[locale] ?? ctaDict.subCopy[locale];
+
+  // Form state
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
+  const [service, setService] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async () => {
+    // Basic validation
+    if (!name.trim() || !email.trim() || !company.trim() || !service || !message.trim()) {
+      setError(locale === "ar" ? "يرجى ملء جميع الحقول" : locale === "zh" ? "请填写所有字段" : "Please fill in all fields");
+      setTimeout(() => setError(""), 4000);
+      return;
+    }
+
+    if (!email.includes("@")) {
+      setError(locale === "ar" ? "يرجى إدخال بريد إلكتروني صحيح" : locale === "zh" ? "请输入有效的电子邮件地址" : "Please enter a valid email address");
+      setTimeout(() => setError(""), 4000);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          email: email.trim(),
+          company: company.trim(),
+          service,
+          message: message.trim(),
+        }),
+      });
+
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || "Failed to send");
+      }
+
+      setIsSuccess(true);
+      setName("");
+      setEmail("");
+      setCompany("");
+      setService("");
+      setMessage("");
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err) {
+      console.error("CTA form error:", err);
+      setError(locale === "ar" ? "حدث خطأ، يرجى المحاولة مرة أخرى" : locale === "zh" ? "发送失败，请重试" : "Something went wrong. Please try again.");
+      setTimeout(() => setError(""), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section dir={rtl ? "rtl" : "ltr"} className="bg-navy pt-28 pb-40 relative overflow-hidden">
@@ -134,7 +204,7 @@ export function ContactCTA({ content }: Props) {
                 </span>
               </Link>
               <a
-                href="mailto:info@kafaahsolutions.com"
+                href="mailto:business@kafaahsolutions.com"
                 className={`flex-1 group btn-premium-glass border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
               >
                 {/* Premium animated border */}
@@ -166,6 +236,8 @@ export function ContactCTA({ content }: Props) {
                   </label>
                   <input
                     type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     placeholder={ctaDict.fullNamePlaceholder[locale]}
                     className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
@@ -176,17 +248,37 @@ export function ContactCTA({ content }: Props) {
                   </label>
                   <input
                     type="text"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
                     placeholder={ctaDict.companyPlaceholder[locale]}
                     className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
               </div>
 
-              <div className="mb-5">
-                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
-                  {ctaDict.serviceOfInterest[locale]}
-                </label>
-                <CustomSelect placeholder={ctaDict.selectService[locale]} />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+                <div>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                    {ctaDict.email[locale]}
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={ctaDict.emailPlaceholder[locale]}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
+                  />
+                </div>
+                <div>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                    {ctaDict.serviceOfInterest[locale]}
+                  </label>
+                  <CustomSelect
+                    placeholder={ctaDict.selectService[locale]}
+                    value={service}
+                    onChange={setService}
+                  />
+                </div>
               </div>
 
               <div className="mb-6">
@@ -194,18 +286,48 @@ export function ContactCTA({ content }: Props) {
                   {ctaDict.message[locale]}
                 </label>
                 <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                   placeholder={ctaDict.messagePlaceholder[locale]}
                   className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
                   rows={3}
                 />
               </div>
 
-              <button className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}>
+              {/* Error Message */}
+              {error && (
+                <div className={`${fcBody} text-red-400 text-[13px] mb-4 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-sm`}>
+                  {error}
+                </div>
+              )}
+
+              {/* Success Message */}
+              {isSuccess && (
+                <div className={`${fcBody} text-emerald-400 text-[13px] mb-4 px-3 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-sm flex items-center gap-2`}>
+                  <Check className="w-4 h-4 shrink-0" />
+                  {locale === "ar" ? "تم إرسال طلبك بنجاح! سنتواصل معك قريباً." : locale === "zh" ? "您的请求已成功发送！我们将尽快与您联系。" : "Your request has been sent successfully! We'll be in touch soon."}
+                </div>
+              )}
+
+              <button
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
+              >
                 {/* Premium animated light sweep */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
                 <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
-                <span className="relative z-10">{ctaDict.sendRequest[locale]}</span>
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {locale === "ar" ? "جاري الإرسال..." : locale === "zh" ? "正在发送..." : "Sending..."}
+                    </>
+                  ) : (
+                    ctaDict.sendRequest[locale]
+                  )}
+                </span>
               </button>
 
               <div className="mt-8 pt-6 border-t border-white/[0.06] flex flex-wrap gap-3">

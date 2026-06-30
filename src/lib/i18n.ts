@@ -568,6 +568,8 @@ export const contactCta = {
   fullNamePlaceholder: { en: "Dr. Ahmed Al-Rashid", ar: "د. أحمد الرشيد", zh: "阿里·拉希德 博士" } as L,
   company: { en: "Company", ar: "الشركة", zh: "公司" } as L,
   companyPlaceholder: { en: "SIPCHEM", ar: "سبكيم", zh: "沙特基础工业公司" } as L,
+  email: { en: "Email Address", ar: "البريد الإلكتروني", zh: "电子邮件" } as L,
+  emailPlaceholder: { en: "name@company.com", ar: "name@company.com", zh: "name@company.com" } as L,
   serviceOfInterest: { en: "Service of Interest", ar: "الخدمة المطلوبة", zh: "感兴趣的服务" } as L,
   selectService: { en: "Select a service…", ar: "اختر خدمة…", zh: "选择服务…" } as L,
   message: { en: "Message", ar: "الرسالة", zh: "留言" } as L,

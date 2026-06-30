@@ -230,27 +230,27 @@ export function Footer() {
                   </a>
                 </div>
                 
-                {/* Admin Email */}
+                {/* CEO Email */}
                 <div className="flex items-center justify-start gap-2 w-full min-w-0">
-                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الإدارة:" : locale === "zh" ? "行政:" : "Admin:"}</span>
-                  <a href="mailto:admin@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="admin@kafaahsolutions.com">
-                    admin@kafaahsolutions.com
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "المدير:" : locale === "zh" ? "总监:" : "CEO:"}</span>
+                  <a href="mailto:moustafa@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="moustafa@kafaahsolutions.com">
+                    moustafa@kafaahsolutions.com
                   </a>
                 </div>
 
-                {/* Support Email */}
+                {/* Projects Email */}
                 <div className="flex items-center justify-start gap-2 w-full min-w-0">
-                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الدعم الفني:" : locale === "zh" ? "技术支持:" : "Support:"}</span>
-                  <a href="mailto:support@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="support@kafaahsolutions.com">
-                    support@kafaahsolutions.com
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "المشاريع:" : locale === "zh" ? "项目:" : "Projects:"}</span>
+                  <a href="mailto:projects@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="projects@kafaahsolutions.com">
+                    projects@kafaahsolutions.com
                   </a>
                 </div>
 
-                {/* Sales Email */}
+                {/* Business Email */}
                 <div className="flex items-center justify-start gap-2 w-full min-w-0">
-                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "المبيعات:" : locale === "zh" ? "销售:" : "Sales:"}</span>
-                  <a href="mailto:sales@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="sales@kafaahsolutions.com">
-                    sales@kafaahsolutions.com
+                  <span className="text-silver/40 text-[10px] shrink-0 w-16">{locale === "ar" ? "الأعمال:" : locale === "zh" ? "商务:" : "Business:"}</span>
+                  <a href="mailto:business@kafaahsolutions.com" className={`${fc} text-white/95 hover:text-gold transition-colors truncate flex-1 min-w-0`} title="business@kafaahsolutions.com">
+                    business@kafaahsolutions.com
                   </a>
                 </div>
               </div>

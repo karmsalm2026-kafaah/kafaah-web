@@ -142,15 +142,30 @@ export function ContactClient() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    // Simulate API call for now
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    console.log("Form Data:", data);
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    reset();
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+      const result = await res.json();
+
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || "Failed to send message");
+      }
+
+      setIsSuccess(true);
+      reset();
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err) {
+      console.error("Contact form error:", err);
+      // Show error state — set a generic error the user can see
+      setIsSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -255,17 +270,29 @@ export function ContactClient() {
                     <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
                       <Mail className="w-5 h-5" />
                     </div>
-                    <div>
-                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                    <div className="flex-1 min-w-0">
+                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block mb-2`}>
                         {dict.email[locale]}
                       </span>
-                      <a
-                        href="mailto:info@kafaahsolutions.com"
-                        className="text-gold hover:text-gold-light transition-all text-sm font-semibold mt-1 inline-block hover:underline"
-                        dir="ltr"
-                      >
-                        info@kafaahsolutions.com
-                      </a>
+                      <div className="flex flex-col gap-1.5">
+                        {[
+                          { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
+                          { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
+                          { label: locale === "ar" ? "المشاريع" : locale === "zh" ? "项目" : "Projects", email: "projects@kafaahsolutions.com" },
+                          { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
+                        ].map((item) => (
+                          <div key={item.email} className="flex items-baseline gap-2 group/email">
+                            <span className={`${fcBody} text-[10px] text-silver/40 shrink-0 ${locale === "en" ? "w-[100px]" : "w-[90px]"}`}>{item.label}:</span>
+                            <a
+                              href={`mailto:${item.email}`}
+                              className="text-gold/90 hover:text-gold transition-all text-[13px] font-medium hover:underline truncate"
+                              dir="ltr"
+                            >
+                              {item.email}
+                            </a>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
 
