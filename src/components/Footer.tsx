@@ -51,22 +51,24 @@ export function Footer() {
               {footer.brandDesc[locale]}
             </p>
 
-            {/* Contact Info (Address & Phone side-by-side) */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 w-full text-start">
+            {/* Contact Info (Address & Phone side-by-side 50:50 on mobile & desktop) */}
+            <div className="grid grid-cols-2 gap-2.5 mb-4 w-full text-start">
               {/* Address Card */}
-              <div className="bg-white/[0.02] border border-white/[0.08] hover:border-gold/30 hover:bg-gold/[0.02] rounded-md p-3 transition-all duration-300 flex flex-col gap-2">
-                <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0">
+              <div className="relative group/card bg-white/[0.01] border border-white/[0.06] hover:border-gold/25 hover:bg-white/[0.03] rounded-sm p-3 transition-all duration-300 flex flex-col gap-2 overflow-hidden shadow-md">
+                {/* Subtle inner hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.015] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0">
                   <MapPin className="w-3.5 h-3.5 text-gold" />
                 </div>
                 <div className="min-w-0">
-                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[8px] tracking-[0.15em] uppercase" : fc + " text-[10px]"} text-silver/50 mb-0.5`}>
+                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[7px] sm:text-[8px] tracking-[0.15em] uppercase" : fc + " text-[9px] sm:text-[10px]"} text-silver/50 mb-0.5`}>
                     {footer.address ? footer.address[locale] : "Office Address"}
                   </h5>
                   <a 
                     href="https://maps.google.com/?q=Cairo,Egypt" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className={`${fc} text-[11px] text-white/90 hover:text-gold transition-colors block truncate`}
+                    className={`${fc} text-[10px] sm:text-[11px] text-white/90 hover:text-gold transition-colors block truncate`}
                   >
                     {footer.location ? footer.location[locale] : "Cairo, Egypt"}
                   </a>
@@ -74,15 +76,17 @@ export function Footer() {
               </div>
 
               {/* Phone Card */}
-              <div className="bg-white/[0.02] border border-white/[0.08] hover:border-gold/30 hover:bg-gold/[0.02] rounded-md p-3 transition-all duration-300 flex flex-col gap-2">
-                <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0">
+              <div className="relative group/card bg-white/[0.01] border border-white/[0.06] hover:border-gold/25 hover:bg-white/[0.03] rounded-sm p-3 transition-all duration-300 flex flex-col gap-2 overflow-hidden shadow-md">
+                {/* Subtle inner hover glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.015] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0">
                   <Phone className="w-3.5 h-3.5 text-gold" />
                 </div>
                 <div className="min-w-0">
-                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[8px] tracking-[0.15em] uppercase" : fc + " text-[10px]"} text-silver/50 mb-0.5`}>
+                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[7px] sm:text-[8px] tracking-[0.15em] uppercase" : fc + " text-[9px] sm:text-[10px]"} text-silver/50 mb-0.5`}>
                     {footer.phone ? footer.phone[locale] : "Phone"}
                   </h5>
-                  <a href="tel:+201018081191" className={`${fc} text-[11px] text-white/90 hover:text-gold transition-colors block truncate`} dir="ltr">
+                  <a href="tel:+201018081191" className={`${fc} text-[10px] sm:text-[11px] text-white/90 hover:text-gold transition-colors block truncate`} dir="ltr">
                     +20 10 18081191
                   </a>
                 </div>
@@ -123,18 +127,18 @@ export function Footer() {
                 <span className="flex-grow h-[1px] bg-gradient-to-r from-gold/40 to-transparent rtl:bg-gradient-to-l" />
               </div>
             </h4>
-            <div className="flex flex-col gap-1.5 mb-2.5 w-full">
+            <div className="grid grid-cols-2 sm:flex sm:flex-col gap-1.5 mb-2.5 w-full">
               <Link
                 href="/services/"
-                className="flex items-center justify-center h-8 text-[10px] font-bold font-[family-name:var(--font-ui)] bg-navy-card/45 border border-white/[0.08] hover:border-gold/50 hover:bg-gold/5 text-white/85 hover:text-gold rounded-sm transition-all duration-300 text-center px-4"
+                className="flex items-center justify-center h-8 text-[9px] sm:text-[10px] font-bold font-[family-name:var(--font-ui)] bg-white/[0.01] border border-white/[0.06] hover:border-gold/50 hover:bg-gold/5 text-white/85 hover:text-gold rounded-sm transition-all duration-300 text-center px-1 sm:px-4 truncate"
               >
-                {locale === "ar" ? "خدمات الملاك والمشغلين" : locale === "zh" ? "业主与运营商服务" : "Plant Owners & Operators"}
+                {locale === "ar" ? "خدمات الملاك" : locale === "zh" ? "业主与运营商" : "Owners & Operators"}
               </Link>
               <Link
                 href="/services/"
-                className="flex items-center justify-center h-8 text-[10px] font-bold font-[family-name:var(--font-ui)] bg-navy-card/45 border border-white/[0.08] hover:border-gold/50 hover:bg-gold/5 text-white/85 hover:text-gold rounded-sm transition-all duration-300 text-center px-4"
+                className="flex items-center justify-center h-8 text-[9px] sm:text-[10px] font-bold font-[family-name:var(--font-ui)] bg-white/[0.01] border border-white/[0.06] hover:border-gold/50 hover:bg-gold/5 text-white/85 hover:text-gold rounded-sm transition-all duration-300 text-center px-1 sm:px-4 truncate"
               >
-                {locale === "ar" ? "خدمات مقاولي EPC" : locale === "zh" ? "EPC 承包商服务" : "EPC Contractor Services"}
+                {locale === "ar" ? "خدمات مقاولي EPC" : locale === "zh" ? "EPC 承包商" : "EPC Contractors"}
               </Link>
             </div>
             <div className="pt-1 w-full text-start">

@@ -74,8 +74,8 @@ export function Navbar() {
   const rtl = isRtl(locale);
   /* Locale-aware nav styling: English keeps uppercase + tracking, Arabic/Chinese use natural casing */
   const navFont = locale !== "en"
-    ? `${fc} text-[13px] font-semibold`
-    : `font-[family-name:var(--font-ui)] text-[11.5px] font-medium tracking-[0.08em] uppercase`;
+    ? `${fc} text-[13px] xl:text-[14px] font-semibold`
+    : `font-[family-name:var(--font-ui)] text-[10.5px] xl:text-[11.5px] font-medium tracking-[0.05em] xl:tracking-[0.08em] uppercase`;
 
   const isActive = (path: string) => {
     if (path === "/") return pathname === "/";
@@ -121,32 +121,32 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden lg:flex items-center gap-0.5">
-          <Link href="/" className={`nav-link-premium ${navFont} gap-1.5 ${isActive("/") ? "nav-link-active" : ""}`}>
+        <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
+          <Link href="/" className={`nav-link-premium ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/") ? "nav-link-active" : ""}`}>
             <Home className="w-3.5 h-3.5 opacity-50" />
             {t("home")}
           </Link>
-          <Link href="/who-we-are/" className={`nav-link-premium ${navFont} gap-1.5 ${isActive("/who-we-are/") ? "nav-link-active" : ""}`}>
+          <Link href="/who-we-are/" className={`nav-link-premium ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/who-we-are/") ? "nav-link-active" : ""}`}>
             <Briefcase className="w-3.5 h-3.5 opacity-50" />
             {t("whoWeAre")}
           </Link>
 
           {/* Technologies Dropdown */}
           <div className="nav-item-drop relative">
-            <Link href="/technologies/" className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/technologies") ? "nav-link-active" : ""}`}>
+            <Link href="/technologies/" className={`nav-link-premium flex items-center ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/technologies") ? "nav-link-active" : ""}`}>
               <FlaskConical className="w-3.5 h-3.5 opacity-50" />
               {t("technologies")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
-            <div className={`nav-dropdown absolute top-[72px] pt-4 ${rtl ? "right-1/2 translate-x-1/2" : "left-1/2 -translate-x-1/2"} min-w-[360px]`}>
-              <div className="bg-[#132840] border border-white/[0.15] rounded-sm shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden">
+            <div className="nav-dropdown absolute top-[72px] pt-4 left-1/2 -translate-x-1/2 w-[340px]">
+              <div className="bg-navy-deep/98 backdrop-blur-xl border border-white/[0.15] rounded-sm shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
                 <div className="p-2">
                   {techDropdown.map((item) => (
                     <Link
                       key={item.slug}
                       href={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item"
+                      className="flex items-center gap-3 px-4 py-3 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item border border-transparent hover:border-white/5"
                     >
                       <span className="text-gold font-[family-name:var(--font-body)] text-[13px] font-semibold tracking-normal min-w-[48px]">
                         {item.formula}
@@ -172,26 +172,26 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Services Mega Menu */}
+          {/* Services Mega Menu (Dual-Column layout) */}
           <div className="nav-item-drop relative">
             <Link
               href="/services/"
-              className={`nav-link-premium flex items-center ${navFont} gap-1.5 ${isActive("/services") ? "nav-link-active" : ""}`}
+              className={`nav-link-premium flex items-center ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/services") ? "nav-link-active" : ""}`}
             >
               <Wrench className="w-3.5 h-3.5 opacity-50" />
               {t("services")}
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
             {/* Mega Menu Dropdown */}
-            <div className={`nav-dropdown absolute top-[72px] ${rtl ? "right-0" : "left-0"} pt-4 w-[360px]`}>
+            <div className="nav-dropdown absolute top-[72px] left-1/2 -translate-x-1/2 pt-4 w-[660px]">
               <div className="bg-navy-deep/98 backdrop-blur-xl border border-white/[0.15] rounded-sm shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
                 <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
-                <div className="flex flex-col gap-1 p-2">
+                <div className="grid grid-cols-2 gap-1.5 p-3">
                   {navServices.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center gap-3.5 px-4 py-3 rounded-sm hover:bg-gold/[0.08] transition-all duration-300 group/item border border-transparent hover:border-white/5"
+                      className="flex items-center gap-3.5 px-3.5 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-300 group/item border border-transparent hover:border-white/5"
                     >
                       <div className="w-8 h-8 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/item:border-gold group-hover/item:bg-gold/[0.06] group-hover/item:scale-110 group-hover/item:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
                         <div className="transition-transform duration-500 group-hover/item:rotate-6">
@@ -199,7 +199,7 @@ export function Navbar() {
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <span className={`${fc} block text-[11px] font-bold uppercase tracking-wider text-cloud/85 group-hover/item:text-white transition-colors leading-tight`}>
+                        <span className={`${fc} block text-[10.5px] font-bold uppercase tracking-wider text-cloud/85 group-hover/item:text-white transition-colors leading-tight`}>
                           {item.label}
                         </span>
                         {item.sub && (
@@ -225,12 +225,12 @@ export function Navbar() {
             </div>
           </div>
 
-          <Link href="/experience/" className={`nav-link-premium ${navFont} gap-1.5 ${isActive("/experience/") ? "nav-link-active" : ""}`}>
+          <Link href="/experience/" className={`nav-link-premium ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/experience/") ? "nav-link-active" : ""}`}>
             <Award className="w-3.5 h-3.5 opacity-50" />
             {t("experience")}
           </Link>
 
-          <Link href="/insights/" className={`nav-link-premium ${navFont} gap-1.5 ${isActive("/insights/") ? "nav-link-active" : ""}`}>
+          <Link href="/insights/" className={`nav-link-premium ${navFont} !px-2 xl:!px-3.5 gap-1 xl:gap-1.5 ${isActive("/insights/") ? "nav-link-active" : ""}`}>
             <Lightbulb className="w-3.5 h-3.5 opacity-50" />
             {t("insights")}
           </Link>
@@ -296,10 +296,10 @@ export function Navbar() {
       {mobileOpen && (
         <div dir={rtl ? "rtl" : "ltr"} className="lg:hidden bg-navy-deep/98 backdrop-blur-2xl border-t border-white/[0.10] max-h-[calc(100vh-72px)] overflow-y-auto">
           <div className="px-6 py-5 space-y-1">
-            <Link href="/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
+            <Link href="/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] border-b border-white/[0.06] hover:text-white transition-colors ${isActive("/") ? "text-gold font-bold" : "text-silver/70"}`}>
               {t("home")}
             </Link>
-            <Link href="/who-we-are/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
+            <Link href="/who-we-are/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] border-b border-white/[0.06] hover:text-white transition-colors ${isActive("/who-we-are/") ? "text-gold font-bold" : "text-silver/70"}`}>
               {t("whoWeAre")}
             </Link>
 
@@ -308,16 +308,23 @@ export function Navbar() {
                 onClick={() => setMobileTechOpen(!mobileTechOpen)}
                 className={`flex items-center justify-between w-full py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 hover:text-white transition-colors`}
               >
-                {t("technologies")}
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileTechOpen ? "rotate-180" : ""}`} />
+                <span>{t("technologies")}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileTechOpen ? "rotate-180 text-gold" : ""}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${mobileTechOpen ? "max-h-[600px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
-                {techDropdown.map((item) => (
-                  <Link key={item.slug} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-center gap-2 py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
-                    <span className="text-gold text-[11px] min-w-[40px]">{item.formula}</span>
-                    {item.label}
-                  </Link>
-                ))}
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  {techDropdown.map((item) => (
+                    <Link
+                      key={item.slug}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex items-center gap-2 py-2 px-3 bg-white/[0.015] border border-white/[0.06] rounded-sm text-[11px] text-silver/70 hover:text-white hover:border-gold/20 transition-all ${isActive(item.href) ? "border-gold/30 bg-gold/5 text-gold font-bold" : ""}`}
+                    >
+                      <span className="text-gold font-semibold text-[11px] min-w-[32px]">{item.formula}</span>
+                      <span className="truncate">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -326,46 +333,35 @@ export function Navbar() {
                 onClick={() => setMobileSvcOpen(!mobileSvcOpen)}
                 className={`flex items-center justify-between w-full py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 hover:text-white transition-colors`}
               >
-                {t("services")}
-                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileSvcOpen ? "rotate-180" : ""}`} />
+                <span>{t("services")}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${mobileSvcOpen ? "rotate-180 text-gold" : ""}`} />
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${mobileSvcOpen ? "max-h-[800px] opacity-100 pb-3" : "max-h-0 opacity-0"}`}>
-                {navServices.map((item) => (
-                  <Link key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className={`flex items-start gap-3 py-2.5 ${rtl ? "pr-3" : "pl-3"} text-[13px] text-silver/50 hover:text-white transition-colors`}>
-                    <div className="mt-0.5 text-gold/50">{getServiceIcon(item.slug)}</div>
-                    <span>{item.label}</span>
-                  </Link>
-                ))}
+                <div className="flex flex-col gap-2 mt-1">
+                  {navServices.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className={`flex items-center gap-3.5 py-2.5 px-3 bg-white/[0.015] border border-white/[0.06] rounded-sm text-[11px] text-silver/70 hover:text-white hover:border-gold/20 transition-all ${isActive(item.href) ? "border-gold/30 bg-gold/5 text-gold font-bold" : ""}`}
+                    >
+                      <div className={`shrink-0 ${isActive(item.href) ? "text-gold" : "text-gold/50"}`}>
+                        {getServiceIcon(item.slug)}
+                      </div>
+                      <span className="truncate">{item.label}</span>
+                    </Link>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <Link href="/experience/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
+            <Link href="/experience/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] border-b border-white/[0.06] hover:text-white transition-colors ${isActive("/experience/") ? "text-gold font-bold" : "text-silver/70"}`}>
               {t("experience")}
             </Link>
 
-            <Link href="/insights/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] text-silver/70 border-b border-white/[0.06] hover:text-white transition-colors`}>
+            <Link href="/insights/" onClick={() => setMobileOpen(false)} className={`block py-3.5 ${fc} text-[13px] font-medium uppercase tracking-[0.1em] border-b border-white/[0.06] hover:text-white transition-colors ${isActive("/insights/") ? "text-gold font-bold" : "text-silver/70"}`}>
               {t("insights")}
             </Link>
-
-            {/* Mobile Language Picker hidden for English-only release
-            <div className="py-3.5 border-b border-white/[0.06]">
-              <div className={`${fc} text-[10px] font-bold tracking-[0.25em] uppercase text-gold mb-3`}>
-                {nav.language[locale]}
-              </div>
-              <div className="flex gap-2">
-                {LOCALES.map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => { setLocale(l); }}
-                    className={`px-4 py-2 text-[13px] rounded-sm border transition-all ${locale === l ? "border-gold/50 bg-gold/10 text-gold" : "border-white/10 text-silver/50 hover:text-white hover:border-white/20"
-                      }`}
-                  >
-                    {getLangName(l)}
-                  </button>
-                ))}
-              </div>
-            </div>
-            */}
 
             <div className="pt-6 pb-2">
               <Link
