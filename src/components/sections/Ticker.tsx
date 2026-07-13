@@ -28,13 +28,13 @@ export function Ticker() {
 
       {/* Ticker Container with gradient masks for smooth fade in/out */}
       <div className="overflow-hidden flex-1 flex relative w-full h-full items-center ticker-mask">
-        <div className="ticker-track flex gap-8 items-center w-max will-change-transform">
-          {[...Array(4)].map((_, arrayIndex) => (
+        <div className="ticker-track flex items-center w-max will-change-transform">
+          {[...Array(2)].map((_, arrayIndex) => (
             <React.Fragment key={arrayIndex}>
               {items.map((item, i) => (
                 <div
                   key={`${arrayIndex}-${i}`}
-                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-white/90 whitespace-nowrap flex items-center gap-4 transition-all hover:text-white cursor-default"
+                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-white/90 whitespace-nowrap flex items-center gap-4 transition-all hover:text-white cursor-default pr-10"
                 >
                   <div className="flex items-center justify-center h-8 px-4 rounded-sm bg-gold/10 border border-gold/30 shadow-[0_0_15px_rgba(232,146,10,0.1)] transition-all group-hover:border-gold/50 group-hover:bg-gold/20 group-hover:shadow-[0_0_20px_rgba(232,146,10,0.2)]">
                     <span className="text-gold-light text-[12px] font-bold tracking-widest">{item.formula}</span>

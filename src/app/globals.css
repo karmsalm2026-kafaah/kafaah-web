@@ -126,7 +126,7 @@ textarea,
   100% { transform: translate3d(-50%, 0, 0); }
 }
 .ticker-track {
-  animation: ticker-scroll 32s linear infinite;
+  animation: ticker-scroll 36s linear infinite;
   will-change: transform;
 }
 .ticker-track:hover {
