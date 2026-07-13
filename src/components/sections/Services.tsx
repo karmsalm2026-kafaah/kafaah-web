@@ -358,12 +358,12 @@ export function ServicesSection({ content }: Props) {
           </RevealItem>
           
           {/* Centered Closing Line */}
-          <div className="group/closing flex items-center justify-center gap-6 mt-16 sm:mt-20">
-            <div className="h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
-            <span className="text-gold/90 text-[12px] sm:text-[13px] tracking-[0.2em] font-bold uppercase whitespace-nowrap transition-all duration-500 group-hover/closing:scale-105 group-hover/closing:text-white">
+          <div className="group/closing flex items-center justify-center gap-4 sm:gap-6 mt-16 sm:mt-20 px-4 sm:px-0">
+            <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
+            <span className="text-gold/90 text-[10.5px] sm:text-[13px] tracking-[0.15em] sm:tracking-[0.2em] font-bold uppercase text-center sm:whitespace-nowrap transition-all duration-500 group-hover/closing:scale-105 group-hover/closing:text-white leading-relaxed">
               {svcDict.bottomClosing[locale]}
             </span>
-            <div className="h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-l from-transparent to-gold/30 transition-all duration-500 ease-out" />
+            <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-l from-transparent to-gold/30 transition-all duration-500 ease-out" />
           </div>
         </div>
 
