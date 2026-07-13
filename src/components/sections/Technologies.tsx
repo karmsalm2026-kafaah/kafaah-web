@@ -20,7 +20,7 @@ export function TechnologiesSection() {
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container mx-auto px-3 sm:px-6 lg:px-8">
         {/* Section Header */}
         <StaggerChildren>
           <RevealItem>
@@ -47,7 +47,7 @@ export function TechnologiesSection() {
               <RevealItem key={tech.slug}>
                 <Link
                   href={`/technologies/${tech.slug}/`}
-                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-8 lg:p-10 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 xs:p-6 sm:p-8 lg:p-10 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
                 >
                   {/* Index Indicator */}
                   <span className={`absolute top-4 ${rtl ? 'left-5' : 'right-5'} text-[36px] font-bold text-white/[0.06] group-hover:text-gold/[0.12] transition-all duration-500 select-none`}>

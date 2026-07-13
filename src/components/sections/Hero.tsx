@@ -133,7 +133,7 @@ export function HeroSection({ content }: Props) {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-4 sm:pt-24 sm:pb-6">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-3 sm:px-6 lg:px-8 pt-14 pb-4 sm:pt-24 sm:pb-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full">
           {/* Left Column (Content) - exactly 65% screen width & aligned sides */}
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
@@ -254,17 +254,17 @@ export function HeroSection({ content }: Props) {
       {/* ── Bottom Stats Bar ── */}
       <FadeIn delay={0.48} y={0}>
         <div className="relative z-10 border-t border-white/[0.12] bg-navy-deep/45 backdrop-blur-md">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto px-3 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4">
               {stats.map((stat, i) => {
                 return (
                   <div
                     key={stat.label}
-                    className={`py-3.5 sm:py-4 md:py-4.5 px-4 md:px-6 lg:px-8 group cursor-default border-white/[0.1] transition-colors duration-300 hover:bg-white/[0.01] ${i === 1 || i === 3 ? "border-s" : ""
+                    className={`py-3.5 sm:py-4 md:py-4.5 px-2.5 xs:px-4 md:px-6 lg:px-8 group cursor-default border-white/[0.1] transition-colors duration-300 hover:bg-white/[0.01] ${i === 1 || i === 3 ? "border-s" : ""
                       } ${i === 2 ? "max-md:border-s-0 md:border-s" : ""} ${i < 2 ? "border-b md:border-b-0" : ""
                       }`}
                   >
-                    <div className="flex items-center gap-3 md:gap-3.5">
+                    <div className="flex items-center gap-2 xs:gap-3 md:gap-3.5">
                       {/* Premium Gold Outline SVG Icon */}
                       {i === 0 && (
                         <svg className="w-7 h-7 md:w-8 md:h-8 text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-105 group-hover:filter group-hover:drop-shadow-[0_0_6px_rgba(229,193,88,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round">

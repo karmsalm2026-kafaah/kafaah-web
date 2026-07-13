@@ -19,7 +19,7 @@ export function TrackRecordSection() {
       {/* Background */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container mx-auto px-3 sm:px-6 lg:px-8">
         {/* Title & Section Description */}
         <div className="max-w-4xl mb-12">
           <StaggerChildren>
@@ -51,7 +51,7 @@ export function TrackRecordSection() {
               <RevealItem key={index}>
                 <Link
                   href="/experience/"
-                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 xs:p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
                 >
                   {/* Animated Vertical Accent bar */}
                   <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
@@ -117,7 +117,7 @@ export function TrackRecordSection() {
           {/* Right: Statement + Disciplines */}
           <StaggerChildren className="space-y-6 lg:mt-0" staggerDelay={0.15}>
             <RevealItem>
-              <div className={`relative p-6 bg-navy-card/50 backdrop-blur-md border border-white/[0.12] hover:border-gold/30 transition-all duration-300 rounded-sm ${rtl ? "border-r-3 border-r-gold" : "border-l-3 border-l-gold"}`}>
+              <div className={`relative p-5 xs:p-6 bg-navy-card/50 backdrop-blur-md border border-white/[0.12] hover:border-gold/30 transition-all duration-300 rounded-sm ${rtl ? "border-r-3 border-r-gold" : "border-l-3 border-l-gold"}`}>
                 <p className={`${fcBody} text-white/95 ${isAr ? "text-[15px] leading-[1.8]" : "text-[14px] leading-[1.8] italic"} font-light`}>
                   {trDict.quote[locale]}
                 </p>
