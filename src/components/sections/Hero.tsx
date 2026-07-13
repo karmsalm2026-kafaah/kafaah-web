@@ -129,7 +129,7 @@ export function HeroSection({ content }: Props) {
         <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/80 md:from-navy-deep/90 via-navy-deep/60 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/30 sm:via-transparent via-transparent to-navy-deep/60" />
         {/* Mobile only dark overlay for high text contrast */}
-        <div className="absolute inset-0 bg-navy-deep/45 md:hidden z-1 pointer-events-none" />
+        <div className="absolute inset-0 bg-navy-deep/65 md:hidden z-1 pointer-events-none" />
       </div>
 
       {/* ── Main Content ── */}
