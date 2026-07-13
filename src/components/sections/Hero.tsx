@@ -121,13 +121,15 @@ export function HeroSection({ content }: Props) {
             <img
               src="/hero-bg-extended.webp"
               alt="Engineering Team"
-              className="w-full h-full object-cover object-right lg:object-center opacity-100 mix-blend-luminosity"
+              className="w-full h-full object-cover object-right lg:object-center max-md:opacity-85 opacity-100 max-md:mix-blend-normal md:mix-blend-luminosity"
             />
           </picture>
         </motion.div>
         {/* Lighter Gradient Overlays for better image visibility */}
         <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/80 md:from-navy-deep/90 via-navy-deep/60 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/30 sm:via-transparent via-transparent to-navy-deep/60" />
+        {/* Mobile only dark overlay for high text contrast */}
+        <div className="absolute inset-0 bg-navy-deep/45 md:hidden z-1 pointer-events-none" />
       </div>
 
       {/* ── Main Content ── */}
@@ -166,7 +168,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-sm sm:text-base text-silver/85 w-full leading-relaxed mb-6 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-sm sm:text-base text-white/95 md:text-silver/85 w-full leading-relaxed mb-6 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>
