@@ -32,14 +32,14 @@ export function TechnologiesSection() {
             </div>
           </RevealItem>
           <RevealItem>
-            <h2 className={`${fc} text-[clamp(32px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20`}>
+            <h2 className={`${fc} text-[clamp(24px,2.8vw,42px)] ${isAr ? "leading-[1.4] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20 md:whitespace-nowrap overflow-visible`}>
               {techDict.headline[locale]}<em className="text-gold not-italic">{techDict.headlineAccent[locale]}</em>
             </h2>
           </RevealItem>
         </StaggerChildren>
 
         {/* Tech Grid */}
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr" staggerDelay={0.08}>
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr" staggerDelay={0.08}>
           {technologies.map((tech, i) => {
             const localizedName = techDict.list[tech.slug]?.name[locale] || tech.name;
             const localizedDesc = techDict.list[tech.slug]?.desc[locale] || tech.shortDesc;
@@ -47,42 +47,45 @@ export function TechnologiesSection() {
               <RevealItem key={tech.slug}>
                 <Link
                   href={`/technologies/${tech.slug}/`}
-                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 xs:p-6 sm:p-8 lg:p-10 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/25 backdrop-blur-md border border-white/[0.08] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold/30 hover:bg-navy-card-hover/40 hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.06)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
                 >
+                  {/* Subtle glow effect on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
                   {/* Index Indicator */}
-                  <span className={`absolute top-4 ${rtl ? 'left-5' : 'right-5'} text-[36px] font-bold text-white/[0.06] group-hover:text-gold/[0.12] transition-all duration-500 select-none`}>
+                  <span className={`absolute top-4 ${rtl ? 'left-5' : 'right-5'} text-[44px] font-extrabold text-white/[0.03] group-hover:text-gold/[0.08] transition-all duration-500 select-none font-[family-name:var(--font-display)]`}>
                     0{i + 1}
                   </span>
 
                   {/* Animated Vertical Accent bar */}
-                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/20 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
                   
                   {/* Content wrapper */}
                   <div className="relative z-10">
                     {/* Visible Formula */}
-                    <div className="font-[family-name:var(--font-display)] text-[48px] leading-none text-white/70 mb-4 transition-colors duration-500 group-hover:text-gold/90">
+                    <div className="font-[family-name:var(--font-display)] text-[42px] lg:text-[48px] leading-none text-white/50 mb-5 transition-all duration-500 group-hover:text-gold/95 group-hover:scale-105 origin-left rtl:origin-right">
                       {tech.formula}
                     </div>
 
-                    <h3 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[13px] tracking-[0.1em] uppercase" : fcBody + " text-[15px]"} font-bold text-white mb-2 group-hover:text-gold transition-colors duration-300`}>
+                    <h3 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[14px] tracking-wider uppercase" : fcBody + " text-[16px]"} font-bold text-white mb-2.5 group-hover:text-gold transition-colors duration-300`}>
                       {localizedName}
                     </h3>
 
-                    <p className={`${fcBody} ${isAr ? "text-[15px] leading-[1.9]" : "text-[13px] leading-[1.7]"} font-light text-silver/70 mb-6`}>
+                    <p className={`${fcBody} ${isAr ? "text-[14px] sm:text-[15px] leading-[1.8]" : "text-[12.5px] sm:text-[13px] leading-[1.65]"} font-light text-silver/60 group-hover:text-silver/80 transition-colors duration-500 mb-6`}>
                       {localizedDesc}
                     </p>
                   </div>
 
-                  <span className={`inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.15em] uppercase" : fcBody + " text-[12px]"} font-semibold text-silver/55 group-hover:text-gold transition-colors duration-300 relative z-10 mt-auto`}>
+                  <span className={`inline-flex items-center gap-2 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.15em] uppercase" : fcBody + " text-[12.5px]"} font-semibold text-silver/45 group-hover:text-gold transition-colors duration-500 relative z-10 mt-auto`}>
                     {tech.completedProject ? (
                       <>
                         {techDict.completedProject[locale]}
-                        <ArrowRight className={`w-3 h-3 translate-x-0 ${rtl ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"} transition-transform duration-300`} />
+                        <ArrowRight className={`w-3.5 h-3.5 translate-x-0 ${rtl ? "group-hover:-translate-x-1.5 rotate-180" : "group-hover:translate-x-1.5"} transition-transform duration-300`} />
                       </>
                     ) : (
                       <>
                         {techDict.viewTech[locale]}
-                        <ArrowRight className={`w-3 h-3 translate-x-0 ${rtl ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1"} transition-transform duration-300`} />
+                        <ArrowRight className={`w-3.5 h-3.5 translate-x-0 ${rtl ? "group-hover:-translate-x-1.5 rotate-180" : "group-hover:translate-x-1.5"} transition-transform duration-300`} />
                       </>
                     )}
                   </span>
