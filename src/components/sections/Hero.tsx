@@ -100,7 +100,7 @@ export function HeroSection({ content }: Props) {
   const builtInside = heroDict.builtInside;
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative min-h-[100dvh] md:h-[100dvh] flex flex-col overflow-hidden bg-navy-deep">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative min-h-[620px] xs:min-h-[660px] md:min-h-0 md:h-[100dvh] flex flex-col overflow-hidden bg-navy-deep">
       {/* Image Background with authoritative overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div 
