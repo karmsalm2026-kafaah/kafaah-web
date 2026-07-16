@@ -165,9 +165,9 @@ export function HeroSection({ content }: Props) {
 
             {/* Headline – Exactly 2 lines on all screens */}
             <RevealItem className="w-full">
-              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-[23px] xs:text-[27px] sm:text-[35px] lg:text-[42px] leading-[1.3] sm:leading-[1.2] tracking-normal font-black"
-                : locale === "zh" ? getFontClass(locale) + " text-[21px] xs:text-[25px] sm:text-[33px] lg:text-[40px] leading-[1.3] sm:leading-[1.2] tracking-normal font-bold"
-                  : "font-[family-name:var(--font-display)] text-[25px] xs:text-[29px] sm:text-[37px] lg:text-[45px] leading-[1.22] sm:leading-[1.1] tracking-[-0.01em]"
+              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-[21px] xs:text-[24px] sm:text-[33px] lg:text-[42px] leading-[1.24] sm:leading-[1.2] tracking-normal font-black"
+                : locale === "zh" ? getFontClass(locale) + " text-[20px] xs:text-[23px] sm:text-[31px] lg:text-[40px] leading-[1.24] sm:leading-[1.2] tracking-normal font-bold"
+                  : "font-[family-name:var(--font-display)] text-[23px] xs:text-[26px] sm:text-[35px] lg:text-[45px] leading-[1.18] sm:leading-[1.1] tracking-[-0.01em]"
                 } mb-3 sm:mb-6 w-full text-center lg:text-start`}
               >
                 <span className="block sm:whitespace-nowrap text-white overflow-visible pb-1">
@@ -181,7 +181,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full max-w-[92%] xs:max-w-[90%] lg:max-w-none leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[12.5px] xs:text-[13.5px] sm:text-base text-white/90 md:text-silver/85 w-full leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>
