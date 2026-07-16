@@ -173,7 +173,7 @@ export function TechnologiesClient() {
                   {/* Visual Image container */}
                   <div className={`lg:col-span-5 ${isEven ? "lg:order-1" : "lg:order-2"}`}>
                     <FadeIn delay={0.05}>
-                      <div className="relative group rounded-sm overflow-hidden border border-white/[0.08] bg-navy-card/15 backdrop-blur-md p-4 sm:p-5 flex flex-col gap-4">
+                      <div className="relative group rounded-sm overflow-hidden border border-white/[0.08] bg-navy-card/15 backdrop-blur-md p-3.5 xs:p-4 sm:p-5 flex flex-col gap-4">
                         {/* Process rendered image */}
                         <div className="relative w-full h-[280px] sm:h-[350px] rounded-sm overflow-hidden bg-navy-deep border border-white/[0.06]">
                           <ImageWithSkeleton
@@ -231,7 +231,7 @@ export function TechnologiesClient() {
                     {/* Scientific Grid Information */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-white/[0.06]">
                       {/* Chemistry block */}
-                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-4 rounded-sm transition-all duration-300">
+                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-3.5 xs:p-4 rounded-sm transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
                           <FlaskConical className="w-3.5 h-3.5 text-gold/70" />
                           <span className={`${fcUI} text-[10px] font-bold tracking-[0.15em] text-gold uppercase`}>
@@ -244,7 +244,7 @@ export function TechnologiesClient() {
                       </div>
 
                       {/* Equipment block */}
-                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-4 rounded-sm transition-all duration-300">
+                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-3.5 xs:p-4 rounded-sm transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
                           <Beaker className="w-3.5 h-3.5 text-gold/70" />
                           <span className={`${fcUI} text-[10px] font-bold tracking-[0.15em] text-gold uppercase`}>
@@ -257,7 +257,7 @@ export function TechnologiesClient() {
                       </div>
 
                       {/* Challenges block */}
-                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-4 rounded-sm transition-all duration-300">
+                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-3.5 xs:p-4 rounded-sm transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
                           <ShieldAlert className="w-3.5 h-3.5 text-gold/70" />
                           <span className={`${fcUI} text-[10px] font-bold tracking-[0.15em] text-gold uppercase`}>
@@ -270,7 +270,7 @@ export function TechnologiesClient() {
                       </div>
 
                       {/* Experience block */}
-                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-4 rounded-sm transition-all duration-300">
+                      <div className="bg-navy-card/15 border border-white/[0.06] hover:border-gold/20 p-3.5 xs:p-4 rounded-sm transition-all duration-300">
                         <div className="flex items-center gap-2 mb-2">
                           <ClipboardCopy className="w-3.5 h-3.5 text-gold/70" />
                           <span className={`${fcUI} text-[10px] font-bold tracking-[0.15em] text-gold uppercase`}>

@@ -166,12 +166,12 @@ export function ContactCTA({ content }: Props) {
   };
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="bg-navy pt-28 pb-40 relative overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="bg-navy pt-16 pb-24 xs:pt-20 xs:pb-32 sm:pt-28 sm:pb-40 relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
       
-      <div className="container mx-auto px-3 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
+      <div className="container mx-auto px-3 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-center relative z-10">
         {/* Left CTA */}
         <FadeIn>
           <div>
@@ -186,7 +186,7 @@ export function ContactCTA({ content }: Props) {
               <br />
               <em className="text-gold not-italic">{headlineAccent}</em>
             </h2>
-            <p className={`${fcBody} ${isAr ? "text-[17px] leading-[2]" : "text-[16px] leading-[1.8]"} font-light text-silver/85 mb-10`}>
+            <p className={`${fcBody} ${isAr ? "text-[14.5px] xs:text-[17px] leading-[1.8]" : "text-[13.5px] xs:text-[16px] leading-[1.7]"} font-light text-silver/85 mb-8 sm:mb-10`}>
               {subCopy}
             </p>
             <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row items-stretch w-full sm:w-auto">
@@ -225,7 +225,7 @@ export function ContactCTA({ content }: Props) {
         {/* Right: Quick Contact Panel */}
         <FadeIn delay={0.15}>
           <div className="relative group">
-            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-4 xs:p-5 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
+            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-3.5 xs:p-5 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
               {/* Animated Vertical Accent bar */}
               <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
               

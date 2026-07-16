@@ -15,7 +15,7 @@ export function TechnologiesSection() {
   const isEn = locale === "en";
   const isAr = locale === "ar";
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative py-14 xs:py-20 sm:py-36 bg-navy-deep overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent" />
@@ -32,14 +32,14 @@ export function TechnologiesSection() {
             </div>
           </RevealItem>
           <RevealItem>
-            <h2 className={`${fc} text-[clamp(24px,2.8vw,42px)] ${isAr ? "leading-[1.4] font-bold" : "leading-[1.1]"} text-white mb-16 lg:mb-20 md:whitespace-nowrap overflow-visible`}>
+            <h2 className={`${fc} text-[clamp(24px,2.8vw,42px)] ${isAr ? "leading-[1.4] font-bold" : "leading-[1.1]"} text-white mb-10 sm:mb-16 lg:mb-20 md:whitespace-nowrap overflow-visible`}>
               {techDict.headline[locale]}<em className="text-gold not-italic">{techDict.headlineAccent[locale]}</em>
             </h2>
           </RevealItem>
         </StaggerChildren>
 
         {/* Tech Grid */}
-        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 auto-rows-fr" staggerDelay={0.08}>
+        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 auto-rows-fr" staggerDelay={0.08}>
           {technologies.map((tech, i) => {
             const localizedName = techDict.list[tech.slug]?.name[locale] || tech.name;
             const localizedDesc = techDict.list[tech.slug]?.desc[locale] || tech.shortDesc;
@@ -47,7 +47,7 @@ export function TechnologiesSection() {
               <RevealItem key={tech.slug}>
                 <Link
                   href={`/technologies/${tech.slug}/`}
-                  className="group relative bg-navy-card/25 backdrop-blur-md border border-white/[0.08] p-4 xs:p-5 sm:p-7 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold/30 hover:bg-navy-card-hover/40 hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.06)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/25 backdrop-blur-md border border-white/[0.08] p-3.5 xs:p-5 sm:p-7 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold/30 hover:bg-navy-card-hover/40 hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.06)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
                 >
                   {/* Subtle glow effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
@@ -63,15 +63,15 @@ export function TechnologiesSection() {
                   {/* Content wrapper */}
                   <div className="relative z-10">
                     {/* Visible Formula */}
-                    <div className="font-[family-name:var(--font-display)] text-[42px] lg:text-[48px] leading-none text-white/50 mb-5 transition-all duration-500 group-hover:text-gold/95 group-hover:scale-105 origin-left rtl:origin-right">
+                    <div className="font-[family-name:var(--font-display)] text-[28px] xs:text-[34px] sm:text-[42px] lg:text-[48px] leading-none text-white/50 mb-5 transition-all duration-500 group-hover:text-gold/95 group-hover:scale-105 origin-left rtl:origin-right">
                       {tech.formula}
                     </div>
 
-                    <h3 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[14px] tracking-wider uppercase" : fcBody + " text-[16px]"} font-bold text-white mb-2.5 group-hover:text-gold transition-colors duration-300`}>
+                    <h3 className={`${isEn ? "font-[family-name:var(--font-ui)] text-[13px] xs:text-[14px] tracking-wider uppercase" : fcBody + " text-[14.5px] xs:text-[15.5px] sm:text-[16px]"} font-bold text-white mb-2.5 group-hover:text-gold transition-colors duration-300`}>
                       {localizedName}
                     </h3>
 
-                    <p className={`${fcBody} ${isAr ? "text-[14px] sm:text-[15px] leading-[1.8]" : "text-[12.5px] sm:text-[13px] leading-[1.65]"} font-light text-silver/60 group-hover:text-silver/80 transition-colors duration-500 mb-6`}>
+                    <p className={`${fcBody} ${isAr ? "text-[12px] xs:text-[13px] sm:text-[15px] leading-[1.7]" : "text-[11.5px] xs:text-[12px] sm:text-[13px] leading-[1.6]"} font-light text-silver/60 group-hover:text-silver/80 transition-colors duration-500 mb-6`}>
                       {localizedDesc}
                     </p>
                   </div>

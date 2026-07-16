@@ -139,7 +139,7 @@ export function HeroSection({ content }: Props) {
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
             {/* Eyebrow / Tag - aligned to boundaries with dynamic gold indicator */}
             <RevealItem className="w-full">
-              <div className="mb-3.5 sm:mb-4.5 w-full flex items-center justify-center lg:justify-start gap-2.5">
+              <div className="mb-2 sm:mb-4.5 w-full flex items-center justify-center lg:justify-start gap-2.5">
                 {/* Premium Solid Gold Pulse Circle */}
                 <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-60"></span>
@@ -155,7 +155,7 @@ export function HeroSection({ content }: Props) {
               <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-normal font-black"
                 : locale === "zh" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[32px] leading-[1.25] tracking-normal font-bold"
                   : "font-[family-name:var(--font-display)] text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] leading-[1.1] tracking-[-0.01em]"
-                } mb-4 sm:mb-6 w-full text-center lg:text-start`}
+                } mb-3 sm:mb-6 w-full text-center lg:text-start`}
               >
                 <span className="block sm:whitespace-nowrap text-white overflow-visible pb-1">
                   <HoverWords text={headline[0]} locale={locale} />
@@ -168,7 +168,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-sm sm:text-base text-white/95 md:text-silver/85 w-full leading-relaxed mb-6 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-sm sm:text-base text-white/95 md:text-silver/85 w-full leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>
@@ -260,7 +260,7 @@ export function HeroSection({ content }: Props) {
                 return (
                   <div
                     key={stat.label}
-                    className={`py-3.5 sm:py-4 md:py-4.5 px-2.5 xs:px-4 md:px-6 lg:px-8 group cursor-default border-white/[0.1] transition-colors duration-300 hover:bg-white/[0.01] ${i === 1 || i === 3 ? "border-s" : ""
+                    className={`py-2.5 xs:py-3.5 sm:py-4 md:py-4.5 px-2.5 xs:px-4 md:px-6 lg:px-8 group cursor-default border-white/[0.1] transition-colors duration-300 hover:bg-white/[0.01] ${i === 1 || i === 3 ? "border-s" : ""
                       } ${i === 2 ? "max-md:border-s-0 md:border-s" : ""} ${i < 2 ? "border-b md:border-b-0" : ""
                       }`}
                   >
@@ -306,10 +306,10 @@ export function HeroSection({ content }: Props) {
                       )}
                       
                       <div className="min-w-0 flex-1">
-                        <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-xl sm:text-2xl text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>
+                        <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-lg xs:text-xl sm:text-2xl text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>
                           {stat.num}
                         </div>
-                        <div className={`text-[11px] leading-tight text-silver/60 group-hover:text-silver/85 transition-colors duration-300 ${locale !== "en" ? getFontClass(locale) + " font-medium" : "tracking-[0.06em] uppercase font-[family-name:var(--font-ui)]"}`}>
+                        <div className={`text-[10px] xs:text-[11px] leading-tight text-silver/60 group-hover:text-silver/85 transition-colors duration-300 ${locale !== "en" ? getFontClass(locale) + " font-medium" : "tracking-[0.06em] uppercase font-[family-name:var(--font-ui)]"}`}>
                           {stat.label}
                         </div>
                       </div>

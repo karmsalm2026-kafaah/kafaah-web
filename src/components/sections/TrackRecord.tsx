@@ -15,7 +15,7 @@ export function TrackRecordSection() {
   const isAr = locale === "ar";
 
   return (
-    <section id="experience" dir={rtl ? "rtl" : "ltr"} className="relative py-28 sm:py-36 bg-navy-deep overflow-hidden">
+    <section id="experience" dir={rtl ? "rtl" : "ltr"} className="relative py-14 xs:py-20 sm:py-36 bg-navy-deep overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 hero-noise opacity-30 pointer-events-none" />
 
@@ -46,12 +46,12 @@ export function TrackRecordSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           {/* Left: Projects */}
-          <StaggerChildren className="flex flex-col gap-6" staggerDelay={0.1}>
+          <StaggerChildren className="flex flex-col gap-4 sm:gap-6" staggerDelay={0.1}>
             {(trDict.projects?.[locale] || []).map((proj, index) => (
               <RevealItem key={index}>
                 <Link
                   href="/experience/"
-                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-4 xs:p-5 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-3.5 xs:p-5 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
                 >
                   {/* Animated Vertical Accent bar */}
                   <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
@@ -60,7 +60,7 @@ export function TrackRecordSection() {
                     {proj.phase}
                   </span>
                   
-                  <div className={`${isEn ? "font-[family-name:var(--font-display)] text-[22px]" : fcBody + " text-[20px] font-bold"} text-white leading-[1.2] mb-3 group-hover:text-gold transition-colors duration-300`}>
+                  <div className={`${isEn ? "font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[22px]" : fcBody + " text-[16px] xs:text-[18px] sm:text-[20px] font-bold"} text-white leading-[1.2] mb-3 group-hover:text-gold transition-colors duration-300`}>
                     {proj.title}
                   </div>
 
@@ -77,7 +77,7 @@ export function TrackRecordSection() {
                   </div>
 
                   {/* Description */}
-                  <p className={`${fcBody} ${isAr ? "text-[14px] leading-[1.8]" : "text-[12px] leading-[1.7]"} font-light text-silver/70 mb-4`}>
+                  <p className={`${fcBody} ${isAr ? "text-[12.5px] xs:text-[14px] leading-[1.7]" : "text-[11.5px] xs:text-[12px] leading-[1.6]"} font-light text-silver/70 mb-4`}>
                     {proj.desc}
                   </p>
 
