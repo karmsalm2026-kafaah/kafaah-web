@@ -181,7 +181,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full max-w-[85%] xs:max-w-[80%] lg:max-w-none leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full max-w-[92%] xs:max-w-[90%] lg:max-w-none leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>
