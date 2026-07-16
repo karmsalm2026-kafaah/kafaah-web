@@ -191,7 +191,7 @@ export function HeroSection({ content }: Props) {
               <div className="grid grid-cols-2 gap-2 sm:gap-4 mt-2 w-full">
                 <Link
                   href={primary.href}
-                  className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[10px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[8.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated light sweep */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -203,7 +203,7 @@ export function HeroSection({ content }: Props) {
 
                 <Link
                   href={secondary.href}
-                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[10px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-semibold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-semibold tracking-[0.03em] xs:tracking-[0.06em] sm:tracking-[0.08em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[8.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-semibold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-semibold tracking-[0.03em] xs:tracking-[0.06em] sm:tracking-[0.08em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated border */}
                   <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
