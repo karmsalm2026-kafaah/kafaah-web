@@ -99,7 +99,7 @@ export function HeroSection({ content }: Props) {
   const builtInside = heroDict.builtInside;
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative h-[100dvh] flex flex-col overflow-hidden bg-navy-deep">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative min-h-[100dvh] md:h-[100dvh] flex flex-col overflow-hidden bg-navy-deep">
       {/* Image Background with authoritative overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div 
@@ -129,7 +129,7 @@ export function HeroSection({ content }: Props) {
         <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/80 md:from-navy-deep/90 via-navy-deep/60 md:via-navy-deep/70 sm:via-navy-deep/50 to-transparent`} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/30 sm:via-transparent via-transparent to-navy-deep/60" />
         {/* Mobile only dark overlay for high text contrast */}
-        <div className="absolute inset-0 bg-navy-deep/65 md:hidden z-1 pointer-events-none" />
+        <div className="absolute inset-0 bg-navy-deep/75 md:hidden z-1 pointer-events-none" />
       </div>
 
       {/* ── Main Content ── */}
@@ -144,7 +144,7 @@ export function HeroSection({ content }: Props) {
                 <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-60"></span>
                 </div>
-                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[9px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.22em] lg:tracking-[0.26em] uppercase text-[7.5px] sm:text-[10px]"} font-semibold text-gold block leading-normal sm:leading-none sm:whitespace-nowrap`}>
+                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[10px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.16em] lg:tracking-[0.22em] uppercase text-[9.5px] xs:text-[10px] sm:text-[10px]"} font-semibold text-gold block leading-normal sm:leading-none sm:whitespace-nowrap`}>
                   {eyebrow}
                 </span>
               </div>
@@ -152,9 +152,9 @@ export function HeroSection({ content }: Props) {
 
             {/* Headline – Exactly 2 lines on all screens */}
             <RevealItem className="w-full">
-              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-normal font-black"
-                : locale === "zh" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[32px] leading-[1.25] tracking-normal font-bold"
-                  : "font-[family-name:var(--font-display)] text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] leading-[1.1] tracking-[-0.01em]"
+              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[34px] leading-[1.3] sm:leading-[1.25] tracking-normal font-black"
+                : locale === "zh" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[32px] leading-[1.3] sm:leading-[1.25] tracking-normal font-bold"
+                  : "font-[family-name:var(--font-display)] text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] leading-[1.22] sm:leading-[1.1] tracking-[-0.01em]"
                 } mb-3 sm:mb-6 w-full text-center lg:text-start`}
               >
                 <span className="block sm:whitespace-nowrap text-white overflow-visible pb-1">
@@ -168,7 +168,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-sm sm:text-base text-white/95 md:text-silver/85 w-full leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>
@@ -178,7 +178,7 @@ export function HeroSection({ content }: Props) {
               <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4 mt-2 w-full">
                 <Link
                   href={primary.href}
-                  className={`group btn-premium-gold !gap-2.5 px-3 py-3 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-bold" : "font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.1em] uppercase"} w-full justify-center`}
+                   className={`group btn-premium-gold !gap-2.5 px-3 py-2.5 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-bold" : "font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.1em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated light sweep */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -190,7 +190,7 @@ export function HeroSection({ content }: Props) {
 
                 <Link
                   href={secondary.href}
-                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-2.5 px-3 py-3 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-semibold" : "font-[family-name:var(--font-ui)] text-[12px] font-semibold tracking-[0.05em] uppercase"} w-full justify-center`}
+                   className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-2.5 px-3 py-2.5 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-semibold" : "font-[family-name:var(--font-ui)] text-[12px] font-semibold tracking-[0.05em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated border */}
                   <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
@@ -253,7 +253,7 @@ export function HeroSection({ content }: Props) {
 
       {/* ── Bottom Stats Bar ── */}
       <FadeIn delay={0.48} y={0}>
-        <div className="relative z-10 border-t border-white/[0.12] bg-navy-deep/45 backdrop-blur-md">
+        <div className="relative z-10 border-t border-white/[0.12] bg-navy-deep/45 backdrop-blur-md pb-6 sm:pb-0">
           <div className="container mx-auto px-3 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 md:grid-cols-4">
               {stats.map((stat, i) => {
@@ -264,7 +264,7 @@ export function HeroSection({ content }: Props) {
                       } ${i === 2 ? "max-md:border-s-0 md:border-s" : ""} ${i < 2 ? "border-b md:border-b-0" : ""
                       }`}
                   >
-                    <div className="flex items-center gap-2 xs:gap-3 md:gap-3.5">
+                    <div className="flex flex-col items-center text-center gap-2 md:flex-row md:items-center md:text-start md:gap-3.5 h-full justify-center">
                       {/* Premium Gold Outline SVG Icon */}
                       {i === 0 && (
                         <svg className="w-7 h-7 md:w-8 md:h-8 text-gold flex-shrink-0 transition-all duration-500 group-hover:scale-105 group-hover:filter group-hover:drop-shadow-[0_0_6px_rgba(229,193,88,0.4)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1} strokeLinecap="round" strokeLinejoin="round">
@@ -305,11 +305,11 @@ export function HeroSection({ content }: Props) {
                         </svg>
                       )}
                       
-                      <div className="min-w-0 flex-1">
-                        <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-lg xs:text-xl sm:text-2xl text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>
+                      <div className="min-w-0 flex-1 flex flex-col items-center md:items-start">
+                        <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-base xs:text-lg sm:text-2xl text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>
                           {stat.num}
                         </div>
-                        <div className={`text-[10px] xs:text-[11px] leading-tight text-silver/60 group-hover:text-silver/85 transition-colors duration-300 ${locale !== "en" ? getFontClass(locale) + " font-medium" : "tracking-[0.06em] uppercase font-[family-name:var(--font-ui)]"}`}>
+                        <div className={`text-[9px] xs:text-[10px] sm:text-[11px] leading-tight text-silver/60 group-hover:text-silver/85 transition-colors duration-300 ${locale !== "en" ? getFontClass(locale) + " font-medium" : "tracking-[0.06em] uppercase font-[family-name:var(--font-ui)]"}`}>
                           {stat.label}
                         </div>
                       </div>
