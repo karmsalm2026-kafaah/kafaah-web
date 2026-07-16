@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { 
   ArrowRight, 
-  Cpu, 
+  Compass, 
   Shield, 
-  Factory, 
+  Briefcase, 
   Globe,
   Power,
   TrendingUp,
@@ -186,24 +186,24 @@ export function HeroSection({ content }: Props) {
               </p>
             </RevealItem>
 
-            {/* CTAs - Full width stack on mobile, 50:50 grid on tablet/desktop */}
+            {/* CTAs - 50:50 grid on all screens, layout calibrated */}
             <RevealItem className="w-full">
-              <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4 mt-2 w-full">
+              <div className="grid grid-cols-2 gap-2 sm:gap-4 mt-2 w-full">
                 <Link
                   href={primary.href}
-                 className={`group btn-premium-gold !gap-2.5 px-3 py-[11px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[12.5px] xs:text-[13px] font-bold" : "font-[family-name:var(--font-ui)] text-[11.5px] xs:text-[12px] font-bold tracking-[0.12em] xs:tracking-[0.15em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[10px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated light sweep */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
                   <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
-                  <Cpu className="w-4 h-4 flex-shrink-0 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
+                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
                   <span className="relative z-10 whitespace-nowrap">{primary.label}</span>
                 </Link>
 
                 <Link
                   href={secondary.href}
-                 className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-2.5 px-3 py-[11px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[12.5px] xs:text-[13px] font-semibold" : "font-[family-name:var(--font-ui)] text-[11.5px] xs:text-[12px] font-semibold tracking-[0.06em] xs:tracking-[0.08em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[10px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-semibold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-semibold tracking-[0.03em] xs:tracking-[0.06em] sm:tracking-[0.08em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated border */}
                   <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
@@ -211,7 +211,7 @@ export function HeroSection({ content }: Props) {
                   {/* Subtle inner glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <Factory className="w-4 h-4 flex-shrink-0 relative z-10 opacity-90 group-hover:opacity-100 group-hover:text-gold transition-all duration-500 group-hover:scale-110" />
+                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 opacity-90 group-hover:opacity-100 group-hover:text-gold transition-all duration-500 group-hover:scale-110" />
                   <span className="relative z-10 whitespace-nowrap">{secondary.label}</span>
                 </Link>
               </div>

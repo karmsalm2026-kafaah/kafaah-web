@@ -114,7 +114,7 @@ export const hero = {
     zh: "从设计审查和调试到启动和稳定运行——Kafaah 支持工业项目成败的关键阶段。",
   } as L,
   exploreServices: { en: "VIEW CAPABILITIES", ar: "اكتشف خدماتنا", zh: "查看能力" } as L,
-  discussPlant: { en: "SELECTED PROJECT EXPERIENCE", ar: "الخبرات المشاريعية المختارة", zh: "精选项目经验" } as L,
+  discussPlant: { en: "PROJECT EXPERIENCE", ar: "خبرات المشاريع", zh: "项目经验" } as L,
   ourTrackRecord: { en: "Our Track Record", ar: "سجلّ إنجازاتنا", zh: "我们的业绩" } as L,
   statsLabels: {
     en: ["Years of Operation", "Core Technologies", "Service Verticals", "Independent"],
