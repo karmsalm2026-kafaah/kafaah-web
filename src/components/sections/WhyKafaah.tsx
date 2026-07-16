@@ -41,7 +41,7 @@ export function WhyKafaahSection() {
 
         {/* Section Headline – Single line on desktop/tablet */}
         <FadeIn delay={0.1}>
-          <h2 className={`${fc} text-[clamp(22px,2.8vw,34px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-8 sm:mb-12 w-full md:whitespace-nowrap overflow-visible pb-1`}>
+        <h2 className={`${fc} text-[clamp(20px,2.5vw,30px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-8 sm:mb-12 w-full md:whitespace-nowrap overflow-visible pb-1`}>
             {headline}
           </h2>
         </FadeIn>
@@ -50,12 +50,12 @@ export function WhyKafaahSection() {
         <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" staggerDelay={0.08}>
           {reasons.map((reason, i) => (
             <RevealItem key={i}>
-              <div className="group relative bg-white/[0.01] backdrop-blur-xl border border-white/[0.06] p-3.5 xs:p-5 sm:p-7 transition-all duration-500 hover:-translate-y-2 hover:border-gold/25 hover:bg-white/[0.03] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
+              <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-3.5 xs:p-5 sm:p-7 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_20px_45px_-10px_rgba(0,0,0,0.6)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
                 {/* Accent glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.015] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Index Indicator */}
-                <span className={`absolute top-4 ${rtl ? 'left-5' : 'right-5'} text-[36px] font-bold text-white/[0.04] group-hover:text-gold/[0.1] transition-all duration-500 select-none`}>
+                <span className={`absolute top-3 ${rtl ? 'left-4' : 'right-4'} text-[36px] font-extrabold font-[family-name:var(--font-display)] text-white/[0.08] group-hover:text-gold/[0.22] group-hover:scale-105 transition-all duration-500 select-none`}>
                   0{i + 1}
                 </span>
 
@@ -63,10 +63,10 @@ export function WhyKafaahSection() {
                 <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/20 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
                 
                 <div className="relative z-10">
-                  <h3 className={`${fcBody} font-bold text-white group-hover:text-gold transition-colors duration-300 text-[14px] xs:text-[15px] sm:text-[16px] mb-3`}>
+                  <h3 className={`${fcBody} font-bold text-white group-hover:text-gold transition-colors duration-300 text-[13.5px] xs:text-[14.5px] sm:text-[16px] mb-3`}>
                     {reason.title}
                   </h3>
-                  <p className={`${fcBody} text-silver/65 group-hover:text-silver/85 transition-colors duration-300 ${locale === "ar" ? "text-[12.5px] xs:text-[14px] leading-[1.7]" : "text-[12px] xs:text-[13px] leading-[1.6]"} font-light`}>
+                  <p className={`${fcBody} text-silver/65 group-hover:text-silver/85 transition-colors duration-300 ${locale === "ar" ? "text-[12px] xs:text-[13.5px] leading-[1.65]" : "text-[11.5px] xs:text-[12.5px] leading-[1.55]"} font-light`}>
                     {reason.desc}
                   </p>
                 </div>
