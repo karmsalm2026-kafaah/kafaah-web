@@ -83,6 +83,7 @@ export function HeroSection({ content }: Props) {
   const { locale } = useRole();
   const rtl = isRtl(locale);
   const eyebrow = content?.eyebrow?.[locale] ?? heroDict.eyebrow[locale];
+  const eyebrowParts = eyebrow.split(" | ");
   const headline = content?.headline?.[locale] ?? heroDict.headline[locale];
   const sub = content?.subCopy?.[locale] ?? heroDict.subCopy[locale];
   const primary = {
@@ -138,15 +139,27 @@ export function HeroSection({ content }: Props) {
           {/* Left Column (Content) - exactly 65% screen width & aligned sides */}
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
             {/* Eyebrow / Tag - aligned to boundaries with dynamic gold indicator */}
-            <RevealItem className="w-full">
+             <RevealItem className="w-full">
               <div className="mb-2 sm:mb-4.5 w-full flex items-center justify-center lg:justify-start gap-2.5">
-                {/* Premium Solid Gold Pulse Circle */}
-                <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
+                {/* Premium Solid Gold Pulse Circle (Start) */}
+                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-60"></span>
                 </div>
-                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[10px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.16em] lg:tracking-[0.22em] uppercase text-[9.5px] xs:text-[10px] sm:text-[10px]"} font-semibold text-gold block leading-normal sm:leading-none sm:whitespace-nowrap`}>
-                  {eyebrow}
+                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[10px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.16em] lg:tracking-[0.22em] uppercase text-[9.5px] xs:text-[10px] sm:text-[10px]"} font-semibold text-gold block text-center lg:text-start leading-normal sm:leading-none`}>
+                  {eyebrowParts.length > 1 ? (
+                    <>
+                      {eyebrowParts[0]}
+                      <br className="sm:hidden" />
+                      {eyebrowParts[1]}
+                    </>
+                  ) : (
+                    eyebrow
+                  )}
                 </span>
+                {/* Premium Solid Gold Pulse Circle (End) */}
+                <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-60"></span>
+                </div>
               </div>
             </RevealItem>
 
@@ -168,7 +181,7 @@ export function HeroSection({ content }: Props) {
 
             {/* Sub copy - Clean typography aligned to edges */}
             <RevealItem className="w-full">
-              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
+              <p className={`${locale !== "en" ? getFontClass(locale) : ""} text-[13px] xs:text-[14px] sm:text-base text-white/90 md:text-silver/85 w-full max-w-[85%] xs:max-w-[80%] lg:max-w-none leading-relaxed mb-4 sm:mb-8 font-normal text-center lg:text-start mx-auto lg:mx-0`}>
                 <HoverSubcopy text={sub} locale={locale} />
               </p>
             </RevealItem>

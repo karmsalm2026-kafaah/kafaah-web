@@ -99,9 +99,9 @@ export const footer = {
    ══════════════════════════════════════════════ */
 export const hero = {
   eyebrow: { 
-    en: "INDEPENDENT TECHNICAL EXPERTS FOR FERTILIZER & CHEMICAL PLANTS", 
-    ar: "خبراء فنيون مستقلون لمصانع الأسمدة والكيماويات", 
-    zh: "化肥与化学工厂的独立技术专家" 
+    en: "INDEPENDENT TECHNICAL EXPERTS | FOR FERTILIZER & CHEMICAL PLANTS", 
+    ar: "خبراء فنيون مستقلون | لمصانع الأسمدة والكيماويات", 
+    zh: "化肥与化学工厂的 | 独立技术专家" 
   } as L,
   headline: {
     en: ["Where Industrial Projects", "Become Operating Plants."],
