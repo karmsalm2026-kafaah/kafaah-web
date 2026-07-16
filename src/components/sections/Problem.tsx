@@ -18,13 +18,13 @@ export function ProblemSection() {
   const sol = problemDict.solution;
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative py-20 sm:py-28 bg-navy-deep overflow-hidden border-b border-white/[0.05]">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative py-12 xs:py-16 sm:py-28 bg-navy-deep overflow-hidden border-b border-white/[0.05]">
       {/* Subtle background texture */}
       <div className="absolute inset-0 hero-noise opacity-20 pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative container mx-auto px-3 sm:px-6 lg:px-8">
         <StaggerChildren 
           className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 lg:gap-x-24 gap-y-6 lg:gap-y-8 items-stretch lg:grid-rows-[auto_auto_1fr_1fr_1fr_auto]"
           staggerDelay={0.08}
@@ -43,10 +43,10 @@ export function ProblemSection() {
 
           {/* 2. Challenge Headline & Paragraph */}
           <RevealItem className="lg:col-start-1 lg:row-start-2 flex flex-col justify-start">
-            <h2 className={`${fc} text-[clamp(24px,3vw,34px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-4`}>
+            <h2 className={`${fc} text-[clamp(19px,2.5vw,28px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-3 sm:mb-4`}>
               {chal.headline[locale]}
             </h2>
-            <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.7] text-justify font-light`}>
+            <p className={`${fcBody} text-silver/80 text-[12.5px] xs:text-[13.5px] sm:text-[15px] leading-[1.65] font-light`}>
               {chal.paragraph[locale]}
             </p>
           </RevealItem>
@@ -57,17 +57,17 @@ export function ProblemSection() {
               const card = chal.cards[0];
               const Icon = challengeIcons[0];
               return (
-                <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
-                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+                <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-4 sm:p-5 hover:-translate-y-1 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/20 group-hover:bg-gold transition-colors duration-500`} />
                   
-                  <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
-                    <Icon className="w-4 h-4" strokeWidth={1.5} />
+                  <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
+                    <Icon className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </div>
                   <div className="min-w-0">
-                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
+                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
                       {card.title[locale]}
                     </h4>
-                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-[1.6] font-light`}>
+                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12.5px] sm:text-[13px] leading-[1.55] font-light`}>
                       {card.desc[locale]}
                     </p>
                   </div>
@@ -82,17 +82,17 @@ export function ProblemSection() {
               const card = chal.cards[1];
               const Icon = challengeIcons[1];
               return (
-                <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
-                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+                <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-4 sm:p-5 hover:-translate-y-1 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/20 group-hover:bg-gold transition-colors duration-500`} />
                   
-                  <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
-                    <Icon className="w-4 h-4" strokeWidth={1.5} />
+                  <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
+                    <Icon className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </div>
                   <div className="min-w-0">
-                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
+                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
                       {card.title[locale]}
                     </h4>
-                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-[1.6] font-light`}>
+                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12.5px] sm:text-[13px] leading-[1.55] font-light`}>
                       {card.desc[locale]}
                     </p>
                   </div>
@@ -107,17 +107,17 @@ export function ProblemSection() {
               const card = chal.cards[2];
               const Icon = challengeIcons[2];
               return (
-                <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
-                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+                <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-4 sm:p-5 hover:-translate-y-1 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5)] transition-all duration-500 rounded-sm flex-1 flex items-start gap-4 overflow-hidden">
+                  <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/20 group-hover:bg-gold transition-colors duration-500`} />
                   
-                  <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
-                    <Icon className="w-4 h-4" strokeWidth={1.5} />
+                  <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0 mt-0.5">
+                    <Icon className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </div>
                   <div className="min-w-0">
-                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
+                    <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 mb-1.5 uppercase`}>
                       {card.title[locale]}
                     </h4>
-                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-[1.6] font-light`}>
+                    <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12.5px] sm:text-[13px] leading-[1.55] font-light`}>
                       {card.desc[locale]}
                     </p>
                   </div>
@@ -128,7 +128,7 @@ export function ProblemSection() {
 
           {/* 6. Challenge Quote */}
           <RevealItem className="lg:col-start-1 lg:row-start-6 flex items-center">
-            <p className={`${fcBody} text-gold text-[13px] sm:text-[14px] italic border-s-2 border-gold/40 ps-4 py-1 leading-[1.6]`}>
+            <p className={`${fcBody} text-gold text-[12.5px] xs:text-[13.5px] sm:text-[14px] italic border-s-2 border-gold/40 ps-4 py-1 leading-[1.6]`}>
               {chal.quote[locale]}
             </p>
           </RevealItem>
@@ -148,29 +148,29 @@ export function ProblemSection() {
 
           {/* 8. Solution Headline & Paragraph */}
           <RevealItem className="lg:col-start-2 lg:row-start-2 flex flex-col justify-start">
-            <h2 className={`${fc} text-[clamp(24px,3vw,34px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-4`}>
+            <h2 className={`${fc} text-[clamp(19px,2.5vw,28px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-3 sm:mb-4`}>
               {sol.headline[locale]}
             </h2>
-            <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.7] text-justify font-light`}>
+            <p className={`${fcBody} text-silver/80 text-[12.5px] xs:text-[13.5px] sm:text-[15px] leading-[1.65] font-light`}>
               {sol.paragraph[locale]}
             </p>
           </RevealItem>
 
           {/* 9. Solution Conflict Box (Decreased height: matches exactly Card 1 in Row 3) */}
           <RevealItem className="lg:col-start-2 lg:row-start-3 flex">
-            <div className="group relative bg-gold/[0.03] border border-gold/15 p-5 rounded-sm flex-1 hover:-translate-y-0.5 hover:border-gold/30 hover:shadow-[0_8px_24px_-8px_rgba(240,160,32,0.04)] transition-all duration-500 overflow-hidden flex flex-col justify-center">
+            <div className="group relative bg-gold/[0.04] backdrop-blur-xl border border-gold/20 shadow-[0_8px_30px_-10px_rgba(212,175,55,0.05)] p-4 sm:p-5 rounded-sm flex-1 hover:-translate-y-1 hover:border-gold/40 hover:bg-gold/[0.06] hover:shadow-[0_15px_35px_-10px_rgba(212,175,55,0.1)] transition-all duration-500 overflow-hidden flex flex-col justify-center">
               <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
               
               <div className="flex items-start gap-4">
-                <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.06] text-gold shrink-0 mt-0.5">
-                  <ShieldCheck className="w-4 h-4" strokeWidth={1.5} />
+                <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.06] text-gold shrink-0 mt-0.5">
+                  <ShieldCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
                 </div>
                 <div>
                   {/* Title color is now Gold by default */}
-                  <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-gold transition-colors duration-300 mb-1.5 uppercase`}>
+                  <h4 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-gold transition-colors duration-300 mb-1.5 uppercase`}>
                     {sol.conflictTitle[locale]}
                   </h4>
-                  <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-[1.6] font-light`}>
+                  <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12.5px] sm:text-[13px] leading-[1.55] font-light`}>
                     {sol.conflictDesc[locale]}
                   </p>
                 </div>
@@ -181,38 +181,38 @@ export function ProblemSection() {
           {/* 10. Solution Owners & EPC Cards (Decreased height: matches exactly Card 2 in Row 4) */}
           <RevealItem className="lg:col-start-2 lg:row-start-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {/* Owners */}
-            <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 rounded-sm flex-1 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 overflow-hidden flex flex-col justify-between">
-              <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+            <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-4 sm:p-5 rounded-sm flex-1 hover:-translate-y-1 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5)] transition-all duration-500 overflow-hidden flex flex-col justify-between">
+              <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/20 group-hover:bg-gold transition-colors duration-500`} />
 
               <div>
                 <div className="flex items-center gap-3.5 mb-3">
-                  <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0">
-                    <UserCheck className="w-4 h-4" strokeWidth={1.5} />
+                  <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0">
+                    <UserCheck className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </div>
-                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase`}>
+                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase`}>
                     {sol.owners.title[locale]}
                   </h5>
                 </div>
-                <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12px] sm:text-[12.5px] leading-[1.6] font-light`}>
+                <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12px] sm:text-[12.5px] leading-[1.55] font-light`}>
                   {sol.owners.desc[locale]}
                 </p>
               </div>
             </div>
 
             {/* EPC */}
-            <div className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 rounded-sm flex-1 hover:-translate-y-0.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] transition-all duration-500 overflow-hidden flex flex-col justify-between">
-              <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/40 group-hover:bg-gold transition-colors duration-500`} />
+            <div className="group relative bg-navy-card/[0.22] backdrop-blur-xl border border-white/[0.09] shadow-[0_8px_30px_-10px_rgba(0,0,0,0.4)] p-4 sm:p-5 rounded-sm flex-1 hover:-translate-y-1 hover:border-gold/30 hover:bg-navy-card/[0.35] hover:shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5)] transition-all duration-500 overflow-hidden flex flex-col justify-between">
+              <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[3px] bg-gold/20 group-hover:bg-gold transition-colors duration-500`} />
 
               <div>
                 <div className="flex items-center gap-3.5 mb-3">
-                  <div className="w-9 h-9 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0">
-                    <Briefcase className="w-4 h-4" strokeWidth={1.5} />
+                  <div className="w-8.5 h-8.5 rounded-sm flex items-center justify-center border border-gold/15 bg-gold/[0.03] text-gold shrink-0">
+                    <Briefcase className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </div>
-                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[11px]" : fcBody + " text-[13px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase`}>
+                  <h5 className={`${isEn ? "font-[family-name:var(--font-ui)] tracking-[0.1em] text-[10.5px]" : fcBody + " text-[12.5px]"} font-bold text-white group-hover:text-gold transition-colors duration-300 uppercase`}>
                     {sol.epc.title[locale]}
                   </h5>
                 </div>
-                <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12px] sm:text-[12.5px] leading-[1.6] font-light`}>
+                <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[11.5px] xs:text-[12px] sm:text-[12.5px] leading-[1.55] font-light`}>
                   {sol.epc.desc[locale]}
                 </p>
               </div>
