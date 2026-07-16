@@ -165,9 +165,9 @@ export function HeroSection({ content }: Props) {
 
             {/* Headline – Exactly 2 lines on all screens */}
             <RevealItem className="w-full">
-              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[34px] leading-[1.3] sm:leading-[1.25] tracking-normal font-black"
-                : locale === "zh" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[32px] leading-[1.3] sm:leading-[1.25] tracking-normal font-bold"
-                  : "font-[family-name:var(--font-display)] text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] leading-[1.22] sm:leading-[1.1] tracking-[-0.01em]"
+              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-[23px] xs:text-[27px] sm:text-[35px] lg:text-[42px] leading-[1.3] sm:leading-[1.2] tracking-normal font-black"
+                : locale === "zh" ? getFontClass(locale) + " text-[21px] xs:text-[25px] sm:text-[33px] lg:text-[40px] leading-[1.3] sm:leading-[1.2] tracking-normal font-bold"
+                  : "font-[family-name:var(--font-display)] text-[25px] xs:text-[29px] sm:text-[37px] lg:text-[45px] leading-[1.22] sm:leading-[1.1] tracking-[-0.01em]"
                 } mb-3 sm:mb-6 w-full text-center lg:text-start`}
               >
                 <span className="block sm:whitespace-nowrap text-white overflow-visible pb-1">
@@ -191,7 +191,7 @@ export function HeroSection({ content }: Props) {
               <div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 sm:gap-4 mt-2 w-full">
                 <Link
                   href={primary.href}
-                   className={`group btn-premium-gold !gap-2.5 px-3 py-2.5 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-bold" : "font-[family-name:var(--font-ui)] text-[12px] font-bold tracking-[0.1em] uppercase"} w-full justify-center`}
+                 className={`group btn-premium-gold !gap-2.5 px-3 py-[11px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[12.5px] xs:text-[13px] font-bold" : "font-[family-name:var(--font-ui)] text-[11.5px] xs:text-[12px] font-bold tracking-[0.12em] xs:tracking-[0.15em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated light sweep */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -203,7 +203,7 @@ export function HeroSection({ content }: Props) {
 
                 <Link
                   href={secondary.href}
-                   className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-2.5 px-3 py-2.5 sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[13px] font-semibold" : "font-[family-name:var(--font-ui)] text-[12px] font-semibold tracking-[0.05em] uppercase"} w-full justify-center`}
+                 className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-2.5 px-3 py-[11px] sm:py-3.5 ${locale !== "en" ? getFontClass(locale) + " text-[12.5px] xs:text-[13px] font-semibold" : "font-[family-name:var(--font-ui)] text-[11.5px] xs:text-[12px] font-semibold tracking-[0.06em] xs:tracking-[0.08em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated border */}
                   <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
