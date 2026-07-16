@@ -115,7 +115,7 @@ export function Navbar() {
             alt="Kafaah Industrial Solutions"
             width={160}
             height={68}
-            className="h-[42px] w-auto object-contain brightness-110 group-hover:brightness-125 transition-all duration-300"
+            className="h-[32px] xs:h-[35px] lg:h-[42px] w-auto object-contain brightness-110 group-hover:brightness-125 transition-all duration-300"
             priority
           />
         </Link>
