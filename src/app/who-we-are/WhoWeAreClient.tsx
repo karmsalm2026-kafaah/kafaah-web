@@ -115,7 +115,7 @@ export function WhoWeAreClient() {
                     {dict.heroEyebrow[locale]}
                   </span>
                 </div>
-                <h1 className={`${fc} text-[clamp(32px,4.5vw,46px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.15] font-semibold"} text-white italic`}>
+                <h1 className={`${fc} text-[clamp(22px,4.5vw,46px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.15] font-semibold"} text-white italic`}>
                   <HoverWords text={dict.heroTitle[locale]} locale={locale} />
                 </h1>
               </FadeIn>
@@ -227,7 +227,7 @@ export function WhoWeAreClient() {
                 <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-4" staggerDelay={0.08}>
                   {dict.founderStats[locale].map((stat, idx) => (
                     <RevealItem key={idx}>
-                      <div className="relative group bg-navy-card/20 border border-white/[0.08] hover:border-gold/30 p-5 rounded-sm transition-all duration-300 flex flex-col justify-between min-h-[120px] backdrop-blur-sm overflow-hidden select-none cursor-default">
+                      <div className="relative group bg-navy-card/20 border border-white/[0.08] hover:border-gold/30 p-4 xs:p-5 rounded-sm transition-all duration-300 flex flex-col justify-between min-h-[120px] backdrop-blur-sm overflow-hidden select-none cursor-default">
                         {/* Corner gold pulse */}
                         <div className="absolute top-0 right-0 w-8 h-8 bg-gold/3 opacity-0 group-hover:opacity-100 blur-md rounded-full transition-opacity duration-500" />
                         <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] tracking-[0.2em]" : fcUI + " text-[11px]"} font-bold text-gold/80 uppercase block mb-2`}>
@@ -267,7 +267,7 @@ export function WhoWeAreClient() {
             <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" staggerDelay={0.06}>
               {dict.diffFeatures[locale].map((feat, idx) => (
                 <RevealItem key={idx}>
-                  <div className="relative group bg-navy-card/20 border border-white/[0.08] hover:border-gold/30 border-s-3 hover:border-s-gold/80 p-6 rounded-sm transition-all duration-300 flex flex-col gap-3 backdrop-blur-sm h-full select-none cursor-default">
+                  <div className="relative group bg-navy-card/20 border border-white/[0.08] hover:border-gold/30 border-s-3 hover:border-s-gold/80 p-4 xs:p-5 sm:p-6 rounded-sm transition-all duration-300 flex flex-col gap-3 backdrop-blur-sm h-full select-none cursor-default">
                     {/* Glowing highlight */}
                     <div className="absolute inset-0 bg-gold/[0.01] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     <h4 className={`${fc} text-cloud text-base font-semibold group-hover:text-gold transition-colors duration-300`}>
@@ -327,7 +327,7 @@ export function WhoWeAreClient() {
               <div className="lg:col-span-6">
                 <StaggerChildren className="grid grid-cols-1 gap-5" staggerDelay={0.1}>
                   <RevealItem>
-                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 p-6 rounded-sm transition-all duration-300 flex flex-col gap-2 backdrop-blur-sm border-s-3 border-s-sky-400/60 hover:border-s-sky-400 select-none cursor-default">
+                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 p-4 xs:p-5 sm:p-6 rounded-sm transition-all duration-300 flex flex-col gap-2 backdrop-blur-sm border-s-3 border-s-sky-400/60 hover:border-s-sky-400 select-none cursor-default">
                       <div className="absolute top-0 right-0 w-8 h-8 bg-sky-400/2 opacity-0 group-hover:opacity-100 blur-md rounded-full transition-opacity duration-500" />
                       <h4 className={`${fcUI} text-[11px] tracking-[0.15em] font-bold text-sky-400 uppercase`}>
                         {dict.workOwnersTitle[locale]}
@@ -338,7 +338,7 @@ export function WhoWeAreClient() {
                     </div>
                   </RevealItem>
                   <RevealItem>
-                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 p-6 rounded-sm transition-all duration-300 flex flex-col gap-2 backdrop-blur-sm border-s-3 border-s-emerald-400/60 hover:border-s-emerald-400 select-none cursor-default">
+                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 p-4 xs:p-5 sm:p-6 rounded-sm transition-all duration-300 flex flex-col gap-2 backdrop-blur-sm border-s-3 border-s-emerald-400/60 hover:border-s-emerald-400 select-none cursor-default">
                       <div className="absolute top-0 right-0 w-8 h-8 bg-emerald-400/2 opacity-0 group-hover:opacity-100 blur-md rounded-full transition-opacity duration-500" />
                       <h4 className={`${fcUI} text-[11px] tracking-[0.15em] font-bold text-emerald-400 uppercase`}>
                         {dict.workEpcTitle[locale]}
@@ -382,7 +382,7 @@ export function WhoWeAreClient() {
                 const Icon = domainIcons[tech.formula] || Cpu;
                 return (
                   <RevealItem key={idx}>
-                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 border-s-3 border-s-gold/75 hover:border-s-gold p-6 rounded-sm transition-all duration-300 flex flex-col justify-between min-h-[170px] backdrop-blur-sm h-full select-none cursor-default">
+                    <div className="relative group bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 border-s-3 border-s-gold/75 hover:border-s-gold p-4 xs:p-5 sm:p-6 rounded-sm transition-all duration-300 flex flex-col justify-between min-h-[170px] backdrop-blur-sm h-full select-none cursor-default">
                       <div className="flex justify-between items-start mb-4">
                         <div className="space-y-1">
                           <span className="font-[family-name:var(--font-display)] text-2xl text-navy-soft/60 block font-bold" dir="ltr">

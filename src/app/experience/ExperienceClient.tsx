@@ -597,7 +597,7 @@ export function ExperienceClient() {
                   </span>
                   <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
                 </div>
-                <h1 className={`${fcDisplay} text-[clamp(30px,4.2vw,44px)] leading-[1.1] tracking-tight text-white font-semibold`}>
+                <h1 className={`${fcDisplay} text-[clamp(22px,4.2vw,44px)] leading-[1.1] tracking-tight text-white font-semibold`}>
                   <HoverWords text={isEn ? "Proven Operational Footprint." : dict.completedProjects[locale]} locale={locale} />
                 </h1>
               </FadeIn>
@@ -791,7 +791,7 @@ export function ExperienceClient() {
               <Microscope className="w-6 h-6" />
             </div>
 
-            <h3 className={`${fcDisplay} text-[clamp(20px,3vw,30px)] text-white leading-[1.5] font-light italic mb-8 max-w-3xl mx-auto`}>
+            <h3 className={`${fcDisplay} text-[clamp(17px,3vw,30px)] text-white leading-[1.5] font-light italic mb-8 max-w-3xl mx-auto`}>
               "{dict.backgroundText[locale]}"
             </h3>
 

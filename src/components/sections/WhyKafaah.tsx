@@ -50,7 +50,7 @@ export function WhyKafaahSection() {
         <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.08}>
           {reasons.map((reason, i) => (
             <RevealItem key={i}>
-              <div className="group relative bg-white/[0.01] backdrop-blur-xl border border-white/[0.06] p-5 xs:p-6 sm:p-7 transition-all duration-500 hover:-translate-y-2 hover:border-gold/25 hover:bg-white/[0.03] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
+              <div className="group relative bg-white/[0.01] backdrop-blur-xl border border-white/[0.06] p-4 xs:p-5 sm:p-7 transition-all duration-500 hover:-translate-y-2 hover:border-gold/25 hover:bg-white/[0.03] hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)] h-full flex flex-col justify-between rounded-sm overflow-hidden">
                 {/* Accent glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.015] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 

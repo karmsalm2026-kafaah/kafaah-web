@@ -47,7 +47,7 @@ export function TechnologiesSection() {
               <RevealItem key={tech.slug}>
                 <Link
                   href={`/technologies/${tech.slug}/`}
-                  className="group relative bg-navy-card/25 backdrop-blur-md border border-white/[0.08] p-6 sm:p-7 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold/30 hover:bg-navy-card-hover/40 hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.06)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/25 backdrop-blur-md border border-white/[0.08] p-4 xs:p-5 sm:p-7 lg:p-8 transition-all duration-500 hover:-translate-y-2 hover:border-gold/30 hover:bg-navy-card-hover/40 hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.06)] h-full flex flex-col justify-between rounded-sm overflow-hidden block"
                 >
                   {/* Subtle glow effect on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />

@@ -241,7 +241,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                 Interactive DCDA Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -423,7 +423,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -472,7 +472,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -679,7 +679,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                 Interactive NPK Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -914,7 +914,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -963,7 +963,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -1170,7 +1170,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                 Interactive SSP Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -1406,7 +1406,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -1455,7 +1455,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -1642,7 +1642,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                 Interactive SOP Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -1849,7 +1849,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -1898,7 +1898,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -2057,7 +2057,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                 Interactive MgSO₄ Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -2239,7 +2239,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -2288,7 +2288,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -2355,7 +2355,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Chemical Overview
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                   Digesting the Chemistry &amp; Industry Role
                 </h2>
                 <div className="space-y-6">
@@ -2437,7 +2437,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Process Flow
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               The Production &amp; Conversion Sequence
             </h2>
           </FadeIn>
@@ -2484,7 +2484,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Major Infrastructure
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               Key Equipment &amp; Machinery Assets
             </h2>
           </FadeIn>
@@ -2517,7 +2517,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Critical Risk Areas
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               Commissioning Challenges &amp; Startup Risks
             </h2>
           </FadeIn>
@@ -2555,7 +2555,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Kafaah&apos;s Field Expertise
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                   Operated. Started. Optimized.
                 </h2>
                 <div className="space-y-6">
@@ -2628,7 +2628,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -2677,7 +2677,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">

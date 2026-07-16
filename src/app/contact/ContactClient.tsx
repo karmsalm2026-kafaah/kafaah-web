@@ -227,7 +227,7 @@ export function ContactClient() {
                 <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
               </div>
 
-              <h1 className={`${fcDisplay} text-[clamp(32px,4.5vw,56px)] leading-[1.1] text-white font-medium`}>
+              <h1 className={`${fcDisplay} text-[clamp(24px,4.5vw,56px)] leading-[1.1] text-white font-medium`}>
                 <HoverWords text={dict.letsTalk[locale]} locale={locale} />
                 <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
               </h1>
@@ -237,7 +237,7 @@ export function ContactClient() {
               </p>
 
               {/* Premium Headquarters and Contact glassmorphic dashboard card with Live Gold Border */}
-              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-6 sm:p-8 rounded-xl transition-all duration-500 mt-8 relative group">
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-8 rounded-xl transition-all duration-500 mt-8 relative group">
 
                 {/* Architectural corner highlights matching the card's rounded border (Bentley/ROSHN style) */}
                 <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />

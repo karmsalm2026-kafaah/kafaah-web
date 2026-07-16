@@ -155,7 +155,7 @@ export function InsightsClient() {
                   {dict.knowledge[locale]}
                 </div>
                 
-                <h1 className={`${fcDisplay} text-[clamp(34px,4.5vw,56px)] leading-[1.1] text-cloud font-medium tracking-tight`}>
+                <h1 className={`${fcDisplay} text-[clamp(24px,4.5vw,56px)] leading-[1.1] text-cloud font-medium tracking-tight`}>
                   <HoverWords text={dict.pageTitle[locale]} locale={locale} />
                 </h1>
                 
@@ -407,7 +407,7 @@ export function InsightsClient() {
               <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-gold/30 rounded-bl-sm pointer-events-none" />
               <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-gold/30 rounded-br-sm pointer-events-none" />
 
-              <h2 className={`${fcDisplay} text-[clamp(24px,3.5vw,38px)] leading-[1.2] text-white mb-4`}>
+              <h2 className={`${fcDisplay} text-[clamp(20px,3.5vw,38px)] leading-[1.2] text-white mb-4`}>
                 <HoverWords text={dict.ctaTitle[locale]} locale={locale} />
                 <HoverWords text={dict.ctaAccent[locale]} locale={locale} isGradient={true} />
               </h2>

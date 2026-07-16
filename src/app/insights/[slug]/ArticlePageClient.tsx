@@ -405,7 +405,7 @@ export function ArticlePageClient({ articleId }: ArticlePageClientProps) {
             </span>
           </div>
 
-          <h1 className={`${fcDisplay} text-[clamp(28px,4.5vw,56px)] leading-[1.1] text-cloud mb-5 tracking-normal font-medium max-w-[960px] display-font-spacing`}>
+          <h1 className={`${fcDisplay} text-[clamp(22px,4.5vw,56px)] leading-[1.1] text-cloud mb-5 tracking-normal font-medium max-w-[960px] display-font-spacing`}>
             {article.title}
           </h1>
 

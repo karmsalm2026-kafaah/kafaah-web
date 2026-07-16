@@ -181,7 +181,7 @@ export function ServicesClient() {
                     {eyebrowText}
                   </span>
                 </div>
-                <h1 className={`${fc} text-[clamp(32px,5vw,50px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.15] font-semibold"} text-white`}>
+                <h1 className={`${fc} text-[clamp(24px,5vw,50px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.15] font-semibold"} text-white`}>
                   <HoverWords text={titleText} locale={locale} />
                   <span className="block text-gold mt-1">
                     <HoverWords text={titleAccentText} locale={locale} isGradient={true} />
@@ -327,7 +327,7 @@ export function ServicesClient() {
                         <RevealItem key={svc.slug} className="h-full">
                           <Link
                             href={`/services/${svc.slug}/`}
-                            className={`group relative flex flex-col justify-between p-6 bg-navy-card/30 backdrop-blur-md border rounded-sm h-full overflow-hidden transition-all duration-500 ${svc.featured
+                            className={`group relative flex flex-col justify-between p-4 xs:p-5 sm:p-6 bg-navy-card/30 backdrop-blur-md border rounded-sm h-full overflow-hidden transition-all duration-500 ${svc.featured
                                 ? "border-gold/35 shadow-[0_0_24px_rgba(240,160,32,0.06)] hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.12)] hover:border-gold/50"
                                 : "border-white/[0.08] hover:border-gold/30 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]"
                               } hover:-translate-y-1.5 hover:bg-navy-card/45`}
@@ -462,7 +462,7 @@ export function ServicesClient() {
                   const catDesc = cat.desc[locale];
                   return (
                     <RevealItem key={idx}>
-                      <div className="group relative bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card/35 transition-all duration-300 p-5 rounded-sm h-full">
+                      <div className="group relative bg-navy-card/25 border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card/35 transition-all duration-300 p-4 xs:p-5 rounded-sm h-full">
                         {/* Interactive top line highlight */}
                         <div className="absolute top-0 left-4 right-4 h-[2px] bg-white/[0.05] group-hover:bg-gold transition-colors duration-300" />
 

@@ -181,7 +181,7 @@ export function ContactCTA({ content }: Props) {
                 {eyebrow}
               </span>
             </div>
-            <h2 className={`${fc} text-[clamp(36px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
+            <h2 className={`${fc} text-[clamp(26px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
               {headline}
               <br />
               <em className="text-gold not-italic">{headlineAccent}</em>
@@ -225,7 +225,7 @@ export function ContactCTA({ content }: Props) {
         {/* Right: Quick Contact Panel */}
         <FadeIn delay={0.15}>
           <div className="relative group">
-            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-5 xs:p-6 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
+            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-4 xs:p-5 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
               {/* Animated Vertical Accent bar */}
               <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
               

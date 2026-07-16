@@ -42,7 +42,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Service Overview
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
                   Independent Technical representation &amp; Field Support
                 </h2>
                 <div className="space-y-6">
@@ -109,7 +109,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Scope of Service
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               Scope of Deliverables &amp; Core Execution
             </h2>
           </FadeIn>
@@ -144,7 +144,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Execution Roadmap
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               Service Engagement &amp; Execution Workflow
             </h2>
           </FadeIn>
@@ -195,7 +195,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Why Kafaah
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud tracking-tight">
                   Proven Field Capabilities &amp; Technical Depth
                 </h2>
               </FadeIn>
@@ -226,7 +226,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Risk Management
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
               Critical Risks Managed &amp; Mitigated
             </h2>
           </FadeIn>
@@ -261,7 +261,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Process Synergies
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(28px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
                 Applicable Plant Technologies
               </h2>
               
@@ -309,7 +309,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(30px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
               Ready to Secure Your {service.title} Deliverables?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">

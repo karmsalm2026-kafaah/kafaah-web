@@ -87,7 +87,7 @@ export default async function ServicePage({ params }: Props) {
           <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line">
             Service Advisory
           </div>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(36px,5vw,72px)] leading-[1.02] text-cloud mb-4 tracking-normal">
+          <h1 className="font-[family-name:var(--font-display)] text-[clamp(24px,5vw,72px)] leading-[1.02] text-cloud mb-4 tracking-normal">
             {service.title}
           </h1>
           <p className="text-lg md:text-xl font-light text-silver/90 max-w-[720px] leading-relaxed">

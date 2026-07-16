@@ -32,7 +32,7 @@ export function TrackRecordSection() {
               </div>
             </RevealItem>
             <RevealItem>
-              <h2 className={`${fc} text-[clamp(32px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
+              <h2 className={`${fc} text-[clamp(22px,4.5vw,56px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
                 {trDict.headline[locale]}<span className="text-gold">{trDict.headlineAccent[locale]}</span>
               </h2>
             </RevealItem>
@@ -51,7 +51,7 @@ export function TrackRecordSection() {
               <RevealItem key={index}>
                 <Link
                   href="/experience/"
-                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-5 xs:p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
+                  className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-4 xs:p-5 sm:p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] rounded-sm overflow-hidden block"
                 >
                   {/* Animated Vertical Accent bar */}
                   <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />

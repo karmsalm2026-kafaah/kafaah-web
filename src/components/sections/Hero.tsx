@@ -133,7 +133,7 @@ export function HeroSection({ content }: Props) {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-3 sm:px-6 lg:px-8 pt-14 pb-4 sm:pt-24 sm:pb-6">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-3 sm:px-6 lg:px-8 pt-20 pb-4 sm:pt-24 sm:pb-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full">
           {/* Left Column (Content) - exactly 65% screen width & aligned sides */}
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
@@ -144,7 +144,7 @@ export function HeroSection({ content }: Props) {
                 <div className="flex-shrink-0 w-2 h-2 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-60"></span>
                 </div>
-                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[9px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.22em] lg:tracking-[0.26em] uppercase text-[7.5px] sm:text-[10px]"} font-semibold text-gold block leading-none whitespace-nowrap`}>
+                <span className={`${locale !== "en" ? getFontClass(locale) + " text-[9px] sm:text-[11px] tracking-wider" : "font-[family-name:var(--font-ui)] tracking-[0.08em] sm:tracking-[0.22em] lg:tracking-[0.26em] uppercase text-[7.5px] sm:text-[10px]"} font-semibold text-gold block leading-normal sm:leading-none sm:whitespace-nowrap`}>
                   {eyebrow}
                 </span>
               </div>
@@ -152,15 +152,15 @@ export function HeroSection({ content }: Props) {
 
             {/* Headline – Exactly 2 lines on all screens */}
             <RevealItem className="w-full">
-              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-normal font-black"
-                : locale === "zh" ? getFontClass(locale) + " text-2xl sm:text-3xl lg:text-[32px] leading-[1.25] tracking-normal font-bold"
-                  : "font-[family-name:var(--font-display)] text-3xl sm:text-4xl lg:text-[40px] leading-[1.1] tracking-[-0.01em]"
+              <h1 className={`${locale === "ar" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[34px] leading-[1.25] tracking-normal font-black"
+                : locale === "zh" ? getFontClass(locale) + " text-xl xs:text-2xl sm:text-3xl lg:text-[32px] leading-[1.25] tracking-normal font-bold"
+                  : "font-[family-name:var(--font-display)] text-2xl xs:text-3xl sm:text-4xl lg:text-[40px] leading-[1.1] tracking-[-0.01em]"
                 } mb-4 sm:mb-6 w-full text-center lg:text-start`}
               >
-                <span className="block whitespace-nowrap text-white overflow-visible pb-1">
+                <span className="block sm:whitespace-nowrap text-white overflow-visible pb-1">
                   <HoverWords text={headline[0]} locale={locale} />
                 </span>
-                <span className="block whitespace-nowrap overflow-visible pb-1">
+                <span className="block sm:whitespace-nowrap overflow-visible pb-1">
                   <HoverWords text={headline[1]} locale={locale} isGradient={true} />
                 </span>
               </h1>

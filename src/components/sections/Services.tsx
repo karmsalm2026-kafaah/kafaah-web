@@ -147,7 +147,7 @@ export function ServicesSection({ content }: Props) {
             <div className="w-6 group-hover/header:w-16 h-px bg-gradient-to-l from-transparent to-gold transition-all duration-700 ease-out" />
           </div>
 
-          <h2 className={`${fc} text-[clamp(28px,4.5vw,46px)] leading-[1.2] text-white max-w-4xl mx-auto font-semibold transition-all duration-500 group-hover/header:text-shadow-[0_0_20px_rgba(240,160,32,0.15)] group-hover/header:-translate-y-0.5`}>
+          <h2 className={`${fc} text-[clamp(22px,4.5vw,46px)] leading-[1.2] text-white max-w-4xl mx-auto font-semibold transition-all duration-500 group-hover/header:text-shadow-[0_0_20px_rgba(240,160,32,0.15)] group-hover/header:-translate-y-0.5`}>
             {locale === "en" && (
               <>
                 Services Across the <span className="text-gold font-normal font-[family-name:var(--font-display)] italic">Full Project Lifecycle</span>
@@ -204,13 +204,13 @@ export function ServicesSection({ content }: Props) {
                 )}
 
                 {/* Card Container */}
-                <div className="group/card relative flex flex-col bg-navy-deep border border-white/[0.12] p-5 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.15)] hover:border-gold/35 hover:-translate-y-2 rounded-sm transition-all duration-500 ease-out h-full overflow-hidden">
+                <div className="group/card relative flex flex-col bg-navy-deep border border-white/[0.12] p-4 xs:p-5 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.15)] hover:border-gold/35 hover:-translate-y-2 rounded-sm transition-all duration-500 ease-out h-full overflow-hidden">
                   {/* Subtle hover accent bar */}
                   <div className={`absolute ${rtl ? 'right-0 rounded-l-md' : 'left-0 rounded-r-md'} top-6 bottom-6 w-[2px] bg-gold/10 group-hover/card:bg-gold group-hover/card:top-4 group-hover/card:bottom-4 transition-all duration-500`} />
                   
                   {/* Card Image Wrapper with Diagonal bottom-left/right cut */}
                   <div 
-                    className="relative -mt-5 -mx-5 w-[calc(100%+2.5rem)] h-52 sm:h-56 overflow-hidden shrink-0"
+                    className="relative -mt-4 -mx-4 w-[calc(100%+2rem)] xs:-mt-5 xs:-mx-5 xs:w-[calc(100%+2.5rem)] h-52 sm:h-56 overflow-hidden shrink-0"
                     style={{
                       clipPath: cardClipPath
                     }}
@@ -304,7 +304,7 @@ export function ServicesSection({ content }: Props) {
         {/* Bottom Values/Features & Centered Closing line */}
         <div className="mt-6">
           <RevealItem>
-            <div className="bg-navy-deep border border-white/[0.12] py-6 px-6 sm:py-7 sm:px-8 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_-15px_rgba(240,160,32,0.15)] hover:border-gold/30 rounded-sm transition-all duration-500">
+            <div className="bg-navy-deep border border-white/[0.12] py-5 px-4 xs:py-6 xs:px-6 sm:py-7 sm:px-8 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_-15px_rgba(240,160,32,0.15)] hover:border-gold/30 rounded-sm transition-all duration-500">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-10 lg:gap-y-0 relative">
                 {svcDict.features[locale].map((feat, idx) => {
                   const FeatIcon = featureIcons[idx];
@@ -312,7 +312,7 @@ export function ServicesSection({ content }: Props) {
                     <div 
                       key={idx} 
                       className={`
-                        group/feat flex flex-col items-center lg:items-start text-center lg:text-start px-6 first:pl-0 last:pr-0
+                        group/feat flex flex-col items-center lg:items-start text-center lg:text-start px-2 xs:px-4 lg:px-8 first:pl-0 last:pr-0
                         /* Mobile: vertical stack separated by top border/padding */
                         border-t border-white/10 first:border-t-0 pt-6 first:pt-0
                         /* Tablet: 2x2 grid adjustments */

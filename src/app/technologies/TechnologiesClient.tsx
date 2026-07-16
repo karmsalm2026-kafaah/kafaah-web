@@ -143,7 +143,7 @@ export function TechnologiesClient() {
               </span>
               <div className="w-8 h-px bg-gradient-to-l from-transparent to-gold" />
             </div>
-            <h1 className={`${fc} text-[clamp(32px,5vw,52px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.1] font-semibold"} text-white italic`}>
+            <h1 className={`${fc} text-[clamp(24px,5vw,52px)] ${locale === "ar" ? "leading-[1.3] font-bold" : "leading-[1.1] font-semibold"} text-white italic`}>
               <HoverWords text={dict.heroTitle[locale]} locale={locale} />
             </h1>
           </FadeIn>
