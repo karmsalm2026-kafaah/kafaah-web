@@ -1,0 +1,6 @@
+# Ignore large unchanged static assets to make CLI uploads instant and prevent timeouts
+public/*.png
+public/*.jpg
+public/*.jpeg
+public/*.pdf
+public/*.html
