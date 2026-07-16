@@ -40,7 +40,9 @@ export function FloatingActions() {
       </button>
 
       {/* The Chatbot Window */}
-      <ChatWindow key={locale} isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      {isChatOpen && (
+        <ChatWindow key={locale} isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+      )}
     </>
   );
 }

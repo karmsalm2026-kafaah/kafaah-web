@@ -41,7 +41,7 @@ export function WhyKafaahSection() {
 
         {/* Section Headline – Single line on desktop/tablet */}
         <FadeIn delay={0.1}>
-        <h2 className={`${fc} text-[clamp(20px,2.5vw,30px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-8 sm:mb-12 w-full md:whitespace-nowrap overflow-visible pb-1`}>
+        <h2 className={`${fc} text-[clamp(18px,2.5vw,28px)] ${locale === "ar" ? "leading-[1.4] font-bold" : "leading-[1.2] font-semibold"} text-white mb-8 sm:mb-12 w-full md:whitespace-nowrap overflow-visible pb-1`}>
             {headline}
           </h2>
         </FadeIn>
@@ -55,7 +55,7 @@ export function WhyKafaahSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.015] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                 {/* Index Indicator */}
-                <span className={`absolute top-3 ${rtl ? 'left-4' : 'right-4'} text-[36px] font-extrabold font-[family-name:var(--font-display)] text-white/[0.08] group-hover:text-gold/[0.22] group-hover:scale-105 transition-all duration-500 select-none`}>
+                <span className={`absolute top-1 ${rtl ? 'left-4' : 'right-4'} text-[36px] font-extrabold font-[family-name:var(--font-display)] text-white/[0.08] group-hover:text-gold/[0.22] group-hover:scale-105 transition-all duration-500 select-none`}>
                   0{i + 1}
                 </span>
 

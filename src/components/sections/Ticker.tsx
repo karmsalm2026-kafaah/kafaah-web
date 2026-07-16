@@ -36,15 +36,15 @@ export function Ticker() {
                 <Link
                   key={`${arrayIndex}-${i}`}
                   href={`/technologies/${item.slug}/`}
-                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-white/90 whitespace-nowrap flex items-center gap-3 transition-all hover:text-white cursor-pointer pr-8"
+                  className="group font-[family-name:var(--font-ui)] text-xs font-medium tracking-[0.05em] text-white/90 whitespace-nowrap flex items-center gap-2.5 transition-all hover:text-white cursor-pointer pr-7"
                 >
-                  <div className="flex items-center justify-center h-6 px-2.5 rounded-sm bg-gold/10 border border-gold/30 shadow-[0_0_15px_rgba(232,146,10,0.1)] transition-all group-hover:border-gold/50 group-hover:bg-gold/20 group-hover:shadow-[0_0_20px_rgba(232,146,10,0.2)]">
-                    <span className="text-gold-light text-[10.5px] font-bold tracking-widest">{item.formula}</span>
+                  <div className="flex items-center justify-center h-5 px-2 rounded-sm bg-gold/10 border border-gold/25 shadow-[0_0_15px_rgba(232,146,10,0.1)] transition-all group-hover:border-gold/50 group-hover:bg-gold/20 group-hover:shadow-[0_0_20px_rgba(232,146,10,0.2)]">
+                    <span className="text-gold-light text-[9.5px] font-bold tracking-widest">{item.formula}</span>
                   </div>
-                  <span className="text-[10px] sm:text-[11.5px] uppercase tracking-[0.15em] font-bold">{item.name}</span>
+                  <span className="text-[9.5px] sm:text-[11px] uppercase tracking-[0.15em] font-bold">{item.name}</span>
 
                   {/* Separator dot */}
-                  <div className="w-1 h-1 rounded-full bg-gold/40 ml-3 transition-all group-hover:bg-gold group-hover:scale-125 shadow-[0_0_8px_rgba(232,146,10,0.5)]" aria-hidden="true" />
+                  <div className="w-1 h-1 rounded-full bg-gold/40 ml-2.5 transition-all group-hover:bg-gold group-hover:scale-125 shadow-[0_0_8px_rgba(232,146,10,0.5)]" aria-hidden="true" />
                 </Link>
               ))}
             </React.Fragment>
