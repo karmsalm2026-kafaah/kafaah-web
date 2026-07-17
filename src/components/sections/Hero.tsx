@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { 
-  ArrowRight, 
-  Compass, 
-  Shield, 
-  Briefcase, 
+import {
+  ArrowRight,
+  Compass,
+  Shield,
+  Briefcase,
   Globe,
   Power,
   TrendingUp,
@@ -24,19 +24,17 @@ interface Props {
 function HoverWords({ text, locale, isGradient = false }: { text: string; locale: string; isGradient?: boolean }) {
   const isChinese = locale === "zh";
   const words = isChinese ? text.split("") : text.split(" ");
-  
+
   return (
     <>
       {words.map((word, i) => (
         <motion.span
           key={i}
-          className={`inline-block origin-center ${
-            isChinese ? "" : "mr-[0.28em] rtl:mr-0 rtl:ml-[0.28em]"
-          } ${
-            isGradient 
-              ? "bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold font-black" 
+          className={`inline-block origin-center ${isChinese ? "" : "mr-[0.28em] rtl:mr-0 rtl:ml-[0.28em]"
+            } ${isGradient
+              ? "bg-clip-text text-transparent bg-gradient-to-r from-gold via-gold-light to-gold font-black"
               : ""
-          }`}
+            }`}
           whileHover={{
             scale: 1.08,
             y: -3,
@@ -55,15 +53,14 @@ function HoverWords({ text, locale, isGradient = false }: { text: string; locale
 function HoverSubcopy({ text, locale }: { text: string; locale: string }) {
   const isChinese = locale === "zh";
   const words = isChinese ? text.split("") : text.split(" ");
-  
+
   return (
     <>
       {words.map((word, i) => (
         <motion.span
           key={i}
-          className={`inline-block origin-center ${
-            isChinese ? "" : "mr-[0.25em] rtl:mr-0 rtl:ml-[0.25em]"
-          }`}
+          className={`inline-block origin-center ${isChinese ? "" : "mr-[0.25em] rtl:mr-0 rtl:ml-[0.25em]"
+            }`}
           whileHover={{
             scale: 1.04,
             y: -1,
@@ -94,22 +91,22 @@ export function HeroSection({ content }: Props) {
     label: content?.secondaryCta?.label?.[locale] ?? heroDict.discussPlant[locale],
     href: content?.secondaryCta?.href ?? "#experience",
   };
-  const stats = content?.stats?.map(s => ({ num: s.num, label: s.label[locale] })) ?? 
+  const stats = content?.stats?.map(s => ({ num: s.num, label: s.label[locale] })) ??
     heroDict.stats[locale].map(s => ({ num: s.value, label: s.label }));
 
   const builtInside = heroDict.builtInside;
 
   return (
-    <section dir={rtl ? "rtl" : "ltr"} className="relative min-h-[100vh] md:h-[100dvh] flex flex-col overflow-hidden bg-navy-deep">
+    <section dir={rtl ? "rtl" : "ltr"} className="relative min-h-[90vh] md:h-[90dvh] flex flex-col overflow-hidden bg-navy-deep">
       {/* Image Background with authoritative overlay */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.div 
+        <motion.div
           className="w-full h-full"
           animate={{ scale: [1, 1.1, 1] }}
-          transition={{ 
-            duration: 16, 
-            repeat: Infinity, 
-            ease: "easeInOut" 
+          transition={{
+            duration: 16,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         >
           <picture>
@@ -139,7 +136,7 @@ export function HeroSection({ content }: Props) {
           {/* Left Column (Content) - exactly 65% screen width & aligned sides */}
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
             {/* Eyebrow / Tag - aligned to boundaries with dynamic gold indicator */}
-             <RevealItem className="w-full">
+            <RevealItem className="w-full">
               <div className="mb-2 sm:mb-4.5 w-full flex items-center justify-center lg:justify-start gap-2.5">
                 {/* Premium Solid Gold Pulse Circle (Start) */}
                 <div className="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-gold relative shadow-[0_0_10px_#d97706] flex items-center justify-center">
@@ -191,7 +188,7 @@ export function HeroSection({ content }: Props) {
               <div className="grid grid-cols-2 gap-2 sm:gap-4 mt-2 w-full">
                 <Link
                   href={primary.href}
-                  className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[8.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[6.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated light sweep */}
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -203,7 +200,7 @@ export function HeroSection({ content }: Props) {
 
                 <Link
                   href={secondary.href}
-                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[8.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-semibold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-semibold tracking-[0.03em] xs:tracking-[0.06em] sm:tracking-[0.08em] uppercase"} w-full justify-center`}
+                  className={`group btn-premium-glass border border-white/10 hover:border-white/20 !gap-1.5 sm:!gap-2.5 px-1.5 xs:px-2.5 py-[6.5px] sm:py-3 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-semibold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-semibold tracking-[0.03em] xs:tracking-[0.06em] sm:tracking-[0.08em] uppercase"} w-full justify-center`}
                 >
                   {/* Premium animated border */}
                   <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
@@ -222,7 +219,7 @@ export function HeroSection({ content }: Props) {
               <div className="hidden sm:block mt-8 sm:mt-10 p-4 sm:p-5 bg-white/[0.02] backdrop-blur-xl border border-white/[0.08] rounded-sm w-full relative group hover:border-gold/25 hover:bg-white/[0.04] transition-all duration-500 shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
                 {/* Accent glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-r from-gold/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                
+
                 {/* Card Side accent line */}
                 <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-4 bottom-4 w-[2px] bg-gold/30 group-hover:bg-gold/80 transition-colors duration-300`} />
 
@@ -245,7 +242,7 @@ export function HeroSection({ content }: Props) {
                     if (index === 1) Icon = Shield;       // Operational Stabilization
                     if (index === 2) Icon = TrendingUp;   // Performance Optimization
                     if (index === 3) Icon = ShieldCheck;  // Independent Technical Oversight
-                    
+
                     return (
                       <div key={index} className="flex items-center gap-2.5 group/item">
                         <div className="flex-shrink-0 w-7 h-7 rounded-sm bg-gold/5 flex items-center justify-center border border-white/[0.06] group-hover/item:border-gold/30 group-hover/item:bg-gold/15 transition-all duration-300">
@@ -317,7 +314,7 @@ export function HeroSection({ content }: Props) {
                           <circle cx="14" cy="10.5" r="0.8" fill="currentColor" className="text-gold" />
                         </svg>
                       )}
-                      
+
                       <div className="min-w-0 flex-1 flex flex-col items-center md:items-start">
                         <div className={`${locale !== "en" ? getFontClass(locale) + " font-bold" : "font-[family-name:var(--font-display)]"} text-base xs:text-lg sm:text-2xl text-white font-bold leading-none mb-1 group-hover:text-gold transition-colors duration-300`}>
                           {stat.num}
