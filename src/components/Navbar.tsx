@@ -103,8 +103,8 @@ export function Navbar() {
     <nav
       dir={rtl ? "rtl" : "ltr"}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || mobileOpen
-          ? "bg-navy-dark/95 backdrop-blur-xl border-b border-white/[0.10] shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
-          : "bg-transparent border-b border-white/[0.05]"
+          ? "bg-navy-dark/95 backdrop-blur-xl shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+          : "bg-transparent"
         }`}
     >
       <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 h-[72px] flex items-center justify-between">
