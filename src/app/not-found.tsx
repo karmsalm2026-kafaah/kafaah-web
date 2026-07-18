@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, ArrowRight } from "lucide-react";
 import { useRole } from "@/lib/RoleContext";
 import { getFontClass, isRtl } from "@/lib/i18n";
 import { FadeIn } from "@/components/Animations";
@@ -22,6 +22,11 @@ const dict = {
     en: "The plant parameter, technical insight, or service directory you are looking for does not exist or has been relocated.",
     ar: "معلمة المصنع، أو الرؤية الفنية، أو دليل الخدمات الذي تبحث عنه غير موجود أو تم نقله.",
     zh: "您正在寻找的工厂参数、技术见解或服务目录不存在或已被重新定位。"
+  },
+  backBtn: {
+    en: "Return to Control Room",
+    ar: "العودة لغرفة التحكم الرئيسية",
+    zh: "返回中控室"
   }
 };
 
@@ -86,36 +91,49 @@ export default function NotFound() {
         <div className="absolute w-[1px] h-[420px] sm:h-[680px] bg-gradient-to-b from-transparent via-gold/30 to-transparent" />
       </div>
 
-      {/* 3. Content Container (No Box, No Buttons) */}
-      <div className="relative z-10 max-w-[640px] w-full flex flex-col justify-center items-center py-6 space-y-6">
-        
-        {/* Glowing Warning Icon */}
-        <FadeIn className="flex flex-col items-center">
-          <div className="w-14 h-14 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(240,160,32,0.15)] relative">
-            <AlertTriangle className="w-6 h-6 text-gold animate-bounce" />
-            <span className="absolute inset-0 rounded-full border border-gold/40 animate-ping opacity-30 duration-1000" />
-          </div>
-        </FadeIn>
+      {/* 3. Content Container (with glassmorphic box for depth and clarity) */}
+      <div className="relative z-10 max-w-[520px] w-full px-4 sm:px-0">
+        <div className="bg-gradient-to-b from-[#1b2b3d]/50 to-[#121f2d]/50 backdrop-blur-md border border-white/[0.06] shadow-[0_20px_50px_rgba(0,0,0,0.6)] p-5 xs:p-6 sm:p-10 rounded-sm flex flex-col justify-center items-center space-y-6 select-text">
+          
+          {/* Glowing Warning Icon */}
+          <FadeIn className="flex flex-col items-center">
+            <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center mb-1 shadow-[0_0_20px_rgba(240,160,32,0.15)] relative select-none">
+              <AlertTriangle className="w-5.5 h-5.5 text-gold animate-bounce" />
+              <span className="absolute inset-0 rounded-full border border-gold/40 animate-ping opacity-30 duration-1000" />
+            </div>
+          </FadeIn>
 
-        {/* Giant Glowing 404 */}
-        <FadeIn delay={0.1}>
-          <h1 className="text-[100px] sm:text-[140px] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gold/90 to-gold-light/10 font-[family-name:var(--font-display)] select-none drop-shadow-[0_4px_15px_rgba(0,0,0,0.6)]">
-            404
-          </h1>
-        </FadeIn>
+          {/* Giant Glowing 404 */}
+          <FadeIn delay={0.1}>
+            <h1 className="text-[80px] sm:text-[130px] font-bold leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gold/90 to-gold-light/10 font-[family-name:var(--font-display)] select-none drop-shadow-[0_4px_15px_rgba(0,0,0,0.6)]">
+              404
+            </h1>
+          </FadeIn>
 
-        {/* Localized Error Metadata */}
-        <FadeIn delay={0.2} className="space-y-4">
-          <span className={`${fcUi} text-[10px] font-bold tracking-[0.22em] uppercase text-gold bg-gold/10 px-3 py-1.5 rounded-sm border border-gold/15 inline-block`}>
-            {dict.title[locale]}
-          </span>
-          <h2 className={`${fcDisplay} text-xl sm:text-2xl text-cloud font-medium tracking-tight leading-snug`}>
-            {dict.headline[locale]}
-          </h2>
-          <p className={`${fcBody} text-xs sm:text-sm font-light text-silver/70 leading-relaxed max-w-[500px] mx-auto`}>
-            {dict.desc[locale]}
-          </p>
-        </FadeIn>
+          {/* Localized Error Metadata */}
+          <FadeIn delay={0.2} className="space-y-4 w-full flex flex-col items-center">
+            <span className={`${fcUi} text-[9px] sm:text-[10px] font-bold tracking-[0.22em] uppercase text-gold bg-gold/10 px-3 py-1.5 rounded-sm border border-gold/15 inline-block select-none`}>
+              {dict.title[locale]}
+            </span>
+            <h2 className={`${fcDisplay} text-[15px] sm:text-2xl text-cloud font-medium tracking-tight leading-snug max-w-[90%] sm:max-w-none`}>
+              {dict.headline[locale]}
+            </h2>
+            <p className={`${fcBody} text-[11px] sm:text-sm font-light text-silver/70 leading-relaxed max-w-[420px]`}>
+              {dict.desc[locale]}
+            </p>
+          </FadeIn>
+
+          {/* Back Button */}
+          <FadeIn delay={0.3}>
+            <a
+              href="/"
+              className={`inline-flex items-center gap-2 group border border-gold/30 hover:border-gold hover:bg-gold/5 text-gold text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase px-5 py-3 rounded-sm transition-all duration-300 ${fcUi}`}
+            >
+              <span>{dict.backBtn[locale]}</span>
+              <ArrowRight className={`w-3.5 h-3.5 transition-transform duration-300 ${rtl ? "rotate-180 group-hover:-translate-x-1" : "group-hover:translate-x-1"}`} />
+            </a>
+          </FadeIn>
+        </div>
       </div>
 
       {/* 4. Telemetry coordinate display footer (Owner's Engineer HUD details) */}
