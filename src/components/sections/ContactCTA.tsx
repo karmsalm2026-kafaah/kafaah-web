@@ -353,14 +353,6 @@ export function ContactCTA({ content }: Props) {
                 </span>
               </div>
             </div>
-
-            {/* Brand watermark - centered directly under the form */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 -bottom-32 font-[family-name:var(--font-display)] italic text-[clamp(80px,12vw,140px)] text-white/[0.035] group-hover:text-gold/[0.07] leading-none pointer-events-none select-none tracking-wide normal-case transition-all duration-700 z-0"
-              aria-hidden="true"
-            >
-              Kafaah
-            </div>
           </div>
         </FadeIn>
       </div>
