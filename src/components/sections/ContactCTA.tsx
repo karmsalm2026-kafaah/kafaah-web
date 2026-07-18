@@ -182,11 +182,8 @@ export function ContactCTA({ content }: Props) {
               </span>
               <div className="block lg:hidden w-10 h-px bg-gradient-to-l from-gold to-gold/0" />
             </div>
-            <h2 className={`${fc} text-[clamp(24px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6 text-center lg:text-start`}>
-              {headline}
-              <span className="inline lg:hidden"> </span>
-              <br className="hidden lg:block" />
-              <em className="text-gold not-italic">{headlineAccent}</em>
+            <h2 className={`${fc} text-[clamp(22px,3.8vw,42px)] ${isAr ? "leading-[1.4] font-bold" : "leading-[1.15]"} text-white mb-6 text-center lg:text-start`}>
+              {headline} <em className="text-gold not-italic">{headlineAccent}</em>
             </h2>
             <p className={`${fcBody} ${isAr ? "text-[14px] sm:text-[17px] leading-[1.8]" : "text-[13px] sm:text-[16px] leading-[1.7]"} font-light text-silver/85 mb-8 sm:mb-10 text-center lg:text-start max-w-2xl mx-auto lg:mx-0`}>
               {subCopy}
@@ -194,7 +191,7 @@ export function ContactCTA({ content }: Props) {
             <div className="flex gap-3 sm:gap-4 flex-row flex-wrap justify-center lg:justify-start items-center w-full lg:w-auto mb-10 lg:mb-0">
               <Link
                 href="/contact/"
-                className={`group btn-premium-gold py-2.5 px-3.5 sm:py-3.5 sm:px-6 ${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.15em] uppercase" : fcBody + " text-[11.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none whitespace-nowrap`}
+                className={`group btn-premium-gold py-2.5 px-3.5 sm:py-4 sm:px-8 ${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.15em] uppercase" : fcBody + " text-[11.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none whitespace-nowrap`}
               >
                 {/* Premium animated light sweep */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -207,7 +204,7 @@ export function ContactCTA({ content }: Props) {
               </Link>
               <a
                 href="mailto:business@kafaahsolutions.com"
-                className={`group btn-premium-glass py-2.5 px-3.5 sm:py-3.5 sm:px-6 border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.15em] uppercase" : fcBody + " text-[11.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none whitespace-nowrap`}
+                className={`group btn-premium-glass py-2.5 px-3.5 sm:py-4 sm:px-8 border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[11px] tracking-[0.1em] sm:tracking-[0.15em] uppercase" : fcBody + " text-[11.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none whitespace-nowrap`}
               >
                 {/* Premium animated border */}
                 <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
