@@ -47,11 +47,11 @@ function CustomSelect({
         className={`w-full bg-navy-deep/40 border ${
           isOpen 
             ? 'border-gold/50 bg-navy-deep/60 shadow-[0_0_15px_rgba(240,160,32,0.05)]' 
-            : 'border-white/[0.08] hover:border-white/[0.18]'
-        } text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm transition-all duration-300 outline-none cursor-pointer flex justify-between items-center`}
+            : 'border-white/[0.12] hover:border-white/[0.22]'
+        } text-white font-[family-name:var(--font-body)] text-[13px] sm:text-[14px] font-light px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-sm transition-all duration-300 outline-none cursor-pointer flex justify-between items-center`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={selectedOption ? "text-white" : "text-silver/45"}>
+        <span className={selectedOption ? "text-white" : "text-silver/55"}>
           {selectedOption?.label || placeholder}
         </span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? 'rotate-180 text-gold' : 'text-silver/40'}`} />
@@ -68,7 +68,7 @@ function CustomSelect({
           {serviceOptions.map((opt) => (
             <div
               key={opt.value}
-              className={`px-4 py-3 text-[14px] font-light cursor-pointer transition-colors duration-200 ${
+              className={`px-4 py-2.5 text-[13px] sm:text-[14px] font-light cursor-pointer transition-colors duration-200 ${
                 value === opt.value 
                   ? 'bg-gold/10 text-gold font-medium' 
                   : 'text-silver/80 hover:bg-white/[0.05] hover:text-white'
@@ -175,24 +175,26 @@ export function ContactCTA({ content }: Props) {
         {/* Left CTA */}
         <FadeIn>
           <div>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
               <div className="w-10 h-px bg-gradient-to-r from-gold to-gold/0" />
               <span className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.3em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-semibold text-gold`}>
                 {eyebrow}
               </span>
+              <div className="block lg:hidden w-10 h-px bg-gradient-to-l from-gold to-gold/0" />
             </div>
-            <h2 className={`${fc} text-[clamp(26px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6`}>
+            <h2 className={`${fc} text-[clamp(24px,5vw,60px)] ${isAr ? "leading-[1.5] font-bold" : "leading-[1.1]"} text-white mb-6 text-center lg:text-start`}>
               {headline}
-              <br />
+              <span className="inline lg:hidden"> </span>
+              <br className="hidden lg:block" />
               <em className="text-gold not-italic">{headlineAccent}</em>
             </h2>
-            <p className={`${fcBody} ${isAr ? "text-[14.5px] xs:text-[17px] leading-[1.8]" : "text-[13.5px] xs:text-[16px] leading-[1.7]"} font-light text-silver/85 mb-8 sm:mb-10`}>
+            <p className={`${fcBody} ${isAr ? "text-[14px] sm:text-[17px] leading-[1.8]" : "text-[13px] sm:text-[16px] leading-[1.7]"} font-light text-silver/85 mb-8 sm:mb-10 text-center lg:text-start max-w-2xl mx-auto lg:mx-0`}>
               {subCopy}
             </p>
-            <div className="flex gap-4 sm:gap-6 flex-col sm:flex-row items-stretch w-full sm:w-auto">
+            <div className="flex gap-3 sm:gap-4 flex-row flex-wrap justify-center lg:justify-start items-center w-full lg:w-auto mb-10 lg:mb-0">
               <Link
                 href="/contact/"
-                className={`flex-1 group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
+                className={`group btn-premium-gold py-2.5 px-5 sm:py-3.5 sm:px-6 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[12.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none`}
               >
                 {/* Premium animated light sweep */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
@@ -205,7 +207,7 @@ export function ContactCTA({ content }: Props) {
               </Link>
               <a
                 href="mailto:business@kafaahsolutions.com"
-                className={`flex-1 group btn-premium-glass border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold`}
+                className={`group btn-premium-glass py-2.5 px-5 sm:py-3.5 sm:px-6 border border-white/20 hover:border-white/40 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[12.5px] sm:text-[14px]"} font-bold flex-1 sm:flex-none`}
               >
                 {/* Premium animated border */}
                 <div className="animated-border-box rounded-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
@@ -225,13 +227,14 @@ export function ContactCTA({ content }: Props) {
         {/* Right: Quick Contact Panel */}
         <FadeIn delay={0.15}>
           <div className="relative group">
-            <div className="bg-navy-card/45 backdrop-blur-xl border border-white/[0.12] group-hover:border-gold/35 group-hover:bg-navy-card-hover/60 p-3.5 xs:p-5 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 group-hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)]">
+            <div className="bg-gradient-to-b from-[#1b2b3d]/60 to-[#121f2d]/60 backdrop-blur-xl border border-white/[0.08] py-4.5 px-4 xs:py-6 xs:px-6 sm:p-8 lg:p-10 relative group shadow-2xl transition-all duration-500 rounded-sm z-10 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.7),0_0_20px_rgba(240,160,32,0.12)] hover:border-gold/35">
               {/* Animated Vertical Accent bar */}
               <div className={`absolute ${rtl ? 'right-0 rounded-l-sm' : 'left-0 rounded-r-sm'} top-6 bottom-6 w-[3px] bg-gold/30 group-hover:bg-gold group-hover:top-4 group-hover:bottom-4 transition-all duration-500`} />
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              {/* Name & Company (Single Row on Mobile) */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-5 mb-4">
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[11px] sm:text-[12px]"} font-bold text-silver/75 block mb-1.5 transition-colors duration-300`}>
                     {ctaDict.fullName[locale]}
                   </label>
                   <input
@@ -239,11 +242,11 @@ export function ContactCTA({ content }: Props) {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder={ctaDict.fullNamePlaceholder[locale]}
-                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.12] hover:border-white/[0.22] text-white font-[family-name:var(--font-body)] text-[13px] sm:text-[14px] font-light px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-sm placeholder:text-silver/55 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[11px] sm:text-[12px]"} font-bold text-silver/75 block mb-1.5 transition-colors duration-300`}>
                     {ctaDict.company[locale]}
                   </label>
                   <input
@@ -251,14 +254,15 @@ export function ContactCTA({ content }: Props) {
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder={ctaDict.companyPlaceholder[locale]}
-                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.12] hover:border-white/[0.22] text-white font-[family-name:var(--font-body)] text-[13px] sm:text-[14px] font-light px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-sm placeholder:text-silver/55 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+              {/* Email & Service */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mb-4">
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[11px] sm:text-[12px]"} font-bold text-silver/75 block mb-1.5 transition-colors duration-300`}>
                     {ctaDict.email[locale]}
                   </label>
                   <input
@@ -266,11 +270,11 @@ export function ContactCTA({ content }: Props) {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={ctaDict.emailPlaceholder[locale]}
-                    className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
+                    className={`w-full bg-navy-deep/40 border border-white/[0.12] hover:border-white/[0.22] text-white font-[family-name:var(--font-body)] text-[13px] sm:text-[14px] font-light px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-sm placeholder:text-silver/55 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none ${rtl ? "text-right" : ""}`}
                   />
                 </div>
                 <div>
-                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+                  <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[11px] sm:text-[12px]"} font-bold text-silver/75 block mb-1.5 transition-colors duration-300`}>
                     {ctaDict.serviceOfInterest[locale]}
                   </label>
                   <CustomSelect
@@ -281,29 +285,30 @@ export function ContactCTA({ content }: Props) {
                 </div>
               </div>
 
-              <div className="mb-6">
-                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[12px]"} font-bold text-silver/60 block mb-2 transition-colors duration-300`}>
+              {/* Message */}
+              <div className="mb-5">
+                <label className={`${isEn ? "font-[family-name:var(--font-ui)] text-[9px] sm:text-[10px] tracking-[0.2em] uppercase" : fcBody + " text-[11px] sm:text-[12px]"} font-bold text-silver/75 block mb-1.5 transition-colors duration-300`}>
                   {ctaDict.message[locale]}
                 </label>
                 <textarea
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder={ctaDict.messagePlaceholder[locale]}
-                  className={`w-full bg-navy-deep/40 border border-white/[0.08] hover:border-white/[0.18] text-white font-[family-name:var(--font-body)] text-[14px] font-light px-4 py-3.5 rounded-sm placeholder:text-silver/45 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none resize-y min-h-[100px] ${rtl ? "text-right" : ""}`}
+                  className={`w-full bg-navy-deep/40 border border-white/[0.12] hover:border-white/[0.22] text-white font-[family-name:var(--font-body)] text-[13px] sm:text-[14px] font-light px-3.5 py-2.5 sm:px-4 sm:py-3.5 rounded-sm placeholder:text-silver/55 focus:border-gold/50 focus:bg-navy-deep/60 focus:shadow-[0_0_15px_rgba(240,160,32,0.05)] transition-all duration-300 outline-none resize-y min-h-[90px] sm:min-h-[100px] ${rtl ? "text-right" : ""}`}
                   rows={3}
                 />
               </div>
 
               {/* Error Message */}
               {error && (
-                <div className={`${fcBody} text-red-400 text-[13px] mb-4 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-sm`}>
+                <div className={`${fcBody} text-red-400 text-[12px] sm:text-[13px] mb-4 px-3 py-2 bg-red-500/10 border border-red-500/20 rounded-sm`}>
                   {error}
                 </div>
               )}
 
               {/* Success Message */}
               {isSuccess && (
-                <div className={`${fcBody} text-emerald-400 text-[13px] mb-4 px-3 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-sm flex items-center gap-2`}>
+                <div className={`${fcBody} text-emerald-400 text-[12px] sm:text-[13px] mb-4 px-3 py-2 bg-emerald-500/10 border border-emerald-500/20 rounded-sm flex items-center gap-2`}>
                   <Check className="w-4 h-4 shrink-0" />
                   {locale === "ar" ? "تم إرسال طلبك بنجاح! سنتواصل معك قريباً." : locale === "zh" ? "您的请求已成功发送！我们将尽快与您联系。" : "Your request has been sent successfully! We'll be in touch soon."}
                 </div>
@@ -312,7 +317,7 @@ export function ContactCTA({ content }: Props) {
               <button
                 onClick={handleSubmit}
                 disabled={isSubmitting}
-                className={`w-full group btn-premium-gold ${isEn ? "font-[family-name:var(--font-ui)] text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[14px]"} font-bold ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
+                className={`w-full group btn-premium-gold py-2.5 px-5 sm:py-3.5 sm:px-6 ${isEn ? "font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.15em] uppercase" : fcBody + " text-[13px] sm:text-[14px]"} font-bold ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
               >
                 {/* Premium animated light sweep */}
                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
