@@ -5,7 +5,7 @@
 @theme {
   --breakpoint-xs: 380px;
 
-  --color-navy: #263A50;       /* Lifted navy base — more blue, less black */
+  --color-navy: #1E3045;       /* Lifted navy base — more blue, less black */
   --color-navy-deep: #182638;  /* Deep bg — brighter than pure dark */
   --color-navy-dark: #1E3045;
   --color-navy-mid: #5A7088;   /* Mid tone — lifted for contrast */

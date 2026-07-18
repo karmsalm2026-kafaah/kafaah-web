@@ -66,7 +66,7 @@ export default function NotFound() {
           <rect width="100%" height="100%" fill="url(#grid)" />
         </svg>
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3045]/30 via-[#263A50]/70 to-[#263A50]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1E3045]/30 via-[#1E3045]/70 to-[#1E3045]" />
         
         {/* Soft premium golden ambient glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gold/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none animate-pulse duration-[6000ms]" />
