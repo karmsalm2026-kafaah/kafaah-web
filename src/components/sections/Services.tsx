@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { 
-  ClipboardCheck, 
-  TrendingUp, 
-  BarChart3, 
+import {
+  ClipboardCheck,
+  TrendingUp,
+  BarChart3,
   ArrowRight,
   ShieldCheck,
   Users,
@@ -25,14 +25,14 @@ import { ImageWithSkeleton } from "@/components/ImageWithSkeleton";
 // Custom premium Crane SVG icon
 function CraneIcon({ className }: { className?: string }) {
   return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="1.5" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={className}
     >
       {/* Vertical Tower */}
@@ -136,7 +136,7 @@ export function ServicesSection({ content }: Props) {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/10 to-transparent" />
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <FadeIn className="group/header mb-16 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -173,8 +173,8 @@ export function ServicesSection({ content }: Props) {
         </FadeIn>
 
         {/* Phase Cards Grid */}
-        <StaggerChildren 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" 
+        <StaggerChildren
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
           staggerDelay={0.06}
         >
           {phaseMappings.map((pMap, idx) => {
@@ -187,11 +187,11 @@ export function ServicesSection({ content }: Props) {
             const Icon = pMap.icon;
 
             // RTL-aware diagonal cut and border path for card image
-            const cardClipPath = rtl 
-              ? "polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%)" 
+            const cardClipPath = rtl
+              ? "polygon(0 0, 100% 0, 100% 80%, 85% 100%, 0 100%)"
               : "polygon(0 0, 100% 0, 100% 100%, 15% 100%, 0 80%)";
-            const borderPath = rtl 
-              ? "M 0,100 L 85,100 L 100,80" 
+            const borderPath = rtl
+              ? "M 0,100 L 85,100 L 100,80"
               : "M 100,100 L 15,100 L 0,80";
 
             return (
@@ -204,19 +204,19 @@ export function ServicesSection({ content }: Props) {
                 )}
 
                 {/* Card Container */}
-                <div className="group/card relative flex flex-col bg-navy-deep border border-white/[0.12] p-3.5 xs:p-5 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.3)] hover:shadow-[0_20px_40px_-15px_rgba(240,160,32,0.15)] hover:border-gold/35 hover:-translate-y-2 rounded-sm transition-all duration-500 ease-out h-full overflow-hidden">
+                <div className="group/card relative flex flex-col bg-gradient-to-b from-[#1b2b3d] to-[#121f2d] backdrop-blur-md border border-white/[0.06] p-3.5 xs:p-5 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.7),0_0_20px_rgba(240,160,32,0.12)] hover:border-gold/30 hover:-translate-y-2 rounded-sm transition-all duration-500 ease-out h-full overflow-hidden">
                   {/* Subtle hover accent bar */}
                   <div className={`absolute ${rtl ? 'right-0 rounded-l-md' : 'left-0 rounded-r-md'} top-6 bottom-6 w-[2px] bg-gold/10 group-hover/card:bg-gold group-hover/card:top-4 group-hover/card:bottom-4 transition-all duration-500`} />
-                  
+
                   {/* Card Image Wrapper with Diagonal bottom-left/right cut */}
-                  <div 
+                  <div
                     className="relative -mt-3.5 -mx-3.5 w-[calc(100%+1.75rem)] xs:-mt-5 xs:-mx-5 xs:w-[calc(100%+2.5rem)] h-52 sm:h-56 overflow-hidden shrink-0"
                     style={{
                       clipPath: cardClipPath
                     }}
                   >
-                    <ImageWithSkeleton 
-                      src={`/our_services_${parseInt(pMap.num)}.webp`} 
+                    <ImageWithSkeleton
+                      src={`/our_services_${parseInt(pMap.num)}.webp`}
                       alt={localizedPhase.title}
                       className="w-full h-full object-cover group-hover/card:scale-108 group-hover/card:opacity-90 transition-all duration-700 ease-out"
                       containerClassName="w-full h-full"
@@ -229,16 +229,16 @@ export function ServicesSection({ content }: Props) {
                       </span>
                     </div>
                     {/* Gold border line tracing the cut and bottom of image */}
-                    <svg 
-                      className="absolute inset-0 w-full h-full text-white/[0.25] group-hover/card:text-gold/35 transition-all duration-500 pointer-events-none overflow-visible -translate-y-[2px] drop-shadow-[0_3px_4px_rgba(0,0,0,0.75)] group-hover/card:drop-shadow-[0_0_8px_rgba(240,160,32,0.35)]" 
-                      viewBox="0 0 100 100" 
+                    <svg
+                      className="absolute inset-0 w-full h-full text-white/[0.25] group-hover/card:text-gold/35 transition-all duration-500 pointer-events-none overflow-visible -translate-y-[2px] drop-shadow-[0_3px_4px_rgba(0,0,0,0.75)] group-hover/card:drop-shadow-[0_0_8px_rgba(240,160,32,0.35)]"
+                      viewBox="0 0 100 100"
                       preserveAspectRatio="none"
                     >
-                      <path 
-                        d={borderPath} 
-                        stroke="currentColor" 
-                        strokeWidth="2" 
-                        fill="none" 
+                      <path
+                        d={borderPath}
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
                         vectorEffect="non-scaling-stroke"
                       />
                     </svg>
@@ -263,7 +263,7 @@ export function ServicesSection({ content }: Props) {
                   </p>
 
                   {/* Divider Line */}
-                  <div className="h-[2px] w-full bg-white/[0.12] group-hover/card:bg-gold/35 transition-all duration-500 my-5 shrink-0 shadow-[0_2px_4px_rgba(0,0,0,0.5)] group-hover/card:shadow-[0_0_8px_rgba(240,160,32,0.25)]" />
+                  <div className="h-px w-full bg-white/[0.08] group-hover/card:bg-gold/25 transition-all duration-500 my-5 shrink-0 shadow-[0_1px_2px_rgba(0,0,0,0.5)] group-hover/card:shadow-[0_0_4px_rgba(240,160,32,0.15)]" />
 
                   {/* Services List */}
                   <ul className="space-y-3.5 flex-1 shrink-0">
@@ -273,7 +273,7 @@ export function ServicesSection({ content }: Props) {
 
                       return (
                         <li key={svc.slug}>
-                          <Link 
+                          <Link
                             href={`/services/${svc.slug}/`}
                             className="group/item flex items-start gap-2 text-silver/70 hover:text-gold transition-colors duration-300 text-[12.5px] sm:text-[13px] leading-snug"
                           >
@@ -287,7 +287,7 @@ export function ServicesSection({ content }: Props) {
 
                   {/* Card CTA Link at bottom */}
                   <div className="mt-8 pt-4 shrink-0">
-                    <Link 
+                    <Link
                       href={`/services/${phaseServices[0].slug}/`}
                       className="inline-flex items-center gap-2 text-gold hover:text-gold-light text-[11px] font-bold tracking-wider transition-colors duration-300 uppercase font-[family-name:var(--font-ui)]"
                     >
@@ -304,13 +304,13 @@ export function ServicesSection({ content }: Props) {
         {/* Bottom Values/Features & Centered Closing line */}
         <div className="mt-6">
           <RevealItem>
-            <div className="bg-navy-deep border border-white/[0.12] py-4.5 px-3.5 xs:py-6 xs:px-6 sm:py-7 sm:px-8 shadow-[0_4px_25px_-5px_rgba(0,0,0,0.4)] hover:shadow-[0_20px_50px_-15px_rgba(240,160,32,0.15)] hover:border-gold/30 rounded-sm transition-all duration-500">
+            <div className="bg-gradient-to-b from-[#1b2b3d] to-[#121f2d] backdrop-blur-md border border-white/[0.06] py-4.5 px-3.5 xs:py-6 xs:px-6 sm:py-7 sm:px-8 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.7),0_0_20px_rgba(240,160,32,0.12)] hover:border-gold/30 rounded-sm transition-all duration-500">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-10 lg:gap-y-0 relative">
                 {svcDict.features[locale].map((feat, idx) => {
                   const FeatIcon = featureIcons[idx];
                   return (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className={`
                         group/feat flex flex-col items-center lg:items-start text-center lg:text-start px-2 xs:px-4 lg:px-8 first:pl-0 last:pr-0
                         /* Mobile: vertical stack separated by top border/padding */
@@ -328,9 +328,9 @@ export function ServicesSection({ content }: Props) {
                       <div className="flex flex-col items-center lg:items-start">
                         {/* Hexagon Outline Icon */}
                         <div className="relative w-10 h-10 flex items-center justify-center shrink-0 mb-3 transition-all duration-500 group-hover/feat:scale-110 group-hover/feat:rotate-6">
-                          <svg 
-                            className="absolute inset-0 w-full h-full text-gold/25 fill-none stroke-current transition-colors duration-300 group-hover/feat:text-gold" 
-                            viewBox="0 0 100 100" 
+                          <svg
+                            className="absolute inset-0 w-full h-full text-gold/25 fill-none stroke-current transition-colors duration-300 group-hover/feat:text-gold"
+                            viewBox="0 0 100 100"
                             strokeWidth="4"
                           >
                             <polygon points="50,5 95,25 95,75 50,95 5,75 5,25" />
@@ -356,7 +356,7 @@ export function ServicesSection({ content }: Props) {
               </div>
             </div>
           </RevealItem>
-          
+
           {/* Centered Closing Line */}
           <div className="group/closing flex items-center justify-center gap-4 sm:gap-6 mt-16 sm:mt-20 px-4 sm:px-0">
             <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
