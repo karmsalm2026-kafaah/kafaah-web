@@ -550,7 +550,7 @@ export const insightBanner = {
     ar: "نقيس قبل وبعد — النتائج ليست تقديرية، بل موثقة.",
     zh: "我们在前后都进行测量——结果不是估算的，而是有据可查的。",
   } as L,
-  attribution: { en: "— Kafaah — Production Optimization", ar: "— كفاءة — تحسين الإنتاج", zh: "— Kafaah — 生产优化" } as L,
+  attribution: { en: "Kafaah — Production Optimization", ar: "كفاءة — تحسين الإنتاج", zh: "Kafaah — 生产优化" } as L,
 };
 
 export const contactCta = {
