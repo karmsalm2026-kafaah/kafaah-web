@@ -131,7 +131,7 @@ export function HeroSection({ content }: Props) {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-3 sm:px-6 lg:px-8 pt-[calc(5rem+15vh)] pb-4 sm:pt-24 sm:pb-6">
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-3 sm:px-6 lg:px-8 pt-[calc(5rem+20vh)] pb-4 sm:pt-24 sm:pb-6">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full">
           {/* Left Column (Content) - exactly 65% screen width & aligned sides */}
           <StaggerChildren className="relative w-full lg:w-[65%] flex flex-col items-center lg:items-start text-center lg:text-start justify-center max-w-[500px] sm:max-w-[580px] lg:max-w-[620px] mx-auto lg:mx-0">
@@ -185,7 +185,7 @@ export function HeroSection({ content }: Props) {
 
             {/* CTAs - 50:50 grid on all screens, layout calibrated */}
             <RevealItem className="w-full">
-              <div className="grid grid-cols-2 gap-1.5 xs:gap-2 sm:gap-3 mt-2 w-full max-w-[315px] xs:max-w-[350px] sm:max-w-none mx-auto lg:mx-0">
+              <div className="grid grid-cols-2 gap-1.5 xs:gap-2 sm:gap-3 mt-2 w-full max-w-[320px] xs:max-w-[360px] sm:max-w-none mx-auto lg:mx-0">
                 <Link
                   href={primary.href}
                   className={`group btn-premium-gold !gap-1.5 sm:!gap-2.5 px-1 xs:px-2 py-[4px] sm:py-2.5 ${locale !== "en" ? getFontClass(locale) + " text-[11px] xs:text-[12px] sm:text-[14px] font-bold" : "font-[family-name:var(--font-ui)] text-[8.5px] xs:text-[9.5px] sm:text-[12px] font-bold tracking-[0.04em] xs:tracking-[0.08em] sm:tracking-[0.15em] uppercase"} w-full justify-center`}
