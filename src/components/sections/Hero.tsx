@@ -194,7 +194,7 @@ export function HeroSection({ content }: Props) {
                   <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
                   <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
 
-                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
+                  <Compass className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 transition-transform duration-500 group-hover:rotate-45" strokeWidth={1.5} />
                   <span className="relative z-10 whitespace-nowrap">{primary.label}</span>
                 </Link>
 
@@ -208,7 +208,7 @@ export function HeroSection({ content }: Props) {
                   {/* Subtle inner glow on hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-gold/0 via-gold/5 to-gold/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 opacity-90 group-hover:opacity-100 group-hover:text-gold transition-all duration-500 group-hover:scale-110" />
+                  <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4 flex-shrink-0 relative z-10 opacity-90 group-hover:opacity-100 group-hover:text-gold transition-all duration-500 group-hover:scale-110" strokeWidth={1.5} />
                   <span className="relative z-10 whitespace-nowrap">{secondary.label}</span>
                 </Link>
               </div>
