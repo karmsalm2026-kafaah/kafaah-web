@@ -16,7 +16,7 @@ import {
   ChevronsLeft
 } from "lucide-react";
 import { services as allServices } from "@/data/services";
-import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
+import { FadeIn, StaggerChildren, RevealItem, HoverWords, HoverSubcopy } from "@/components/Animations";
 import type { ServicesContent } from "@/data/roleContent";
 import { useRole } from "@/lib/RoleContext";
 import { services as svcDict, getFontClass, isRtl } from "@/lib/i18n";
@@ -147,36 +147,48 @@ export function ServicesSection({ content }: Props) {
             <div className="w-6 group-hover/header:w-16 h-px bg-gradient-to-l from-transparent to-gold transition-all duration-700 ease-out" />
           </div>
 
-          <h2 className={`${fc} text-[clamp(22px,4.5vw,46px)] leading-[1.2] text-white max-w-4xl mx-auto font-semibold transition-all duration-500 group-hover/header:text-shadow-[0_0_20px_rgba(240,160,32,0.15)] group-hover/header:-translate-y-0.5`}>
+          <h2 className={`${fc} text-[clamp(22px,4.5vw,46px)] leading-[1.2] text-white max-w-4xl mx-auto font-semibold transition-all duration-500 group-hover/header:text-shadow-[0_0_20px_rgba(240,160,32,0.15)] group-hover/header:-translate-y-0.5 overflow-visible`}>
             {locale === "en" && (
               <>
-                Services Across the <span className="text-gold font-normal font-[family-name:var(--font-display)] italic">Full Project Lifecycle</span>
+                <HoverWords text="Services Across the" locale={locale} />{" "}
+                <span className="text-gold font-normal font-[family-name:var(--font-display)] italic overflow-visible inline-block">
+                  <HoverWords text="Full Project Lifecycle" locale={locale} isGradient={true} />
+                </span>
               </>
             )}
             {locale === "ar" && (
               <>
-                الخدمات عبر <span className="text-gold font-bold">دورة حياة المشروع الكاملة</span>
+                <HoverWords text="الخدمات عبر" locale={locale} />{" "}
+                <span className="text-gold font-bold overflow-visible inline-block">
+                  <HoverWords text="دورة حياة المشروع الكاملة" locale={locale} isGradient={true} />
+                </span>
               </>
             )}
             {locale === "zh" && (
               <>
-                横跨 <span className="text-gold font-bold">整个项目生命周期</span> 的服务
+                <HoverWords text="横跨" locale={locale} />{" "}
+                <span className="text-gold font-bold overflow-visible inline-block">
+                  <HoverWords text="整个项目生命周期" locale={locale} isGradient={true} />
+                </span>{" "}
+                <HoverWords text="的服务" locale={locale} />
               </>
             )}
           </h2>
 
           <p className={`${fcBody} text-silver/60 text-[14px] sm:text-[15.5px] leading-relaxed max-w-3xl mx-auto mt-4 font-light transition-all duration-700 group-hover/header:text-silver/80`}>
-            {locale === "en" && "From early engineering decisions to stable plant operations, we support both Owners and EPCs with independent expertise at every critical stage."}
-            {locale === "ar" && "من القرارات الهندسية المبكرة وحتى استقرار عمليات المصنع، ندعم كلاً من الملاك ومقاولي EPC بخبرة مستقلة في كل مرحلة حرجة."}
-            {locale === "zh" && "从早期的工程决策到稳定的工厂运营，我们在每个关键阶段为业主和 EPC 提供独立的专业支持。"}
+            <HoverSubcopy 
+              text={
+                locale === "en" ? "From early engineering decisions to stable plant operations, we support both Owners and EPCs with independent expertise at every critical stage."
+                : locale === "ar" ? "من القرارات الهندسية المبكرة وحتى استقرار عمليات المصنع، ندعم كلاً من الملاك ومقاولي EPC بخبرة مستقلة في كل مرحلة حرجة."
+                : "从早期的工程决策到稳定的工厂运营，我们在每个关键阶段为业主和 EPC 提供独立的专业支持。"
+              } 
+              locale={locale} 
+            />
           </p>
         </FadeIn>
 
         {/* Phase Cards Grid */}
-        <StaggerChildren
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
-          staggerDelay={0.06}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {phaseMappings.map((pMap, idx) => {
             // Filter phase services
             const phaseServices = filteredServices.filter((s) => pMap.slugs.includes(s.slug));
@@ -195,7 +207,7 @@ export function ServicesSection({ content }: Props) {
               : "M 100,100 L 15,100 L 0,80";
 
             return (
-              <RevealItem key={pMap.num} className="relative h-full">
+              <FadeIn key={pMap.num} delay={idx * 0.08} y={20} duration={0.6} className="relative h-full">
                 {/* Arrow between cards (desktop only) */}
                 {idx < 3 && (
                   <div className={`hidden lg:flex absolute top-[110px] ${rtl ? "-left-[16px]" : "-right-[16px]"} z-20 w-8 h-8 rounded-full border border-gold/40 bg-navy-dark items-center justify-center text-gold shadow-lg`}>
@@ -296,14 +308,14 @@ export function ServicesSection({ content }: Props) {
                     </Link>
                   </div>
                 </div>
-              </RevealItem>
+              </FadeIn>
             );
           })}
-        </StaggerChildren>
+        </div>
 
         {/* Bottom Values/Features & Centered Closing line */}
         <div className="mt-6">
-          <RevealItem>
+          <FadeIn y={25} duration={0.7}>
             <div className="bg-gradient-to-b from-[#1b2b3d] to-[#121f2d] backdrop-blur-md border border-white/[0.06] py-4.5 px-3.5 xs:py-6 xs:px-6 sm:py-7 sm:px-8 shadow-[0_12px_36px_rgba(0,0,0,0.55)] hover:shadow-[0_24px_50px_rgba(0,0,0,0.7),0_0_20px_rgba(240,160,32,0.12)] hover:border-gold/30 rounded-sm transition-all duration-500">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-y-10 lg:gap-y-0 relative">
                 {svcDict.features[locale].map((feat, idx) => {
@@ -355,16 +367,18 @@ export function ServicesSection({ content }: Props) {
                 })}
               </div>
             </div>
-          </RevealItem>
+          </FadeIn>
 
           {/* Centered Closing Line */}
-          <div className="group/closing flex items-center justify-center gap-4 sm:gap-6 mt-16 sm:mt-20 px-4 sm:px-0">
-            <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
-            <span className="text-gold/90 text-[10.5px] sm:text-[13px] tracking-[0.15em] sm:tracking-[0.2em] font-bold uppercase text-center sm:whitespace-nowrap transition-all duration-500 group-hover/closing:scale-105 group-hover/closing:text-white leading-relaxed">
-              {svcDict.bottomClosing[locale]}
-            </span>
-            <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-l from-transparent to-gold/30 transition-all duration-500 ease-out" />
-          </div>
+          <FadeIn y={15} delay={0.1} duration={0.6}>
+            <div className="group/closing flex items-center justify-center gap-4 sm:gap-6 mt-16 sm:mt-20 px-4 sm:px-0">
+              <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-r from-transparent to-gold/30 transition-all duration-500 ease-out" />
+              <span className="text-gold/90 text-[10.5px] sm:text-[13px] tracking-[0.15em] sm:tracking-[0.2em] font-bold uppercase text-center sm:whitespace-nowrap transition-all duration-500 group-hover/closing:scale-105 group-hover/closing:text-white leading-relaxed">
+                {svcDict.bottomClosing[locale]}
+              </span>
+              <div className="hidden sm:block h-px w-16 sm:w-28 group-hover/closing:w-24 sm:group-hover/closing:w-40 bg-gradient-to-l from-transparent to-gold/30 transition-all duration-500 ease-out" />
+            </div>
+          </FadeIn>
         </div>
 
       </div>
