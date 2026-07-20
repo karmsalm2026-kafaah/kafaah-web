@@ -406,7 +406,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
         {/* Chemical Engineering Process Background Image with Dark Left Overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
-            src="/expert_witness_engineer_blueprint.png"
+            src="/expert_witness_engineer_blueprint.webp"
             alt="Engineer with Hardhat and Blueprints — Expert Witness & Technical Dispute Resolution"
             className="w-full h-full object-cover object-right opacity-95 mix-blend-luminosity scale-105"
           />
@@ -1180,7 +1180,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
         {/* Background Image with Dark Left Overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
-            src="/construction_commissioning_hero_bg.png"
+            src="/construction_commissioning_hero_bg.webp"
             alt="Construction & Commissioning Support — Kafaah Industrial"
             className="w-full h-full object-cover object-right opacity-95 mix-blend-luminosity scale-105"
           />
