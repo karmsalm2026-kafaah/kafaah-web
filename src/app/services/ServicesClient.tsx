@@ -15,6 +15,7 @@ import {
   TrendingUp,
   Award,
   FileText,
+  Scale,
   ArrowRight,
   CheckCircle,
   Mail
@@ -35,7 +36,7 @@ const serviceIcons: Record<string, any> = {
   "operator-training": GraduationCap,
   "production-optimization": TrendingUp,
   "startup-performance-guarantee": Award,
-  "claims-technical-documentation": FileText,
+  "expert-witness-dispute-resolution": Scale,
 };
 
 // Define structure for service mapping corresponding to the 4 phases
@@ -68,7 +69,7 @@ const phaseServicesMapping = [
     services: [
       { slug: "production-optimization", featured: true, audience: "owner" },
       { slug: "startup-performance-guarantee", featured: false, audience: "epc", proofKey: "startup-performance-guarantee" },
-      { slug: "claims-technical-documentation", featured: false, audience: "epc" },
+      { slug: "expert-witness-dispute-resolution", featured: false, audience: "both" },
     ]
   }
 ];

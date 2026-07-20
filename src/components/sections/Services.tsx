@@ -120,7 +120,7 @@ export function ServicesSection({ content }: Props) {
     },
     {
       num: "04",
-      slugs: ["production-optimization", "startup-performance-guarantee", "claims-technical-documentation"],
+      slugs: ["production-optimization", "startup-performance-guarantee", "expert-witness-dispute-resolution"],
       icon: BarChart3
     }
   ];

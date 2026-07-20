@@ -28,7 +28,7 @@ const getServiceHeroImage = (slug: string) => {
   const phase1 = ["owners-engineer", "investor-advisory", "process-engineering-support"];
   const phase2 = ["construction-commissioning-support", "operation-readiness"];
   const phase3 = ["commissioning", "troubleshooting", "operator-training"];
-  const phase4 = ["production-optimization", "startup-performance-guarantee", "claims-technical-documentation"];
+  const phase4 = ["production-optimization", "startup-performance-guarantee", "expert-witness-dispute-resolution"];
 
   if (phase1.includes(slug)) return "/our_services_1.webp";
   if (phase2.includes(slug)) return "/our_services_2.webp";
@@ -45,6 +45,10 @@ export default async function ServicePage({ params }: Props) {
   const relatedTechs = technologies.filter((t) =>
     service.relatedTech.includes(t.slug)
   );
+
+  if (slug === "expert-witness-dispute-resolution" || slug === "commissioning" || slug === "construction-commissioning-support") {
+    return <ServicePageClient service={service} relatedTechs={relatedTechs} />;
+  }
 
   const heroImage = getServiceHeroImage(slug);
 

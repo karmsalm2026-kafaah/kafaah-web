@@ -834,73 +834,83 @@ export const services: Service[] = [
   },
   {
     num: "11",
-    title: "Claims & Technical Documentation",
-    slug: "claims-technical-documentation",
+    title: "Expert Witness & Technical Dispute Resolution",
+    slug: "expert-witness-dispute-resolution",
     shortDesc:
-      "Technical substantiation for claims, variation orders, and comprehensive operational documentation.",
-    audience: "epc",
+      "Clear, defensible technical analysis to support claims, arbitration, and contractual disputes.",
+    audience: "both",
     heroTagline:
-      "Protecting your project with sound technical justification and clear documentation.",
+      "Independent Technical Opinion for Chemical, Fertilizer & Industrial Project Disputes",
     intro: [
-      "Disputes, delays, and variation orders are common in large industrial projects. When EPC contractors or owners face claims, generic legal arguments fail. Resolving these issues requires robust, forensic chemical process engineering analysis and clear documentation.",
-      "We provide independent technical analysis to support or defend claims, as well as the development of comprehensive plant operating manuals."
+      "Disputes on chemical and fertilizer projects are rarely just commercial — at their core they involve process design, equipment performance, and engineering judgment.",
+      "An independent technical expert translates the engineering facts into a clear, defensible opinion that the parties, arbitrators, or courts can rely on.",
+      "Whether you are preparing a claim, defending one, or heading into arbitration, Kafaah brings independent process engineering expertise to the table built on 20+ years of hands-on plant experience."
     ],
     scope: [
-      "Forensic analysis of process data and DCS logs to substantiate or defend technical claims",
-      "Preparation of technical reports for variation orders, design additions, and scope changes",
-      "Root Cause Analysis (RCA) of process or equipment failures for insurance and dispute purposes",
-      "Development of plant operating manuals, SOPs, laboratory manuals, and safety guides",
-      "Preparation of technical documentation packages for environmental or regulatory compliance",
-      "Expert witness support and technical advisory during contract disputes or arbitrations"
+      "1. Case Assessment: Document & contract review, technical merit screening, guarantee & spec interpretation, preliminary findings memo.",
+      "2. Technical Investigation: On-site inspection & data review, Root Cause Analysis (RCA), process & equipment assessment, causation analysis.",
+      "3. Expert Reporting: Formal expert report, independent technical opinion, quantum-supporting technical basis, response to opposing expert.",
+      "4. Hearing & Testimony: Arbitration & litigation support, expert testimony, cross-examination preparation, settlement & mediation support."
     ],
     engagement: {
-      duration: "As required",
-      team: "Senior Engineers, Technical Writers",
-      location: "Remote / On-site as needed"
+      duration: "As required (Case/Project based)",
+      team: "Senior Expert Witnesses, Lead Process Engineers",
+      location: "Remote / On-site / Hearing venues as needed"
     },
     whyKafaah: [
-      "Data-Driven Justifications: We base our reports on chemical engineering thermodynamics, mass/energy balances, and DCS trends.",
-      "By Engineers for Operators: The manuals and guides we develop are not generic templates — they are practical tools tailored to your plant configuration."
+      "Independent & Unbiased Technical Opinion: Objective, evidence-based technical assessment with zero conflicts of interest.",
+      "Deep Chemical & Fertilizer Specialization: Focused strictly on inorganic acids (H₂SO₄, H₃PO₄) and fertilizer facilities (K₂SO₄, NPK, MgSO₄, SSP).",
+      "20+ Years On-Site Experience: Practical insights from inside operating chemical plants, not theoretical academic assumptions.",
+      "Experience Representing Owners & EPC Contractors: Balanced technical perspective from executing both sides of industrial contracts.",
+      "Clear, Defensible Reporting: Reports written for non-technical arbitrators and judges while withstanding rigorous cross-examination."
     ],
     workflow: [
       {
-        title: "Information Gathering",
-        desc: "Collect DCS archives, laboratory reports, design criteria, project correspondence, and log sheets."
+        title: "Case Assessment",
+        desc: "Document & contract review, technical merit screening, and scope definition."
       },
       {
         title: "Technical Investigation",
-        desc: "Execute process event reconstructions, kinetic simulations, and physical inspections of failed components."
+        desc: "Site inspection, DCS data review, Root Cause Analysis (RCA), and causation modeling."
       },
       {
-        title: "Data Analysis & Synthesis",
-        desc: "Perform material/heat balances, metallurgical checks, or flow modeling to substantiate findings."
+        title: "Expert Reporting",
+        desc: "Drafting formal expert reports and independent technical opinions for legal/arbitration proceedings."
       },
       {
-        title: "Report Drafting",
-        desc: "Compile detailed, technical reports with clear timelines, chemical justifications, and reference standards."
-      },
-      {
-        title: "Documentation Delivery",
-        desc: "Hand over finalized reports for claims or release finalized operating and maintenance manuals."
+        title: "Hearing & Testimony",
+        desc: "Expert testimony, cross-examination preparation, and tribunal presentation support."
       }
     ],
     risksMitigated: [
       {
-        title: "Unsubstantiated Variation Claims",
-        desc: "De-risk variation claims by backing them with thermodynamic calculations and DCS proof."
+        title: "Performance Guarantee Disputes",
+        desc: "Unbiased technical verification of plant test runs, yield rates, and consumption metrics."
       },
       {
-        title: "Generic SOP Incidents",
-        desc: "Prevent accidents or quality deviations caused by operators following generic, non-site-specific operating guides."
+        title: "Equipment Non-Conformance Claims",
+        desc: "Root cause investigation into equipment failures, material defects, and design flaws."
       },
       {
-        title: "Disagreement on Delays",
-        desc: "Resolve disputes regarding commissioning delays by detailing exact process reasons (e.g. off-spec feed, utility lack)."
+        title: "Delay & Extension of Time Claims",
+        desc: "Technical evaluation of operational bottlenecks causing schedule slips."
+      },
+      {
+        title: "Design & Process Deviation Disputes",
+        desc: "Independent auditing of process modifications and P&ID spec adherence."
+      },
+      {
+        title: "Product Quality & Off-Spec Claims",
+        desc: "Thermodynamic and kinetic analysis of off-spec production incidents."
+      },
+      {
+        title: "Plant Failure & Incident Investigation",
+        desc: "Forensic chemical process analysis for insurance and liability claims."
       }
     ],
     relatedTech: ["sulfuric-acid", "phosphoric-acid", "sulfate-of-potash", "npk", "magnesium-sulphate", "ssp"],
-    seoTitle: "Claims & Technical Documentation for EPCs",
-    seoDescription: "Technical justification for EPC claims and development of operational documentation for chemical plants.",
-    seoKeywords: ["EPC claims technical support", "chemical plant operating manuals", "SOP development"]
+    seoTitle: "Expert Witness & Technical Dispute Resolution | Kafaah",
+    seoDescription: "Independent technical opinions, root cause analysis, and expert witness testimony for chemical and fertilizer plant disputes.",
+    seoKeywords: ["expert witness chemical engineering", "technical dispute resolution industrial", "process engineering arbitration witness", "fertilizer plant failure investigation"]
   }
 ];

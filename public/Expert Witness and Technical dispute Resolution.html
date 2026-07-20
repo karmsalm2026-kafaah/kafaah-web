@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expert Witness &amp; Technical Dispute Resolution — Kafaah Industrial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:       #0A1830;
+    --navy-mid:   #102140;
+    --navy-light: #1A3358;
+    --gold:       #D4AF52;
+    --gold-light: #E8CB7E;
+    --gold-pale:  #F5EDD8;
+    --orange:     #D4622A;
+    --white:      #FFFFFF;
+    --off-white:  #F7F5F0;
+    --text-muted: #9AACC0;
+    --border:     rgba(212,175,82,0.22);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body:    'Barlow', sans-serif;
+    --font-cond:    'Barlow Condensed', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  h1,h2,h3,h4 { font-family: var(--font-display); font-weight: 600; line-height: 1.2; }
+  h1 { font-size: clamp(2.2rem, 4.5vw, 3.2rem); }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+  h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+  .eyebrow {
+    font-family: var(--font-cond);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 6rem 0; background: var(--navy); }
+  a { text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ─── GOLD RULE ─── */
+  .gold-rule { width: 48px; height: 2px; background: var(--gold); margin: 1.25rem 0 2rem; }
+  .gold-rule.center { margin-left: auto; margin-right: auto; }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.center { text-align: center; }
+  .section-header h2 { color: var(--white); }
+
+  /* ─── NAVBAR ─── */
+  .navbar { background: var(--navy); padding: 1.1rem 0; border-bottom: 1px solid var(--border); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 0.5rem; color: var(--white); font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; }
+  .logo span { color: var(--gold); }
+  .logo small { display: block; font-family: var(--font-cond); font-size: 0.5rem; letter-spacing: 0.2em; color: var(--text-muted); font-weight: 500; }
+  .nav-links { display: flex; gap: 2.2rem; }
+  .nav-links a { color: #E4E9EF; font-size: 0.88rem; font-weight: 500; font-family: var(--font-body); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--navy); font-weight: 600; font-family: var(--font-cond);
+    padding: 0.65rem 1.4rem; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
+
+  /* ─── HERO ─── */
+  .hero { position: relative; background: var(--navy); overflow: hidden; padding: 0; }
+  .hero-img-wrap {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 58%;
+    background:
+      linear-gradient(100deg, var(--navy) 0%, rgba(10,24,48,0.35) 38%, transparent 60%),
+      url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1200&auto=format&fit=crop') center/cover;
+  }
+  .breadcrumb { padding: 1.4rem 0 0; font-size: 0.82rem; color: var(--text-muted); position: relative; z-index: 2; font-family: var(--font-cond); }
+  .breadcrumb a { color: var(--gold); }
+  .hero-content { position: relative; z-index: 2; padding: 2.8rem 0 5rem; max-width: 600px; }
+  .hero-tag {
+    display: inline-block; font-family: var(--font-cond); font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+    border: 1px solid rgba(212,175,82,0.4); padding: 0.35rem 0.9rem; margin-bottom: 1.5rem;
+  }
+  .hero h1 { color: var(--white); }
+  .hero h1 .accent { color: var(--gold); display: block; }
+  .hero-sub { color: var(--white); font-size: 1.1rem; font-weight: 400; margin-top: 1.1rem; font-family: var(--font-cond); letter-spacing: 0.02em; }
+  .hero-desc { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; margin-top: 0.8rem; max-width: 480px; }
+  .hero-buttons { display: flex; gap: 1rem; margin-top: 2.2rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy); font-weight: 600; font-size: 0.82rem; font-family: var(--font-cond);
+    padding: 0.95rem 1.7rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+  .btn-outline {
+    border: 1.5px solid var(--white); color: var(--white); font-weight: 600; font-size: 0.82rem; font-family: var(--font-cond);
+    padding: 0.95rem 1.7rem; display: inline-flex; align-items: center; gap: 0.5rem;
+    letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.08); }
+
+  /* ─── STATS / TRUST BAR ─── */
+  .stats-bar { background: var(--navy-light); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0; }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat-item { display: flex; align-items: flex-start; gap: 0.9rem; padding: 1.8rem 1.6rem; border-right: 1px solid var(--border); }
+  .stat-item:last-child { border-right: none; }
+  .stat-icon {
+    width: 38px; height: 38px; flex-shrink: 0; border: 1.5px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1rem;
+  }
+  .stat-item h4 { font-family: var(--font-body); color: var(--white); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .stat-item p { color: var(--text-muted); font-size: 0.78rem; font-weight: 300; line-height: 1.4; }
+
+  /* ─── WHY OWNER'S ENGINEER (comparison) ─── */
+  .why-section { background: var(--navy-mid); }
+  .why-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 4rem; align-items: center; }
+  .why-grid > div:first-child p { color: rgba(255,255,255,0.7); margin-top: 1.2rem; font-size: 0.95rem; font-weight: 300; }
+  .compare-row { display: flex; align-items: center; gap: 1.5rem; }
+  .compare-card { background: var(--navy-light); border: 1px solid var(--border); padding: 1.8rem; flex: 1; }
+  .compare-card h5 {
+    font-family: var(--font-cond); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 1.2rem; color: var(--gold);
+  }
+  .compare-card li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.86rem; color: rgba(255,255,255,0.75); margin-bottom: 0.75rem; font-weight: 300; }
+  .compare-card li:last-child { margin-bottom: 0; }
+  .icon-x { color: #D9756B; flex-shrink: 0; margin-top: 0.1rem; }
+  .icon-check { color: var(--gold); flex-shrink: 0; margin-top: 0.1rem; }
+  .compare-arrow {
+    width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--border); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; color: var(--gold);
+  }
+
+  /* ─── EXPERIENCE BAR ─── */
+  .experience-bar { background: var(--navy); padding: 0; }
+  .exp-inner {
+    background: var(--navy-light); border: 1px solid var(--border); margin: 3rem auto; padding: 1.8rem 2.5rem;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem;
+  }
+  .exp-stats { display: flex; gap: 2.4rem; flex-wrap: wrap; align-items: center; }
+  .exp-stat { display: flex; align-items: center; gap: 0.7rem; }
+  .exp-icon { color: var(--gold); flex-shrink: 0; font-size: 1.2rem; }
+  .exp-stat strong { display: block; color: var(--white); font-size: 1.15rem; font-weight: 600; font-family: var(--font-display); }
+  .exp-stat span { color: var(--text-muted); font-size: 0.74rem; font-weight: 300; font-family: var(--font-cond); letter-spacing: 0.04em; }
+
+  /* ─── SERVICE SCOPE ─── */
+  .scope-section { background: var(--navy); }
+  .scope-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5px; background: var(--border); border: 1px solid var(--border); margin-top: 3rem; }
+  .scope-card { background: var(--navy-mid); padding: 2rem; transition: background 0.25s ease; }
+  .scope-card:hover { background: var(--navy-light); }
+  .scope-icon {
+    width: 44px; height: 44px; border: 1.5px solid var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 1.1rem; margin-bottom: 1.2rem;
+  }
+  .scope-card h4 { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 1rem; }
+  .scope-card li { font-size: 0.83rem; color: rgba(255,255,255,0.62); margin-bottom: 0.55rem; padding-left: 0.9rem; position: relative; font-weight: 300; }
+  .scope-card li::before { content: '—'; color: var(--gold); position: absolute; left: 0; font-weight: 700; }
+
+  /* ─── RISKS ─── */
+  .risk-section { background: var(--navy); }
+  .risk-section h3 { font-family: var(--font-cond); color: var(--gold); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.6rem; }
+  .risk-grid-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .risk-card { background: var(--navy-light); border: 1px solid var(--border); padding: 1.4rem 1rem; text-align: center; transition: background 0.25s ease; }
+  .risk-card:hover { background: var(--navy-mid); }
+  .risk-card .ricon { color: var(--gold); margin-bottom: 0.7rem; font-size: 1.3rem; }
+  .risk-card p { color: var(--white); font-size: 0.8rem; font-weight: 500; line-height: 1.3; font-family: var(--font-body); }
+
+  /* ─── WHY KAFAAH ─── */
+  .why-projects-section { background: var(--navy-mid); }
+  .why-projects-section h3 { font-family: var(--font-cond); color: var(--gold); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.6rem; }
+  .why-list li { display: flex; align-items: flex-start; gap: 0.7rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; margin-bottom: 1.1rem; font-weight: 300; }
+  .why-list .chk { color: var(--gold); flex-shrink: 0; margin-top: 0.15rem; }
+
+  /* ─── FAQ ─── */
+  .faq-section { background: var(--navy); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem 2rem; }
+  .faq-item { border: 1px solid var(--border); background: var(--navy-mid); overflow: hidden; }
+  .faq-question {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.15rem 1.4rem; cursor: pointer; color: var(--white); font-size: 0.92rem; font-weight: 500; font-family: var(--font-body);
+  }
+  .faq-question .plus {
+    width: 22px; height: 22px; flex-shrink: 0; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold);
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: transform 0.25s ease;
+  }
+  .faq-item.open .faq-question .plus { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+    padding: 0 1.4rem; color: rgba(255,255,255,0.68); font-size: 0.86rem; font-weight: 300; line-height: 1.7;
+  }
+  .faq-item.open .faq-answer { padding: 0 1.4rem 1.3rem; }
+
+  /* ─── FINAL CTA ─── */
+  .final-cta {
+    background:
+      linear-gradient(110deg, rgba(10,24,48,0.95) 30%, rgba(10,24,48,0.78) 100%),
+      url('https://images.unsplash.com/photo-1518709268805-4e9042af2176?q=80&w=1400&auto=format&fit=crop') center/cover;
+    padding: 5rem 0; border-top: 1px solid var(--border);
+  }
+  .fc-inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .fc-inner h2 { color: var(--white); max-width: 480px; }
+  .fc-inner p { color: var(--text-muted); font-size: 0.94rem; margin-top: 0.9rem; max-width: 420px; font-weight: 300; }
+  .fc-buttons { display: flex; flex-direction: column; gap: 0.9rem; }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 1.8rem; right: 1.8rem; width: 54px; height: 54px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(0,0,0,0.3); z-index: 99; color: #fff; font-size: 1.5rem;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1000px) {
+    .nav-links { display: none; }
+    .hero-img-wrap { width: 100%; opacity: 0.22; }
+    .stats-grid, .scope-grid, .risk-grid-cards, .faq-grid { grid-template-columns: repeat(2, 1fr); }
+    .why-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .exp-stats { gap: 1.3rem; }
+    .fc-inner { flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 0; }
+    .stats-grid, .scope-grid, .risk-grid-cards, .faq-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .hero h1 { font-size: 2rem; }
+    .compare-row { flex-direction: column; }
+    .compare-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<header class="hero">
+  <div class="hero-img-wrap"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">Service Advisory</div>
+      <h1>Expert Witness &amp;<span class="accent">Technical Dispute Resolution</span></h1>
+      <p class="hero-sub">Independent Technical Opinion for Chemical, Fertilizer &amp; Industrial Project Disputes</p>
+      <p class="hero-desc">Clear, defensible technical analysis to support claims, arbitration, and contractual disputes — built on 20+ years of hands-on process engineering experience.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">Request Consultation →</a>
+        <a href="#" class="btn-outline">Download Brochure ⬇</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════
+     TRUST STRIP
+═══════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="container stats-grid">
+    <div class="stat-item">
+      <div class="stat-icon">⚖</div>
+      <div><h4>Independent Opinion</h4><p>Unbiased technical assessment of the facts</p></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">📑</div>
+      <div><h4>Defensible Reports</h4><p>Evidence-based findings, clearly documented</p></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🔬</div>
+      <div><h4>Root Cause Analysis</h4><p>Technical investigation into process &amp; equipment failures</p></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🗣</div>
+      <div><h4>Testimony Support</h4><p>Clear presentation for arbitration &amp; litigation</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WHY OWNER'S ENGINEER
+═══════════════════════════════════════ -->
+<section class="why-section">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow">Why Expert Witness Support?</div>
+        <div class="gold-rule"></div>
+        <h2 style="color:var(--white);">Why Do Industrial Disputes Need an Independent Technical Expert?</h2>
+        <p>Disputes on chemical and fertilizer projects are rarely just commercial — at their core they involve process design, equipment performance, and engineering judgment. An independent technical expert translates the engineering facts into a clear, defensible opinion the parties, arbitrators, or courts can rely on.</p>
+      </div>
+      <div class="compare-row">
+        <div class="compare-card">
+          <h5>Common Dispute Challenges</h5>
+          <ul>
+            <li><span class="icon-x">✕</span>Conflicting technical narratives</li>
+            <li><span class="icon-x">✕</span>Ambiguous contract &amp; guarantee wording</li>
+            <li><span class="icon-x">✕</span>Unclear root cause of failure</li>
+            <li><span class="icon-x">✕</span>Disputed performance test results</li>
+            <li><span class="icon-x">✕</span>Delay &amp; extension of time claims</li>
+            <li><span class="icon-x">✕</span>Lack of independent technical record</li>
+          </ul>
+        </div>
+        <div class="compare-arrow">→</div>
+        <div class="compare-card">
+          <h5>Our Contribution</h5>
+          <ul>
+            <li><span class="icon-check">✓</span>Independent technical investigation</li>
+            <li><span class="icon-check">✓</span>Root cause &amp; causation analysis</li>
+            <li><span class="icon-check">✓</span>Guarantee &amp; specification interpretation</li>
+            <li><span class="icon-check">✓</span>Performance data review &amp; verification</li>
+            <li><span class="icon-check">✓</span>Formal expert reports</li>
+            <li><span class="icon-check">✓</span>Testimony &amp; hearing support</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     SERVICE SCOPE
+═══════════════════════════════════════ -->
+<section class="scope-section">
+  <div class="container">
+    <div class="section-header center">
+      <div class="eyebrow">Service Scope</div>
+      <div class="gold-rule center"></div>
+      <h2>Our Service Scope</h2>
+    </div>
+    <div class="scope-grid">
+      <div class="scope-card">
+        <div class="scope-icon">📂</div>
+        <h4>1. Case Assessment</h4>
+        <ul>
+          <li>Document &amp; Contract Review</li>
+          <li>Technical Merit Screening</li>
+          <li>Guarantee &amp; Spec Interpretation</li>
+          <li>Preliminary Findings Memo</li>
+          <li>Scope &amp; Fee Proposal</li>
+        </ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon">🔬</div>
+        <h4>2. Technical Investigation</h4>
+        <ul>
+          <li>Site Inspection &amp; Data Review</li>
+          <li>Root Cause Analysis</li>
+          <li>Process &amp; Equipment Assessment</li>
+          <li>Performance Data Verification</li>
+          <li>Causation Analysis</li>
+        </ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon">📝</div>
+        <h4>3. Expert Reporting</h4>
+        <ul>
+          <li>Formal Expert Report</li>
+          <li>Independent Technical Opinion</li>
+          <li>Quantum-Supporting Technical Basis</li>
+          <li>Response to Opposing Expert</li>
+          <li>Report Revisions</li>
+        </ul>
+      </div>
+      <div class="scope-card">
+        <div class="scope-icon">🎙</div>
+        <h4>4. Hearing &amp; Testimony</h4>
+        <ul>
+          <li>Arbitration / Litigation Support</li>
+          <li>Expert Testimony</li>
+          <li>Cross-Examination Preparation</li>
+          <li>Technical Presentations</li>
+          <li>Settlement &amp; Mediation Support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     RISKS
+═══════════════════════════════════════ -->
+<section class="risk-section">
+  <div class="container">
+    <div>
+      <h3>Disputes &amp; Claims We Support</h3>
+      <div class="risk-grid-cards">
+        <div class="risk-card"><div class="ricon">📉</div><p>Performance Guarantee Disputes</p></div>
+        <div class="risk-card"><div class="ricon">🔧</div><p>Equipment Non-Conformance Claims</p></div>
+        <div class="risk-card"><div class="ricon">⏱</div><p>Delay &amp; Extension of Time Claims</p></div>
+        <div class="risk-card"><div class="ricon">📐</div><p>Design &amp; Process Deviation Disputes</p></div>
+        <div class="risk-card"><div class="ricon">🧪</div><p>Product Quality &amp; Off-Spec Claims</p></div>
+        <div class="risk-card"><div class="ricon">📄</div><p>Scope &amp; Specification Interpretation</p></div>
+        <div class="risk-card"><div class="ricon">🏭</div><p>Plant Failure &amp; Incident Investigation</p></div>
+        <div class="risk-card"><div class="ricon">💰</div><p>Cost &amp; Variation Claims</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     WHY KAFAAH + PROJECTS
+═══════════════════════════════════════ -->
+<section class="why-projects-section">
+  <div class="container">
+    <div>
+      <h3>Why Kafaah?</h3>
+      <ul class="why-list">
+        <li><span class="chk">✓</span>Independent &amp; Unbiased Technical Opinion</li>
+        <li><span class="chk">✓</span>Chemical &amp; Fertilizer Process Specialists</li>
+        <li><span class="chk">✓</span>20+ Years of Hands-On Plant Experience</li>
+        <li><span class="chk">✓</span>Experience Representing Both Owners &amp; EPC Contractors</li>
+        <li><span class="chk">✓</span>Clear, Well-Documented Technical Reporting</li>
+        <li><span class="chk">✓</span>Comfortable Presenting Findings Under Scrutiny</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FAQ
+═══════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow">Frequently Asked Questions</div>
+      <div class="gold-rule"></div>
+      <h2>Questions Parties Ask Before Engaging a Technical Expert</h2>
+    </div>
+    <div class="faq-grid">
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What does an expert witness do?</span><span class="plus">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>An expert witness provides an independent, evidence-based technical opinion on the engineering questions at the heart of a dispute — such as whether a design met specification, whether equipment failed due to a manufacturing defect or operating conditions, or whether a performance guarantee was met. The opinion is prepared to support arbitration, litigation, or direct negotiation between the parties.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What kinds of disputes does Kafaah support?</span><span class="plus">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Kafaah's expertise centers on sulfuric acid, phosphoric acid, potassium sulfate (Mannheim process), NPK, MgSO₄, SSP, and CaCl₂ facilities. We support performance guarantee disputes, equipment non-conformance claims, delay and extension of time claims, off-spec product claims, and process design or specification disagreements between owners, EPC contractors, and licensors.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Who can engage Kafaah as an expert?</span><span class="plus">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Kafaah can be engaged by plant owners, EPC contractors, insurers, or legal counsel — but never by more than one party on the same dispute. This keeps our technical opinion independent and free of conflicts of interest, which is essential for the opinion to carry weight in arbitration or before a court.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>What does an expert report include?</span><span class="plus">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>A Kafaah expert report sets out the technical facts, the methodology used to investigate them, and a reasoned, evidence-based opinion on the questions in dispute. Reports are written to be understood by non-technical readers — legal counsel, arbitrators, judges — while remaining rigorous enough to withstand cross-examination by an opposing expert.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>How early should Kafaah be engaged in a dispute?</span><span class="plus">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>As early as possible. Early engagement allows Kafaah to review site conditions, data, and documentation before evidence degrades or is lost, and to help legal counsel frame the technical questions correctly from the outset — which strengthens the case regardless of which stage it eventually reaches.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════ -->
+<section class="final-cta" id="contact">
+  <div class="container fc-inner">
+    <div>
+      <div class="eyebrow">Request Technical Consult</div>
+      <div class="gold-rule"></div>
+      <h2>Get an Independent, Defensible Technical Opinion</h2>
+      <p>Whether you are preparing a claim, defending one, or heading into arbitration, Kafaah brings independent process engineering expertise to the table.</p>
+    </div>
+    <div class="fc-buttons">
+      <a href="mailto:info@kafaahsolutions.com" class="btn-primary">Talk to an Expert →</a>
+      <a href="#" class="btn-outline">Download Capability Statement ⬇</a>
+    </div>
+  </div>
+</section>
+
+<a href="#" class="wa-float">💬</a>
+
+<script>
+  function toggleFaq(el){
+    const item = el.parentElement;
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i=>{
+      i.classList.remove('open');
+      i.querySelector('.faq-answer').style.maxHeight = null;
+    });
+    if(!isOpen){
+      item.classList.add('open');
+      answer.style.maxHeight = answer.scrollHeight + 40 + 'px';
+    }
+  }
+</script>
+
+</body>
+</html>

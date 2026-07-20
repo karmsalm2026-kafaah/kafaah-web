@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { 
   Menu, X, ChevronDown, ArrowRight, Globe, Home, Briefcase, FlaskConical, Wrench, Award, Lightbulb, Mail,
-  ShieldCheck, Power, ClipboardCheck, Search, TrendingUp, GraduationCap, FileCog, HardHat, Rocket, FileText
+  ShieldCheck, Power, ClipboardCheck, Search, TrendingUp, GraduationCap, FileCog, HardHat, Rocket, FileText, Scale
 } from "lucide-react";
 import { services } from "@/data/services";
 import { technologies } from "@/data/technologies";
@@ -29,7 +29,7 @@ const navServices = [
   { slug: "troubleshooting", sub: "Root-cause diagnostics & fixes" },
   { slug: "production-optimization", sub: "Yield & energy optimization" },
   { slug: "operator-training", sub: "Competency training programs" },
-  { slug: "claims-technical-documentation", sub: "Root-cause reviews & manuals" },
+  { slug: "expert-witness-dispute-resolution", sub: "Arbitration & dispute support" },
 ].map((item) => {
   const s = services.find((srv) => srv.slug === item.slug);
   return {
@@ -52,7 +52,7 @@ const getServiceIcon = (slug: string) => {
     case "process-engineering-support": return <FileCog className="w-4 h-4" />;
     case "construction-commissioning-support": return <HardHat className="w-4 h-4" />;
     case "startup-performance-guarantee": return <Rocket className="w-4 h-4" />;
-    case "claims-technical-documentation": return <FileText className="w-4 h-4" />;
+    case "expert-witness-dispute-resolution": return <Scale className="w-4 h-4" />;
     default: return <Wrench className="w-4 h-4" />;
   }
 };

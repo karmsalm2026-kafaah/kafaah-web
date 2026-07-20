@@ -343,12 +343,12 @@ export const services = {
         zh: "主导启动活动和性能测试运行，以支持保证验收和运营稳定。"
       }
     },
-    "claims-technical-documentation": {
-      title: { en: "Claims & Technical Documentation", ar: "المطالبات والتوثيق الفني", zh: "索赔与技术文件" },
+    "expert-witness-dispute-resolution": {
+      title: { en: "Expert Witness & Technical Dispute Resolution", ar: "الشهادة الخبيرة وحل النزاعات التقنية", zh: "专家证人与技术争议解决" },
       desc: {
-        en: "Technical substantiation for claims, variation orders, and comprehensive operational documentation.",
-        ar: "التأسيس الفني للمطالبات وأوامر التغيير والتوثيق التشغيلي الشامل.",
-        zh: "为索赔、变更单提供技术依据，以及全面的运营文件编制。"
+        en: "Clear, defensible technical analysis to support claims, arbitration, and contractual disputes.",
+        ar: "تحليل فني واضح وقابل للدفاع عنه لدعم المطالبات والتحكيم والنزاعات التعاقدية.",
+        zh: "清晰且立足稳固的技术分析，支持索赔、仲裁及合同争议。"
       }
     }
   } as Record<string, { title: Record<GatewayLocale, string>; desc: Record<GatewayLocale, string> }>,
