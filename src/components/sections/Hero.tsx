@@ -124,10 +124,10 @@ export function HeroSection({ content }: Props) {
           </picture>
         </motion.div>
         {/* Lighter Gradient Overlays for better image visibility */}
-        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep/55 md:from-navy-deep/65 via-navy-deep/40 md:via-navy-deep/45 sm:via-navy-deep/30 to-transparent`} />
+        <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} max-md:from-navy-deep/30 from-navy-deep/55 md:from-navy-deep/65 max-md:via-navy-deep/20 via-navy-deep/40 md:via-navy-deep/45 sm:via-navy-deep/30 to-transparent`} />
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/15 sm:via-transparent via-transparent to-navy-deep/40" />
-        {/* Mobile only dark overlay for high text contrast */}
-        <div className="absolute inset-0 bg-navy-deep/75 max-md:bg-gradient-to-b max-md:from-navy-deep/85 max-md:via-navy-deep/75 max-md:to-navy-deep/90 md:hidden z-1 pointer-events-none" />
+        {/* Mobile only dark overlay for high text contrast - lightened for mobile */}
+        <div className="absolute inset-0 bg-navy-deep/35 max-md:bg-gradient-to-b max-md:from-navy-deep/45 max-md:via-navy-deep/30 max-md:to-navy-deep/50 md:hidden z-1 pointer-events-none" />
       </div>
 
       {/* ── Main Content ── */}
