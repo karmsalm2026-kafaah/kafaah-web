@@ -33,6 +33,13 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* Fix word-spacing for display font headings to ensure spaces are visible and words do not touch */

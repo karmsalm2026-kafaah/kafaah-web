@@ -109,6 +109,7 @@ interface PFDNodeData {
   badge: [string, "warn" | "danger" | "info" | "ok"];
   body: string;
   kafaah: string;
+  challenge?: string;
 }
 
 const pfdData: Record<string, PFDNodeData> = {
@@ -241,7 +242,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                 Interactive DCDA Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -423,7 +424,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -472,7 +473,7 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -679,7 +680,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                 Interactive NPK Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -914,7 +915,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -963,7 +964,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -1170,7 +1171,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                 Interactive SSP Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -1406,7 +1407,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -1455,7 +1456,7 @@ function SspPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -1642,7 +1643,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                 Interactive SOP Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -1849,7 +1850,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -1898,7 +1899,7 @@ function SopPFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -2057,7 +2058,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
                 Process Flow Technology
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,48px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                 Interactive MgSO₄ Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
@@ -2239,7 +2240,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -2288,7 +2289,7 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
@@ -2315,9 +2316,494 @@ function Mgso4PFD({ tech, relatedSvcs }: Props) {
   );
 }
 
+const H3PO4_FLOW_COLORS = {
+  solids: "#94a3b8",
+  gas: "#8b5cf6",
+  utility: "#0ea5e9",
+  furnace: "#f43f5e",
+  acid: "#10b981",
+};
+
+const h3po4PfdData: Record<string, PFDNodeData> = {
+  rock: {
+    title: 'Phosphate Rock Silo & Gravimetric Feeder',
+    badge: ['Feed Quality', 'info'],
+    body: 'Stores and delivers dry ground phosphate rock into the reaction loop. Feeder stability is critical to maintain a rock-to-acid ratio matched for a continuous 27% P₂O₅ reactor baseline. Shifts in calcium carbonate content cause immediate changes in acid demand and CO₂ venting requirements.',
+    kafaah: 'Weigh belt calibration verification, tracking particle sizing parameters, and rock matrix benchmarking.',
+    challenge: 'Fluctuating carbonate and organic levels in raw rock feeds causing localized gas-foaming, which blinds liquid level instrumentation and triggers slurry overflows.'
+  },
+  h2so4: {
+    title: 'Concentrated Sulfuric Acid Feeding Loop',
+    badge: ['Reagent Supply', 'info'],
+    body: 'Concentrated 98% H₂SO₄ is metered to drive the phosphate decomposition. To secure optimal calcium sulfate crystallization paths under a 27% P₂O₅ concentration regime, free sulfate levels inside the liquid phase must be held within a narrow band.',
+    kafaah: 'Corrosion profile auditing, mixing loop monitoring, and high-accuracy magnetic flow tuning.',
+    challenge: 'Localized concentration spike near deteriorated acid sparger nozzles, causing structural passivation or "coating" of rock grains that arrests chemical digestion.'
+  },
+  reactor: {
+    title: 'Attack Reactor System',
+    badge: ['Reaction Zone', 'danger'],
+    body: 'The central digestion reactor maintains a continuous slurry profile focused on delivering a direct 27% P₂O₅ concentration matrix. High-efficiency agitation loops are vital to prevent phase shortcutting, ensuring uniform crystal growth for clean downstream filtration.',
+    kafaah: 'Free sulfate optimization checks, slurry solids density balance, and agitator tip-speed metrics.',
+    challenge: 'Slurry short-circuiting or stagnant zones in the compartments, skewing localized sulfate ratios and leading to pockets of unreacted rock.'
+  },
+  flashcool: {
+    title: 'Vacuum Flash Cooler System',
+    badge: ['Thermal Control', 'warn'],
+    body: 'Controls reaction exotherms by circulating digestion slurry through a vacuum flash room. The slurry temperature must be strictly controlled below 80 °C, focusing on a highly specific 74–76 °C operational target window to maintain ideal crystal morphology and prevent thermal acceleration of equipment scaling.',
+    kafaah: 'Vacuum system integrity audits, condenser scale profiling, and flash pump velocity logs.',
+    challenge: 'Vacuum fluctuation pushing slurry temperatures above the 80 °C limit, driving rapid scale crystallization within the recycle piping and choking circulation loops.'
+  },
+  offgas: {
+    title: 'Fluorine Gas Stream Evolution',
+    badge: ['Gas Stream', 'warn'],
+    body: 'The digestion reaction releases silicon tetrafluoride (SiF₄) and hydrogen fluoride (HF) vapors into the reactor header spaces. Continuous negative draft ventilation must be maintained to clean the reactor environment.',
+    kafaah: 'Header draft pressure balancing, duct scaling indexes, and alloy corrosion review.',
+    challenge: 'Silica gel deposition inside off-gas headers caused by moisture vapor hydrolysis, restriction of draft fan efficiency, and venting risk.'
+  },
+  panfilter: {
+    title: 'Tilting Pan Filter Technology',
+    badge: ['Filtration Core', 'danger'],
+    body: 'Processes the primary slurry stream through a multi-stage counter-current wash routine. Highly optimized for handling crystals produced under a 27% P₂O₅ baseline, ensuring maximum soluble phosphorus displacement prior to pan inversion.',
+    kafaah: 'Vacuum distribution box profiling, pan alignment checks, and hydraulic wash distribution balance.',
+    challenge: 'Structural vacuum leaks across the main rotary wear plate assemblies, reducing filtration differentials and increasing water carryover into the 27% P₂O₅ product stream.'
+  },
+  strongacid: {
+    title: 'Product Acid Seal Tank',
+    badge: ['Product Line', 'ok'],
+    body: 'Receives the main first-stage filtrate under barometric down-take configurations, storing crude 27% P₂O₅ phosphoric acid prior to downstream clarification and storage.',
+    kafaah: 'P₂O₅ mass yield balances, stream density logging, and down-take pipe hydraulic checks.',
+    challenge: 'Gas entrainment and micro-bubble foaming inside the barometric down-take line, causing cavitation and premature impeller degradation in the transfer pumps.'
+  },
+  clarification: {
+    title: 'Acid Clarification & Settling Cells',
+    badge: ['Purification', 'warn'],
+    body: 'The raw 27% P₂O₅ filtrate carries suspended fines and supersaturated chemical lattices. Settling basins leverage specialized flocculants to clean the acid, dropping the solid sludge out of the product phase.',
+    kafaah: 'Flocculant dosing feedback loops, rake mechanical torque tracking, and overflow clarity checks.',
+    challenge: 'Post-precipitation of complex sodium/potassium fluorosilicates onto clarifier components, creating hard scale that demands mechanical cleanouts.'
+  },
+  storage: {
+    title: 'Clarified 27% P₂O₅ Storage Tank',
+    badge: ['Asset Control', 'ok'],
+    body: 'Stores clarified 27% P₂O₅ intermediate acid before pumping it to the evaporation section. Continuous, low-shear mechanical agitation is required to prevent the fallout and compaction of fine chemical residuals on the tank floors.',
+    kafaah: 'Tank internal lining validation, floor sludge mapping, and intermediate transfer pump flow metrics.',
+    challenge: 'Rapid crystallization of dissolved solids on tank bottom areas during mixer mechanical failures, forming dense, compacted mud beds that clog exit valves.'
+  },
+  evaporator: {
+    title: '54% P₂O₅ Product Evaporator Unit',
+    badge: ['Concentration', 'danger'],
+    body: 'Concentrates the intermediate 27% P₂O₅ feedstock up to 54% P₂O₅ Merchant Grade Acid (MGA). This is achieved via a forced-circulation heat exchanger loop operating under high vacuum and heat input from medium-pressure steam. Fluosilicic acid vapors are drawn off overhead to prevent environmental carryover.',
+    kafaah: 'Heat transfer coefficient optimization, steam economy validation, entrainment separator efficiency logs, and vacuum pump performance monitoring.',
+    challenge: 'Severe fluorosilicic and calcium sulfate scaling along the inner walls of the graphite or special alloy heat exchanger tubes, restricting heat transfer and causing premature vacuum collapses.'
+  },
+  merchantstorage: {
+    title: '54% MGA Product Storage',
+    badge: ['Final Product', 'ok'],
+    body: 'Stores the concentrated 54% P₂O₅ merchant grade phosphoric acid prior to dispatch or down-stream DAP/MAP fertilizer processing. Sludge post-precipitation is common as the acid cools, requiring continuous rake or agitation movement.',
+    kafaah: 'MGA quality parameters compliance, post-precipitation solids ratio analysis, and tank loading safety validation.',
+    challenge: 'High sludge settlement rates blocking secondary discharge manifolds, forcing offline high-pressure water blasting to clear product lines.'
+  },
+  cakedischarge: {
+    title: 'Pan Inversion & Chute Discharge',
+    badge: ['Solid Waste', 'info'],
+    body: 'Mechanical guide paths rotate each filter pan 180 degrees over a discharge bunker. Gravity drops the crystal cake out of the cell, separating solids for lagoon or conveyor processing.',
+    kafaah: 'Inversion roller tracking, chute wear lining audits, and rotation torque indexes.',
+    challenge: 'High cake moisture caused by filtration vacuum loss, resulting in wet solids sticking inside the pan corners during inversion and unbalancing the structural frame.'
+  },
+  clothwash: {
+    title: 'High-Pressure Cloth Wash Station',
+    badge: ['Maintenance', 'info'],
+    body: 'Cleans the overturned filter cloth with a targeted array of high-pressure hot water sprays, dissolving interstitial crystals to prevent cloth blinding before the pan rotates back to receive new reactor slurry.',
+    kafaah: 'Spray header pressure logging, thermal balance evaluation, and spray nozzle placement checks.',
+    challenge: 'Nozzle fouling from calcium scaling in the recycled wash water loop, creating unwashed areas on the filter cloths that blind the filter on subsequent runs.'
+  },
+  washliquor: {
+    title: 'Return Wash Filtrate Matrix',
+    badge: ['Recycle Loop', 'info'],
+    body: 'Collects downstream wash filtrates from the filter deck, routing them backward counter-currently to serve as initial cake washes. This design optimizes global plant water balances while keeping the core reactor acid concentration steady at 27% P₂O₅.',
+    kafaah: 'Dilution profile tracking, water loop integration, and filtrate stage density checks.',
+    challenge: 'Internal precipitation of calcium sulfate scale inside intermediate filtrate collection channels, causing line restrictions and shifting stage wash volume ratios.'
+  },
+  scrubber: {
+    title: 'Fluorine Gas Scrubber Column',
+    badge: ['HSE Control', 'danger'],
+    body: 'Vapor streams from both the attack reactor and the vacuum evaporator are processed through a gas scrubber to capture gaseous fluorine compounds. Rigorous fluid scrubbing cleans total emission lines, keeping discharge figures securely under 30 mg/Nm³ F to satisfy strict environmental frameworks.',
+    kafaah: 'Circulation volume confirmation, column delta-P profiling, and emission monitor verification logs.',
+    challenge: 'Sudden silica gel scaling across the internal packing beds during digestion upsets, spiking column differential pressures and overloading the ventilation draft fan.'
+  }
+};
+
+function H3Po4PFD({ tech, relatedSvcs }: Props) {
+  const [activeNode, setActiveNode] = useState<string | null>(null);
+  const activeDetails = activeNode ? h3po4PfdData[activeNode] : null;
+
+  const getBadgeClass = (type: "warn" | "danger" | "info" | "ok") => {
+    switch (type) {
+      case "warn":
+        return "bg-amber-500/10 text-amber-400 border-amber-500/20";
+      case "danger":
+        return "bg-red-500/10 text-red-400 border-red-500/20";
+      case "info":
+        return "bg-blue-500/10 text-blue-400 border-blue-500/20";
+      case "ok":
+        return "bg-green-500/10 text-green-400 border-green-500/20";
+      default:
+        return "bg-silver/10 text-silver border-silver/20";
+    }
+  };
+
+  const getNodeClass = (key: string, category: string) => {
+    const isActive = activeNode === key;
+    let borderClass = "stroke-silver/40";
+    
+    if (category === "c-blue") {
+      borderClass = "stroke-[#0ea5e9]";
+    } else if (category === "c-coral") {
+      borderClass = "stroke-[#f43f5e]";
+    } else if (category === "c-teal") {
+      borderClass = "stroke-[#14b8a6]";
+    } else if (category === "c-purple") {
+      borderClass = "stroke-[#8b5cf6]";
+    } else if (category === "c-green") {
+      borderClass = "stroke-[#10b981]";
+    } else if (category === "c-amber") {
+      borderClass = "stroke-[#f59e0b]";
+    } else if (category === "c-gray") {
+      borderClass = "stroke-[#94a3b8]";
+    }
+
+    const fillClass = isActive ? "fill-[#2E4460]" : "fill-[#1E3045]";
+
+    const activeClass = isActive 
+      ? "stroke-gold stroke-[2.5px] scale-[1.01] drop-shadow-[0_0_12px_rgba(240,160,32,0.2)]" 
+      : "stroke-[1px] hover:stroke-gold/60 hover:scale-[1.005]";
+
+    return `transition-all duration-300 ease-in-out cursor-pointer origin-center ${borderClass} ${fillClass} ${activeClass}`;
+  };
+
+  return (
+    <>
+      <section className="py-24 bg-navy-deep relative">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gold/[0.01] rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/[0.005] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[1280px] mx-auto px-8">
+          <div className="text-center max-w-[800px] mx-auto mb-16">
+            <FadeIn>
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center justify-center gap-3 mb-6 gold-line">
+                Process Flow Technology
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
+                Interactive H₃PO₄ Process Flow Diagram
+              </h2>
+              <p className="text-base font-light text-silver/80 leading-relaxed">
+                Explore the complete Phosphoric Acid production process flow, from 27% P₂O₅ reaction circuit and vacuum flash cooling to tilting pan filtration and 54% P₂O₅ MGA evaporator loops. Click any process block to inspect technical specifications.
+              </p>
+            </FadeIn>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* SVG Interactive Diagram */}
+            <div className="lg:col-span-7 xl:col-span-8 bg-navy-dark/30 border border-white/[0.08] p-4 sm:p-6 md:p-8 rounded-sm shadow-xl relative">
+              <FadeIn delay={0.1}>
+                <svg width="100%" viewBox="0 0 680 1020" role="img" className="w-full h-auto text-silver select-none">
+                  <title>Phosphoric Acid Production Plant — Process Flow Diagram</title>
+                  <desc>Interactive PFD including a 27% P2O5 reaction circuit, vacuum flash cooling, tilting pan filtration, and a 54% P2O5 product evaporation unit.</desc>
+                  <defs>
+                    <marker id="ar-h3po4" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </marker>
+                  </defs>
+
+                  <g id="node-rock" className="node" onClick={() => setActiveNode("rock")}>
+                    <rect x="80" y="30" width="168" height="58" rx="8" className={getNodeClass("rock", "c-blue")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="164" y="52" textAnchor="middle" dominantBaseline="central">Phosphate Rock Silo</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="164" y="72" textAnchor="middle" dominantBaseline="central">Dry Ground Rock Feed</text>
+                  </g>
+                  <rect x="134" y="100" width="90" height="20" rx="4" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="0.5" opacity="0.5"/>
+                  <text className="text-[11px] fill-silver/80 pointer-events-none" x="179" y="114" textAnchor="middle" dominantBaseline="central">~3.4 t/t P₂O₅</text>
+
+                  <g id="node-h2so4" className="node" onClick={() => setActiveNode("h2so4")}>
+                    <rect x="432" y="30" width="168" height="58" rx="8" className={getNodeClass("h2so4", "c-blue")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="516" y="52" textAnchor="middle" dominantBaseline="central">98% H₂SO₄ Storage</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="516" y="72" textAnchor="middle" dominantBaseline="central">Concentrated Acid Feed</text>
+                  </g>
+                  <rect x="456" y="100" width="90" height="20" rx="4" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="0.5" opacity="0.5"/>
+                  <text className="text-[11px] fill-silver/80 pointer-events-none" x="501" y="114" textAnchor="middle" dominantBaseline="central">~2.7 t/t P₂O₅</text>
+
+                  <line x1="164" y1="120" x2="164" y2="155" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+                  <line x1="516" y1="120" x2="516" y2="155" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+                  <path d="M164 155 L164 185 L295 185" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+                  <path d="M516 155 L516 185 L465 185" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-flashcool" className="node" onClick={() => setActiveNode("flashcool")}>
+                    <rect x="30" y="198" width="120" height="44" rx="6" className={getNodeClass("flashcool", "c-amber")} />
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="90" y="214" textAnchor="middle" dominantBaseline="central">Vacuum Flash Cooler</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="90" y="232" textAnchor="middle" dominantBaseline="central">Target: 74–76 °C (&lt;80 °C)</text>
+                  </g>
+                  <path d="M220 220 L150 220" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+                  <path d="M90 198 L90 175 L204 175" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-reactor" className="node" onClick={() => setActiveNode("reactor")}>
+                    <rect x="204" y="162" width="272" height="100" rx="10" className={getNodeClass("reactor", "c-coral")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="340" y="195" textAnchor="middle" dominantBaseline="central">Attack Reactor System</text>
+                    <text className="text-[11px] fill-silver/70 pointer-events-none font-light" x="340" y="217" textAnchor="middle" dominantBaseline="central">Reaction Zone Dynamics</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="340" y="238" textAnchor="middle" dominantBaseline="central">Controlled 27% P₂O₅ Output</text>
+                  </g>
+
+                  <g id="node-offgas" className="node" onClick={() => setActiveNode("offgas")}>
+                    <rect x="534" y="190" width="120" height="44" rx="6" className={getNodeClass("offgas", "c-purple")} />
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="594" y="205" textAnchor="middle" dominantBaseline="central">Fluorine Gases</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="594" y="222" textAnchor="middle" dominantBaseline="central">To Scrubber</text>
+                  </g>
+                  <line x1="476" y1="212" x2="534" y2="212" stroke={H3PO4_FLOW_COLORS.gas} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <path d="M340 262 L340 305" fill="none" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.5" markerEnd="url(#ar-h3po4)"/>
+                  <text className="text-[11px] fill-silver/70 pointer-events-none" x="410" y="285" textAnchor="middle">Acid Slurry Feed</text>
+
+                  <g id="node-panfilter" className="node" onClick={() => setActiveNode("panfilter")}>
+                    <rect x="140" y="307" width="400" height="85" rx="8" className={getNodeClass("panfilter", "c-teal")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="340" y="330" textAnchor="middle" dominantBaseline="central">Tilting Pan Filter (Rotary Vacuum Matrix)</text>
+                    <text className="text-[11px] fill-silver/70 pointer-events-none font-light" x="340" y="352" textAnchor="middle" dominantBaseline="central">Optimized for 27% P₂O₅ Slurry Separation &amp; Multi-Stage Wash</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="340" y="372" textAnchor="middle" dominantBaseline="central">Rapid Inversion Cake Discharge &amp; Cloth Rinse</text>
+                  </g>
+
+                  <path d="M220 392 L220 445" fill="none" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.5" markerEnd="url(#ar-h3po4)"/>
+                  <text className="text-[11px] fill-silver/70 pointer-events-none" x="160" y="420">27% P₂O₅ Filtrate</text>
+
+                  <path d="M460 392 L460 445" fill="none" stroke={H3PO4_FLOW_COLORS.solids} strokeWidth="1.5" markerEnd="url(#ar-h3po4)"/>
+                  <text className="text-[11px] fill-silver/70 pointer-events-none" x="525" y="420">By-Product Cake</text>
+
+                  <g id="node-strongacid" className="node" onClick={() => setActiveNode("strongacid")}>
+                    <rect x="110" y="447" width="210" height="58" rx="8" className={getNodeClass("strongacid", "c-green")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="215" y="468" textAnchor="middle" dominantBaseline="central">Product Acid Seal Tank</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="215" y="488" textAnchor="middle" dominantBaseline="central">Crude 27% P₂O₅ Production</text>
+                  </g>
+                  <line x1="215" y1="505" x2="215" y2="545" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-clarification" className="node" onClick={() => setActiveNode("clarification")}>
+                    <rect x="110" y="547" width="210" height="58" rx="8" className={getNodeClass("clarification", "c-green")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="215" y="568" textAnchor="middle" dominantBaseline="central">Acid Clarification Settlers</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="215" y="588" textAnchor="middle" dominantBaseline="central">Suspended Solids Drop</text>
+                  </g>
+                  <line x1="215" y1="605" x2="215" y2="645" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-storage" className="node" onClick={() => setActiveNode("storage")}>
+                    <rect x="110" y="647" width="210" height="58" rx="8" className={getNodeClass("storage", "c-green")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="215" y="668" textAnchor="middle" dominantBaseline="central">Clarified 27% P₂O₅ Tank</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="215" y="688" textAnchor="middle" dominantBaseline="central">Intermediate Evaporator Feed</text>
+                  </g>
+                  <line x1="215" y1="705" x2="215" y2="745" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.5" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-evaporator" className="node" onClick={() => setActiveNode("evaporator")}>
+                    <rect x="110" y="747" width="210" height="68" rx="8" className={getNodeClass("evaporator", "c-coral")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="215" y="768" textAnchor="middle" dominantBaseline="central">54% P₂O₅ Evaporator</text>
+                    <text className="text-[11px] fill-silver/70 pointer-events-none font-light" x="215" y="788" textAnchor="middle" dominantBaseline="central">Forced Circulation / Vacuum</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="215" y="802" textAnchor="middle" dominantBaseline="central">Merchant Grade Concentration</text>
+                  </g>
+                  <line x1="215" y1="815" x2="215" y2="855" stroke={H3PO4_FLOW_COLORS.furnace} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-merchantstorage" className="node" onClick={() => setActiveNode("merchantstorage")}>
+                    <rect x="110" y="857" width="210" height="58" rx="8" className={getNodeClass("merchantstorage", "c-green")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="215" y="878" textAnchor="middle" dominantBaseline="central">54% MGA Storage Tank</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="215" y="898" textAnchor="middle" dominantBaseline="central">Final Merchant Acid Dispatch</text>
+                  </g>
+
+                  <g id="node-cakedischarge" className="node" onClick={() => setActiveNode("cakedischarge")}>
+                    <rect x="370" y="447" width="200" height="58" rx="8" className={getNodeClass("cakedischarge", "c-gray")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="470" y="468" textAnchor="middle" dominantBaseline="central">Pan Inversion &amp; Chute</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="470" y="488" textAnchor="middle" dominantBaseline="central">Calcium Sulfate Discharges</text>
+                  </g>
+                  <line x1="470" y1="505" x2="470" y2="545" stroke={H3PO4_FLOW_COLORS.solids} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-clothwash" className="node" onClick={() => setActiveNode("clothwash")}>
+                    <rect x="370" y="547" width="200" height="58" rx="8" className={getNodeClass("clothwash", "c-blue")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="470" y="568" textAnchor="middle" dominantBaseline="central">High-Pressure Cloth Wash</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="470" y="588" textAnchor="middle" dominantBaseline="central">Blind Prevention / Scald Removal</text>
+                  </g>
+                  <line x1="470" y1="605" x2="470" y2="645" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-washliquor" className="node" onClick={() => setActiveNode("washliquor")}>
+                    <rect x="370" y="647" width="200" height="58" rx="8" className={getNodeClass("washliquor", "c-blue")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="470" y="668" textAnchor="middle" dominantBaseline="central">Return Wash Filtrate Matrix</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="470" y="688" textAnchor="middle" dominantBaseline="central">Counter-Current Wash Loop Feed</text>
+                  </g>
+                  <path d="M370 676 L340 676 L340 370 L140 370" fill="none" stroke={H3PO4_FLOW_COLORS.utility} strokeWidth="1" strokeDasharray="4 3" markerEnd="url(#ar-h3po4)"/>
+
+                  <g id="node-scrubber" className="node" onClick={() => setActiveNode("scrubber")}>
+                    <rect x="350" y="755" width="240" height="52" rx="8" className={getNodeClass("scrubber", "c-gray")} />
+                    <text className="text-[13px] font-semibold fill-cloud tracking-wide pointer-events-none" x="470" y="775" textAnchor="middle" dominantBaseline="central">Fluorine Gas Scrubber Column</text>
+                    <text className="text-[11px] fill-silver/60 pointer-events-none font-light" x="470" y="794" textAnchor="middle" dominantBaseline="central">Emissions &lt; 30 mg/Nm³ to stack</text>
+                  </g>
+                  <path d="M594 234 L594 740 L470 740 L470 755" fill="none" stroke={H3PO4_FLOW_COLORS.gas} strokeWidth="1" strokeDasharray="4 3"/>
+                  <path d="M320 781 L350 781" fill="none" stroke={H3PO4_FLOW_COLORS.gas} strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#ar-h3po4)"/>
+
+                  <text className="text-[12px] fill-silver/40 pointer-events-none font-medium" x="340" y="965" textAnchor="middle">↑ Click any process block above to examine operational indicators.</text>
+                </svg>
+              </FadeIn>
+            </div>
+
+            {/* Dynamic Details Panel */}
+            <div className="lg:col-span-5 xl:col-span-4 lg:sticky lg:top-28">
+              <FadeIn delay={0.2}>
+                <div className="relative bg-navy-card/45 backdrop-blur-md border border-white/[0.12] p-8 rounded-sm shadow-2xl transition-all duration-500 min-h-[200px] hover:border-gold/30 group">
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-gold/40 via-gold to-gold/40" />
+
+                  {activeDetails ? (
+                    <div>
+                      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                        <h3 className="font-[family-name:var(--font-display)] text-lg text-cloud font-bold tracking-tight">
+                          {activeDetails.title}
+                        </h3>
+                        <span className={`text-[9px] font-bold tracking-wider px-3 py-1 uppercase rounded-full border ${getBadgeClass(activeDetails.badge[1])}`}>
+                          {activeDetails.badge[0]}
+                        </span>
+                      </div>
+                      
+                      <p className="text-sm font-light text-silver/90 leading-relaxed mb-6">
+                        {activeDetails.body}
+                      </p>
+                      
+                      <div className="space-y-4 pt-4 border-t border-divider/60">
+                        <div className="flex items-start gap-3">
+                          <div className="w-6 h-6 rounded-full bg-gold/10 flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-gold" />
+                          </div>
+                          <div>
+                            <h4 className="text-xs font-bold text-gold uppercase tracking-wider mb-1">
+                              Optimization Advisory Focus
+                            </h4>
+                            <p className="text-xs font-light text-silver/80 leading-relaxed">
+                              {activeDetails.kafaah}
+                            </p>
+                          </div>
+                        </div>
+
+                        {activeDetails.challenge && (
+                          <div className="flex items-start gap-3">
+                            <div className="w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                              <AlertTriangle className="w-3.5 h-3.5 text-red-400" />
+                            </div>
+                            <div>
+                              <h4 className="text-xs font-bold text-red-400 uppercase tracking-wider mb-1">
+                                Operational Challenge
+                              </h4>
+                              <p className="text-xs font-light text-silver/80 leading-relaxed">
+                                {activeDetails.challenge}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-center py-12 px-4 h-full">
+                      <div className="w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-4 animate-pulse">
+                        <Settings className="w-6 h-6 animate-[spin_8s_linear_infinite]" />
+                      </div>
+                      <h3 className="font-[family-name:var(--font-display)] text-base text-cloud font-medium mb-2">
+                        Interactive Optimization Advisor
+                      </h3>
+                      <p className="text-xs font-light text-silver/50 max-w-[280px] leading-relaxed">
+                        Click on any process block in the diagram to inspect technical configurations, key parameters, and Kafaah&apos;s specialized engineering recommendations.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </FadeIn>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Services Section */}
+      {relatedSvcs.length > 0 && (
+        <section className="py-24 bg-navy-dark border-t border-white/[0.05] relative overflow-hidden">
+          <div className="max-w-[1280px] mx-auto px-8">
+            <FadeIn>
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+                Synergies &amp; Solutions
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
+                Related Advisory &amp; Engineering Services
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedSvcs.map((svc, idx) => (
+                  <Link
+                    key={svc.slug}
+                    href={`/services/${svc.slug}/`}
+                    className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] hover:-translate-y-1.5 p-8 rounded-sm transition-all duration-500 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="text-[10px] tracking-[0.2em] font-semibold text-gold uppercase mb-4 font-[family-name:var(--font-ui)] flex items-center gap-2.5">
+                        <span className="w-5 h-5 rounded-full bg-gold/10 flex items-center justify-center text-[9px] text-gold font-bold">
+                          {svc.num}
+                        </span>
+                        Service Profile
+                      </div>
+                      <h3 className="font-[family-name:var(--font-display)] text-lg text-cloud font-semibold mb-3 group-hover:text-gold transition-colors">
+                        {svc.title}
+                      </h3>
+                      <p className="text-sm font-light text-silver/80 leading-relaxed mb-8">
+                        {svc.shortDesc}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-gold mt-auto pt-4 border-t border-divider/40">
+                      Explore Service Scope
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+
+      {/* Enhanced CTA Section */}
+      <section className="py-28 bg-navy-deep border-t border-white/[0.05] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.015] pointer-events-none" 
+             style={{ backgroundImage: "radial-gradient(#e5c158 1px, transparent 1px)", backgroundSize: "24px 24px" }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold/[0.01] rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[860px] mx-auto px-8 text-center relative z-10">
+          <FadeIn>
+            <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
+              Request Technical Consult
+            </span>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
+              Optimizing or Commissioning a {tech.name} Plant?
+            </h2>
+            <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">
+              Partner with specialized engineers who have directly operated and commissioned the exact same systems. Let&apos;s discuss your project targets.
+            </p>
+            
+            <Link
+              href="/contact/"
+              className="group btn-premium-gold font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.12em] uppercase inline-flex items-center"
+            >
+              <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-20 group-hover:animate-shimmer" />
+              <div className="absolute inset-0 -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-[1.2s] ease-in-out bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12" />
+
+              <span className="relative z-10 flex items-center gap-3 py-1">
+                Consult with our experts
+                <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1.5" />
+              </span>
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+    </>
+  );
+}
+
 export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
   if (tech.slug === "sulfuric-acid") {
     return <SulfuricAcidPFD tech={tech} relatedSvcs={relatedSvcs} />;
+  }
+
+  if (tech.slug === "phosphoric-acid") {
+    return <H3Po4PFD tech={tech} relatedSvcs={relatedSvcs} />;
   }
 
   if (tech.slug === "npk") {
@@ -2352,10 +2838,10 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             {/* Left Column: Rich Text Content */}
             <div className="lg:col-span-7">
               <FadeIn>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Chemical Overview
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                   Digesting the Chemistry &amp; Industry Role
                 </h2>
                 <div className="space-y-6">
@@ -2434,10 +2920,10 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
         <div className="absolute top-1/2 left-0 w-80 h-80 bg-gold/[0.005] rounded-full blur-[100px] pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Process Flow
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               The Production &amp; Conversion Sequence
             </h2>
           </FadeIn>
@@ -2481,10 +2967,10 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
       <section className="py-24 bg-navy-deep border-t border-white/[0.05]">
         <div className="max-w-[1280px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Major Infrastructure
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               Key Equipment &amp; Machinery Assets
             </h2>
           </FadeIn>
@@ -2514,10 +3000,10 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-500/[0.005] rounded-full blur-[120px] pointer-events-none" />
         <div className="max-w-[1280px] mx-auto px-8">
           <FadeIn>
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Critical Risk Areas
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               Commissioning Challenges &amp; Startup Risks
             </h2>
           </FadeIn>
@@ -2552,10 +3038,10 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             {/* Left Content Column */}
             <div className={`${tech.completedProject ? "lg:col-span-7" : "lg:col-span-12"}`}>
               <FadeIn>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Kafaah&apos;s Field Expertise
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                   Operated. Started. Optimized.
                 </h2>
                 <div className="space-y-6">
@@ -2568,14 +3054,14 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
               </FadeIn>
             </div>
 
-            {/* Right: Immersive Project Highlight Banner (Only for Suez / Yanbu projects) */}
+            {/* Right Column: Featured Reference Project Card */}
             {tech.completedProject && (
               <div className="lg:col-span-5 w-full">
                 <FadeIn delay={0.2}>
                   <div className="relative group bg-navy-card/40 backdrop-blur-md border border-gold/30 p-8 rounded-sm shadow-2xl overflow-hidden hover:border-gold/50 transition-all duration-500">
                     {/* Glowing circular overlay */}
                     <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-gold/[0.03] group-hover:bg-gold/[0.06] rounded-full blur-3xl transition-all duration-500" />
-                    
+
                     <div className="flex items-center gap-3 mb-6">
                       <div className="w-8 h-8 rounded-full bg-gold/10 flex items-center justify-center">
                         <CheckCircle2 className="w-4 h-4 text-gold" />
@@ -2628,7 +3114,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Synergies &amp; Solutions
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Related Advisory &amp; Engineering Services
               </h2>
               
@@ -2677,7 +3163,7 @@ export function TechnologyPageClient({ tech, relatedSvcs }: Props) {
             <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Optimizing or Commissioning a {tech.name} Plant?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">

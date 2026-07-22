@@ -34,57 +34,63 @@ export default async function TechnologyPage({ params }: Props) {
   );
 
   return (
-    <div>
-      {/* Immersive Hero Section */}
-      <section className="relative h-[100vh] min-h-[600px] flex flex-col justify-end overflow-hidden bg-navy-deep pt-36 pb-0 border-b border-divider">
-        {/* Background Image with authoritative overlay */}
-        <div className="absolute inset-0 z-0">
+    <div className="w-full overflow-x-hidden">
+      {/* Immersive Technology Hero Section aligned with UI Playbook.md */}
+      <header className="relative min-h-[85vh] h-auto flex flex-col justify-center overflow-hidden bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 border-b border-white/[0.08]">
+        {/* Background Image with authoritative dark overlay & directional gradient */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <picture>
             <source media="(max-width: 768px)" srcSet={tech.slug === "sulfate-of-potash" ? "/k2so4_plant-mobile.webp" : tech.heroImage} />
             <img
               src={tech.heroImage}
               alt={tech.name}
-              className="w-full h-full object-fill opacity-70 mix-blend-luminosity scale-105 animate-subtle-zoom"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
             />
           </picture>
-          {/* Multi-layered Softer Gradients to increase image visibility */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/60 to-navy-deep/20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/20 via-transparent to-navy-deep/60" />
-          {/* Top dark overlay layer for navbar readability */}
-          <div className="absolute top-0 left-0 right-0 h-[20vh] bg-gradient-to-b from-navy-deep/90 to-transparent pointer-events-none" />
+          {/* Fading gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 via-45% to-transparent rtl:bg-gradient-to-l" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
-        {/* Content Container */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 mt-auto pb-12 lg:pb-16">
-          <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-5 gold-line">
-            Technology Specialist
-          </div>
-          <h1 className="font-[family-name:var(--font-display)] text-[clamp(24px,5.5vw,72px)] leading-[1.02] text-cloud mb-4 tracking-normal">
-            {tech.fullName}
-          </h1>
-          <p className="text-lg md:text-xl font-light text-silver/90 max-w-[720px] leading-relaxed">
-            {tech.heroTagline}
-          </p>
-        </div>
+        {/* Content Container (Centered Vertically) */}
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+          <div className="max-w-[720px] text-left rtl:text-right">
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>Technology Specialist</span>
+            </div>
 
-        {/* Bottom Key Stats Bar */}
-        <div className="relative z-10 border-t border-white/[0.15]" style={{ backgroundColor: "rgba(78, 96, 120, 0.96)" }}>
-          <div className="max-w-[1280px] mx-auto px-8">
-            <div className="grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-white/[0.08] border-y md:border-y-0 md:border-x border-white/[0.08] max-md:divide-x-0 max-md:border-x-0">
-              {tech.keyStats.map((stat, i) => (
-                <div key={i} className="py-6 px-4 md:px-6 lg:px-8 group hover:bg-white/[0.02] transition-colors duration-300">
-                  <div className="text-[clamp(0.8rem,1.05vw,1.15rem)] text-white font-medium font-[family-name:var(--font-display)] leading-snug mb-2 group-hover:text-gold transition-colors duration-300">
-                    {stat.value}
-                  </div>
-                  <div className="text-[9px] tracking-[0.15em] uppercase font-[family-name:var(--font-ui)] text-silver/50 group-hover:text-silver/85 transition-colors duration-300">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+            {/* H1 Title matching UI Playbook scale */}
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+              {tech.fullName}
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base font-medium text-cloud mb-4 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+              {tech.heroTagline}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mt-6">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 text-center"
+              >
+                <span>Request Process Audit</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 text-center"
+              >
+                <span>Talk to a Process Expert →</span>
+              </a>
             </div>
           </div>
         </div>
-      </section>
+      </header>
 
       <TechnologyPageClient tech={tech} relatedSvcs={relatedSvcs} />
     </div>

@@ -24,8 +24,9 @@ const techDropdown = technologies.map((t) => ({
 const navServices = [
   { slug: "owners-engineer", sub: "Owner's representation" },
   { slug: "investor-advisory", sub: "Feasibility & tech selection" },
+  { slug: "process-engineering-support", sub: "Basic & Detailed Engineering Review" },
+  { slug: "construction-commissioning-support", sub: "Pre-startup verification" },
   { slug: "operation-readiness", sub: "HAZOP & operational prep" },
-  { slug: "commissioning", sub: "Pre-commissioning to startup" },
   { slug: "troubleshooting", sub: "Root-cause diagnostics & fixes" },
   { slug: "production-optimization", sub: "Yield & energy optimization" },
   { slug: "operator-training", sub: "Competency training programs" },

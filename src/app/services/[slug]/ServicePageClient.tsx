@@ -31,7 +31,8 @@ import {
   CheckCircle2,
   Activity,
   FileCheck,
-  GitMerge
+  GitMerge,
+  TrendingUp
 } from "lucide-react";
 import { FadeIn, StaggerChildren, RevealItem } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
@@ -401,44 +402,50 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
 
   return (
     <>
-      {/* 0. Hero Header Section with 100vh viewport height & transparent glassmorphism trust strip bar */}
-      <header className="relative h-[100vh] min-h-[680px] flex flex-col justify-between overflow-hidden bg-navy-deep pt-32 sm:pt-36 pb-0 border-b border-white/[0.08]">
-        {/* Chemical Engineering Process Background Image with Dark Left Overlay */}
+      {/* 0. Hero Header Section with responsive viewport height & transparent glassmorphism trust strip bar */}
+      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-between bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-0 border-b border-white/[0.08]">
+        {/* Chemical Engineering Process Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img
-            src="/expert_witness_engineer_blueprint.webp"
-            alt="Engineer with Hardhat and Blueprints — Expert Witness & Technical Dispute Resolution"
-            className="w-full h-full object-cover object-right opacity-95 mix-blend-luminosity scale-105"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/expert_witness_mobile.webp" />
+            <source media="(min-width: 769px)" srcSet="/expert_witness_engineer_blueprint.webp" />
+            <img
+              src="/expert_witness_engineer_blueprint.webp"
+              alt="Engineer with Hardhat and Blueprints — Expert Witness & Technical Dispute Resolution"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
+            />
+          </picture>
           {/* Fading gradient matching Homepage Hero: dark deep navy overlay on the text side */}
           <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
         <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator */}
-            <div className="inline-flex items-center gap-2.5 mb-5 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold border border-gold/40 px-3.5 py-1.5 rounded-sm bg-gold/5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
-              {heroData.tag[locale]}
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>{heroData.tag[locale]}</span>
             </div>
 
             {/* H1 Title with Unbroken 2-Line Formatting */}
-            <h1 className="font-[family-name:var(--font-display)] text-[clamp(28px,4vw,52px)] font-semibold leading-[1.12] text-cloud mb-5 tracking-tight">
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
               <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
               <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-base sm:text-lg font-medium text-cloud mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+            {/* Subtitle - slightly reduced size */}
+            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
               {heroData.sub[locale]}
             </p>
 
-            {/* Description */}
-            <p className="text-sm sm:text-[15px] font-light text-silver/85 leading-relaxed max-w-[540px] mb-8">
+            {/* Description - slightly reduced size */}
+            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
               {heroData.desc[locale]}
             </p>
 
@@ -470,7 +477,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
               {trustStripItems.map((item: any, i: number) => {
                 const IconComp = item.icon;
                 return (
-                  <div key={i} className="flex items-start gap-4 pt-4 sm:pt-0 sm:px-6 first:px-0">
+                  <div key={i} className="flex items-start gap-4 pt-4 pb-4 sm:py-0 sm:px-6 first:px-0 first:pt-0 sm:first:pt-0">
                     <div className="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center shrink-0 text-gold bg-gold/10 shadow-[0_0_12px_rgba(229,193,88,0.2)]">
                       <IconComp className="w-5 h-5" />
                     </div>
@@ -501,7 +508,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-4 gold-line">
                   {whyData.eyebrow[locale]}
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,38px)] leading-[1.15] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
@@ -568,7 +575,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
               {expertWitnessDict.scopeSection.eyebrow[locale]}
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {expertWitnessDict.scopeSection.title[locale]}
             </h2>
             <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
@@ -611,7 +618,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
               {expertWitnessDict.risksSection.eyebrow[locale]}
             </div>
-            <h3 className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,36px)] text-cloud font-semibold tracking-tight">
+            <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {expertWitnessDict.risksSection.title[locale]}
             </h3>
             <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -647,7 +654,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
                   {expertWitnessDict.whyKafaah.eyebrow[locale]}
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold leading-tight">
+                <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2]">
                   {expertWitnessDict.whyKafaah.title[locale]}
                 </h3>
                 <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -682,7 +689,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
               {expertWitnessDict.faqSection.eyebrow[locale]}
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {expertWitnessDict.faqSection.title[locale]}
             </h2>
             <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -723,7 +730,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
       <section className="py-24 bg-navy-dark relative overflow-hidden border-b border-white/[0.05]">
         <div className="max-w-[1280px] mx-auto px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            
+
             {/* Content Side (2-Line Heading & Paragraph) */}
             <div className="text-left rtl:text-right max-w-2xl flex-1">
               {/* Eyebrow Tag */}
@@ -731,8 +738,8 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
                 {ctaData.eyebrow[locale]}
               </div>
 
-              {/* 2-Line Heading with same smaller font size */}
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.2vw,36px)] text-cloud font-semibold leading-[1.25] tracking-tight">
+              {/* 2-Line Heading with standardized section title font size */}
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.25] tracking-tight">
                 <span className="block text-cloud">{ctaData.titleLine1[locale]}</span>
                 <span className="block text-gold">{ctaData.titleLine2[locale]}</span>
               </h2>
@@ -774,7 +781,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6">
                 Process Synergies
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] text-cloud mb-12 tracking-tight">
                 Applicable Plant Technologies
               </h2>
 
@@ -1176,30 +1183,36 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
   return (
     <>
       {/* 0. Hero Header Section matching Homepage Hero structure */}
-      <header className="relative h-[100vh] min-h-[680px] flex flex-col justify-between overflow-hidden bg-navy-deep pt-32 sm:pt-36 pb-0 border-b border-white/[0.08]">
-        {/* Background Image with Dark Left Overlay */}
+      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-between bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-0 border-b border-white/[0.08]">
+        {/* Background Image with Dark Overlay */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-          <img
-            src="/construction_commissioning_hero_bg.webp"
-            alt="Construction & Commissioning Support — Kafaah Industrial"
-            className="w-full h-full object-cover object-right opacity-95 mix-blend-luminosity scale-105"
-          />
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/construction_commissioning_mobile.webp" />
+            <source media="(min-width: 769px)" srcSet="/construction_commissioning_hero_bg.webp" />
+            <img
+              src="/construction_commissioning_hero_bg.webp"
+              alt="Construction & Commissioning Support — Kafaah Industrial"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
+            />
+          </picture>
           {/* Fading gradient */}
           <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
         <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag */}
-            <div className="inline-flex items-center gap-2.5 mb-5 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold border border-gold/40 px-3.5 py-1.5 rounded-sm bg-gold/5">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping" />
-              {heroData.tag[locale]}
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>{heroData.tag[locale]}</span>
             </div>
 
             {/* H1 Title */}
-            <h1 className="font-[family-name:var(--font-display)] text-[clamp(28px,4vw,52px)] font-semibold leading-[1.12] text-cloud mb-5 tracking-tight">
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
               <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
               <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
@@ -1207,12 +1220,12 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-base sm:text-lg font-medium text-cloud mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
               {heroData.sub[locale]}
             </p>
 
             {/* Description */}
-            <p className="text-sm sm:text-[15px] font-light text-silver/85 leading-relaxed max-w-[540px] mb-8">
+            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
               {heroData.desc[locale]}
             </p>
 
@@ -1244,7 +1257,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
               {trustStripItems.map((item: any, i: number) => {
                 const IconComp = item.icon;
                 return (
-                  <div key={i} className="flex items-start gap-4 pt-4 sm:pt-0 sm:px-6 first:px-0">
+                  <div key={i} className="flex items-start gap-4 pt-4 pb-4 sm:py-0 sm:px-6 first:px-0 first:pt-0 sm:first:pt-0">
                     <div className="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center shrink-0 text-gold bg-gold/10 shadow-[0_0_12px_rgba(229,193,88,0.2)]">
                       <IconComp className="w-5 h-5" />
                     </div>
@@ -1268,13 +1281,13 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
       <section className="py-24 bg-navy-deep relative overflow-hidden border-b border-white/[0.05]">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-5">
               <FadeIn>
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-4 gold-line">
                   {whyData.eyebrow[locale]}
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,38px)] leading-[1.15] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
@@ -1287,7 +1300,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             <div className="lg:col-span-7">
               <FadeIn delay={0.15}>
                 <div className="flex flex-col md:flex-row items-stretch gap-4 relative">
-                  
+
                   <div className="flex-1 bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 rounded-sm">
                     <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-rose-400 mb-5 pb-3 border-b border-white/10">
                       {whyData.challengesCard.title[locale]}
@@ -1337,7 +1350,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
               {constructionCommissioningDict.scopeSection.eyebrow[locale]}
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {constructionCommissioningDict.scopeSection.title[locale]}
             </h2>
             <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
@@ -1380,7 +1393,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
               {constructionCommissioningDict.risksSection.eyebrow[locale]}
             </div>
-            <h3 className="font-[family-name:var(--font-display)] text-[clamp(22px,3vw,36px)] text-cloud font-semibold tracking-tight">
+            <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {constructionCommissioningDict.risksSection.title[locale]}
             </h3>
             <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -1410,13 +1423,13 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
       <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             <div className="lg:col-span-5">
               <FadeIn>
                 <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
                   {constructionCommissioningDict.whyKafaah.eyebrow[locale]}
                 </div>
-                <h3 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold leading-tight">
+                <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2]">
                   {constructionCommissioningDict.whyKafaah.title[locale]}
                 </h3>
                 <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -1451,7 +1464,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
               {constructionCommissioningDict.faqSection.eyebrow[locale]}
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(24px,3.5vw,42px)] text-cloud font-semibold tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
               {constructionCommissioningDict.faqSection.title[locale]}
             </h2>
             <div className="w-12 h-[2px] bg-gold mt-4" />
@@ -1492,13 +1505,13 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
       <section className="py-24 bg-navy-dark relative overflow-hidden border-b border-white/[0.05]">
         <div className="max-w-[1280px] mx-auto px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
-            
+
             <div className="text-left rtl:text-right max-w-2xl flex-1">
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3 inline-block">
                 {ctaData.eyebrow[locale]}
               </div>
 
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.2vw,36px)] text-cloud font-semibold leading-[1.25] tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.25] tracking-tight">
                 <span className="block text-cloud">{ctaData.titleLine1[locale]}</span>
                 <span className="block text-gold">{ctaData.titleLine2[locale]}</span>
               </h2>
@@ -1537,10 +1550,10 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6">
                 Process Synergies
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] text-cloud mb-12 tracking-tight">
                 Applicable Plant Technologies
               </h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {relatedTechs.map((tech) => (
                   <Link
@@ -1560,7 +1573,2733 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
                         {tech.shortDesc}
                       </p>
                     </div>
-                    
+
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-gold mt-auto pt-4 border-t border-divider/40">
+                      Explore Technology
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
+// Dictionary for Expert Process & Engineering Support matching HTML structure
+const processEngineeringSupportDict: Record<string, any> = {
+  hero: {
+    tag: { en: "Service Advisory", ar: "استشارات فنية متخصصة", zh: "专业工程咨询" },
+    titlePart1: { en: "Expert Process & ", ar: "الدعم الهندسي و", zh: "专业工艺与 " },
+    titlePart2: { en: "Engineering Support", ar: "عمليات الهندسة المستقلة", zh: "工程技术支持" },
+    sub: {
+      en: "Independent Process Engineering Review Through Basic & Detailed Engineering",
+      ar: "مراجعة مستقلة لهندسة العمليات خلال مراحل التصميم الأساسي والتفصيلي",
+      zh: "基础工程与详细设计阶段的独立工艺工程审查"
+    },
+    desc: {
+      en: "Catch design gaps before they reach procurement and construction — independent review of PFDs, P&IDs, heat & mass balances, and engineering deliverables, built on 20+ years of hands-on process experience.",
+      ar: "كشف الفجوات التصميمية قبل وصولها لمراحل التوريد والإنشاءات — مراجعة مستقلة لمخططات التدفق PFDs و P&IDs وموازنات الحرارة والمادة، مبنية على أكثر من 20 عاماً من الخبرة العملية.",
+      zh: "在项目进入采购与施工前及时发现设计缺陷——基于 20 余年一线工艺经验，对 PFD、P&ID、热与物料衡算及工程交付物进行独立审查。"
+    },
+    btnPrimary: { en: "Request Consultation →", ar: "طلب استشارة فنية ←", zh: "请求技术咨询 →" },
+    btnSecondary: { en: "Download Brochure ⬇", ar: "تحميل الملف التعريفي ⬇", zh: "下载服务说明 ⬇" }
+  },
+  trustStrip: {
+    en: [
+      { title: "Process Design Review", desc: "Independent check of PFDs, P&IDs & balances", icon: Ruler },
+      { title: "Deliverable QA", desc: "Verify engineering packages meet design basis", icon: ClipboardList },
+      { title: "HAZOP & Safety Support", desc: "Participate in HAZOP/HAZID studies", icon: ShieldAlert },
+      { title: "Early Issue Detection", desc: "Catch design gaps while still cheap to fix", icon: Clock },
+    ],
+    ar: [
+      { title: "مراجعة تصميم العمليات", desc: "فحص مستقل لمخططات PFDs و P&IDs والموازنات", icon: Ruler },
+      { title: "ضمان جودة المخرجات", desc: "التحقق من مطابقة الحزم الهندسية لأساس التصميم", icon: ClipboardList },
+      { title: "دعم HAZOP والسلامة", desc: "المشاركة المباشرة في دراسات HAZOP و HAZID", icon: ShieldAlert },
+      { title: "الاكتشاف المبكر للمشكلات", desc: "كشف أخطاء التصميم وهي ما تزال منخفضة التكلفة للتقويم", icon: Clock },
+    ],
+    zh: [
+      { title: "工艺设计审查", desc: "独立检查 PFD、P&ID 及物料衡算", icon: Ruler },
+      { title: "交付物质量保证", desc: "验证工程软件包符合设计基础", icon: ClipboardList },
+      { title: "HAZOP 与安全支持", desc: "深度参与 HAZOP/HAZID 风险评估分析", icon: ShieldAlert },
+      { title: "早期问题识别", desc: "在修改成本低廉的阶段消除设计隐患", icon: Clock },
+    ]
+  },
+  whySection: {
+    eyebrow: { en: "Why Independent Engineering Review?", ar: "لماذا المراجعة الهندسية المستقلة؟", zh: "为什么需要独立工程审查？" },
+    title: {
+      en: "Why Review Basic & Detailed Engineering Independently?",
+      ar: "لماذا تتم مراجعة الهندسة الأساسية والتفصيلية بشكل مستقل؟",
+      zh: "为什么需要在基础工程与详细设计阶段引入独立审查？"
+    },
+    desc: {
+      en: "Design errors are cheapest to fix on paper and most expensive once they reach the field. An independent process engineering review during Basic and Detailed Engineering gives the owner a second set of experienced eyes on the design — catching inconsistencies, sizing errors, and design basis deviations before they are locked into procurement and construction.",
+      ar: "تكون أخطاء التصميم أقل تكلفة بكثير عند معالجتها على الورق، وتصبح باهظة التكلفة فور وصولها للموقع. تمنح المراجعة المستقلة لمهندسي العمليات صاحب المشروع عيناً خبيرة ثانية على التصميم — لكشف التناقضات وأخطاء الأحجام والحيود عن أسس التصميم قبل اعتمادها للتوريد والإنشاءات.",
+      zh: "设计图纸上的修改成本最低，而一旦进入施工现场，修改费用将成倍增加。ใน基础工程和详细设计阶段引入独立工艺工程审查，为业主 provide 第二双专业的眼睛——在采购和施工锁定前，及时发现不一致、尺寸计算错误及偏差。"
+    },
+    challengesCard: {
+      title: { en: "Common Engineering-Stage Risks", ar: "المخاطر الشائعة في مرحلة الهندسة", zh: "工程阶段常见风险" },
+      items: {
+        en: [
+          "Inconsistent PFDs & P&IDs",
+          "Heat & mass balance errors",
+          "Equipment under/oversizing",
+          "Missed HAZOP actions",
+          "Design basis deviations",
+          "Late-stage design changes"
+        ],
+        ar: [
+          "عدم اتساق مخططات PFDs و P&IDs",
+          "أخطاء في موازنات الحرارة والمادة",
+          "حسابات خطأ لإنقاص/زيادة أحجام المعدات",
+          "إغفال مخرجات وإجراءات HAZOP",
+          "الحيود والانحراف عن أسس التصميم",
+          "تعديلات التصميم المتأخرة باهظة التكلفة"
+        ],
+        zh: [
+          "PFD 与 P&ID 存在不一致",
+          "热与物料衡算计算错误",
+          "设备选型尺寸过大或过小",
+          "遗漏 HAZOP 风险追踪项",
+          "背离项目设计基础要求",
+          "后期产生高昂的设计变更"
+        ]
+      }
+    },
+    contributionCard: {
+      title: { en: "Our Contribution", ar: "مساهمتنا وحلولنا", zh: "我們的核心价值与贡献" },
+      items: {
+        en: [
+          "Independent PFD & P&ID review",
+          "Heat & mass balance verification",
+          "Equipment sizing & datasheet review",
+          "HAZOP / HAZID participation",
+          "Design basis compliance checks",
+          "Early issue detection & resolution"
+        ],
+        ar: [
+          "مراجعة مستقلة ودقيقة لمخططات PFD و P&ID",
+          "التحقق الفني من موازنات الحرارة والمادة",
+          "مراجعة أوراق بيانات المعدات وحسابات أحجامها",
+          "المشاركة الفعالة في جلسات HAZOP / HAZID",
+          "فحص مطابقة أسس التصميم والاشتراطات",
+          "الاكتشاف والحل المبكر للمشكلات التصميمية"
+        ],
+        zh: [
+          "独立的 PFD 与 P&ID 全面审查",
+          "热与物料衡算数据精准复核",
+          "设备选型尺寸及数据表核查",
+          "全程参与 HAZOP / HAZID 风险评估",
+          "严格核查设计基础符合性",
+          "早期发现问题并ᨀ供解决方案"
+        ]
+      }
+    }
+  },
+  scopeSection: {
+    eyebrow: { en: "Service Scope", ar: "نطاق الخدمة", zh: "服务范围" },
+    title: { en: "Our Service Scope", ar: "نطاق خدماتنا الهندسية", zh: "<ctrl42>我們的工程服务范围" },
+    cards: {
+      en: [
+        {
+          title: "1. Design Basis Review",
+          icon: FileCheck,
+          items: [
+            "Feed & Product Specifications",
+            "Process Design Criteria",
+            "Site & Utility Conditions",
+            "Licensor Basic Design Package",
+            "Feasibility Cross-Check"
+          ]
+        },
+        {
+          title: "2. Basic Engineering Review",
+          icon: Ruler,
+          items: [
+            "PFD & Heat/Mass Balance Review",
+            "Equipment List & Sizing Review",
+            "P&ID Development Review",
+            "HAZOP / HAZID Participation",
+            "Utility & Offsite Requirements"
+          ]
+        },
+        {
+          title: "3. Detailed Engineering Review",
+          icon: FlaskConical,
+          items: [
+            "Detailed P&ID Review",
+            "Line Sizing & Hydraulics",
+            "Equipment Datasheets & Specs",
+            "Instrumentation & Control Philosophy",
+            "Vendor Drawing Review"
+          ]
+        },
+        {
+          title: "4. Design Assurance & Handover",
+          icon: CheckCircle2,
+          items: [
+            "Constructability Review",
+            "Deviation & Change Management",
+            "Engineering Query Resolution",
+            "Final Design Package Verification",
+            "Handover to Procurement"
+          ]
+        }
+      ],
+      ar: [
+        {
+          title: "1. مراجعة أسس التصميم",
+          icon: FileCheck,
+          items: [
+            "مواصفات اللقيم والمنتج النهائي",
+            "معايير واشتراطات تصميم العمليات",
+            "ظروف الموقع والخدمات المرافقية",
+            "حزمة التصميم الأساسية من المانح (Licensor)",
+            "فحص وجدوى الملاءمة الفنية"
+          ]
+        },
+        {
+          title: "2. مراجعة الهندسة الأساسية (FEED)",
+          icon: Ruler,
+          items: [
+            "مراجعة PFD وموازنات الحرارة والمادة",
+            "مراجعة قائمة المعدات وحسابات الأحجام",
+            "مراجعة وتطوير مخططات P&ID",
+            "المشاركة المباشرة في دراسات HAZOP / HAZID",
+            "متطلبات المرافق والخدمات الخارجية"
+          ]
+        },
+        {
+          title: "3. مراجعة الهندسة التفصيلية",
+          icon: FlaskConical,
+          items: [
+            "مراجعة مخططات P&ID التفصيلية",
+            "أحجام الأنابيب والحسابات الهيدروليكية",
+            "أوراق بيانات المعدات والمواصفات الفنية",
+            "فلسفة أجهزة القياس والتحكم الآلي",
+            "مراجعة رسومات ومخططات الموردين"
+          ]
+        },
+        {
+          title: "4. ضمان التصميم والتسليم للتوريد",
+          icon: CheckCircle2,
+          items: [
+            "مراجعة قابلية الإنشاء والتنفيذ (Constructability)",
+            "إدارة التغيير والحيود عن التصميم",
+            "حل الاستفسارات الهندسية (RFIs/EQs)",
+            "التحقق النهائي من حزمة التصميم المقفلة",
+            "التسليم السلس لمرحلة التوريد والشراء"
+          ]
+        }
+      ],
+      zh: [
+        {
+          title: "1. 设计基础审查",
+          icon: FileCheck,
+          items: [
+            "原料及产品规格书",
+            "工艺设计基准与准则",
+            "现场与公用工程条件",
+            "专利商基础设计包",
+            "可行性与合理性复核"
+          ]
+        },
+        {
+          title: "2. 基础工程设计审查",
+          icon: Ruler,
+          items: [
+            "PFD 与热物料衡算审查",
+            "设备清单与选型尺寸复核",
+            "P&ID 图纸深化与审查",
+            "HAZOP / HAZID 分析参与",
+            "公用工程与界外设施需求"
+          ]
+        },
+        {
+          title: "3. 详细工程设计审查",
+          icon: FlaskConical,
+          items: [
+            "详细 P&ID 图纸深度审查",
+            "管径选型与水力学计算",
+            "设备数据表与技术规格书",
+            "仪表与控制哲学方案",
+            "供应商设备图纸审核"
+          ]
+        },
+        {
+          title: "4. 设计保证与采购移交",
+          icon: CheckCircle2,
+          items: [
+            "可施工性深度评估",
+            "偏差与设计变更管理",
+            "工程疑问 (EQ) 解答与核销",
+            "最终设计软件包核销",
+            "移交采购阶段的安全衔接"
+          ]
+        }
+      ]
+    }
+  },
+  risksSection: {
+    eyebrow: { en: "Engineering-Stage Risks We Catch", ar: "مخاطر مرحلة الهندسة التي نكشفها ونمنعها", zh: "<ctrl42>我們在工程阶段捕获的致命风险" },
+    title: { en: "Risks Mitigated During Process Engineering Review", ar: "المخاطر التي يتم الحد منها أثناء مراجعة هندسة العمليات", zh: "工艺工程审查期间规避的核心风险" },
+    cards: {
+      en: [
+        { title: "PFD/P&ID Inconsistencies", icon: Ruler },
+        { title: "Heat & Mass Balance Errors", icon: Scale },
+        { title: "Equipment Sizing Errors", icon: Wrench },
+        { title: "Missed HAZOP Actions", icon: ShieldAlert },
+        { title: "Design Basis Deviations", icon: FileText },
+        { title: "Line Sizing & Hydraulics Issues", icon: Activity },
+        { title: "Instrumentation Gaps", icon: GitMerge },
+        { title: "Late-Stage Design Changes", icon: Clock },
+      ],
+      ar: [
+        { title: "تناقضات واختلافات PFD / P&ID", icon: Ruler },
+        { title: "أخطاء موازنات الحرارة والمادة", icon: Scale },
+        { title: "أخطاء أحجام وسعات المعدات", icon: Wrench },
+        { title: "إغفال إجراءات وتوصيات HAZOP", icon: ShieldAlert },
+        { title: "الانحرافات عن أسس التصميم المعتمدة", icon: FileText },
+        { title: "مشاكل الهيدروليك وأحجام الأنابيب", icon: Activity },
+        { title: "ثغرات ونقص أجهزة القياس والتحكم", icon: GitMerge },
+        { title: "تغييرات التصميم المتأخرة المكلفة", icon: Clock },
+      ],
+      zh: [
+        { title: "PFD 与 P&ID 图纸不一致", icon: Ruler },
+        { title: "热与物料衡算计算失误", icon: Scale },
+        { title: "设备选型尺寸偏差错误", icon: Wrench },
+        { title: "遗漏 HAZOP 核心安全动作", icon: ShieldAlert },
+        { title: "偏离既定项目设计基础", icon: FileText },
+        { title: "管径与水力学计算缺陷", icon: Activity },
+        { title: "控制与测量仪表设置盲区", icon: GitMerge },
+        { title: "后期高昂的设计变更", icon: Clock },
+      ]
+    }
+  },
+  whyKafaah: {
+    eyebrow: { en: "Why Kafaah?", ar: "لماذا كفاءة؟", zh: "为什么选择 Kafaah？" },
+    title: { en: "Why Trust Kafaah for Engineering Support?", ar: "لماذا تثق بكفاءة للدعم الهندسي والتصميمي؟", zh: "为什么选择 Kafaah Provide 工程技术支持？" },
+    items: {
+      en: [
+        "Independent Process Design Review",
+        "Chemical & Fertilizer Process Specialists",
+        "20+ Years of Hands-On Process Engineering",
+        "Familiar with Major Licensor Design Packages",
+        "Practical, Constructability-Focused Reviews",
+        "Early Issue Detection Reduces Downstream Cost"
+      ],
+      ar: [
+        "مراجعة مستقلة ومحايدة تماماً لتصميم العمليات",
+        "متخصصون محترفون في عمليات الكيماويات والأسمدة",
+        "أكثر من 20 عاماً من الخبرة العملية الميدانية",
+        "معرفة عميقة بحزم تصميم كبار المانحين العالميين",
+        "مراجعات عملية تركز على سهولة التشغيل والإنشاء",
+        "الكشف المبكر يقلل تكاليف التوريد والتنفيذ اللاحقة"
+      ],
+      zh: [
+        "完全独立的工艺设计第三方审查",
+        "精通化工与化肥工艺的行业专家",
+        "20 余年一线工艺工程实践积累",
+        "熟悉全球主要专利商的基础设计包",
+        "注重实际可施工性与可操作性的审查",
+        "早期问题识别大幅降低后续变造成本"
+      ]
+    }
+  },
+  faqSection: {
+    eyebrow: { en: "Frequently Asked Questions", ar: "الأسئلة الشائعة", zh: "常见问题解答" },
+    title: { en: "Questions Owners Ask Before Engaging an Engineering Reviewer", ar: "أسئلة يطرحها أصحاب المشاريع قبل تعيين مراجع هندسي", zh: "业主聘请工程审查专家前常问的问题" },
+    items: {
+      en: [
+        {
+          q: "What is Expert Process & Engineering Support?",
+          a: "It's an independent technical review of the process engineering package during Basic and Detailed Engineering — covering PFDs, P&IDs, heat & mass balances, equipment sizing, and design deliverables — to confirm the design meets the design basis before it moves into procurement and construction."
+        },
+        {
+          q: "At what stage should Kafaah get involved?",
+          a: "Ideally at the start of Basic Engineering, once the licensor's or EPC contractor's design basis package is available. Early involvement allows issues to be flagged while changes are still inexpensive. Kafaah can also join partway through Detailed Engineering if a review has not yet been carried out."
+        },
+        {
+          q: "What deliverables does Kafaah review?",
+          a: "Typical deliverables include process flow diagrams, heat and mass balances, P&IDs, equipment lists and datasheets, line sizing calculations, and instrumentation and control philosophy — reviewed against the design basis, licensor guarantees, and applicable codes and standards."
+        },
+        {
+          q: "Does Kafaah participate in HAZOP/HAZID studies?",
+          a: "Yes. Kafaah can join HAZOP and HAZID sessions as an independent process reviewer, contributing process engineering perspective and following up to confirm that resulting actions are properly closed out in the design."
+        },
+        {
+          q: "Can Kafaah review licensor engineering packages?",
+          a: "Yes. Kafaah has direct working familiarity with process technologies and licensor packages common in the fertilizer and inorganic chemicals sector, and reviews these packages for internal consistency and alignment with the owner's operating requirements."
+        },
+        {
+          q: "How is this different from the Owner's Engineer service?",
+          a: "Owner's Engineer support spans the full project lifecycle, from engineering through construction and commissioning. Expert Process & Engineering Support is a focused engagement on the process design itself during Basic and Detailed Engineering — often the starting point before broader Owner's Engineer oversight begins."
+        }
+      ],
+      ar: [
+        {
+          q: "ما هو الدعم الهندسي ودعم العمليات المتخصص؟",
+          a: "هو مراجعة فنية مستقلة لحزمة هندسة العمليات خلال مرحلتي الهندسة الأساسية والتفصيلية — تشمل مخططات PFDs و P&IDs وموازنات الحرارة والمادة وأحجام المعدات ومخرجات التصميم — لضمان مطابقة التصميم لأسس المشروع قبل انتقاله للتوريد والإنشاءات."
+        },
+        {
+          q: "في أي مرحلة ينبغي إشراك فريق كفاءة؟",
+          a: "مثالياً في بداية الهندسة الأساسية (FEED)، فور توفر حزمة أسس التصميم من المانح أو مقاول EPC. يسمح التدخل المبكر بتحديد المشكلات وهي ما تزال منخفضة التكلفة للتعديل. كما يمكن لكفاءة الانضمام خلال الهندسة التفصيلية إذا لم تكن المراجعة قد تمت."
+        },
+        {
+          q: "ما هي المخرجات والتصاميم التي تقوم كفاءة بمراجعتها؟",
+          a: "تشمل المخرجات النموذجية مخططات تدفق العمليات (PFD)، موازنات الحرارة والمادة، مخططات P&ID، قوائم المعدات وأوراق البيانات، حسابات أحجام الأنابيب، وفلسفة التحكم والأجهزة — بمراجعتها مقابل أسس التصميم وضمانات المانح والمعايير الهندسية."
+        },
+        {
+          q: "هل تشارك كفاءة في دراسات HAZOP و HAZID؟",
+          a: "نعم. تشارك كفاءة في جلسات HAZOP و HAZID كمراجع عمليات مستقل، مع تقديم الرؤية الهندسية ومتابعة إغلاق التوصيات والإجراءات الناتجة في المخططات النهائية."
+        },
+        {
+          q: "هل يمكن لكفاءة مراجعة حزم تصاميم المانحين العالميّين (Licensors)؟",
+          a: "نعم. يمتلك فريق كفاءة معرفة وممارسة مباشرة بتقنيات العمليات وحزم المانحين الشائعة في قطاع الأسمدة والكيماويات غير العضوية، ونراجع هذه الحزم لضمان اتساقها الداخلي وملاءمتها لمتطلبات مالك المصنع."
+        },
+        {
+          q: "ما الفرق بين هذه الخدمة وخدمة مهندس المالك (Owner's Engineer)؟",
+          a: "تغطي خدمة مهندس المالك دائمًا دورة حياة المشروع كاملة، من الهندسة وحتى الإنشاءات وبدء التشغيل. بينما يُعد الدعم الهندسي المتخصص تركيزاً شاملاً مكثفاً على تصميم العمليات نفسه خلال الهندسة الأساسية والتفصيلية — وغالباً ما يكون نقطة البداية قبل التوسع في رقابة مهندس المالك."
+        }
+      ],
+      zh: [
+        {
+          q: "什么是专业工艺与工程支持服务？",
+          a: "这是在基础工程与详细设计阶段对工艺工程软件包进行的独立技术审查——涵盖 PFD、P&ID、热物料衡算、设备选型及交付物——以确认设计在进入采购与施工前完全符合设计基础。"
+        },
+        {
+          q: "Kafaah 应该在哪个阶段介入项目？",
+          a: "最理想的阶段是在基础设计开始时，即专利商或 EPC 承包商的设计基础包准备就绪时。早期介入能在修改成本最低时发现问题。如果尚未进行审查，Kafaah 也可以在详细设计阶段中期介入。"
+        },
+        {
+          q: "Kafaah 负责审查哪些工程交付物？",
+          a: "典型交付物包括工艺流程图 (PFD)、热与物料衡算、P&ID 图纸、设备清单与数据表、管径计算书以及仪表控制哲学——对照设计基础、专利商担保和适用代码标准进行全面核查。"
+        },
+        {
+          q: "Kafaah 是否参与 HAZOP/HAZID 评估？",
+          a: "是的。Kafaah 能作为独立工艺审查员全程参与 HAZOP 和 HAZID 研讨会，ᨀ供工艺工程视角，并跟踪确认相关安全措施在设计中得到闭环落实。"
+        },
+        {
+          q: "Kafaah 能否审查专利商 (Licensor) 的工程包？",
+          a: "是的。Kafaah 团队对化肥及无机化工领域常见的工艺技术和专利商设计包具有丰富的直接经验，能针对软件包的内部一致性以及与业主操作要求的契合度进行深入审查。"
+        },
+        {
+          q: "这项服务与业主工程师 (Owner's Engineer) 有何区别？",
+          a: "业主工程师服务贯穿项目全生命周期（从工程设计到施工与试车）。而专业工艺与工程支持则是针对基础设计和详细设计阶段工艺设计本身的专项服务——通常是开展全面业主工程师监督前的核心起点。"
+        }
+      ]
+    }
+  },
+  finalCta: {
+    eyebrow: { en: "Request Technical Consult", ar: "طلب استشارة فنية", zh: "<ctrl42>请求技术咨询" },
+    titleLine1: { en: "Get Independent Process Review", ar: "احصل على مراجعة مستقلة للعمليات", zh: "在施工开始前获取" },
+    titleLine2: { en: "Before Construction Begins", ar: "قبل بدء أعمال الإنشاءات", zh: "<ctrl42>独立的工艺审查服务" },
+    desc: {
+      en: "Catch design gaps while they're still cheap to fix — independent process engineering review through Basic and Detailed Engineering.",
+      ar: "اكتشف الفجوات التصميمية وهي ما تزال منخفضة التكلفة للتقويم — مراجعة مستقلة لمهندسي العمليات خلال مراحل التصميم الأساسي والتفصيلي.",
+      zh: "在修改成本低廉的阶段消除设计缺陷——基础工程与详细设计阶段的独立工艺工程审查。"
+    },
+    primaryBtn: { en: "Talk to an Expert →", ar: "التحدث مع خبير ←", zh: "<ctrl42>与专家交谈 →" },
+    secondaryBtn: { en: "Download Capability Statement ⬇", ar: "تحميل ملف القدرات ⬇", zh: "<ctrl42>下载能力说明书 ⬇" }
+  }
+};
+
+function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
+  const { locale } = useRole();
+  const rtl = isRtl(locale);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const heroData = processEngineeringSupportDict.hero;
+  const trustStripItems = processEngineeringSupportDict.trustStrip[locale] || processEngineeringSupportDict.trustStrip.en;
+  const whyData = processEngineeringSupportDict.whySection;
+  const scopeData = processEngineeringSupportDict.scopeSection.cards[locale] || processEngineeringSupportDict.scopeSection.cards.en;
+  const risksData = processEngineeringSupportDict.risksSection.cards[locale] || processEngineeringSupportDict.risksSection.cards.en;
+  const whyKafaahItems = processEngineeringSupportDict.whyKafaah.items[locale] || processEngineeringSupportDict.whyKafaah.items.en;
+  const faqItems = processEngineeringSupportDict.faqSection.items[locale] || processEngineeringSupportDict.faqSection.items.en;
+  const ctaData = processEngineeringSupportDict.finalCta;
+
+  return (
+    <>
+      {/* 0. Hero Header Section matching Homepage Hero structure */}
+      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-between bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-0 border-b border-white/[0.08]">
+        {/* Background Image with Dark Overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/process_engineering_mobile.webp" />
+            <source media="(min-width: 769px)" srcSet="/process_engineering_hero_bg.webp" />
+            <img
+              src="/process_engineering_hero_bg.webp"
+              alt="Expert Process & Engineering Support — Kafaah Industrial"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
+            />
+          </picture>
+          {/* Fading gradient */}
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
+        </div>
+
+        {/* Content Container (Centered Vertically) */}
+        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+          <div className="max-w-[720px] text-left rtl:text-right">
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>{heroData.tag[locale]}</span>
+            </div>
+
+            {/* H1 Title */}
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
+              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                {heroData.titlePart2[locale]}
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+              {heroData.sub[locale]}
+            </p>
+
+            {/* Description */}
+            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
+              {heroData.desc[locale]}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnPrimary[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnSecondary[locale]}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* 1. Trust Strip Bar at bottom of 100vh with 92% opacity and clear dividers */}
+        <div
+          className="relative z-10 w-full backdrop-blur-md border-t border-white/[0.2] py-6 transition-all duration-500"
+          style={{ backgroundColor: "rgba(10, 24, 48, 0.92)" }}
+        >
+          <div className="max-w-[1280px] mx-auto px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.22]">
+              {trustStripItems.map((item: any, i: number) => {
+                const IconComp = item.icon;
+                return (
+                  <div key={i} className="flex items-start gap-4 pt-4 pb-4 sm:py-0 sm:px-6 first:px-0 first:pt-0 sm:first:pt-0">
+                    <div className="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center shrink-0 text-gold bg-gold/10 shadow-[0_0_12px_rgba(229,193,88,0.2)]">
+                      <IconComp className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-[family-name:var(--font-display)] text-sm sm:text-base font-semibold text-cloud mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs font-light text-silver/85 leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 2. Why Section with 2-Card Comparison Box */}
+      <section className="py-24 bg-navy-deep relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-4 gold-line">
+                  {whyData.eyebrow[locale]}
+                </div>
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
+                  {whyData.title[locale]}
+                </h2>
+                <div className="w-12 h-[2px] bg-gold mb-6" />
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                  {whyData.desc[locale]}
+                </p>
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="flex flex-col md:flex-row items-stretch gap-4 relative">
+
+                  <div className="flex-1 bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 rounded-sm">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-rose-400 mb-5 pb-3 border-b border-white/10">
+                      {whyData.challengesCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whyData.challengesCard.items[locale] || whyData.challengesCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-silver/85">
+                          <X className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold bg-navy-dark shrink-0">
+                      <ArrowRight className={`w-4 h-4 ${rtl ? "rotate-180" : ""}`} />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 bg-navy-card/60 backdrop-blur-md border border-gold/30 p-6 rounded-sm shadow-lg">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-gold mb-5 pb-3 border-b border-gold/20">
+                      {whyData.contributionCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whyData.contributionCard.items[locale] || whyData.contributionCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-cloud">
+                          <Check className="w-4 h-4 text-gold shrink-0 mt-0.5 font-bold" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Service Scope */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
+              {processEngineeringSupportDict.scopeSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {processEngineeringSupportDict.scopeSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {scopeData.map((card: any, idx: number) => {
+              const CardIcon = card.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                  <div className="h-full bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-7 rounded-sm hover:border-gold/40 hover:bg-navy-card-hover/60 transition-all duration-500 flex flex-col justify-between group">
+                    <div>
+                      <div className="w-11 h-11 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6 bg-navy-deep group-hover:border-gold group-hover:bg-gold/10 transition-all duration-300">
+                        <CardIcon className="w-5 h-5" />
+                      </div>
+                      <h4 className="font-[family-name:var(--font-display)] text-lg text-cloud font-semibold mb-4 group-hover:text-gold transition-colors">
+                        {card.title}
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {card.items.map((item: string, itemIdx: number) => (
+                          <li key={itemIdx} className="text-xs font-light text-silver/80 flex items-start gap-2">
+                            <span className="text-gold font-semibold">—</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Engineering Risks We Catch (8 Cards) */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="mb-12">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {processEngineeringSupportDict.risksSection.eyebrow[locale]}
+            </div>
+            <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {processEngineeringSupportDict.risksSection.title[locale]}
+            </h3>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {risksData.map((item: any, idx: number) => {
+              const CaseIcon = item.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.06}>
+                  <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.1] hover:border-gold/30 p-6 rounded-sm text-center flex flex-col items-center justify-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <CaseIcon className="w-5 h-5" />
+                    </div>
+                    <p className="text-xs sm:text-sm font-medium text-cloud leading-snug">
+                      {item.title}
+                    </p>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Why Kafaah */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+                  {processEngineeringSupportDict.whyKafaah.eyebrow[locale]}
+                </div>
+                <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2]">
+                  {processEngineeringSupportDict.whyKafaah.title[locale]}
+                </h3>
+                <div className="w-12 h-[2px] bg-gold mt-4" />
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="space-y-4">
+                  {whyKafaahItems.map((item: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 bg-navy-card/30 border border-white/[0.08] rounded-sm hover:border-gold/30 transition-all duration-300">
+                      <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 font-bold" />
+                      </div>
+                      <p className="text-sm font-light text-silver/90 leading-relaxed">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FAQ Section */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <FadeIn className="mb-14">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {processEngineeringSupportDict.faqSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {processEngineeringSupportDict.faqSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="space-y-4">
+            {faqItems.map((faq: any, idx: number) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <FadeIn key={idx} delay={idx * 0.08}>
+                  <div className="border border-white/[0.12] bg-navy-card/40 rounded-sm overflow-hidden transition-all duration-300">
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors gap-4"
+                    >
+                      <span className="font-[family-name:var(--font-display)] text-base font-medium text-cloud">
+                        {faq.q}
+                      </span>
+                      <div className={`w-7 h-7 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                        <Plus className="w-4 h-4" />
+                      </div>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-6 pb-6 pt-2 text-sm font-light text-silver/80 leading-relaxed border-t border-white/[0.05]">
+                        <p>{faq.a}</p>
+                      </div>
+                    )}
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Final CTA Section */}
+      <section className="py-24 bg-navy-dark relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+            <div className="text-left rtl:text-right max-w-2xl flex-1">
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3 inline-block">
+                {ctaData.eyebrow[locale]}
+              </div>
+
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.25] tracking-tight">
+                <span className="block text-cloud">{ctaData.titleLine1[locale]}</span>
+                <span className="block text-gold">{ctaData.titleLine2[locale]}</span>
+              </h2>
+
+              <div className="w-12 h-[2px] bg-gold my-4" />
+
+              <p className="text-sm sm:text-base font-light text-silver/80 leading-relaxed max-w-xl">
+                {ctaData.desc[locale]}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3.5 w-full sm:w-[340px] shrink-0">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 text-navy-deep bg-gold hover:bg-gold-light transition-all rounded-sm shadow-md whitespace-nowrap w-full"
+              >
+                <span>{ctaData.primaryBtn[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/30 hover:border-white text-cloud font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 hover:bg-white/5 transition-all rounded-sm whitespace-nowrap w-full"
+              >
+                <span>{ctaData.secondaryBtn[locale]}</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Related Technologies */}
+      {relatedTechs.length > 0 && (
+        <section className="py-24 bg-navy-deep relative overflow-hidden">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <FadeIn>
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6">
+                Process Synergies
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] text-cloud mb-12 tracking-tight">
+                Applicable Plant Technologies
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedTechs.map((tech) => (
+                  <Link
+                    key={tech.slug}
+                    href={`/technologies/${tech.slug}/`}
+                    className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] hover:-translate-y-1.5 p-8 rounded-sm transition-all duration-500 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="text-[10px] tracking-[0.2em] font-semibold text-gold uppercase mb-4 font-[family-name:var(--font-ui)] flex items-center gap-2">
+                        <Award className="w-4 h-4 text-gold" />
+                        Chemical Process
+                      </div>
+                      <h3 className="font-[family-name:var(--font-display)] text-xl text-cloud font-semibold mb-3 group-hover:text-gold transition-colors">
+                        {tech.fullName}
+                      </h3>
+                      <p className="text-sm font-light text-silver/80 leading-relaxed mb-8">
+                        {tech.shortDesc}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-gold mt-auto pt-4 border-t border-divider/40">
+                      Explore Technology
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
+// Dictionary for Investor Advisory Services matching HTML structure
+const investorAdvisoryDict: Record<string, any> = {
+  hero: {
+    tag: { en: "Service Advisory", ar: "استشارات فنية واستثمارية", zh: "专业投资工程咨询" },
+    titlePart1: { en: "Investor Advisory ", ar: "خدمات الاستشارات ", zh: "投资者工程 " },
+    titlePart2: { en: "Services", ar: "الاستثمارية والفنية", zh: "咨询服务" },
+    sub: {
+      en: "Independent Technical & Financial Insight for Chemical & Fertilizer Plant Investments",
+      ar: "رؤية فنية ومالية مستقلة لمشاريع واستثمارات مصانع الكيماويات والأسمدة",
+      zh: "化工及化肥工厂投资的独立技术与财务洞察"
+    },
+    desc: {
+      en: "Whether you're evaluating a new acquisition or preparing to sell or expand an existing facility, Kafaah gives you the independent technical clarity to make confident capital decisions.",
+      ar: "سواء كنت تقيّم استحواذاً جديداً أو تستعد لبيع أو توسعة منشأة قائمة، تمنحك كفاءة الوضوح الفني المستقل لاتخاذ قرارات رأس مالية بثقة تامة.",
+      zh: "无论您是在评估新的收购，还是准备出售或扩张现有设施，Kafaah 都能为您提供独立的工程明晰度，助您做出自信的资本决策。"
+    },
+    btnPrimary: { en: "Request Consultation →", ar: "طلب استشارة فنية ←", zh: "请求技术咨询 →" },
+    btnSecondary: { en: "Download Brochure ⬇", ar: "تحميل الملف التعريفي ⬇", zh: "下载服务说明 ⬇" }
+  },
+  whoWeServe: {
+    eyebrow: { en: "Who This Is For", ar: "الفئات المستهدفة", zh: "服务目标受众" },
+    title: {
+      en: "Independent Technical Insight for Every Side of the Deal",
+      ar: "رؤية فنية مستقلة لكل طرف في الصفقة",
+      zh: "为交易各方提供独立的工程技术洞察"
+    },
+    desc: {
+      en: "Chemical and fertilizer assets are technically complex and capital intensive. Whether you're entering a new investment or positioning an existing facility for sale or expansion, an independent technical opinion protects your capital and strengthens your position at the table.",
+      ar: "تتميز أصول الكيماويات والأسمدة بالتعقيد الفني والكتلة الرأسمالية الضخمة. سواء كنت تدخل استثماراً جديداً أو تجهّز مصنعاً قائماً للبيع أو التوسعة، فإن الرأي الفني المستقل يحمي رأس مالك ويدعم موقفك التفاوضي.",
+      zh: "化工与化肥资产属于高技术复杂性与资本密集型项目。无论您是开展新投资，还是定位现有工厂进行出售或扩建，独立的第三方技术意见都能保护您的资本并巩固您的谈判优势。"
+    },
+    investorsCard: {
+      title: { en: "For New Investors", ar: "للمستثمرين الجدد", zh: "面向新投资者" },
+      items: {
+        en: [
+          "Technical & financial due diligence before commitment",
+          "Process technology and licensing terms review",
+          "CAPEX and OPEX assumption verification",
+          "Site and equipment condition assessment",
+          "Independent investment committee reporting"
+        ],
+        ar: [
+          "العناية الواجبة الفنية والمالية قبل الالتزام بالاستثمار",
+          "مراجعة تقنيات العمليات وشروط التراخيص الهندسية",
+          "التحقق الفني من افتراضات النفقات الرأسمالية والتشغيلية",
+          "تقييم ميداني شامل للموقع وحالة المعدات القائمة",
+          "تقارير فنية مستقلة مخصصة للجان الاستثمار"
+        ],
+        zh: [
+          "投资前的工程与财务尽职调查",
+          "工艺技术与专利许可条款审查",
+          "CAPEX 与 OPEX 核心假设数据复核",
+          "现场与设备实际状态评估",
+          "为投资委员会提供独立技术报告"
+        ]
+      }
+    },
+    ownersCard: {
+      title: { en: "For Plant Owners", ar: "لمالكي المصانع القائمة", zh: "面向现有工厂业主" },
+      items: {
+        en: [
+          "Asset valuation grounded in technical condition",
+          "Pre-sale technical readiness review",
+          "Expansion & debottlenecking feasibility",
+          "Performance benchmarking vs. design guarantees",
+          "Buyer due diligence support & data room preparation"
+        ],
+        ar: [
+          "تقييم الأصول المبني على الحالة الفنية الميدانية الحقيقية",
+          "مراجعة الجاهزية الفنية قبل البدء بإجراءات البيع",
+          "دراسات جدوى التوسعة وإزالة الاختناقات التشغيلية",
+          "مقارنة الأداء الفعلي مقابل الضمانات التصميمية",
+          "دعم العناية الواجبة للمشترين وتجهيز غرفة البيانات"
+        ],
+        zh: [
+          "基于实际技术状态的资产评估",
+          "出售前技术就绪状态审查",
+          "扩建与去瓶颈改造成本可行性",
+          "实际性能与设计担保对标分析",
+          "买方尽调支持与数据室资料准备"
+        ]
+      }
+    }
+  },
+  experienceBar: {
+    eyebrow: { en: "Proven Experience", ar: "خبرة عملية موثوقة", zh: "深厚实践经验" },
+    stats: {
+      en: [
+        { value: "20+", label: "Years Industry Experience", icon: Clock },
+        { value: "50+", label: "Industrial Projects", icon: Factory },
+        { value: "10+", label: "Countries Worldwide", icon: Globe },
+        { value: "Specialists", label: "Chemical & Fertilizer", icon: FlaskConical },
+        { value: "Expertise", label: "Investor & Owner Representation", icon: Award },
+      ],
+      ar: [
+        { value: "+20", label: "عاماً من الخبرة الصناعية", icon: Clock },
+        { value: "+50", label: "مشروعاً صناعياً تم تقييمه", icon: Factory },
+        { value: "+10", label: "دول حول العالم", icon: Globe },
+        { value: "متخصصون", label: "في الكيماويات والأسمدة", icon: FlaskConical },
+        { value: "خبرة ممتازة", label: "في تمثيل المستثمرين والمالكين", icon: Award },
+      ],
+      zh: [
+        { value: "20+", label: "年行业实践经验", icon: Clock },
+        { value: "50+", label: "个工业项目评估", icon: Factory },
+        { value: "10+", label: "个国家与地区", icon: Globe },
+        { value: "专家团队", label: "精通化工与化肥", icon: FlaskConical },
+        { value: "专业代表", label: "投资者与业主代理", icon: Award },
+      ]
+    }
+  },
+  scopeSection: {
+    eyebrow: { en: "Service Scope", ar: "نطاق الخدمة", zh: "服务范围" },
+    title: { en: "Our Service Scope", ar: "نطاق خدماتنا الهندسية", zh: "我們的工程服务范围" },
+    cards: {
+      en: [
+        {
+          title: "1. Technical Assessment",
+          icon: Search,
+          items: [
+            "Process Technology Review",
+            "Equipment Condition Audit",
+            "Capacity & Yield Verification",
+            "Technology & Licensing Review",
+            "Site Visit & Inspection"
+          ]
+        },
+        {
+          title: "2. Financial Modeling Support",
+          icon: TrendingUp,
+          items: [
+            "CAPEX Estimate Validation",
+            "OPEX & Utility Benchmarking",
+            "Production Cost Modeling",
+            "Sensitivity Analysis Input",
+            "Technical Risk Quantification"
+          ]
+        },
+        {
+          title: "3. Reporting & Disclosure",
+          icon: FileText,
+          items: [
+            "Independent Technical Report",
+            "Investment Committee Briefing",
+            "Key Findings Summary",
+            "Data Room Documentation",
+            "Valuation Input Package"
+          ]
+        },
+        {
+          title: "4. Transaction Support",
+          icon: Briefcase,
+          items: [
+            "Negotiation Technical Backup",
+            "Warranty & Guarantee Review",
+            "Post-Deal Technical Monitoring",
+            "Expansion Feasibility Input",
+            "Ongoing Advisory Retainer"
+          ]
+        }
+      ],
+      ar: [
+        {
+          title: "1. التقييم الفني",
+          icon: Search,
+          items: [
+            "مراجعة تقنيات العمليات الصناعية",
+            "تدقيق ومراجعة حالة المعدات",
+            "التحقق من الطاقة الإنتاجية ومعدلات الإنتاج",
+            "مراجعة التكنولوجيا واتفاقيات التراخيص",
+            "الزيارات الميدانية والتفتيش في الموقع"
+          ]
+        },
+        {
+          title: "2. دعم النمذجة المالية",
+          icon: TrendingUp,
+          items: [
+            "التحقق من تقديرات النفقات الرأسمالية (CAPEX)",
+            "مقارنة النفقات التشغيلية واستهلاك المرافق",
+            "نمذجة تكلفة الإنتاج الحقيقية",
+            "مدخلات تحليلات الحساسية الفنية",
+            "تقدير وتكميم المخاطر الفنية مالياً"
+          ]
+        },
+        {
+          title: "3. التقارير والإفصاح الفني",
+          icon: FileText,
+          items: [
+            "إعداد التقرير الفني المستقل (ITR)",
+            "تقديم العروض للجان الاستثمار",
+            "ملخص النتائج الفنية والمخاطر",
+            "تجهيز وتدقيق وثائق غرفة البيانات",
+            "حزمة مدخلات تقييم الأصول"
+          ]
+        },
+        {
+          title: "4. دعم الصفقة والمفاوضات",
+          icon: Briefcase,
+          items: [
+            "الدعم الفني المباشر أثناء المفاوضات",
+            "مراجعة الضمانات والتعهدات التعاقدية",
+            "المتابعة الفنية بعد إغلاق الصفقة",
+            "مدخلات دراسات جدوى التوسعة",
+            "خدمات الاستشارات الفنية المستمرة"
+          ]
+        }
+      ],
+      zh: [
+        {
+          title: "1. 技术评估",
+          icon: Search,
+          items: [
+            "工艺技术可行性审查",
+            "设备健康状态审计",
+            "产能与产率精准复核",
+            "技术许可与专利条款核查",
+            "现场考察与实地勘察"
+          ]
+        },
+        {
+          title: "2. 财务模型技术支持",
+          icon: TrendingUp,
+          items: [
+            "CAPEX 预算合理性校验",
+            "OPEX 与公用工程消耗对标",
+            "实际生产成本模型构建",
+            "敏感性分析技术参数输入",
+            "技术风险的定量化评估"
+          ]
+        },
+        {
+          title: "3. 报告与技术披露",
+          icon: FileText,
+          items: [
+            "编制独立技术报告 (ITR)",
+            "投资委员会技术汇报",
+            "核心评估结果摘要",
+            "数据室技术文档整理",
+            "资产评估技术数据包"
+          ]
+        },
+        {
+          title: "4. 交易谈判支持",
+          icon: Briefcase,
+          items: [
+            "谈判全程技术支持",
+            "合同质保与 Performance 担保审查",
+            "交易完成后的技术跟踪",
+            "扩建可行性技术输入",
+            "常年技术顾问咨询服务"
+          ]
+        }
+      ]
+    }
+  },
+  dualTrack: {
+    eyebrow: { en: "Core Capabilities", ar: "القدرات الجوهرية", zh: "核心能力" },
+    title: { en: "Two Disciplines. One Independent Opinion.", ar: "تخصصان هندسيان. رأي فني مستقل واحد.", zh: "两大专业领域。一个独立的专业意见。" },
+    dueDiligenceCard: {
+      label: { en: "For Acquisitions & New Investment", ar: "للاستحواذ والاستثمارات الجديدة", zh: "面向收购与新项目投资" },
+      title: { en: "Technical Due Diligence", ar: "العناية الواجبة الفنية", zh: "技术尽职调查" },
+      desc: {
+        en: "Before capital is committed, we verify that the process technology, equipment condition, and performance assumptions behind the deal hold up to independent scrutiny.",
+        ar: "قبل الالتزام برأس المال، نتحقق من أن تقنيات العمليات وحالة المعدات وافتراضات الأداء تصمد أمام الفحص المستقل.",
+        zh: "在资本投入前，我们严密复核工艺技术、设备状况和性能假设，确保交易基础经得起独立审查。"
+      },
+      items: {
+        en: [
+          "Process design and P&ID review against stated capacity and guarantees",
+          "Equipment condition, maintenance history, and remaining useful life assessment",
+          "Licensing agreement and technology transfer review",
+          "CAPEX/OPEX assumption testing against industry benchmarks",
+          "Clear summary report highlighting deal-relevant technical considerations"
+        ],
+        ar: [
+          "مراجعة تصميم العمليات ومخططات P&ID مقابل السعة والضمانات",
+          "تقييم حالة المعدات وسجل الصيانة والعمر الافتراضي المتبقي",
+          "مراجعة اتفاقيات التراخيص ونقل التكنولوجيا",
+          "اختبار افتراضات CAPEX/OPEX مقابل المعايير الصناعية",
+          "تقرير ملخص واضح يسلط الضوء على الاعتبارات الفنية للصفقة"
+        ],
+        zh: [
+          "对照设计产能和担保复核工艺设计与 P&ID",
+          "评估设备状况、维保历史及剩余使用寿命",
+          "审查技术许可协议与技术转让条款",
+          "对照行业基准检验 CAPEX/OPEX 假设",
+          "提供突显交易关键技术考量的清晰总结报告"
+        ]
+      }
+    },
+    valuationCard: {
+      label: { en: "For Owners & Sellers", ar: "لمالكي المصانع والبائعين", zh: "面向工厂业主与出售方" },
+      title: { en: "Asset Valuation Support", ar: "دعم تقييم الأصول الصناعية", zh: "资产评估技术支持" },
+      desc: {
+        en: "We ground your asset's valuation in verified technical reality — strengthening your negotiating position and giving buyers confidence in the numbers.",
+        ar: "نربط تقييم مصنعك بالواقع الفني الميداني الموثق — مما يقوي موقفك التفاوضي ويمنح المشترين الثقة في الأرقام.",
+        zh: "我们将您的工厂估值建立在已验证的工程现实之上——巩固您的谈判立场，让买方对估值数据倍添信心。"
+      },
+      items: {
+        en: [
+          "Plant condition assessment benchmarked against original design",
+          "Performance verification against licensed guarantees",
+          "Remaining asset life and CAPEX requirement estimation",
+          "Expansion or debottlenecking upside quantification",
+          "Technical data room preparation for buyer due diligence"
+        ],
+        ar: [
+          "تقييم حالة المصنع مقارنة بالتصميم الأصلي",
+          "التحقق من الأداء مقابل الضمانات المرخصة",
+          "تقدير العمر الافتراضي المتبقي ومتطلبات النفقات الرأسمالية",
+          "تقدير وتكميم فرص التوسعة وإزالة الاختناقات",
+          "إعداد وتجهيز غرفة البيانات الفنية لعمليات تدقيق المشترين"
+        ],
+        zh: [
+          "对照原始设计评估工厂实际运行与维护状况",
+          "对照许可担保验证实际生产与消耗性能",
+          "估算资产剩余使用寿命及后续 CAPEX 需求",
+          "定量评估工厂扩建或去瓶颈改造的潜在价值",
+          "为买方尽调精心准备技术数据室文档"
+        ]
+      }
+    }
+  },
+  risksSection: {
+    eyebrow: { en: "Risk Mitigation", ar: "إزالة الغموض وإدارة المخاطر", zh: "风险澄清与化解" },
+    title: { en: "What Our Review Helps You Clarify", ar: "ما يساعدك تقييمنا الفني في توضيحه وتحديده", zh: "<ctrl42>我們的工程审查助您明确的核心问题" },
+    cards: {
+      en: [
+        { title: "Capacity & Yield Assumptions", icon: TrendingDown },
+        { title: "Equipment Condition & Remaining Life", icon: Wrench },
+        { title: "CAPEX Requirement Accuracy", icon: Coins },
+        { title: "Technology & Licensing Terms", icon: FileText },
+        { title: "Performance Guarantee Verification", icon: Scale },
+        { title: "Process Technology Fit", icon: Factory },
+        { title: "OPEX & Utility Benchmarking", icon: Activity },
+        { title: "Regulatory & Compliance Readiness", icon: ShieldCheck },
+      ],
+      ar: [
+        { title: "افتراضات الطاقة الإنتاجية ومعدلات الاستخلاص", icon: TrendingDown },
+        { title: "حالة المعدات والعمر التشغيلي المتبقي", icon: Wrench },
+        { title: "دقة تقديرات النفقات الرأسمالية المطلوبة", icon: Coins },
+        { title: "شروط التكنولوجيا والتراخيص الهندسية", icon: FileText },
+        { title: "التحقق من ضمانات الأداء واستهلاك الطاقة", icon: Scale },
+        { title: "ملاءمة تقنية العمليات للمشروع واللقيم", icon: Factory },
+        { title: "مقارنة المصاريف التشغيلية واستهلاك المرافق", icon: Activity },
+        { title: "الجاهزية للالتزام بالمعايير البيئية والتنظيمية", icon: ShieldCheck },
+      ],
+      zh: [
+        { title: "产能与产率核心假设", icon: TrendingDown },
+        { title: "设备状况与剩余寿命", icon: Wrench },
+        { title: "CAPEX 预算需求精准度", icon: Coins },
+        { title: "技术与许可协议条款", icon: FileText },
+        { title: "性能与消耗指标担保复核", icon: Scale },
+        { title: "工艺技术方案契合度", icon: Factory },
+        { title: "OPEX 与公用工程消耗对标", icon: Activity },
+        { title: "法规与合规合规就绪状态", icon: ShieldCheck },
+      ]
+    }
+  },
+  whyKafaah: {
+    eyebrow: { en: "Why Kafaah?", ar: "لماذا كفاءة؟", zh: "为什么选择 Kafaah？" },
+    title: { en: "Why Trust Kafaah for Investor Advisory?", ar: "لماذا تثق بكفاءة للاستشارات الاستثمارية والفنية؟", zh: "为什么选择 Kafaah 提供投资工程咨询？" },
+    items: {
+      en: [
+        "Independent Technical Opinion You Can Rely On — Our Only Obligation Is to You",
+        "Chemical & Fertilizer Process Specialists With Hands-On Plant Operating Experience",
+        "Extensive Track Record Across H₂SO₄, H₃PO₄, SOP, NPK, MgSO₄, SSP & CaCl₂ Facilities",
+        "Technical Findings Translated Into Clear, Investor-Ready Reporting",
+        "Trusted by Both Investors and Plant Owners — Across the Same Transaction",
+        "Regional Expertise Across Egypt, the GCC & Wider MENA Markets"
+      ],
+      ar: [
+        "رأي فني مستقل يمكنك الاعتماد عليه — التزامنا الوحيد هو تجاهك فقط",
+        "خبراء عمليات الأسمدة والكيماويات بخبرة تشغيلية ميدانية مباشرة",
+        "سجل حافل في مصانع الكبريتيك والفوسفوريك والبوتاسيوم والـ NPK والماغنسيوم والـ SSP",
+        "ترجمة النتائج الهندسية المعقدة إلى تقارير استثمارية واضحة وجاهزة",
+        "محل ثقة كبار المستثمرين ومالكي المصانع في مختلف الصفقات",
+        "خبرة إقليمية واسعة في مصر ودول الخليج العربي وأسواق الشرق الأوسط"
+      ],
+      zh: [
+        "可信赖的独立技术意见——我们唯一的责任就是对您负责",
+        "具备一线工厂操作经验的化肥与化工工艺专家",
+        "在硫酸、磷酸、硫酸钾、NPK、硫酸镁及 SSP 领域拥有丰富经验",
+        "将复杂的工程结果转化为清晰、适合投资者的报告",
+        "深得投资者与工厂业主的共同信赖",
+        "深耕埃及、海湾国家 (GCC) 及中东北非 (MENA) 市场的本土经验"
+      ]
+    }
+  },
+  faqSection: {
+    eyebrow: { en: "Frequently Asked Questions", ar: "الأسئلة الشائعة", zh: "常见问题解答" },
+    title: { en: "Questions Investors & Owners Ask Before Engaging Kafaah", ar: "أسئلة يطرحها المستثمرون ومالكو المصانع قبل التعامل مع كفاءة", zh: "投资者与业主聘请 Kafaah 前常问的问题" },
+    items: {
+      en: [
+        {
+          q: "What is technical due diligence and why does it matter?",
+          a: "Technical due diligence is an independent review of a plant's process technology, equipment condition, and performance claims before a transaction closes. It matters because financial models are only as reliable as the technical assumptions behind them — capacity, maintenance needs, and OPEX figures can meaningfully shift the real value of a deal once independently verified."
+        },
+        {
+          q: "When should we engage Kafaah in an acquisition process?",
+          a: "Ideally during the early evaluation stage, before significant capital or time is committed to a deal. Early engagement allows us to flag deal-relevant technical risks while there is still room to adjust valuation, negotiate terms, or walk away. We can also support later-stage diligence if the timeline requires it."
+        },
+        {
+          q: "How does Kafaah support plant owners preparing to sell?",
+          a: "We conduct an independent technical assessment of your facility's condition, performance, and remaining asset life, and translate that into a clear valuation input package. This strengthens your negotiating position with buyers, since your asking price is backed by verified technical findings rather than assumptions alone — and it speeds up the buyer's own due diligence process."
+        },
+        {
+          q: "Can Kafaah work for both the buyer and the seller?",
+          a: "Yes, though never on the same transaction simultaneously. Kafaah maintains strict independence on every engagement — we represent one party's interests at a time, which is precisely why both investors and plant owners trust our findings across the MENA chemical and fertilizer sector."
+        },
+        {
+          q: "What types of plants does Kafaah cover?",
+          a: "Our core technical coverage spans sulfuric acid (H₂SO₄), phosphoric acid (H₃PO₄), sulfate of potash (SOP/Mannheim process), NPK compound fertilizers, magnesium sulfate (MgSO₄), single superphosphate (SSP), and calcium chloride (CaCl₂) facilities — across both greenfield investment evaluation and existing asset assessment."
+        },
+        {
+          q: "What does Kafaah deliver at the end of an engagement?",
+          a: "A clear, independent technical report tailored to the audience — an investment committee briefing for new investors, or a valuation input package for plant owners. Reports include a summary of key findings, supporting data, and direct input usable in financial modeling or negotiation."
+        }
+      ],
+      ar: [
+        {
+          q: "ما هي العناية الواجبة الفنية ولماذا هي مهمة للغاية؟",
+          a: "العناية الواجبة الفنية هي مراجعة مستقلة لتقنية عمليات المصنع وحالة معداته وادعاءات الأداء قبل إغلاق الصفقة. تكمن أهميتها في أن النماذج المالية تكون دقيقة فقط بدقة الافتراضات الفنية — حيث يمكن للطاقة الإنتاجية واحتياجات الصيانة والمصاريف التشغيلية أن تغير القيمة الحقيقية للصفقة بشكل جوهري عند تدقيقها."
+        },
+        {
+          q: "متى ينبغي إشراك فريق كفاءة في عملية الاستحواذ؟",
+          a: "مثالياً في مرحلة التقييم المبكرة، قبل الالتزام برأس مال أو وقت كبير. يتيح التدخل المبكر تحديد المخاطر الفنية المؤثرة في الصفقة بينما ما زال هناك مجال لتعديل التقييم، أو تفاوض الشروط، أو التراجع. كما نقدم الدعم في المراحل المتأخرة إذا تطلب الجدول الزمني ذلك."
+        },
+        {
+          q: "كيف تدعم كفاءة مالكي المصانع الذين يستعدون للبيع؟",
+          a: "نجري تقييماً فنياً مستقلاً لحالة منشأتك وأدائها وعمرها الافتراضي المتبقي، ونترجم ذلك إلى حزمة مدخلات تقييم واضحة. يقوي هذا موقفك التفاوضي مع المشترين، لأن السعر المطلوب يعتمد على نتائج فنية موثقة وليس مجرد افتراضات — كما يُسرّع عملية العناية الواجبة للمشتري."
+        },
+        {
+          q: "هل يمكن لكفاءة العمل لصالح كل من المشتري والبائع؟",
+          a: "نعم، ولكن ليس في نفس الصفقة في وقت واحد مطلقاً. تحافظ كفاءة على الاستقلالية التامة في كل مهمة — فنحن نمثل مصالح طرف واحد فقط في كل صفقة، ولهذا السبب بالتحديد يثق المستثمرون ومالكو المصانع في نتائجنا عبر قطاع الكيماويات والأسمدة."
+        },
+        {
+          q: "ما هي أنواع المصانع والتقنيات التي تغطيها كفاءة؟",
+          a: "تغطي خبرتنا الفنية الأساسية مصانع حمض الكبريتيك (H₂SO₄)، وحمض الفوسفوريك (H₃PO₄)، وكبريتات البوتاسيوم (SOP/عملية مانهايم)، والأسمدة المركبة (NPK)، وكبريتات المغنيسيوم (MgSO₄)، والسوبر فوسفات الأحادي (SSP)، وكلوريد الكالسيوم (CaCl₂) — سواء لتقييم الاستثمارات الجديدة أو الأصول القائمة."
+        },
+        {
+          q: "ما الذي تقدمه كفاءة في نهاية الاستشارة الفنية؟",
+          a: "تقرير فني مستقل وواضح مصمم خصيصاً للمستهدفين — عرض موجز للجنة الاستثمار للمستثمرين الجدد، أو حزمة مدخلات تقييم لمالكي المصانع. تتضمن التقارير ملخصاً للنتائج الرئيسية، والبيانات الداعمة، والمدخلات المباشرة القابلة للاستخدام في النمذجة المالية أو المفاوضات."
+        }
+      ],
+      zh: [
+        {
+          q: "什么是技术尽职调查？为什么它如此重要？",
+          a: "技术尽职调查是在交易闭环前对工厂工艺技术、设备状况和性能数据进行的独立审查。它至关重要，因为财务模型的可靠性取决于其背后的工程假设——一旦通过独立核查，产能、维保需求和 OPEX 数据可能会显著改变交易的真实估值。"
+        },
+        {
+          q: "我们应该在收购流程的哪个阶段聘请 Kafaah？",
+          a: "最理想的阶段是在早期评估期间，即在投入大量资本或时间之前。早期介入使我们能够在仍有调整估值、谈判条款甚至放弃交易的空间时，指出与交易相关的工程风险。若时间允许，我们亦可提供后期尽调支持。"
+        },
+        {
+          q: "Kafaah 如何支持准备出售工厂的业主？",
+          a: "我们对您的设施状况、性能及剩余资产寿命进行独立工程评估，并将其转化为清晰的估值输入数据包。这能巩固您面对买方的谈判地位，因为您的要价有立足稳固的技术调查结果做后盾——同时也能加速买方自身的尽调流程。"
+        },
+        {
+          q: "Kafaah 能否同时为买方和卖方服务？",
+          a: "可以，但在同一笔交易中绝不会同时为两端服务。Kafaah 在每项业务中均保持严格的独立性——我们一次仅代表一方的利益，这正是中东和北非化工与化肥领域的投资者和工厂业主共同信赖我们评估结果的原因。"
+        },
+        {
+          q: "Kafaah 覆盖哪些类型的工厂？",
+          a: "我们的核心技术领域涵盖硫酸 (H₂SO₄)、磷酸 (H₃PO₄)、硫酸钾 (SOP/曼海姆工艺)、NPK 复合肥、硫酸镁 (MgSO₄)、过磷酸钙 (SSP) 及氯化钙 (CaCl₂) 设施——跨越新建项目投资评估与现有资产状态评估。"
+        },
+        {
+          q: "Kafaah 在咨询项目结束时交付什么？",
+          a: "一份量身定制的清晰独立技术报告——针对新投资者的投资委员会简报，或针对工厂业主的估值数据包。报告包括核心结论摘要、支撑数据以及可直接用于财务模型或谈判的输入参数。"
+        }
+      ]
+    }
+  },
+  finalCta: {
+    eyebrow: { en: "Request Technical Consult", ar: "طلب استشارة فنية", zh: "请求技术咨询" },
+    titleLine1: { en: "Make Your Next Capital Decision", ar: "اتخذ قرارك الرأسمالي القادم", zh: "做出您的下一个资本决策" },
+    titleLine2: { en: "With Independent Technical Confidence", ar: "بثقة فنية مستقلة وتامة", zh: "基于独立的技术自信" },
+    desc: {
+      en: "Whether you're evaluating an investment or preparing to sell, Kafaah gives you the independent technical insight to move forward with clarity.",
+      ar: "سواء كنت تقيّم استثماراً أو تستعد للبيع، تمنحك كفاءة الرؤية الفنية المستقلة للمضي قدماً بوضوح وثقة.",
+      zh: "无论您是在评估一项投资，还是准备出售工厂，Kafaah 都能为您提供独立的工程洞察，助您清晰、自信地前行。"
+    },
+    primaryBtn: { en: "Talk to an Expert →", ar: "التحدث مع خبير ←", zh: "与专家交谈 →" },
+    secondaryBtn: { en: "Download Capability Statement ⬇", ar: "تحميل ملف القدرات ⬇", zh: "下载能力说明书 ⬇" }
+  }
+};
+
+function InvestorAdvisoryView({ service, relatedTechs }: Props) {
+  const { locale } = useRole();
+  const rtl = isRtl(locale);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const heroData = investorAdvisoryDict.hero;
+  const whoData = investorAdvisoryDict.whoWeServe;
+  const expData = investorAdvisoryDict.experienceBar;
+  const scopeData = investorAdvisoryDict.scopeSection.cards[locale] || investorAdvisoryDict.scopeSection.cards.en;
+  const dualData = investorAdvisoryDict.dualTrack;
+  const risksData = investorAdvisoryDict.risksSection.cards[locale] || investorAdvisoryDict.risksSection.cards.en;
+  const whyKafaahItems = investorAdvisoryDict.whyKafaah.items[locale] || investorAdvisoryDict.whyKafaah.items.en;
+  const faqItems = investorAdvisoryDict.faqSection.items[locale] || investorAdvisoryDict.faqSection.items.en;
+  const ctaData = investorAdvisoryDict.finalCta;
+
+  return (
+    <>
+      {/* 0. Hero Header Section (WITHOUT Stats/Trust Bar at bottom as explicitly requested) */}
+      <header className="relative min-h-[85vh] h-auto flex flex-col justify-center overflow-hidden bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 border-b border-white/[0.08]">
+        {/* Background Image with Dark Overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/investor_advisory_mobile.webp" />
+            <source media="(min-width: 769px)" srcSet="/investor_advisory_hero_bg.webp" />
+            <img
+              src="/investor_advisory_hero_bg.webp"
+              alt="Investor Advisory Services — Kafaah Industrial"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
+            />
+          </picture>
+          {/* Fading gradient */}
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
+        </div>
+
+        {/* Content Container (Centered Vertically) */}
+        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+          <div className="max-w-[720px] text-left rtl:text-right">
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>{heroData.tag[locale]}</span>
+            </div>
+
+            {/* H1 Title */}
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
+              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                {heroData.titlePart2[locale]}
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+              {heroData.sub[locale]}
+            </p>
+
+            {/* Description */}
+            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
+              {heroData.desc[locale]}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnPrimary[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnSecondary[locale]}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 1. Who We Serve (Comparison Box: New Investors vs Plant Owners) */}
+      <section className="py-24 bg-navy-deep relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-4 gold-line">
+                  {whoData.eyebrow[locale]}
+                </div>
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
+                  {whoData.title[locale]}
+                </h2>
+                <div className="w-12 h-[2px] bg-gold mb-6" />
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                  {whoData.desc[locale]}
+                </p>
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="flex flex-col md:flex-row items-stretch gap-4 relative">
+
+                  <div className="flex-1 bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 rounded-sm">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-gold mb-5 pb-3 border-b border-white/10">
+                      {whoData.investorsCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whoData.investorsCard.items[locale] || whoData.investorsCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-silver/85">
+                          <Check className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold bg-navy-dark shrink-0">
+                      <ArrowRight className={`w-4 h-4 ${rtl ? "rotate-180" : ""}`} />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 bg-navy-card/60 backdrop-blur-md border border-gold/30 p-6 rounded-sm shadow-lg">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-gold mb-5 pb-3 border-b border-gold/20">
+                      {whoData.ownersCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whoData.ownersCard.items[locale] || whoData.ownersCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-cloud">
+                          <Check className="w-4 h-4 text-gold shrink-0 mt-0.5 font-bold" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Experience Bar */}
+      <section className="py-12 bg-navy-dark border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 sm:p-8 rounded-sm">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-6">
+              {expData.eyebrow[locale]}
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
+              {((expData.stats as any)[locale] || expData.stats.en).map((st: any, idx: number) => {
+                const StatIcon = st.icon;
+                return (
+                  <div key={idx} className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-gold/10">
+                      <StatIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-cloud">
+                        {st.value}
+                      </div>
+                      <div className="text-[11px] font-light text-silver/80 leading-snug">
+                        {st.label}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Service Scope */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
+              {investorAdvisoryDict.scopeSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {investorAdvisoryDict.scopeSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {scopeData.map((card: any, idx: number) => {
+              const CardIcon = card.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                  <div className="h-full bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-7 rounded-sm hover:border-gold/40 hover:bg-navy-card-hover/60 transition-all duration-500 flex flex-col justify-between group">
+                    <div>
+                      <div className="w-11 h-11 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6 bg-navy-deep group-hover:border-gold group-hover:bg-gold/10 transition-all duration-300">
+                        <CardIcon className="w-5 h-5" />
+                      </div>
+                      <h4 className="font-[family-name:var(--font-display)] text-lg text-cloud font-semibold mb-4 group-hover:text-gold transition-colors">
+                        {card.title}
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {card.items.map((item: string, itemIdx: number) => (
+                          <li key={itemIdx} className="text-xs font-light text-silver/80 flex items-start gap-2">
+                            <span className="text-gold font-semibold">—</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Dual Track Section (Due Diligence / Asset Valuation) */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
+              {dualData.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {dualData.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Track 1: Due Diligence */}
+            <FadeIn delay={0.1}>
+              <div className="h-full bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-8 rounded-sm relative overflow-hidden group hover:border-gold/40 transition-all duration-500">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gold" />
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold mb-3">
+                  {dualData.dueDiligenceCard.label[locale]}
+                </div>
+                <h3 className="font-[family-name:var(--font-display)] text-2xl text-cloud font-semibold mb-4">
+                  {dualData.dueDiligenceCard.title[locale]}
+                </h3>
+                <p className="text-sm font-light text-silver/80 leading-relaxed mb-6">
+                  {dualData.dueDiligenceCard.desc[locale]}
+                </p>
+                <ul className="space-y-3">
+                  {(dualData.dueDiligenceCard.items[locale] || dualData.dueDiligenceCard.items.en).map((item: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3 text-xs font-light text-silver/90">
+                      <Check className="w-4 h-4 text-gold shrink-0 mt-0.5 font-bold" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+
+            {/* Track 2: Asset Valuation */}
+            <FadeIn delay={0.2}>
+              <div className="h-full bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-8 rounded-sm relative overflow-hidden group hover:border-gold/40 transition-all duration-500">
+                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gold" />
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold mb-3">
+                  {dualData.valuationCard.label[locale]}
+                </div>
+                <h3 className="font-[family-name:var(--font-display)] text-2xl text-cloud font-semibold mb-4">
+                  {dualData.valuationCard.title[locale]}
+                </h3>
+                <p className="text-sm font-light text-silver/80 leading-relaxed mb-6">
+                  {dualData.valuationCard.desc[locale]}
+                </p>
+                <ul className="space-y-3">
+                  {(dualData.valuationCard.items[locale] || dualData.valuationCard.items.en).map((item: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-3 text-xs font-light text-silver/90">
+                      <Check className="w-4 h-4 text-gold shrink-0 mt-0.5 font-bold" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. What Our Review Helps You Clarify (8 Cards) */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="mb-12">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {investorAdvisoryDict.risksSection.eyebrow[locale]}
+            </div>
+            <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {investorAdvisoryDict.risksSection.title[locale]}
+            </h3>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {risksData.map((item: any, idx: number) => {
+              const CaseIcon = item.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.06}>
+                  <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.1] hover:border-gold/30 p-6 rounded-sm text-center flex flex-col items-center justify-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <CaseIcon className="w-5 h-5" />
+                    </div>
+                    <p className="text-xs sm:text-sm font-medium text-cloud leading-snug">
+                      {item.title}
+                    </p>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Why Kafaah */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+                  {investorAdvisoryDict.whyKafaah.eyebrow[locale]}
+                </div>
+                <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2]">
+                  {investorAdvisoryDict.whyKafaah.title[locale]}
+                </h3>
+                <div className="w-12 h-[2px] bg-gold mt-4" />
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="space-y-4">
+                  {whyKafaahItems.map((item: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 bg-navy-card/30 border border-white/[0.08] rounded-sm hover:border-gold/30 transition-all duration-300">
+                      <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 font-bold" />
+                      </div>
+                      <p className="text-sm font-light text-silver/90 leading-relaxed">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 7. FAQ Section */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <FadeIn className="mb-14">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {investorAdvisoryDict.faqSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {investorAdvisoryDict.faqSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="space-y-4">
+            {faqItems.map((faq: any, idx: number) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <FadeIn key={idx} delay={idx * 0.08}>
+                  <div className="border border-white/[0.12] bg-navy-card/40 rounded-sm overflow-hidden transition-all duration-300">
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors gap-4"
+                    >
+                      <span className="font-[family-name:var(--font-display)] text-base font-medium text-cloud">
+                        {faq.q}
+                      </span>
+                      <div className={`w-7 h-7 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                        <Plus className="w-4 h-4" />
+                      </div>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-6 pb-6 pt-2 text-sm font-light text-silver/80 leading-relaxed border-t border-white/[0.05]">
+                        <p>{faq.a}</p>
+                      </div>
+                    )}
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Final CTA Section */}
+      <section className="py-24 bg-navy-dark relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+            <div className="text-left rtl:text-right max-w-2xl flex-1">
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3 inline-block">
+                {ctaData.eyebrow[locale]}
+              </div>
+
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.25] tracking-tight">
+                <span className="block text-cloud">{ctaData.titleLine1[locale]}</span>
+                <span className="block text-gold">{ctaData.titleLine2[locale]}</span>
+              </h2>
+
+              <div className="w-12 h-[2px] bg-gold my-4" />
+
+              <p className="text-sm sm:text-base font-light text-silver/80 leading-relaxed max-w-xl">
+                {ctaData.desc[locale]}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3.5 w-full sm:w-[340px] shrink-0">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 text-navy-deep bg-gold hover:bg-gold-light transition-all rounded-sm shadow-md whitespace-nowrap w-full"
+              >
+                <span>{ctaData.primaryBtn[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/30 hover:border-white text-cloud font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 hover:bg-white/5 transition-all rounded-sm whitespace-nowrap w-full"
+              >
+                <span>{ctaData.secondaryBtn[locale]}</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Related Technologies */}
+      {relatedTechs.length > 0 && (
+        <section className="py-24 bg-navy-deep relative overflow-hidden">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <FadeIn>
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6">
+                Process Synergies
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] text-cloud mb-12 tracking-tight">
+                Applicable Plant Technologies
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedTechs.map((tech) => (
+                  <Link
+                    key={tech.slug}
+                    href={`/technologies/${tech.slug}/`}
+                    className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] hover:-translate-y-1.5 p-8 rounded-sm transition-all duration-500 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="text-[10px] tracking-[0.2em] font-semibold text-gold uppercase mb-4 font-[family-name:var(--font-ui)] flex items-center gap-2">
+                        <Award className="w-4 h-4 text-gold" />
+                        Chemical Process
+                      </div>
+                      <h3 className="font-[family-name:var(--font-display)] text-xl text-cloud font-semibold mb-3 group-hover:text-gold transition-colors">
+                        {tech.fullName}
+                      </h3>
+                      <p className="text-sm font-light text-silver/80 leading-relaxed mb-8">
+                        {tech.shortDesc}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-gold mt-auto pt-4 border-t border-divider/40">
+                      Explore Technology
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
+        </section>
+      )}
+    </>
+  );
+}
+
+// Dictionary for Owner's Engineer Services matching HTML structure
+const ownersEngineerDict: Record<string, any> = {
+  hero: {
+    tag: { en: "Service Advisory", ar: "استشارات فنية وهندسية", zh: "业主工程师专业咨询" },
+    titlePart1: { en: "Owner's Engineer ", ar: "خدمات هندسة ", zh: "业主工程师 " },
+    titlePart2: { en: "Services", ar: "المشروع والمالك", zh: "专业服务" },
+    sub: {
+      en: "Independent Technical Oversight for Chemical, Fertilizer & Industrial Projects",
+      ar: "الإشراف والرقابة الفنية المستقلة لمشاريع مصانع الكيماويات والأسمدة والصناعات الثقيلة",
+      zh: "面向化工、化肥及工业项目的独立技术监督与工程代表"
+    },
+    desc: {
+      en: "Protect your investment, minimize risks, and ensure project objectives are achieved from concept to commissioning.",
+      ar: "احمِ استثمارك، وقلل المخاطر التشغيلية والتعاقدية، وضمان تحقيق أهداف المشروع من المفهوم وحتى بدء التشغيل.",
+      zh: "保护您的投资，降低项目风险，确保项目目标从概念规划到竣工投产全过程完美实现。"
+    },
+    btnPrimary: { en: "Request Consultation →", ar: "طلب استشارة فنية ←", zh: "请求技术咨询 →" },
+    btnSecondary: { en: "Download Brochure ⬇", ar: "تحميل الملف التعريفي ⬇", zh: "下载服务说明 ⬇" }
+  },
+  trustStrip: {
+    en: [
+      { title: "Protect Investment", desc: "Safeguard CAPEX & long-term value", icon: ShieldCheck },
+      { title: "Reduce Project Risk", desc: "Identify issues early & prevent deviations", icon: AlertTriangle },
+      { title: "Ensure Compliance", desc: "Verify technical & contractual requirements", icon: CheckCircle2 },
+      { title: "Verify Performance", desc: "Confirm performance guarantees & acceptance criteria", icon: Settings },
+    ],
+    ar: [
+      { title: "حماية الاستثمار", desc: "حماية النفقات الرأسمالية والقيمة طويلة الأجل", icon: ShieldCheck },
+      { title: "تقليل مخاطر المشروع", desc: "اكتشاف المشاكل مبكراً ومنع الانحرافات", icon: AlertTriangle },
+      { title: "ضمان الالتزام", desc: "التحقق من المتطلبات الفنية والتعاقدية", icon: CheckCircle2 },
+      { title: "التحقق من الأداء", desc: "تأكيد ضمانات الأداء ومعايير القبول", icon: Settings },
+    ],
+    zh: [
+      { title: "保护投资价值", desc: "保障 CAPEX 与项目长期资产价值", icon: ShieldCheck },
+      { title: "降低项目风险", desc: "早期识别隐患并防止工程偏离", icon: AlertTriangle },
+      { title: "确保合规达标", desc: "严格核查技术与合同规范", icon: CheckCircle2 },
+      { title: "验证性能指标", desc: "确认 Performance 担保与验收标准", icon: Settings },
+    ]
+  },
+  whyWeServe: {
+    eyebrow: { en: "Why Owner's Engineer?", ar: "لماذا مهندس المالك؟", zh: "为什么需要业主工程师？" },
+    title: {
+      en: "Why Do Industrial Projects Need an Owner's Engineer?",
+      ar: "لماذا تحتاج المشاريع الصناعية إلى مهندس المالك؟",
+      zh: "为什么工业项目需要独立的业主工程师？"
+    },
+    desc: {
+      en: "Large industrial projects involve significant investment, complex engineering, and multiple stakeholders. An independent Owner's Engineer acts as your technical guardian, ensuring your interests are protected throughout the project lifecycle.",
+      ar: "تتطلب المشاريع الصناعية الضخمة استثمارات هائلة وهندسة معقدة وأطرافاً متعددة. يعمل مهندس المالك المستقل كحارس فني لاستثمارك، متأكداً من حماية مصالحك في جميع مراحل المشروع.",
+      zh: "大型工业项目涉及巨额投资、复杂的工程技术与多方利益相关者。独立的业主工程师担任您的技术守护者，确保您的权益在整个项目生命周期中得到全面保护。"
+    },
+    risksCard: {
+      title: { en: "Common Project Risks", ar: "مخاطر المشاريع الشائعة", zh: "常见项目风险" },
+      items: {
+        en: [
+          "Design deviations",
+          "Cost overruns",
+          "Delayed schedules",
+          "Performance shortfalls",
+          "Unclear scope boundaries",
+          "Contractual disputes"
+        ],
+        ar: [
+          "انحرافات التصاميم الهندسية",
+          "تجاوز الميزانية والنفقات",
+          "تأخير الجداول الزمنية للتنفيذ",
+          "قصور ومشاكل الأداء التشغيلي",
+          "غموض حدود ونطاق العمل",
+          "النزاعات والتقاضي التعاقدي"
+        ],
+        zh: [
+          "设计偏离与方案缺陷",
+          "成本超支与预算失控",
+          "工期延误与进度滞后",
+          "性能未达标与产能不足",
+          "范围界限模糊与职责不清",
+          "合同纠纷与商务争议"
+        ]
+      }
+    },
+    solutionsCard: {
+      title: { en: "Our Solution", ar: "حلول كفاءة الهندسية", zh: "Kafaah 的解决方案" },
+      items: {
+        en: [
+          "Independent technical review",
+          "Construction monitoring",
+          "Collaborative contractor coordination",
+          "Commissioning supervision",
+          "Performance verification",
+          "Dispute prevention & resolution"
+        ],
+        ar: [
+          "مراجعة فنية هندسية مستقلة",
+          "مراقبة وإشراف أعمال البناء",
+          "تنسيق فعال ومستمر مع المقاولين",
+          "الإشراف على التجهيز وبدء التشغيل",
+          "التحقق الميداني من ضمانات الأداء",
+          "منع النزاعات والحل الودي للمشكلات"
+        ],
+        zh: [
+          "独立的第三方技术审查",
+          "施工过程严密监督",
+          "高效的承包商协同管理",
+          "试车与开工全过程督导",
+          "性能与消耗指标精准验证",
+          "预防与化解工程合同争议"
+        ]
+      }
+    }
+  },
+  experienceBar: {
+    eyebrow: { en: "Proven Experience", ar: "خبرة عملية موثوقة", zh: "深厚实践经验" },
+    stats: {
+      en: [
+        { value: "20+", label: "Years Industry Experience", icon: Clock },
+        { value: "50+", label: "Industrial Projects", icon: Factory },
+        { value: "10+", label: "Countries Worldwide", icon: Globe },
+        { value: "Specialists", label: "Chemical & Fertilizer", icon: FlaskConical },
+        { value: "Expertise", label: "EPC & Owner Representation", icon: Award },
+      ],
+      ar: [
+        { value: "+20", label: "عاماً من الخبرة الصناعية", icon: Clock },
+        { value: "+50", label: "مشروعاً صناعياً تم تقييمه", icon: Factory },
+        { value: "+10", label: "دول حول العالم", icon: Globe },
+        { value: "متخصصون", label: "في الكيماويات والأسمدة", icon: FlaskConical },
+        { value: "خبرة ممتازة", label: "في تمثيل المقاولين والمالكين", icon: Award },
+      ],
+      zh: [
+        { value: "20+", label: "年行业实践经验", icon: Clock },
+        { value: "50+", label: "个工业项目评估", icon: Factory },
+        { value: "10+", label: "个国家与地区", icon: Globe },
+        { value: "专家团队", label: "精通化工与化肥", icon: FlaskConical },
+        { value: "专业代表", label: "EPC 与业主代理", icon: Award },
+      ]
+    }
+  },
+  scopeSection: {
+    eyebrow: { en: "Service Scope", ar: "نطاق الخدمة", zh: "服务范围" },
+    title: { en: "Our Service Scope", ar: "نطاق خدماتنا الهندسية", zh: "我們的工程服务范围" },
+    cards: {
+      en: [
+        {
+          title: "1. Engineering Phase",
+          icon: FileText,
+          items: [
+            "Design Review",
+            "Process Validation",
+            "HAZOP Participation",
+            "Specification Review",
+            "Constructability Review"
+          ]
+        },
+        {
+          title: "2. Procurement Phase",
+          icon: Briefcase,
+          items: [
+            "Technical Bid Evaluation",
+            "Vendor Assessment",
+            "FAT Witnessing",
+            "Material Compliance",
+            "Verification"
+          ]
+        },
+        {
+          title: "3. Construction Phase",
+          icon: Ruler,
+          items: [
+            "Site Inspection",
+            "Quality Surveillance",
+            "Progress Monitoring",
+            "Contractor Coordination",
+            "Safety Compliance"
+          ]
+        },
+        {
+          title: "4. Commissioning Phase",
+          icon: Settings,
+          items: [
+            "Start-Up Support",
+            "Commissioning Supervision",
+            "Performance Testing",
+            "Acceptance Verification",
+            "Punch List Closure"
+          ]
+        }
+      ],
+      ar: [
+        {
+          title: "1. مرحلة التصميم الهندسي",
+          icon: FileText,
+          items: [
+            "مراجعة التصاميم الهندسية",
+            "التحقق من سلامة العمليات",
+            "المشاركة في دراسات مخاطر التشغيل (HAZOP)",
+            "مراجعة المواصفات الكودية والمعايير",
+            "مراجعة قابلية التنفيذ والبناء"
+          ]
+        },
+        {
+          title: "2. مرحلة التوريد والمشتريات",
+          icon: Briefcase,
+          items: [
+            "التقييم الفني لعروض المناقصات",
+            "تقييم وتدقيق الموردين والشركات",
+            "حضور واختبار القبول في المصنع (FAT)",
+            "مطابقة المواد والشهادات الفنية",
+            "التحقق والتأكد من الجودة"
+          ]
+        },
+        {
+          title: "3. مرحلة التشييد والبناء",
+          icon: Ruler,
+          items: [
+            "التفتيش والمعاينة الميدانية بالموقع",
+            "مراقبة وتأكيد الجودة",
+            "متابعة وتقييم تقدم الأعمال",
+            "التنسيق الفني بين المقاولين",
+            "الالتزام بمعايير السلامة والصحة المهنية"
+          ]
+        },
+        {
+          title: "4. مرحلة التجهيز والتشغيل",
+          icon: Settings,
+          items: [
+            "دعم عمليات بدء التشغيل",
+            "الإشراف على أعمال التجهيز",
+            "متابعة واختبارات الأداء (PTR)",
+            "التحقق من استيفاء معايير القبول",
+            "إغلاق قائمة ملاحظات الاستلام (Punch List)"
+          ]
+        }
+      ],
+      zh: [
+        {
+          title: "1. 工程设计阶段",
+          icon: FileText,
+          items: [
+            "详细设计与 PID 审查",
+            "工艺可行性验证",
+            "HAZOP 危险与可操作性分析",
+            "工程技术规范与标准审查",
+            "可施工性 (Constructability) 评估"
+          ]
+        },
+        {
+          title: "2. 采购与设备监造阶段",
+          icon: Briefcase,
+          items: [
+            "技术投标书独立评估",
+            "供应商与制造厂资质审查",
+            "出厂验收测试 (FAT) 现场见证",
+            "材料与设备合规性复核",
+            "质量与规范精准验证"
+          ]
+        },
+        {
+          title: "3. 现场施工阶段",
+          icon: Ruler,
+          items: [
+            "现场施工质量巡检",
+            "质量监督与 Standard 管控",
+            "施工进度与 Milestone 跟踪",
+            "承包商界面与工程协调",
+            "EHS 安全与合规监督"
+          ]
+        },
+        {
+          title: "4. 试车与竣工阶段",
+          icon: Settings,
+          items: [
+            "开工投产技术支持",
+            " Pre-commissioning 监督",
+            "性能测试 (PTR) 见证与评估",
+            "竣工验收与交付标准复核",
+            "Punch List 尾项清零与关闭"
+          ]
+        }
+      ]
+    }
+  },
+  risksSection: {
+    eyebrow: { en: "Risk Mitigation", ar: "إزالة الغموض وإدارة المخاطر", zh: "风险澄清与化解" },
+    title: { en: "Risks We Protect Against", ar: "المخاطر التي نحمي مشروعك منها", zh: "我們助您防范的工程风险" },
+    cards: {
+      en: [
+        { title: "Design Errors", icon: Ruler },
+        { title: "Scope Gaps", icon: FileText },
+        { title: "EPC Contract Disputes", icon: Scale },
+        { title: "Equipment Non-Conformance", icon: Wrench },
+        { title: "Schedule Delays", icon: Clock },
+        { title: "Cost Escalation", icon: Coins },
+        { title: "Performance Failures", icon: TrendingDown },
+        { title: "Safety & Compliance Issues", icon: ShieldCheck },
+      ],
+      ar: [
+        { title: "الأخطاء والعيوب التصميمية", icon: Ruler },
+        { title: "الفجوات والغموض في نطاق العمل", icon: FileText },
+        { title: "نزاعات وخلافات عقود الـ EPC", icon: Scale },
+        { title: "عدم مطابقة المعدات للمواصفات", icon: Wrench },
+        { title: "التأخير في الجدول الزمني", icon: Clock },
+        { title: "ارتفاع وتجاوز النفقات الميزانية", icon: Coins },
+        { title: "إخفاقات الأداء والإنتاجية", icon: TrendingDown },
+        { title: "مشاكل السلامة والامتثال المعياري", icon: ShieldCheck },
+      ],
+      zh: [
+        { title: "设计错误与方案缺陷", icon: Ruler },
+        { title: "工作范围缝隙与遗漏", icon: FileText },
+        { title: "EPC 合同履约商务争议", icon: Scale },
+        { title: "设备与材料不合格缺陷", icon: Wrench },
+        { title: "工期延误与进度滞后", icon: Clock },
+        { title: "成本失控与预算失真", icon: Coins },
+        { title: "性能保函违约与产能不足", icon: TrendingDown },
+        { title: "EHS 安全与法规合规隐患", icon: ShieldCheck },
+      ]
+    }
+  },
+  whyKafaah: {
+    eyebrow: { en: "Why Kafaah?", ar: "لماذا كفاءة؟", zh: "为什么选择 Kafaah？" },
+    title: { en: "Why Trust Kafaah for Owner's Engineer Representation?", ar: "لماذا تثق بكفاءة لتمثيل المالك كمهندس مستقل؟", zh: "为什么选择 Kafaah 担任您的业主工程师？" },
+    items: {
+      en: [
+        "Independent & Unbiased Technical Representation",
+        "Chemical & Fertilizer Process Specialists",
+        "Extensive EPC Project Experience",
+        "Inspection, Quality & Commissioning Expertise",
+        "Strong Contract & Technical Dispute Resolution",
+        "Multi-disciplinary Engineering Team"
+      ],
+      ar: [
+        "تمثيل فني مستقل وغير منحاز لحماية مصالح المالك فقط",
+        "خبراء متخصصون في هندسة وتكنولوجيا الكيماويات والأسمدة",
+        "خبرة واسعة وممتدة في إدارة وإشراف مشاريع عقود EPC",
+        "خبرات متقدمة في التفتيش وضبط الجودة والتجهيز لبدء التشغيل",
+        "قدرة قوية على تسوية النزاعات الفنية والتعاقدية ودياً",
+        "فريق هندسي متكامل يغطي كافة التخصصات الصناعية"
+      ],
+      zh: [
+        "独立且公正的技术代表——唯一使命是捍卫业主利益",
+        "精通化工与化肥全流程的资深工艺专家团队",
+        "在大型 EPC 工程中具备极为丰富的全周期管理经验",
+        "精通出厂检验、现场 QA/QC 与试车开工技术",
+        "擅长处理复杂的工程技术与合同争议问题",
+        "跨学科的多专业资深工程团队全面支持"
+      ]
+    }
+  },
+  faqSection: {
+    eyebrow: { en: "Frequently Asked Questions", ar: "الأسئلة الشائعة", zh: "常见问题解答" },
+    title: { en: "Questions Owners Ask Before Appointing an Owner's Engineer", ar: "أسئلة يطرحها مالكو المشاريع قبل تعيين مهندس المالك", zh: "业主在聘请业主工程师前常问的问题" },
+    items: {
+      en: [
+        {
+          q: "What is an Owner's Engineer?",
+          a: "An Owner's Engineer is an independent technical advisor appointed directly by the plant owner — not the EPC contractor — to represent the owner's interests throughout a project. The role covers design review, vendor and contractor oversight, construction quality surveillance, and commissioning support, ensuring the finished plant matches the owner's technical and commercial expectations."
+        },
+        {
+          q: "When should we appoint an Owner's Engineer?",
+          a: "Ideally as early as the feasibility or FEED stage. Early involvement allows the Owner's Engineer to influence design decisions, validate process assumptions, and catch potential issues before they are locked into contracts or fabrication drawings — when they are far cheaper to correct. That said, Kafaah can also be appointed at procurement, construction, or commissioning stage if oversight has not yet been established."
+        },
+        {
+          q: "Can Kafaah support ongoing projects?",
+          a: "Yes. Kafaah regularly joins projects already underway — whether at the construction, pre-commissioning, or performance-testing stage. We begin with a rapid technical assessment to understand the current project status, identify any outstanding risks, and align our scope of work with what remains to be delivered."
+        },
+        {
+          q: "Can Kafaah represent us during performance testing?",
+          a: "Yes, this is one of our core services. Kafaah independently witnesses and verifies Performance Test Runs (PTRs) against the licensor's guaranteed parameters — covering capacity, conversion efficiency, utility consumption, and product quality — and issues a formal report documenting the results on the owner's behalf."
+        },
+        {
+          q: "Do you support international projects?",
+          a: "Yes. Kafaah has supported projects across the Middle East, North Africa, and Asia, and our team is set up to mobilize internationally — whether through resident site presence or periodic visit-based oversight, depending on project requirements and travel logistics."
+        },
+        {
+          q: "How is Kafaah different from the EPC contractor?",
+          a: "The EPC contractor is responsible for designing, procuring, and constructing the plant — typically under schedule and budget pressures tied to their own contract. Kafaah is appointed directly by the owner and has no commercial relationship with the EPC contractor, equipment vendors, or technology licensors involved. Our only obligation is to protect the owner's technical and commercial interests, working alongside the EPC team rather than against it."
+        }
+      ],
+      ar: [
+        {
+          q: "ما هو دور مهندس المالك (Owner's Engineer)؟",
+          a: "مهندس المالك هو مستشار فني مستقل يتم تعيينه مباشرة من قبل مالك المصنع — وليس مقاول الـ EPC — لتمثيل مصالح المالك طوال فترة المشروع. يشمل الدور مراجعة التصاميم، والإشراف على الموردين والمقاولين، ومراقبة جودة البناء، ودعم التجهيز، مما يضمن طابق المصنع النهائي للتوقعات الفنية والتجارية."
+        },
+        {
+          q: "متى ينبغي لنا تعيين مهندس المالك في المشروع؟",
+          a: "مثالياً في وقت مبكر جداً خلال مرحلة الجدوى أو التصاميم الهندسية الأوليّة (FEED). يتيح التدخل المبكر التأثير في قرارات التصميم والتحقق من العمليات قبل توثيقها في العقود، مما يقلل تكاليف التعديل. ومع ذلك، يمكن تعيين كفاءة في أي مرحلة لاحقة."
+        },
+        {
+          q: "هل يمكن لكفاءة دعم المشاريع القائمة والجارية بالفعل؟",
+          a: "نعم. تنضم كفاءة بانتظام إلى المشاريع الجارية — سواء في مرحلة البناء أو التجهيز أو اختبارات الأداء. نبدأ بتقييم فني سريع لفهم الحالة الحالية وتحديد المخاطر المتبقية وتوجيه نطاق عملنا وفقاً للمطلوب."
+        },
+        {
+          q: "هل يمكن لكفاءة تمثيلنا أثناء اختبارات الأداء والتشغيل؟",
+          a: "نعم، هذه إحدى خدماتنا الأساسية. تقوم كفاءة بالتدقيق والشهادة الميدانية المستقلة على تشغيل اختبارات الأداء (PTR) مقابل المعايير المضمونة من المرخّص — بما في ذلك الطاقة الإنتاجية وكفاءة التحويل واستهلاك المرافق وجودة المنتج — وإصدار تقرير رسمي."
+        },
+        {
+          q: "هل تدعم كفاءة المشاريع الدولية خارج مصر والخليج؟",
+          a: "نعم. دعمنا مشاريع عبر الشرق الأوسط وشمال أفريقيا وآسيا، وفريقنا مجهز للتواجد الدولي — سواء من خلال التواجد المقيم في الموقع أو الإشراف عبر الزيارات الميدانية الدورية."
+        },
+        {
+          q: "ما الفرق بين كفاءة كمستشار للمالك ومقاول الـ EPC؟",
+          a: "مقاول الـ EPC مسؤول عن تصميم وتوريد وبناء المصنع تحت ضغوط الميزانية والجدول الزمني الخاصة بعقده. بينما يتم تعيين كفاءة مباشرة من المالك دون أي علاقة تجارية مع المقاول أو الموردين، والتزامنا الوحيد هو حماية مصالح المالك الهندسية والتجارية بالتعاون مع فريق التنفيذ."
+        }
+      ],
+      zh: [
+        {
+          q: "什么是业主工程师 (Owner's Engineer)？",
+          a: "业主工程师是由工厂业主直接聘请（而非由 EPC 承包商聘请）的独立技术顾问，在整个项目期间代表业主的权益。其职责涵盖设计审查、供应商与承包商监督、施工质量监控及试车支持，确保最终交付的工厂符合业主的工程与商务期望。"
+        },
+        {
+          q: "我们应该在项目的哪个阶段聘请业主工程师？",
+          a: "最理想的阶段是在可行性研究或 FEED 前期设计阶段。早期参与允许业主工程师优化设计决策、验证工艺假设，并在方案锁定到合同或施工图之前发现隐患——此时修正成本最低。当然，如果在后续采购、施工或试车阶段需要，Kafaah 亦可随时进场提供督导。"
+        },
+        {
+          q: "Kafaah 能否支持已经在推进中的项目？",
+          a: "是的。Kafaah 经常中途受托支持已经在推进中的项目——无论是处于施工、预试车还是性能测试阶段。我们首先开展快速技术评估，掌握当前状态，识别残留风险，并针对后续交付内容精准设定工作范围。"
+        },
+        {
+          q: "Kafaah 能否在 Performance 测试期间代表我们？",
+          a: "是的，这是我们的核心服务之一。Kafaah 独立见证并核查 Performance Test Run (PTR) 性能测试，对照专利商担保参数（涵盖产能、转化率、公用工程消耗及产品质量），并代表业主出具权威的官方见证报告。"
+        },
+        {
+          q: "Kafaah 是否支持跨国/海外项目？",
+          a: "是的。Kafaah 已为中东、北非及亚洲的多个工程项目提供服务。我们的团队具备国际化履约能力——可根据项目需求与物流规划，提供常驻现场监理或定期现场巡检服务。"
+        },
+        {
+          q: "Kafaah 与 EPC 总承包商有何区别？",
+          a: "EPC 总承包商负责工厂的设计、采购与施工，通常受到自研合同的工期与成本压力束缚。而 Kafaah 由业主直接聘请，与任何 EPC 承包商、设备商或专利商均无利益往来。我们唯一的职责是保护业主的工程与商业利益，与 EPC 团队协同配合推进项目。"
+        }
+      ]
+    }
+  },
+  finalCta: {
+    eyebrow: { en: "Request Technical Consult", ar: "طلب استشارة فنية", zh: "请求技术咨询" },
+    titleLine1: { en: "Protect Your Project Investment", ar: "احمِ استثمار مشروعك الهندسي", zh: "保障您的工程项目投资" },
+    titleLine2: { en: "With Independent Technical Oversight", ar: "بإشراف ورقابة فنية مستقلة وتامة", zh: "基于全过程独立技术监督" },
+    desc: {
+      en: "Let our experts help you deliver your project safely, on time, and within budget — with guaranteed performance.",
+      ar: "دع خبراء كفاءة يساعدونك في تسليم مشروعك بأمان وفي الوقت المحدد وضمن الميزانية — مع ضمان الأداء المعتمد.",
+      zh: "让我們的工程专家助您安全、按时、在预算内交付项目——并确保各项 Performance 担保完美达成。"
+    },
+    primaryBtn: { en: "Talk to an Expert →", ar: "التحدث مع خبير ←", zh: "与专家交谈 →" },
+    secondaryBtn: { en: "Download Capability Statement ⬇", ar: "تحميل ملف القدرات ⬇", zh: "下载能力说明书 ⬇" }
+  }
+};
+
+function OwnersEngineerView({ service, relatedTechs }: Props) {
+  const { locale } = useRole();
+  const rtl = isRtl(locale);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const heroData = ownersEngineerDict.hero;
+  const trustData = ownersEngineerDict.trustStrip[locale] || ownersEngineerDict.trustStrip.en;
+  const whyData = ownersEngineerDict.whyWeServe;
+  const expData = ownersEngineerDict.experienceBar;
+  const scopeData = ownersEngineerDict.scopeSection.cards[locale] || ownersEngineerDict.scopeSection.cards.en;
+  const risksData = ownersEngineerDict.risksSection.cards[locale] || ownersEngineerDict.risksSection.cards.en;
+  const whyKafaahItems = ownersEngineerDict.whyKafaah.items[locale] || ownersEngineerDict.whyKafaah.items.en;
+  const faqItems = ownersEngineerDict.faqSection.items[locale] || ownersEngineerDict.faqSection.items.en;
+  const ctaData = ownersEngineerDict.finalCta;
+
+  return (
+    <>
+      {/* 0. Hero Header Section */}
+      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-between overflow-hidden bg-navy-deep pt-28 sm:pt-32 lg:pt-36 border-b border-white/[0.08]">
+        {/* Background Image with Dark Overlay */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <picture>
+            <source media="(max-width: 768px)" srcSet="/owners_engineer_mobile_blueprint.webp" />
+            <source media="(min-width: 769px)" srcSet="/owners_engineer_blueprint.webp" />
+            <img
+              src="/owners_engineer_blueprint.webp"
+              alt="Owner's Engineer Services — Kafaah Industrial"
+              className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
+            />
+          </picture>
+          {/* Fading gradient */}
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
+          {/* Mobile overlay for high text contrast */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
+        </div>
+
+        {/* Content Container (Centered Vertically) */}
+        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+          <div className="max-w-[720px] text-left rtl:text-right">
+            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
+            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+              <span>{heroData.tag[locale]}</span>
+            </div>
+
+            {/* H1 Title */}
+            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
+              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                {heroData.titlePart2[locale]}
+              </span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+              {heroData.sub[locale]}
+            </p>
+
+            {/* Description */}
+            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
+              {heroData.desc[locale]}
+            </p>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnPrimary[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+              >
+                <span>{heroData.btnSecondary[locale]}</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Bottom Trust Bar (4 items with pt-4 pb-4 sm:py-0 on mobile) */}
+        <div className="w-full border-t border-white/[0.12] bg-navy-dark/95 backdrop-blur-md relative z-10 mt-10">
+          <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-white/[0.08]">
+              {trustData.map((item: any, idx: number) => {
+                const ItemIcon = item.icon;
+                return (
+                  <div key={idx} className="pt-4 pb-4 sm:py-4 px-3 sm:px-5 flex items-start gap-3.5 group hover:bg-white/[0.02] transition-colors">
+                    <div className="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-0.5 group-hover:border-gold group-hover:scale-105 transition-all">
+                      <ItemIcon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <h4 className="font-[family-name:var(--font-ui)] text-[13px] sm:text-sm font-semibold text-cloud group-hover:text-gold transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-[11px] sm:text-[12px] font-light text-silver/70 leading-snug mt-0.5">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* 1. Why Owner's Engineer (Comparison Grid: Common Project Risks vs Our Solution) */}
+      <section className="py-24 bg-navy-deep relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-4 gold-line">
+                  {whyData.eyebrow[locale]}
+                </div>
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
+                  {whyData.title[locale]}
+                </h2>
+                <div className="w-12 h-[2px] bg-gold mb-6" />
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                  {whyData.desc[locale]}
+                </p>
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="flex flex-col md:flex-row items-stretch gap-4 relative">
+
+                  <div className="flex-1 bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 rounded-sm">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-red-400 mb-5 pb-3 border-b border-white/10">
+                      {whyData.risksCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whyData.risksCard.items[locale] || whyData.risksCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-silver/85">
+                          <X className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="hidden md:flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full border border-gold/30 flex items-center justify-center text-gold bg-navy-dark shrink-0">
+                      <ArrowRight className={`w-4 h-4 ${rtl ? "rotate-180" : ""}`} />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 bg-navy-card/60 backdrop-blur-md border border-gold/30 p-6 rounded-sm shadow-lg">
+                    <h5 className="font-[family-name:var(--font-ui)] text-xs font-bold tracking-[0.15em] uppercase text-gold mb-5 pb-3 border-b border-gold/20">
+                      {whyData.solutionsCard.title[locale]}
+                    </h5>
+                    <ul className="space-y-3">
+                      {(whyData.solutionsCard.items[locale] || whyData.solutionsCard.items.en).map((item: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-3 text-xs font-light text-cloud">
+                          <Check className="w-4 h-4 text-gold shrink-0 mt-0.5 font-bold" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Experience Bar */}
+      <section className="py-12 bg-navy-dark border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 sm:p-8 rounded-sm">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-6">
+              {expData.eyebrow[locale]}
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
+              {((expData.stats as any)[locale] || expData.stats.en).map((st: any, idx: number) => {
+                const StatIcon = st.icon;
+                return (
+                  <div key={idx} className="flex items-center gap-3.5">
+                    <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-gold/10">
+                      <StatIcon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <div className="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-cloud">
+                        {st.value}
+                      </div>
+                      <div className="text-[11px] font-light text-silver/80 leading-snug">
+                        {st.label}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Service Scope */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="text-center max-w-2xl mx-auto mb-16">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold inline-block mb-3">
+              {ownersEngineerDict.scopeSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {ownersEngineerDict.scopeSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mx-auto mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {scopeData.map((card: any, idx: number) => {
+              const CardIcon = card.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.1}>
+                  <div className="h-full bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-7 rounded-sm hover:border-gold/40 hover:bg-navy-card-hover/60 transition-all duration-500 flex flex-col justify-between group">
+                    <div>
+                      <div className="w-11 h-11 rounded-full border border-gold/30 flex items-center justify-center text-gold mb-6 bg-navy-deep group-hover:border-gold group-hover:bg-gold/10 transition-all duration-300">
+                        <CardIcon className="w-5 h-5" />
+                      </div>
+                      <h4 className="font-[family-name:var(--font-display)] text-lg text-cloud font-semibold mb-4 group-hover:text-gold transition-colors">
+                        {card.title}
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {card.items.map((item: string, itemIdx: number) => (
+                          <li key={itemIdx} className="text-xs font-light text-silver/80 flex items-start gap-2">
+                            <span className="text-gold font-semibold">—</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Risks We Protect Against (8 Cards) */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <FadeIn className="mb-12">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {ownersEngineerDict.risksSection.eyebrow[locale]}
+            </div>
+            <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {ownersEngineerDict.risksSection.title[locale]}
+            </h3>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {risksData.map((item: any, idx: number) => {
+              const CaseIcon = item.icon;
+              return (
+                <FadeIn key={idx} delay={idx * 0.06}>
+                  <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.1] hover:border-gold/30 p-6 rounded-sm text-center flex flex-col items-center justify-center group transition-all duration-300 hover:-translate-y-1">
+                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold mb-3 group-hover:scale-110 transition-transform duration-300">
+                      <CaseIcon className="w-5 h-5" />
+                    </div>
+                    <p className="text-xs sm:text-sm font-medium text-cloud leading-snug">
+                      {item.title}
+                    </p>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Why Kafaah */}
+      <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+            <div className="lg:col-span-5">
+              <FadeIn>
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+                  {ownersEngineerDict.whyKafaah.eyebrow[locale]}
+                </div>
+                <h3 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2]">
+                  {ownersEngineerDict.whyKafaah.title[locale]}
+                </h3>
+                <div className="w-12 h-[2px] bg-gold mt-4" />
+              </FadeIn>
+            </div>
+
+            <div className="lg:col-span-7">
+              <FadeIn delay={0.15}>
+                <div className="space-y-4">
+                  {whyKafaahItems.map((item: string, idx: number) => (
+                    <div key={idx} className="flex items-start gap-4 p-4 bg-navy-card/30 border border-white/[0.08] rounded-sm hover:border-gold/30 transition-all duration-300">
+                      <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 font-bold" />
+                      </div>
+                      <p className="text-sm font-light text-silver/90 leading-relaxed">
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </FadeIn>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 6. FAQ Section */}
+      <section className="py-24 bg-navy-dark relative border-b border-white/[0.05]">
+        <div className="max-w-[1000px] mx-auto px-6">
+          <FadeIn className="mb-14">
+            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3">
+              {ownersEngineerDict.faqSection.eyebrow[locale]}
+            </div>
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.2] tracking-tight">
+              {ownersEngineerDict.faqSection.title[locale]}
+            </h2>
+            <div className="w-12 h-[2px] bg-gold mt-4" />
+          </FadeIn>
+
+          <div className="space-y-4">
+            {faqItems.map((faq: any, idx: number) => {
+              const isOpen = openFaqIndex === idx;
+              return (
+                <FadeIn key={idx} delay={idx * 0.08}>
+                  <div className="border border-white/[0.12] bg-navy-card/40 rounded-sm overflow-hidden transition-all duration-300">
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full flex items-center justify-between p-6 text-left hover:bg-white/[0.02] transition-colors gap-4"
+                    >
+                      <span className="font-[family-name:var(--font-display)] text-base font-medium text-cloud">
+                        {faq.q}
+                      </span>
+                      <div className={`w-7 h-7 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}>
+                        <Plus className="w-4 h-4" />
+                      </div>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-6 pb-6 pt-2 text-sm font-light text-silver/80 leading-relaxed border-t border-white/[0.05]">
+                        <p>{faq.a}</p>
+                      </div>
+                    )}
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Final CTA Section */}
+      <section className="py-24 bg-navy-deep relative overflow-hidden border-b border-white/[0.05]">
+        <div className="max-w-[1280px] mx-auto px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
+
+            <div className="text-left rtl:text-right max-w-2xl flex-1">
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-3 inline-block">
+                {ctaData.eyebrow[locale]}
+              </div>
+
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] text-cloud font-semibold leading-[1.25] tracking-tight">
+                <span className="block text-cloud">{ctaData.titleLine1[locale]}</span>
+                <span className="block text-gold">{ctaData.titleLine2[locale]}</span>
+              </h2>
+
+              <div className="w-12 h-[2px] bg-gold my-4" />
+
+              <p className="text-sm sm:text-base font-light text-silver/80 leading-relaxed max-w-xl">
+                {ctaData.desc[locale]}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3.5 w-full sm:w-[340px] shrink-0">
+              <a
+                href="mailto:info@kafaahsolutions.com"
+                className="btn-premium-gold font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 text-navy-deep bg-gold hover:bg-gold-light transition-all rounded-sm shadow-md whitespace-nowrap w-full"
+              >
+                <span>{ctaData.primaryBtn[locale]}</span>
+              </a>
+              <a
+                href="/contact/"
+                className="border border-white/30 hover:border-white text-cloud font-[family-name:var(--font-ui)] text-[11px] font-bold tracking-[0.1em] uppercase py-3.5 px-6 h-12 inline-flex items-center justify-center text-center gap-2.5 hover:bg-white/5 transition-all rounded-sm whitespace-nowrap w-full"
+              >
+                <span>{ctaData.secondaryBtn[locale]}</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Related Technologies */}
+      {relatedTechs.length > 0 && (
+        <section className="py-24 bg-navy-dark relative overflow-hidden">
+          <div className="max-w-[1280px] mx-auto px-6">
+            <FadeIn>
+              <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6">
+                Process Synergies
+              </div>
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] leading-[1.2] text-cloud mb-12 tracking-tight">
+                Applicable Plant Technologies
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {relatedTechs.map((tech) => (
+                  <Link
+                    key={tech.slug}
+                    href={`/technologies/${tech.slug}/`}
+                    className="group relative bg-navy-card/40 backdrop-blur-md border border-white/[0.12] hover:border-gold/35 hover:bg-navy-card-hover/55 hover:shadow-[0_12px_30px_-10px_rgba(240,160,32,0.08)] hover:-translate-y-1.5 p-8 rounded-sm transition-all duration-500 flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="text-[10px] tracking-[0.2em] font-semibold text-gold uppercase mb-4 font-[family-name:var(--font-ui)] flex items-center gap-2">
+                        <Award className="w-4 h-4 text-gold" />
+                        Chemical Process
+                      </div>
+                      <h3 className="font-[family-name:var(--font-display)] text-xl text-cloud font-semibold mb-3 group-hover:text-gold transition-colors">
+                        {tech.fullName}
+                      </h3>
+                      <p className="text-sm font-light text-silver/80 leading-relaxed mb-8">
+                        {tech.shortDesc}
+                      </p>
+                    </div>
+
                     <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.1em] text-gold mt-auto pt-4 border-t border-divider/40">
                       Explore Technology
                       <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
@@ -1585,6 +4324,18 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
     return <ConstructionCommissioningView service={service} relatedTechs={relatedTechs} />;
   }
 
+  if (service.slug === "process-engineering-support") {
+    return <ProcessEngineeringSupportView service={service} relatedTechs={relatedTechs} />;
+  }
+
+  if (service.slug === "investor-advisory") {
+    return <InvestorAdvisoryView service={service} relatedTechs={relatedTechs} />;
+  }
+
+  if (service.slug === "owners-engineer") {
+    return <OwnersEngineerView service={service} relatedTechs={relatedTechs} />;
+  }
+
   const audienceLabel = getAudienceLabel(service.audience);
 
   return (
@@ -1598,10 +4349,10 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             {/* Left Column: Rich Text Content */}
             <div className="lg:col-span-7">
               <FadeIn>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Service Overview
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-6 tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-6 tracking-tight">
                   Independent Technical representation &amp; Field Support
                 </h2>
                 <div className="space-y-6">
@@ -1668,7 +4419,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Scope of Service
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               Scope of Deliverables &amp; Core Execution
             </h2>
           </FadeIn>
@@ -1703,7 +4454,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Execution Roadmap
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               Service Engagement &amp; Execution Workflow
             </h2>
           </FadeIn>
@@ -1751,10 +4502,10 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             {/* Left Column: Heading */}
             <div className="lg:col-span-5">
               <FadeIn>
-                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
+                <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                   Why Kafaah
                 </div>
-                <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud tracking-tight">
+                <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud tracking-tight">
                   Proven Field Capabilities &amp; Technical Depth
                 </h2>
               </FadeIn>
@@ -1785,7 +4536,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
             <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
               Risk Management
             </div>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
               Critical Risks Managed &amp; Mitigated
             </h2>
           </FadeIn>
@@ -1820,7 +4571,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
               <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold flex items-center gap-3 mb-6 gold-line">
                 Process Synergies
               </div>
-              <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,3.5vw,42px)] leading-[1.1] text-cloud mb-12 tracking-tight">
+              <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.2] text-cloud mb-12 tracking-tight">
                 Applicable Plant Technologies
               </h2>
 
@@ -1865,10 +4616,10 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
 
         <div className="max-w-[860px] mx-auto px-8 text-center relative z-10">
           <FadeIn>
-            <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-5 inline-block">
+            <span className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.2em] uppercase text-gold mb-5 inline-block">
               Request Technical Consult
             </span>
-            <h2 className="font-[family-name:var(--font-display)] text-[clamp(22px,4.5vw,54px)] leading-[1.05] text-cloud mb-6 tracking-tight">
+            <h2 className="font-[family-name:var(--font-display)] text-[18px] xs:text-[20px] sm:text-[24px] md:text-[28px] lg:text-[32px] font-semibold leading-[1.15] text-cloud mb-6 tracking-tight">
               Ready to Secure Your {service.title} Deliverables?
             </h2>
             <p className="text-base md:text-lg font-light text-silver/80 mb-10 max-w-[620px] mx-auto leading-relaxed">

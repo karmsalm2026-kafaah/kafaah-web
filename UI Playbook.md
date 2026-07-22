@@ -580,62 +580,83 @@ Never rely on media queries for typography unless absolutely required.
 
 ------------------------------------------------------------------------------
 
-## MINIMUM FONT SIZES
+## MINIMUM FONT SIZES & TYPOGRAPHY SCALE (PROJECT SPECIFICATION)
 
-Body text:
+Every component must adhere to the calibrated project typography scale matching the Hero & Service Page design system:
 
-Never below 16px
+Hero Title (H1):
+• Mobile (360px): 20–23px
+• Tablet (768px): 31–40px
+• Desktop (1024px+): 40–46px
 
-Small text:
+Hero Subtitle:
+• Mobile: 14px (text-sm)
+• Desktop: 16px (text-base)
 
-Never below 14px
+Hero Description / Body Text under Title:
+• Mobile: 12.5–13px (text-[12.5px] to text-[13px])
+• Desktop: 14px (text-sm)
 
-Caption:
+Eyebrow / Category Badges:
+• Plain Gold Text + Pulse Dot: 10–11px (Uppercase, tracking 0.20em)
 
-Never below 13px
+Buttons & Action CTAs:
+• Standard / Single Line CTAs: 12–13px (Uppercase, tracking 0.12em)
+• Compact 2-Column Grid CTAs: 8.5–9.5px (Uppercase, tracking 0.04em–0.08em)
 
-Interactive elements:
+Section Headings (H2 / H3 across page sections):
+• Mobile (360px): 18–20px
+• Tablet (768px): 24–28px
+• Desktop (1024px+): 32px (Scale: 18px / 20px / 24px / 28px / 32px)
 
-Never below 14px
+Cards & Trust Strips:
+• Trust Strip Item Titles: 14–16px
+• Trust Strip Item Body: 12px (with pt-4 pb-4 spacing on mobile)
+• Card Header / Eyebrow: 10–12px
+• Card Body / Item Text: 11–13px
+• Stats Values: 16–24px
+• Stats Micro Labels: 9–11px (Uppercase, tracking 0.06em)
 
-Buttons:
+Body Text:
+• 14–16px (Paragraphs & Content Blocks)
 
-Prefer 15–17px
-
-Tiny unreadable text is prohibited.
+Small Text / Captions / Badges:
+• 11–13px
 
 ------------------------------------------------------------------------------
 
 ## HEADING SCALE
 
-Maintain proportional scaling.
+Maintain proportional scaling across all devices:
 
-Example target ranges:
+Hero (H1)
+20–23px (Mobile)
+31–46px (Tablet / Desktop)
 
-Hero
-20–36px (Mobile / 360px viewport)
-48–72px (Tablet / Desktop)
+Section Titles (H2 / H3)
+18–20px (Mobile)
+24–32px (Tablet / Desktop)
 
 Display
-44–64px
+36–48px
 
 H1
-36–56px
+28–46px
 
-H2
-30–44px
+H2 / Section Headings
+18–32px
 
 H3
-26–36px
+16–24px
 
 H4
-22–30px
+14–18px
 
 H5
-18–24px
+13–15px
 
 H6
-16–20px
+11–13px
 
 The hierarchy should remain obvious even on mobile.
 

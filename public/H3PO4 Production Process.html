@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phosphoric Acid Plant — Interactive PFD with 54% P₂O₅ Evaporator</title>
+  <style>
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #334155;
+      --color-text-tertiary: #64748b;
+      --color-border-tertiary: #e2e8f0;
+      --color-background-secondary: #f8fafc;
+      
+      /* System Badges */
+      --color-background-info: #e0f2fe; --color-text-info: #0369a1;
+      --color-background-warning: #fef3c7; --color-text-warning: #b45309;
+      --color-background-danger: #fee2e2; --color-text-danger: #b91c1c;
+      --color-background-success: #dcfce7; --color-text-success: #15803d;
+
+      /* Process Flow Line Colors */
+      --flow-solids: #475569;     
+      --flow-gas: #8b5cf6;        
+      --flow-utility: #0ea5e9;    
+      --flow-furnace: #e11d48;    
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body { background: #ffffff; padding: 2rem 1rem; }
+    .root{font-family:var(--font-sans);padding:1rem; max-width: 720px; margin: 0 auto;}
+    
+    /* SVG styling classes */
+    .node { cursor: pointer; fill: #ffffff; transition: transform 0.2s ease; }
+    .node rect { stroke: #cbd5e1; fill: #ffffff; transition: all 0.2s ease; }
+    
+    /* Color themes for PFD blocks */
+    .c-blue rect { stroke: var(--flow-utility); }
+    .c-coral rect { stroke: var(--flow-furnace); fill: #fff1f2; }
+    .c-teal rect { stroke: #14b8a6; }
+    .c-purple rect { stroke: var(--flow-gas); }
+    .c-green rect { stroke: #10b981; fill: #f0fdf4; }
+    .c-amber rect { stroke: #f59e0b; }
+    .c-gray rect { stroke: #94a3b8; }
+
+    .node:hover rect { stroke-width: 1.5px; filter: drop-shadow(0 4px 6px -1px rgb(0 0 0 / 0.05)); }
+    .node.active rect { stroke-width: 2px; fill: #f0fdfa; stroke: #0d9488 !important; }
+
+    .th { font-size: 13px; font-weight: 600; fill: var(--color-text-primary); }
+    .ts { font-size: 11px; fill: var(--color-text-secondary); }
+
+    /* Details Panel UI */
+    .detail-panel{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:8px;padding:16px 20px;margin-top:16px;min-height:90px;transition:all .2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);}
+    .detail-panel h3{font-size:15px;font-weight:600;color:var(--color-text-primary);margin-bottom:8px; display: flex; align-items: center; justify-content: space-between;}
+    .detail-panel p{font-size:13.5px;color:var(--color-text-secondary);line-height:1.6; margin-bottom: 8px;}
+    .badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:9999px;font-weight:500; text-transform: uppercase; letter-spacing: 0.05em;}
+    
+    .badge-warn{background:var(--color-background-warning);color:var(--text-warning)}
+    .badge-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+    .badge-info{background:var(--color-background-info);color:var(--color-text-info)}
+    .badge-ok{background:var(--color-background-success);color:var(--color-text-success)}
+    
+    .hint{font-size:12px;color:var(--color-text-tertiary);text-align:center;margin-top:10px}
+    .kafaah-note{margin-top:10px;font-size:12.5px;color:var(--color-text-secondary);border-top:1px dashed var(--color-border-tertiary);padding-top:10px}
+    .kafaah-note b{color: #0d9488}
+    .challenge-note{margin-top:6px;font-size:12.5px;color:var(--color-text-secondary);}
+    .challenge-note b{color: #dc2626}
+  </style>
+</head>
+<body>
+
+<div class="root">
+<svg width="100%" viewBox="0 0 680 1020" role="img">
+  <title>Phosphoric Acid Production Plant — Complete Process Flow Diagram</title>
+  <desc>Interactive PFD including a 27% P2O5 reaction circuit, vacuum flash cooling, tilting pan filtration, and a 54% P2O5 product evaporation unit.</desc>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <g id="node-rock" class="node c-blue" onclick="showDetail('rock')">
+    <rect x="80" y="30" width="168" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="164" y="52" text-anchor="middle" dominant-baseline="central">Phosphate Rock Silo</text>
+    <text class="ts" x="164" y="72" text-anchor="middle" dominant-baseline="central">Dry Ground Rock Feed</text>
+  </g>
+  <rect x="134" y="100" width="90" height="20" rx="4" fill="none" stroke="var(--flow-utility)" stroke-width="0.5" opacity="0.5"/>
+  <text class="ts" x="179" y="114" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-secondary)">~3.4 t/t P₂O₅</text>
+
+  <g id="node-h2so4" class="node c-blue" onclick="showDetail('h2so4')">
+    <rect x="432" y="30" width="168" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="516" y="52" text-anchor="middle" dominant-baseline="central">98% H₂SO₄ Storage</text>
+    <text class="ts" x="516" y="72" text-anchor="middle" dominant-baseline="central">Concentrated Acid Feed</text>
+  </g>
+  <rect x="456" y="100" width="90" height="20" rx="4" fill="none" stroke="var(--flow-utility)" stroke-width="0.5" opacity="0.5"/>
+  <text class="ts" x="501" y="114" text-anchor="middle" dominant-baseline="central" fill="var(--color-text-secondary)">~2.7 t/t P₂O₅</text>
+
+  <line x1="164" y1="120" x2="164" y2="155" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <line x1="516" y1="120" x2="516" y2="155" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M164 155 L164 185 L295 185" fill="none" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M516 155 L516 185 L465 185" fill="none" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-flashcool" class="node c-amber" onclick="showDetail('flashcool')">
+    <rect x="30" y="198" width="120" height="44" rx="6" stroke-width="1"/>
+    <text class="th" x="90" y="214" text-anchor="middle" dominant-baseline="central">Vacuum Flash Cooler</text>
+    <text class="ts" x="90" y="232" text-anchor="middle" dominant-baseline="central">Target: 74–76 °C (&lt;80 °C)</text>
+  </g>
+  <path d="M220 220 L150 220" fill="none" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <path d="M90 198 L90 175 L204 175" fill="none" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-reactor" class="node c-coral" onclick="showDetail('reactor')">
+    <rect x="204" y="162" width="272" height="100" rx="10" stroke-width="1.5"/>
+    <text class="th" x="340" y="195" text-anchor="middle" dominant-baseline="central">Attack Reactor System</text>
+    <text class="ts" x="340" y="217" text-anchor="middle" dominant-baseline="central">Reaction Zone Dynamics</text>
+    <text class="ts" x="340" y="238" text-anchor="middle" dominant-baseline="central">Controlled 27% P₂O₅ Output</text>
+  </g>
+
+  <g id="node-offgas" class="node c-purple" onclick="showDetail('offgas')">
+    <rect x="534" y="190" width="120" height="44" rx="6" stroke-width="1"/>
+    <text class="th" x="594" y="205" text-anchor="middle" dominant-baseline="central">Fluorine Gases</text>
+    <text class="ts" x="594" y="222" text-anchor="middle" dominant-baseline="central">To Scrubber</text>
+  </g>
+  <line x1="476" y1="212" x2="534" y2="212" stroke="var(--flow-gas)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <path d="M340 262 L340 305" fill="none" stroke="var(--flow-furnace)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="410" y="285" fill="var(--color-text-secondary)" text-anchor="middle">Acid Slurry Feed</text>
+
+  <g id="node-panfilter" class="node c-teal" onclick="showDetail('panfilter')">
+    <rect x="140" y="307" width="400" height="85" rx="8" stroke-width="1.5"/>
+    <text class="th" x="340" y="330" text-anchor="middle" dominant-baseline="central">Tilting Pan Filter (Rotary Vacuum Matrix)</text>
+    <text class="ts" x="340" y="352" text-anchor="middle" dominant-baseline="central">Optimized for 27% P₂O₅ Slurry Separation & Multi-Stage Wash</text>
+    <text class="ts" x="340" y="372" text-anchor="middle" dominant-baseline="central">Rapid Inversion Cake Discharge & Cloth Rinse</text>
+  </g>
+
+  <path d="M220 392 L220 445" fill="none" stroke="var(--flow-furnace)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="160" y="420" fill="var(--color-text-secondary)">27% P₂O₅ Filtrate</text>
+
+  <path d="M460 392 L460 445" fill="none" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <text class="ts" x="525" y="420" fill="var(--color-text-secondary)">By-Product Cake</text>
+
+  <g id="node-strongacid" class="node c-green" onclick="showDetail('strongacid')">
+    <rect x="110" y="447" width="210" height="58" rx="8" stroke-width="1.2"/>
+    <text class="th" x="215" y="468" text-anchor="middle" dominant-baseline="central">Product Acid Seal Tank</text>
+    <text class="ts" x="215" y="488" text-anchor="middle" dominant-baseline="central">Crude 27% P₂O₅ Production</text>
+  </g>
+  <line x1="215" y1="505" x2="215" y2="545" stroke="var(--flow-furnace)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-clarification" class="node c-green" onclick="showDetail('clarification')">
+    <rect x="110" y="547" width="210" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="215" y="568" text-anchor="middle" dominant-baseline="central">Acid Clarification Settlers</text>
+    <text class="ts" x="215" y="588" text-anchor="middle" dominant-baseline="central">Suspended Solids Drop</text>
+  </g>
+  <line x1="215" y1="605" x2="215" y2="645" stroke="var(--flow-furnace)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-storage" class="node c-green" onclick="showDetail('storage')">
+    <rect x="110" y="647" width="210" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="215" y="668" text-anchor="middle" dominant-baseline="central">Clarified 27% P₂O₅ Tank</text>
+    <text class="ts" x="215" y="688" text-anchor="middle" dominant-baseline="central">Intermediate Evaporator Feed</text>
+  </g>
+  <line x1="215" y1="705" x2="215" y2="745" stroke="var(--flow-furnace)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <g id="node-evaporator" class="node c-coral" onclick="showDetail('evaporator')">
+    <rect x="110" y="747" width="210" height="68" rx="8" stroke-width="1.5"/>
+    <text class="th" x="215" y="768" text-anchor="middle" dominant-baseline="central">54% P₂O₅ Evaporator</text>
+    <text class="ts" x="215" y="788" text-anchor="middle" dominant-baseline="central">Forced Circulation / Vacuum</text>
+    <text class="ts" x="215" y="802" text-anchor="middle" dominant-baseline="central">Merchant Grade Concentration</text>
+  </g>
+  <line x1="215" y1="815" x2="215" y2="855" stroke="var(--flow-furnace)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-merchantstorage" class="node c-green" onclick="showDetail('merchantstorage')">
+    <rect x="110" y="857" width="210" height="58" rx="8" stroke-width="1.2"/>
+    <text class="th" x="215" y="878" text-anchor="middle" dominant-baseline="central">54% MGA Storage Tank</text>
+    <text class="ts" x="215" y="898" text-anchor="middle" dominant-baseline="central">Final Merchant Acid Dispatch</text>
+  </g>
+
+  <g id="node-cakedischarge" class="node c-gray" onclick="showDetail('cakedischarge')">
+    <rect x="370" y="447" width="200" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="470" y="468" text-anchor="middle" dominant-baseline="central">Pan Inversion & Chute</text>
+    <text class="ts" x="470" y="488" text-anchor="middle" dominant-baseline="central">Calcium Sulfate Discharges</text>
+  </g>
+  <line x1="470" y1="505" x2="470" y2="545" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-clothwash" class="node c-blue" onclick="showDetail('clothwash')">
+    <rect x="370" y="547" width="200" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="470" y="568" text-anchor="middle" dominant-baseline="central">High-Pressure Cloth Wash</text>
+    <text class="ts" x="470" y="588" text-anchor="middle" dominant-baseline="central">Blind Prevention / Scald Removal</text>
+  </g>
+  <line x1="470" y1="605" x2="470" y2="645" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <g id="node-washliquor" class="node c-blue" onclick="showDetail('washliquor')">
+    <rect x="370" y="647" width="200" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="470" y="668" text-anchor="middle" dominant-baseline="central">Return Wash Filtrate Matrix</text>
+    <text class="ts" x="470" y="688" text-anchor="middle" dominant-baseline="central">Counter-Current Wash Loop Feed</text>
+  </g>
+  <path d="M370 676 L340 676 L340 370 L140 370" fill="none" stroke="var(--flow-utility)" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#ar)"/>
+
+  <g id="node-scrubber" class="node c-gray" onclick="showDetail('scrubber')">
+    <rect x="350" y="755" width="240" height="52" rx="8" stroke-width="1.2"/>
+    <text class="th" x="470" y="775" text-anchor="middle" dominant-baseline="central">Fluorine Gas Scrubber Column</text>
+    <text class="ts" x="470" y="794" text-anchor="middle" dominant-baseline="central">Emissions &lt; 30 mg/Nm³ to stack</text>
+  </g>
+  <path d="M594 234 L594 740 L470 740 L470 755" fill="none" stroke="var(--flow-gas)" stroke-width="1" stroke-dasharray="4 3"/>
+  <path d="M320 781 L350 781" fill="none" stroke="var(--flow-gas)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+
+  <text class="ts" x="340" y="965" text-anchor="middle" fill="var(--color-text-secondary)" opacity="0.7" style="font-weight: 500;">↑ Click any process block above to examine operational indicators.</text>
+</svg>
+
+<div class="detail-panel" id="detail-box">
+  <p style="color:var(--color-text-tertiary); font-style: italic;">Click any process block above to see technical detail and advisory focuses.</p>
+</div>
+</div>
+
+<script>
+const data = {
+  rock: {
+    title: 'Phosphate Rock Silo & Gravimetric Feeder',
+    badge: ['Feed Quality','info'],
+    body: 'Stores and delivers dry ground phosphate rock into the reaction loop. Feeder stability is critical to maintain a rock-to-acid ratio matched for a continuous 27% P₂O₅ reactor baseline. Shifts in calcium carbonate content cause immediate changes in acid demand and CO₂ venting requirements.',
+    kafaah: 'Weigh belt calibration verification, tracking particle sizing parameters, and rock matrix benchmarking.',
+    challenge: 'Fluctuating carbonate and organic levels in raw rock feeds causing localized gas-foaming, which blinds liquid level instrumentation and triggers slurry overflows.'
+  },
+  h2so4: {
+    title: 'Concentrated Sulfuric Acid Feeding Loop',
+    badge: ['Reagent Supply','info'],
+    body: 'Concentrated 98% H₂SO₄ is metered to drive the phosphate decomposition. To secure optimal calcium sulfate crystallization paths under a 27% P₂O₅ concentration regime, free sulfate levels inside the liquid phase must be held within a narrow band.',
+    kafaah: 'Corrosion profile auditing, mixing loop monitoring, and high-accuracy magnetic flow tuning.',
+    challenge: 'Localized concentration spike near deteriorated acid sparger nozzles, causing structural passivation or "coating" of rock grains that arrests chemical digestion.'
+  },
+  reactor: {
+    title: 'Attack Reactor System',
+    badge: ['Reaction Zone','danger'],
+    body: 'The central digestion reactor maintains a continuous slurry profile focused on delivering a direct 27% P₂O₅ concentration matrix. High-efficiency agitation loops are vital to prevent phase shortcutting, ensuring uniform crystal growth for clean downstream filtration.',
+    kafaah: 'Free sulfate optimization checks, slurry solids density balance, and agitator tip-speed metrics.',
+    challenge: 'Slurry short-circuiting or stagnant zones in the compartments, skewing localized sulfate ratios and leading to pockets of unreacted rock.'
+  },
+  flashcool: {
+    title: 'Vacuum Flash Cooler System',
+    badge: ['Thermal Control','warn'],
+    body: 'Controls reaction exotherms by circulating digestion slurry through a vacuum flash room. The slurry temperature must be strictly controlled below 80 °C, focusing on a highly specific 74–76 °C operational target window to maintain ideal crystal morphology and prevent thermal acceleration of equipment scaling.',
+    kafaah: 'Vacuum system integrity audits, condenser scale profiling, and flash pump velocity logs.',
+    challenge: 'Vacuum fluctuation pushing slurry temperatures above the 80 °C limit, driving rapid scale crystallization within the recycle piping and choking circulation loops.'
+  },
+  offgas: {
+    title: 'Fluorine Gas Stream Evolution',
+    badge: ['Gas Stream','warn'],
+    body: 'The digestion reaction releases silicon tetrafluoride (SiF₄) and hydrogen fluoride (HF) vapors into the reactor header spaces. Continuous negative draft ventilation must be maintained to clean the reactor environment.',
+    kafaah: 'Header draft pressure balancing, duct scaling indexes, and alloy corrosion review.',
+    challenge: 'Silica gel deposition inside off-gas headers caused by moisture vapor hydrolysis, restriction of draft fan efficiency, and venting risk.'
+  },
+  panfilter: {
+    title: 'Tilting Pan Filter Technology',
+    badge: ['Filtration Core','danger'],
+    body: 'Processes the primary slurry stream through a multi-stage counter-current wash routine. Highly optimized for handling crystals produced under a 27% P₂O₅ baseline, ensuring maximum soluble phosphorus displacement prior to pan inversion.',
+    kafaah: 'Vacuum distribution box profiling, pan alignment checks, and hydraulic wash distribution balance.',
+    challenge: 'Structural vacuum leaks across the main rotary wear plate assemblies, reducing filtration differentials and increasing water carryover into the 27% P₂O₅ product stream.'
+  },
+ strongacid: {
+    title: 'Product Acid Seal Tank',
+    badge: ['Product Line','ok'],
+    body: 'Receives the main first-stage filtrate under barometric down-take configurations, storing crude 27% P₂O₅ phosphoric acid prior to downstream clarification and storage.',
+    kafaah: 'P₂O₅ mass yield balances, stream density logging, and down-take pipe hydraulic checks.',
+    challenge: 'Gas entrainment and micro-bubble foaming inside the barometric down-take line, causing cavitation and premature impeller degradation in the transfer pumps.'
+  },
+  clarification: {
+    title: 'Acid Clarification & Settling Cells',
+    badge: ['Purification','warn'],
+    body: 'The raw 27% P₂O₅ filtrate carries suspended fines and supersaturated chemical lattices. Settling basins leverage specialized flocculants to clean the acid, dropping the solid sludge out of the product phase.',
+    kafaah: 'Flocculant dosing feedback loops, rake mechanical torque tracking, and overflow clarity checks.',
+    challenge: 'Post-precipitation of complex sodium/potassium fluorosilicates onto clarifier components, creating hard scale that demands mechanical cleanouts.'
+  },
+  storage: {
+    title: 'Clarified 27% P₂O₅ Storage Tank',
+    badge: ['Asset Control','ok'],
+    body: 'Stores clarified 27% P₂O₅ intermediate acid before pumping it to the evaporation section. Continuous, low-shear mechanical agitation is required to prevent the fallout and compaction of fine chemical residuals on the tank floors.',
+    kafaah: 'Tank internal lining validation, floor sludge mapping, and intermediate transfer pump flow metrics.',
+    challenge: 'Rapid crystallization of dissolved solids on tank bottom areas during mixer mechanical failures, forming dense, compacted mud beds that clog exit valves.'
+  },
+  evaporator: {
+    title: '54% P₂O₅ Product Evaporator Unit',
+    badge: ['Concentration','danger'],
+    body: 'Concentrates the intermediate 27% P₂O₅ feedstock up to 54% P₂O₅ Merchant Grade Acid (MGA). This is achieved via a forced-circulation heat exchanger loop operating under high vacuum and heat input from medium-pressure steam. Fluosilicic acid vapors are drawn off overhead to prevent environmental carryover.',
+    kafaah: 'Heat transfer coefficient optimization, steam economy validation, entrainment separator efficiency logs, and vacuum pump performance monitoring.',
+    challenge: 'Severe fluorosilicic and calcium sulfate scaling along the inner walls of the graphite or special alloy heat exchanger tubes, restricting heat transfer and causing premature vacuum collapses.'
+  },
+  merchantstorage: {
+    title: '54% MGA Product Storage',
+    badge: ['Final Product','ok'],
+    body: 'Stores the concentrated 54% P₂O₅ merchant grade phosphoric acid prior to dispatch or down-stream DAP/MAP fertilizer processing. Sludge post-precipitation is common as the acid cools, requiring continuous rake or agitation movement.',
+    kafaah: 'MGA quality parameters compliance, post-precipitation solids ratio analysis, and tank loading safety validation.',
+    challenge: 'High sludge settlement rates blocking secondary discharge manifolds, forcing offline high-pressure water blasting to clear product lines.'
+  },
+  cakedischarge: {
+    title: 'Pan Inversion & Chute Discharge',
+    badge: ['Solid Waste','info'],
+    body: 'Mechanical guide paths rotate each filter pan 180 degrees over a discharge bunker. Gravity drops the crystal cake out of the cell, separating solids for lagoon or conveyor processing.',
+    kafaah: 'Inversion roller tracking, chute wear lining audits, and rotation torque indexes.',
+    challenge: 'High cake moisture caused by filtration vacuum loss, resulting in wet solids sticking inside the pan corners during inversion and unbalancing the structural frame.'
+  },
+  clothwash: {
+    title: 'High-Pressure Cloth Wash Station',
+    badge: ['Maintenance','info'],
+    body: 'Cleans the overturned filter cloth with a targeted array of high-pressure hot water sprays, dissolving interstitial crystals to prevent cloth blinding before the pan rotates back to receive new reactor slurry.',
+    kafaah: 'Spray header pressure logging, thermal balance evaluation, and spray nozzle placement checks.',
+    challenge: 'Nozzle fouling from calcium scaling in the recycled wash water loop, creating unwashed areas on the filter cloths that blind the filter on subsequent runs.'
+  },
+  washliquor: {
+    title: 'Return Wash Filtrate Matrix',
+    badge: ['Recycle Loop','info'],
+    body: 'Collects downstream wash filtrates from the filter deck, routing them backward counter-currently to serve as initial cake washes. This design optimizes global plant water balances while keeping the core reactor acid concentration steady at 27% P₂O₅.',
+    kafaah: 'Dilution profile tracking, water loop integration, and filtrate stage density checks.',
+    challenge: 'Internal precipitation of calcium sulfate scale inside intermediate filtrate collection channels, causing line restrictions and shifting stage wash volume ratios.'
+  },
+  scrubber: {
+    title: 'Fluorine Gas Scrubber Column',
+    badge: ['HSE Control','danger'],
+    body: 'Vapor streams from both the attack reactor and the vacuum evaporator are processed through a gas scrubber to capture gaseous fluorine compounds. Rigorous fluid scrubbing cleans total emission lines, keeping discharge figures securely under 30 mg/Nm³ F to satisfy strict environmental frameworks.',
+    kafaah: 'Circulation volume confirmation, column delta-P profiling, and emission monitor verification logs.',
+    challenge: 'Sudden silica gel scaling across the internal packing beds during digestion upsets, spiking column differential pressures and overloading the ventilation draft fan.'
+  }
+};
+
+function showDetail(key) {
+  const d = data[key];
+  if (!d) return;
+  const [badgeLabel, badgeType] = d.badge;
+  
+  const panel = document.getElementById('detail-box');
+  panel.innerHTML = `
+    <h3>${d.title} <span class="badge badge-${badgeType}">${badgeLabel}</span></h3>
+    <p>${d.body}</p>
+    <p class="kafaah-note"><b>Optimization Focus:</b> ${d.kafaah}</p>
+    <p class="challenge-note"><b>Operational Challenge:</b> ${d.challenge}</p>
+  `;
+  
+  document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+  const activeNode = document.getElementById(`node-${key}`);
+  if (activeNode) activeNode.classList.add('active');
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+</body>
+</html>
