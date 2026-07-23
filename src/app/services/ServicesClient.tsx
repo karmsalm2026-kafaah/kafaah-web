@@ -191,7 +191,7 @@ export function ServicesClient() {
               </FadeIn>
 
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/80 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-justify`}>
+                <p className={`${fcBody} text-silver/80 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-start`}>
                   <HoverSubcopy text={descText} locale={locale} />
                 </p>
               </FadeIn>
@@ -360,7 +360,7 @@ export function ServicesClient() {
                               </h4>
 
                               {/* Description */}
-                              <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] leading-[1.65] font-light text-justify`}>
+                              <p className={`${fcBody} text-silver/70 group-hover:text-silver/85 transition-colors duration-300 text-[12.5px] leading-[1.65] font-light text-start`}>
                                 {desc}
                               </p>
                             </div>
@@ -446,10 +446,10 @@ export function ServicesClient() {
               </FadeIn>
 
               <FadeIn delay={0.1} className="space-y-4">
-                <p className={`${fcBody} text-silver/70 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify`}>
+                <p className={`${fcBody} text-silver/70 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start`}>
                   <HoverSubcopy text={servicesPage.staffDesc1[locale]} locale={locale} />
                 </p>
-                <p className={`${fcBody} text-silver/70 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify`}>
+                <p className={`${fcBody} text-silver/70 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start`}>
                   <HoverSubcopy text={servicesPage.staffDesc2[locale]} locale={locale} />
                 </p>
               </FadeIn>
@@ -502,7 +502,7 @@ export function ServicesClient() {
 
             <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
+                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start lg:text-start`}>
                   <HoverSubcopy text={servicesPage.ctaDesc[locale]} locale={locale} />
                 </p>
               </FadeIn>

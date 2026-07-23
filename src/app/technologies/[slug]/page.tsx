@@ -48,7 +48,7 @@ export default async function TechnologyPage({ params }: Props) {
             />
           </picture>
           {/* Fading gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-navy-deep via-navy-deep/85 via-45% to-transparent rtl:bg-gradient-to-l" />
+          <div className="absolute inset-0 max-md:bg-gradient-to-b md:bg-gradient-to-r md:rtl:bg-gradient-to-l from-navy-deep via-navy-deep/85 via-45% to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
@@ -74,16 +74,16 @@ export default async function TechnologyPage({ params }: Props) {
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto mt-6">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto mt-6">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>Request Process Audit</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>Talk to a Process Expert →</span>
               </a>

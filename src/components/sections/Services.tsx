@@ -270,7 +270,7 @@ export function ServicesSection({ content }: Props) {
                   </div>
 
                   {/* Subtitle / Description */}
-                  <p className={`${fcBody} text-silver/60 text-[11.5px] xs:text-[12.5px] leading-relaxed mt-4 font-light text-justify h-auto md:h-12 transition-all duration-500 ${rtl ? "group-hover/card:-translate-x-0.5" : "group-hover/card:translate-x-0.5"} group-hover/card:text-silver/80`}>
+                  <p className={`${fcBody} text-silver/60 text-[11.5px] xs:text-[12.5px] leading-relaxed mt-4 font-light text-start h-auto md:h-12 transition-all duration-500 ${rtl ? "group-hover/card:-translate-x-0.5" : "group-hover/card:translate-x-0.5"} group-hover/card:text-silver/80`}>
                     {localizedPhase.sub}
                   </p>
 

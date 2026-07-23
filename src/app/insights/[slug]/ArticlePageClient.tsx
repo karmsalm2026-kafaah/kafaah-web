@@ -334,7 +334,7 @@ function parseMarkdown(content: string, fcDisplay: string, fcBody: string) {
     return (
       <p 
         key={index} 
-        className={`${fcBody} text-silver/85 text-sm sm:text-base font-light leading-relaxed mb-5 text-justify`}
+        className={`${fcBody} text-silver/85 text-sm sm:text-base font-light leading-relaxed mb-5 text-start`}
       >
         {formatBoldText(trimmed)}
       </p>

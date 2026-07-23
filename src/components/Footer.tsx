@@ -37,7 +37,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:flex lg:flex-row lg:justify-between items-start gap-8 mb-8">
           
           {/* Brand & Contact (Column 1) */}
-          <div className="w-full lg:max-w-[340px] flex flex-col items-center lg:items-start text-center lg:text-justify">
+          <div className="w-full lg:max-w-[340px] flex flex-col items-center lg:items-start text-center lg:text-start">
             <Link href="/" className="inline-block mb-3 group">
               <Image
                 src="/logo1.webp"
@@ -47,7 +47,7 @@ export function Footer() {
                 className="h-[38px] sm:h-[44px] w-auto object-contain brightness-110 group-hover:brightness-125 transition-all duration-300 drop-shadow-[0_0_15px_rgba(212,175,55,0.1)]"
               />
             </Link>
-            <p className={`${fc} ${isAr ? "text-[14px] sm:text-[15px] leading-[1.8]" : "text-[13px] sm:text-[14px] leading-[1.6]"} font-light text-silver/70 mb-4 w-full text-center lg:text-justify`}>
+            <p className={`${fc} ${isAr ? "text-[14px] sm:text-[15px] leading-[1.8]" : "text-[13px] sm:text-[14px] leading-[1.6]"} font-light text-silver/70 mb-4 w-full text-center lg:text-start`}>
               {footer.brandDesc[locale]}
             </p>
 

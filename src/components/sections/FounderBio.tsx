@@ -77,7 +77,7 @@ export function FounderBioSection() {
 
             {/* Founder Description */}
             <RevealItem>
-              <p className={`${fcBody} text-silver/80 text-[12.5px] sm:text-[15px] leading-[1.65] sm:leading-[1.75] text-justify font-light max-w-2xl`}>
+              <p className={`${fcBody} text-silver/80 text-[12.5px] sm:text-[15px] leading-[1.65] sm:leading-[1.75] text-start font-light max-w-2xl`}>
                 {bioDict.desc[locale]}
               </p>
             </RevealItem>

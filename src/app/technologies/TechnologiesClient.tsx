@@ -319,7 +319,7 @@ export function TechnologiesClient() {
 
             <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
+                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start lg:text-start`}>
                   {locale === "ar" 
                     ? "تواصل مع كفاءة اليوم للحصول على دعم فني متخصص لمشروعك الصناعي ومراجعة التحديات التشغيلية." 
                     : locale === "zh" 

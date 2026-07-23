@@ -99,7 +99,7 @@ export function WhoWeAreClient() {
             containerClassName="w-full h-full"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/40 via-navy-dark/45 to-navy-dark/35" />
-          <div className={`absolute inset-0 ${rtl ? "bg-gradient-to-l" : "bg-gradient-to-r"} from-navy-dark/50 via-navy-dark/25 to-transparent`} />
+          <div className={`absolute inset-0 max-md:bg-gradient-to-b ${rtl ? "md:bg-gradient-to-l" : "md:bg-gradient-to-r"} from-navy-dark/50 via-navy-dark/25 to-transparent`} />
           <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-navy-deep/80 to-transparent" />
         </div>
 
@@ -121,13 +121,13 @@ export function WhoWeAreClient() {
               </FadeIn>
 
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/85 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-justify`}>
+                <p className={`${fcBody} text-silver/85 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-start`}>
                   <HoverSubcopy text={dict.heroSub1[locale]} locale={locale} />
                 </p>
               </FadeIn>
 
               <FadeIn delay={0.15}>
-                <p className={`${fcBody} text-silver/85 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-justify`}>
+                <p className={`${fcBody} text-silver/85 text-[14.5px] sm:text-[16px] leading-[1.8] font-light max-w-2xl text-start`}>
                   <HoverSubcopy text={dict.heroSub2[locale]} locale={locale} />
                 </p>
               </FadeIn>
@@ -216,7 +216,7 @@ export function WhoWeAreClient() {
                 </FadeIn>
 
                 <FadeIn delay={0.15}>
-                  <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light max-w-2xl text-justify`}>
+                  <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light max-w-2xl text-start`}>
                     {dict.founderBio[locale]}
                   </p>
                 </FadeIn>
@@ -273,7 +273,7 @@ export function WhoWeAreClient() {
                     <h4 className={`${fc} text-cloud text-base font-semibold group-hover:text-gold transition-colors duration-300`}>
                       {feat.title}
                     </h4>
-                    <p className={`${fcBody} text-silver/65 text-[12px] leading-relaxed font-light text-justify`}>
+                    <p className={`${fcBody} text-silver/65 text-[12px] leading-relaxed font-light text-start`}>
                       {feat.desc}
                     </p>
                   </div>
@@ -307,12 +307,12 @@ export function WhoWeAreClient() {
               {/* Left Column: Context Paragraphs */}
               <div className="lg:col-span-6 space-y-6">
                 <FadeIn delay={0.05}>
-                  <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.8] font-light text-justify`}>
+                  <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.8] font-light text-start`}>
                     {dict.workP1[locale]}
                   </p>
                 </FadeIn>
                 <FadeIn delay={0.1}>
-                  <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.8] font-light text-justify`}>
+                  <p className={`${fcBody} text-silver/80 text-[14px] sm:text-[15px] leading-[1.8] font-light text-start`}>
                     {dict.workP2[locale]}
                   </p>
                 </FadeIn>
@@ -332,7 +332,7 @@ export function WhoWeAreClient() {
                       <h4 className={`${fcUI} text-[11px] tracking-[0.15em] font-bold text-sky-400 uppercase`}>
                         {dict.workOwnersTitle[locale]}
                       </h4>
-                      <p className={`${fcBody} text-silver/70 text-[12.5px] leading-relaxed font-light text-justify`}>
+                      <p className={`${fcBody} text-silver/70 text-[12.5px] leading-relaxed font-light text-start`}>
                         {dict.workOwnersDesc[locale]}
                       </p>
                     </div>
@@ -343,7 +343,7 @@ export function WhoWeAreClient() {
                       <h4 className={`${fcUI} text-[11px] tracking-[0.15em] font-bold text-emerald-400 uppercase`}>
                         {dict.workEpcTitle[locale]}
                       </h4>
-                      <p className={`${fcBody} text-silver/70 text-[12.5px] leading-relaxed font-light text-justify`}>
+                      <p className={`${fcBody} text-silver/70 text-[12.5px] leading-relaxed font-light text-start`}>
                         {dict.workEpcDesc[locale]}
                       </p>
                     </div>
@@ -394,7 +394,7 @@ export function WhoWeAreClient() {
                         </div>
                         <Icon className="w-5 h-5 text-gold/50 group-hover:text-gold group-hover:scale-110 transition-all duration-300" />
                       </div>
-                      <p className={`${fcBody} text-silver/65 text-[11px] sm:text-[12px] leading-relaxed font-light text-justify`}>
+                      <p className={`${fcBody} text-silver/65 text-[11px] sm:text-[12px] leading-relaxed font-light text-start`}>
                         {tech.desc}
                       </p>
                     </div>
@@ -431,7 +431,7 @@ export function WhoWeAreClient() {
 
             <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
+                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start lg:text-start`}>
                   <HoverSubcopy text={dict.ctaDesc[locale]} locale={locale} />
                 </p>
               </FadeIn>

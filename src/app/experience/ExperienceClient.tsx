@@ -603,7 +603,7 @@ export function ExperienceClient() {
               </FadeIn>
 
               <FadeIn delay={0.15}>
-                <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light text-justify`}>
+                <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light text-start`}>
                   {isEn
                     ? "A record of engineering accountability inside chemical facilities. From Mannheim SOP furnaces to NPK compaction units, Kafaah leads critical projects to stable commercial yields."
                     : dict.backgroundText[locale]}
@@ -1004,7 +1004,7 @@ export function ExperienceClient() {
 
             <div className="lg:col-span-6 space-y-6 text-center lg:text-start">
               <FadeIn delay={0.1}>
-                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-justify lg:text-start`}>
+                <p className={`${fcBody} text-silver/80 text-[13.5px] sm:text-[14.5px] leading-[1.8] font-light text-start lg:text-start`}>
                   {dict.discussProject[locale]} {locale === "ar"
                     ? "تواصل معنا لمراجعة تحديات مصنعك أو التشغيل التجريبي المقبل لمشروعك، وسيقوم أحد مهندسي العمليات لدينا بمراجعة طلبك والرد فوريًا."
                     : locale === "zh"

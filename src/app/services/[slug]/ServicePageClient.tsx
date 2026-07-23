@@ -416,14 +416,14 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
             />
           </picture>
           {/* Fading gradient matching Homepage Hero: dark deep navy overlay on the text side */}
-          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-b md:bg-gradient-to-l" : "max-md:bg-gradient-to-b md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
@@ -431,10 +431,10 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
               <span>{heroData.tag[locale]}</span>
             </div>
 
-            {/* H1 Title with Unbroken 2-Line Formatting */}
+            {/* H1 Title with Natural Inline Title Flow */}
             <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
-              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
@@ -449,17 +449,17 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
               {heroData.desc[locale]}
             </p>
 
-            {/* Action Buttons matching HTML btn-primary & btn-outline with equal size and single line text */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons optimized for 360px mobile view */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnPrimary[locale]}</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnSecondary[locale]}</span>
               </a>
@@ -512,7 +512,7 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
-                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-start">
                   {whyData.desc[locale]}
                 </p>
               </FadeIn>
@@ -1196,14 +1196,14 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
             />
           </picture>
           {/* Fading gradient */}
-          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-b md:bg-gradient-to-l" : "max-md:bg-gradient-to-b md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
@@ -1211,10 +1211,10 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
               <span>{heroData.tag[locale]}</span>
             </div>
 
-            {/* H1 Title */}
+            {/* H1 Title with Natural Inline Title Flow */}
             <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
-              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
@@ -1229,17 +1229,17 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
               {heroData.desc[locale]}
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons optimized for 360px mobile view */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnPrimary[locale]}</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnSecondary[locale]}</span>
               </a>
@@ -1291,7 +1291,7 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
-                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-start">
                   {whyData.desc[locale]}
                 </p>
               </FadeIn>
@@ -2041,14 +2041,14 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
             />
           </picture>
           {/* Fading gradient */}
-          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-b md:bg-gradient-to-l" : "max-md:bg-gradient-to-b md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
@@ -2056,10 +2056,10 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
               <span>{heroData.tag[locale]}</span>
             </div>
 
-            {/* H1 Title */}
+            {/* H1 Title with Natural Inline Title Flow */}
             <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
-              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
@@ -2074,17 +2074,17 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
               {heroData.desc[locale]}
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons optimized for 360px mobile view */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnPrimary[locale]}</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnSecondary[locale]}</span>
               </a>
@@ -2136,7 +2136,7 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
-                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-start">
                   {whyData.desc[locale]}
                 </p>
               </FadeIn>
@@ -2955,14 +2955,14 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
             />
           </picture>
           {/* Fading gradient */}
-          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-b md:bg-gradient-to-l" : "max-md:bg-gradient-to-b md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
@@ -2970,10 +2970,10 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
               <span>{heroData.tag[locale]}</span>
             </div>
 
-            {/* H1 Title */}
+            {/* H1 Title with Natural Inline Title Flow */}
             <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
-              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
@@ -2988,17 +2988,17 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
               {heroData.desc[locale]}
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons optimized for 360px mobile view */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnPrimary[locale]}</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnSecondary[locale]}</span>
               </a>
@@ -3021,7 +3021,7 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
                   {whoData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
-                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-start">
                   {whoData.desc[locale]}
                 </p>
               </FadeIn>
@@ -3894,14 +3894,14 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
             />
           </picture>
           {/* Fading gradient */}
-          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-t md:bg-gradient-to-l" : "max-md:bg-gradient-to-t md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
+          <div className={`absolute inset-0 ${rtl ? "max-md:bg-gradient-to-b md:bg-gradient-to-l" : "max-md:bg-gradient-to-b md:bg-gradient-to-r"} from-navy-deep via-navy-deep/85 via-45% to-transparent`} />
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
           {/* Mobile overlay for high text contrast */}
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
         {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-8 relative z-10 my-auto">
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
@@ -3909,10 +3909,10 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
               <span>{heroData.tag[locale]}</span>
             </div>
 
-            {/* H1 Title */}
+            {/* H1 Title with Natural Inline Title Flow */}
             <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="block text-cloud mb-1">{heroData.titlePart1[locale]}</span>
-              <span className="block text-gold font-bold whitespace-normal md:whitespace-nowrap drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
                 {heroData.titlePart2[locale]}
               </span>
             </h1>
@@ -3927,17 +3927,17 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
               {heroData.desc[locale]}
             </p>
 
-            {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            {/* Action Buttons optimized for 360px mobile view */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
               <a
                 href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnPrimary[locale]}</span>
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-xs sm:text-[13px] font-bold tracking-[0.12em] uppercase px-8 py-3.5 min-w-[220px] sm:min-w-[240px] h-13 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-3 whitespace-nowrap text-center"
+                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>{heroData.btnSecondary[locale]}</span>
               </a>
@@ -3986,7 +3986,7 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
                   {whyData.title[locale]}
                 </h2>
                 <div className="w-12 h-[2px] bg-gold mb-6" />
-                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-justify">
+                <p className="text-[15px] font-light text-silver/90 leading-relaxed text-start">
                   {whyData.desc[locale]}
                 </p>
               </FadeIn>
@@ -4516,7 +4516,7 @@ export function ServicePageClient({ service, relatedTechs }: Props) {
               {service.whyKafaah.map((p, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
                   <div className="relative pl-6 border-l-2 border-gold/40 hover:border-gold transition-colors duration-300">
-                    <p className="text-[16px] font-light text-silver/90 leading-[1.8] text-justify">
+                    <p className="text-[16px] font-light text-silver/90 leading-[1.8] text-start">
                       {p}
                     </p>
                   </div>
