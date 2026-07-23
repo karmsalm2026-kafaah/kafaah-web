@@ -55,7 +55,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <div className="w-full overflow-x-hidden">
       {/* Immersive Service Hero Section aligned with UI Playbook.md */}
-      <header className="relative min-h-[85vh] h-auto flex flex-col justify-center overflow-hidden bg-navy-deep pt-28 sm:pt-32 lg:pt-36 pb-16 sm:pb-20 border-b border-white/[0.08]">
+      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-24 sm:pt-28 lg:pt-36 pb-12 sm:pb-16 border-b border-white/[0.08]">
         {/* Background Image with authoritative dark overlay & directional gradient */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <img
@@ -70,8 +70,8 @@ export default async function ServicePage({ params }: Props) {
           <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
         </div>
 
-        {/* Content Container (Centered Vertically) */}
-        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 my-auto">
+        {/* Content Container (Bottom-left on Desktop, 100vh centered on Mobile) */}
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-[calc(100dvh-6rem)] lg:min-h-0 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 pb-12 lg:pb-0">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
