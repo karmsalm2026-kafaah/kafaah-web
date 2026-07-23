@@ -187,16 +187,24 @@ export function ContactClient() {
   return (
     <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen lg:h-screen lg:max-h-screen relative overflow-hidden font-body flex flex-col justify-between">
 
-      {/* Global Blueprint Grid Underlay & Glowing Blur Orbs */}
-      <div className="absolute inset-0 z-0">
+      {/* Global Background Image across BOTH sides & Glowing Blur Orbs */}
+      <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
+        <picture>
+          <source srcSet="/contact-full-bg.png" type="image/png" />
+          <img
+            src="/contact-full-bg.png"
+            alt="Kafaah Industrial Engineering & Global Network"
+            className="w-full h-full object-cover opacity-30 mix-blend-luminosity scale-105 transition-transform duration-[30s] ease-out hover:scale-100"
+          />
+        </picture>
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/90 to-navy-dark/95" />
         <div
-          className="absolute inset-0 opacity-[0.06] pointer-events-none"
+          className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(229,193,88,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(229,193,88,0.05) 1px, transparent 1px)`,
             backgroundSize: "32px 32px",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/85 via-navy-deep/95 to-navy-dark" />
 
         {/* Soft glowing ambient lighting orbs */}
         <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[8s]" />
@@ -210,31 +218,13 @@ export function ContactClient() {
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
         </div>
 
-        {/* Left side - Info Panel (Wider 56% layout) */}
-        <div className="w-full lg:w-[56%] xl:w-[58%] px-4 py-4 sm:p-6 lg:px-10 lg:py-4 xl:px-14 flex flex-col justify-center relative overflow-hidden shrink-0">
+        {/* Left side - Info Panel (Border-free, Sitting Directly on Page Background) */}
+        <div className="w-full lg:w-[56%] xl:w-[58%] px-4 py-4 sm:p-6 lg:px-12 lg:py-4 xl:px-16 flex flex-col justify-center relative overflow-hidden shrink-0">
 
-          {/* Premium Global Communications & Control Room Image Underlay */}
-          <div className="absolute inset-0 z-0 select-none pointer-events-none">
-            <picture>
-              <source srcSet="/premium-contact-bg.png" type="image/png" />
-              <img
-                src="/premium-contact-bg.png"
-                alt="Kafaah Global Communications & Industrial Operations Hub"
-                className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 transition-transform duration-[25s] ease-out hover:scale-100"
-              />
-            </picture>
-            <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy-dark/95 to-navy-dark/85" />
-            <div className="absolute -left-1/4 top-1/4 w-[450px] h-[450px] bg-gold/5 rounded-full blur-[130px]" />
-          </div>
-
-          <div className="relative z-10 max-w-[640px] w-full mx-auto p-4 sm:p-6 border border-white/[0.04] rounded-2xl bg-navy-card/10 backdrop-blur-[12px] shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
-            {/* Architectural L-shaped corner marks framing the left content */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/20 pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 pointer-events-none" />
-
+          <div className="relative z-10 max-w-[640px] w-full mx-auto">
             <FadeIn className="space-y-3.5 sm:space-y-4">
+
+              {/* Eyebrow */}
               <div className="flex items-center gap-3">
                 <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase flex items-center gap-1.5`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
@@ -243,17 +233,19 @@ export function ContactClient() {
                 <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
               </div>
 
-              <h1 className={`${fcDisplay} text-[clamp(22px,3.8vw,46px)] leading-[1.15] text-white font-medium`}>
+              {/* Headline */}
+              <h1 className={`${fcDisplay} text-[clamp(24px,3.8vw,48px)] leading-[1.15] text-white font-medium`}>
                 <HoverWords text={dict.letsTalk[locale]} locale={locale} />
                 <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
               </h1>
 
-              <p className={`${fcBody} text-silver/85 text-xs sm:text-sm leading-[1.7] font-light max-w-[560px]`}>
+              {/* Paragraph */}
+              <p className={`${fcBody} text-silver/85 text-xs sm:text-sm leading-[1.7] font-light max-w-[580px]`}>
                 <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
               </p>
 
               {/* Trust SLA badges */}
-              <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+              <div className="flex flex-wrap items-center gap-1.5 pt-0.5 pb-1">
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-mono font-medium shadow-sm">
                   <Zap className="w-3 h-3 text-gold shrink-0" />
                   <span>{locale === "ar" ? "استجابة خلال 24 ساعة" : locale === "zh" ? "24小时内回复" : "24h Response SLA"}</span>
@@ -268,135 +260,121 @@ export function ContactClient() {
                 </div>
               </div>
 
-              {/* Premium Headquarters and Contact glassmorphic dashboard card */}
-              <div className="bg-gradient-to-br from-navy-card/50 via-navy-card/30 to-navy-dark/45 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-3.5 sm:p-5 rounded-xl transition-all duration-500 mt-4 relative group shadow-[0_12px_30px_rgba(0,0,0,0.4)]">
-
-                {/* Architectural corner highlights matching the card's rounded border */}
-                <div className="absolute -top-[1px] -left-[1px] w-7 h-7 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
-                <div className="absolute -top-[1px] -right-[1px] w-7 h-7 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -left-[1px] w-7 h-7 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -right-[1px] w-7 h-7 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
-
-                <div className="space-y-4">
-
-                  {/* Location & Direct Phone Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                    {/* Address Card */}
-                    <a
-                      href="https://maps.google.com/?q=Cairo,Egypt"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/loc bg-gradient-to-b from-[#1b2b3d]/85 to-[#121f2d]/85 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/loc:scale-110 transition-transform">
-                          <MapPin className="w-3 h-3" />
-                        </div>
-                        <ExternalLink className="w-3 h-3 text-silver/40 group-hover/loc:text-gold transition-colors" />
-                      </div>
-                      <div>
-                        <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
-                          {dict.headquarters[locale]}
-                        </span>
-                        <span className={`${fcBody} text-xs font-semibold text-white mt-0.5 block group-hover/loc:text-gold transition-colors`}>
-                          {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
-                        </span>
-                        <span className="text-[10.5px] text-silver/50 font-light block">
-                          {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
-                        </span>
-                      </div>
-                    </a>
-
-                    {/* Phone Card */}
-                    <a
-                      href="tel:+201018081191"
-                      className="group/phone bg-gradient-to-b from-[#1b2b3d]/85 to-[#121f2d]/85 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/phone:scale-110 transition-transform">
-                          <PhoneCall className="w-3 h-3" />
-                        </div>
-                        <span className="text-[8.5px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-500/20">
-                          {locale === "ar" ? "مباشر" : "Direct"}
-                        </span>
-                      </div>
-                      <div>
-                        <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
-                          {locale === "ar" ? "الهاتف المباشر" : "Direct Line"}
-                        </span>
-                        <span className="text-xs font-semibold text-gold group-hover/phone:text-gold-light transition-colors mt-0.5 block" dir="ltr">
-                          +20 10 18081191
-                        </span>
-                        <span className="text-[10.5px] text-silver/50 font-light block">
-                          {locale === "ar" ? "اتصال فوري أو واتساب" : "Instant Call or WhatsApp"}
-                        </span>
-                      </div>
-                    </a>
-                  </div>
-
-                  {/* Email Info Section */}
-                  <div className="border-t border-white/[0.08] pt-3.5">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="p-1.5 bg-gold/10 rounded-md border border-gold/15 shrink-0 text-gold">
-                        <Mail className="w-3.5 h-3.5" />
-                      </div>
-                      <span className={`${fcUi} text-[9px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                        {dict.email[locale]}
-                      </span>
+              {/* Location & Direct Phone Grid Sub-cards */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+                {/* Address Card */}
+                <a
+                  href="https://maps.google.com/?q=Cairo,Egypt"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/loc bg-gradient-to-b from-[#1b2b3d]/75 to-[#121f2d]/75 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/loc:scale-110 transition-transform">
+                      <MapPin className="w-3 h-3" />
                     </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                      {[
-                        { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
-                        { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
-                        { label: locale === "ar" ? "المشاريع والهندسة" : locale === "zh" ? "项目与工程" : "Projects & Eng", email: "projects@kafaahsolutions.com" },
-                        { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
-                      ].map((item) => {
-                        const isCopied = copiedEmail === item.email;
-                        return (
-                          <div
-                            key={item.email}
-                            className="group/card bg-gradient-to-b from-[#1b2b3d]/75 to-[#121f2d]/75 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-2.5 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
-                          >
-                            <div className="flex items-center justify-between">
-                              <span className={`${fcBody} text-[9.5px] font-medium text-silver/50 tracking-wide`}>
-                                {item.label}
-                              </span>
-                              <button
-                                onClick={(e) => handleCopyEmail(e, item.email)}
-                                title="Copy Email"
-                                className="text-silver/30 hover:text-gold transition-colors p-0.5 rounded hover:bg-white/5"
-                              >
-                                {isCopied ? (
-                                  <Check className="w-3 h-3 text-emerald-400" />
-                                ) : (
-                                  <Copy className="w-3 h-3" />
-                                )}
-                              </button>
-                            </div>
-                            <a
-                              href={`mailto:${item.email}`}
-                              className="text-[11.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight"
-                              dir="ltr"
-                            >
-                              {item.email}
-                            </a>
-                          </div>
-                        );
-                      })}
-                    </div>
+                    <ExternalLink className="w-3 h-3 text-silver/40 group-hover/loc:text-gold transition-colors" />
                   </div>
-
-                  {/* Service response hours badge */}
-                  <div className="flex items-center gap-2.5 border-t border-white/[0.08] pt-3 text-[10.5px] font-mono text-silver/65">
-                    <span className="relative flex h-2 w-2 shrink-0">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                  <div>
+                    <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                      {dict.headquarters[locale]}
                     </span>
-                    <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة" : "Engineering mobilization available 24/7"}</span>
+                    <span className={`${fcBody} text-xs font-semibold text-white mt-0.5 block group-hover/loc:text-gold transition-colors`}>
+                      {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
+                    </span>
+                    <span className="text-[10.5px] text-silver/50 font-light block">
+                      {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
+                    </span>
                   </div>
+                </a>
+
+                {/* Phone Card */}
+                <a
+                  href="tel:+201018081191"
+                  className="group/phone bg-gradient-to-b from-[#1b2b3d]/75 to-[#121f2d]/75 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/phone:scale-110 transition-transform">
+                      <PhoneCall className="w-3 h-3" />
+                    </div>
+                    <span className="text-[8.5px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-500/20">
+                      {locale === "ar" ? "مباشر" : "Direct"}
+                    </span>
+                  </div>
+                  <div>
+                    <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                      {locale === "ar" ? "الهاتف المباشر" : "Direct Line"}
+                    </span>
+                    <span className="text-xs font-semibold text-gold group-hover/phone:text-gold-light transition-colors mt-0.5 block" dir="ltr">
+                      +20 10 18081191
+                    </span>
+                    <span className="text-[10.5px] text-silver/50 font-light block">
+                      {locale === "ar" ? "اتصال فوري أو واتساب" : "Instant Call or WhatsApp"}
+                    </span>
+                  </div>
+                </a>
+              </div>
+
+              {/* Email Sub-cards Section */}
+              <div className="pt-2">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="p-1.5 bg-gold/10 rounded-md border border-gold/15 shrink-0 text-gold">
+                    <Mail className="w-3.5 h-3.5" />
+                  </div>
+                  <span className={`${fcUi} text-[9px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                    {dict.email[locale]}
+                  </span>
                 </div>
 
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                  {[
+                    { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
+                    { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
+                    { label: locale === "ar" ? "المشاريع والهندسة" : locale === "zh" ? "项目与工程" : "Projects & Eng", email: "projects@kafaahsolutions.com" },
+                    { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
+                  ].map((item) => {
+                    const isCopied = copiedEmail === item.email;
+                    return (
+                      <div
+                        key={item.email}
+                        className="group/card bg-gradient-to-b from-[#1b2b3d]/75 to-[#121f2d]/75 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-2.5 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`${fcBody} text-[9.5px] font-medium text-silver/50 tracking-wide`}>
+                            {item.label}
+                          </span>
+                          <button
+                            onClick={(e) => handleCopyEmail(e, item.email)}
+                            title="Copy Email"
+                            className="text-silver/30 hover:text-gold transition-colors p-0.5 rounded hover:bg-white/5"
+                          >
+                            {isCopied ? (
+                              <Check className="w-3 h-3 text-emerald-400" />
+                            ) : (
+                              <Copy className="w-3 h-3" />
+                            )}
+                          </button>
+                        </div>
+                        <a
+                          href={`mailto:${item.email}`}
+                          className="text-[11.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight"
+                          dir="ltr"
+                        >
+                          {item.email}
+                        </a>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Service response hours badge */}
+              <div className="flex items-center gap-2.5 pt-1 text-[10.5px] font-mono text-silver/65">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة" : "Engineering mobilization available 24/7"}</span>
               </div>
             </FadeIn>
           </div>
