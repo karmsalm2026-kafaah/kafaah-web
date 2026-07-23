@@ -195,7 +195,7 @@ export function ContactClient() {
         </div>
 
         {/* Left side - Info Panel */}
-        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative overflow-hidden">
+        <div className="flex-1 px-4 py-8 sm:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative overflow-hidden">
 
           {/* Dark Industrial Hero Image underlay */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
@@ -211,7 +211,7 @@ export function ContactClient() {
             <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
           </div>
 
-          <div className="relative z-10 max-w-[520px] w-full mx-auto p-8 sm:p-10 border border-white/[0.02] rounded-xl bg-navy-card/5 backdrop-blur-[5px]">
+          <div className="relative z-10 max-w-[540px] w-full mx-auto p-4 sm:p-8 border border-white/[0.02] rounded-xl bg-navy-card/5 backdrop-blur-[5px]">
             {/* Architectural L-shaped corner marks framing the left content */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none" />
             <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 pointer-events-none" />
@@ -237,7 +237,7 @@ export function ContactClient() {
               </p>
 
               {/* Premium Headquarters and Contact glassmorphic dashboard card with Live Gold Border */}
-              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-8 rounded-xl transition-all duration-500 mt-8 relative group">
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-7 rounded-xl transition-all duration-500 mt-8 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
 
                 {/* Architectural corner highlights matching the card's rounded border (Bentley/ROSHN style) */}
                 <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
@@ -248,15 +248,15 @@ export function ContactClient() {
                 {/* Content wrapper to isolate space-y-6 from absolute positioned elements */}
                 <div className="space-y-6">
                   {/* Headquarters Info Item */}
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                      <MapPin className="w-5 h-5" />
+                  <div className="flex items-start gap-3.5 sm:gap-4">
+                    <div className="p-2.5 sm:p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
                     <div>
-                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                      <span className={`${fcUi} text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
                         {dict.headquarters[locale]}
                       </span>
-                      <span className={`${fcBody} text-base font-semibold text-white mt-1 block`}>
+                      <span className={`${fcBody} text-sm sm:text-base font-semibold text-white mt-0.5 block`}>
                         {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
                       </span>
                       <span className="text-xs text-silver/50 font-light mt-0.5 block">
@@ -265,40 +265,44 @@ export function ContactClient() {
                     </div>
                   </div>
 
-                  {/* Email Info Item */}
-                  <div className="flex items-start gap-4 border-t border-white/[0.06] pt-5">
-                    <div className="p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                      <Mail className="w-5 h-5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block mb-2`}>
+                  {/* Email Info Section */}
+                  <div className="border-t border-white/[0.08] pt-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2.5 sm:p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                        <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                      </div>
+                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
                         {dict.email[locale]}
                       </span>
-                      <div className="flex flex-col gap-1.5">
-                        {[
-                          { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
-                          { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
-                          { label: locale === "ar" ? "المشاريع" : locale === "zh" ? "项目" : "Projects", email: "projects@kafaahsolutions.com" },
-                          { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
-                        ].map((item) => (
-                          <div key={item.email} className="flex items-baseline gap-2 group/email">
-                            <span className={`${fcBody} text-[10px] text-silver/40 shrink-0 ${locale === "en" ? "w-[100px]" : "w-[90px]"}`}>{item.label}:</span>
-                            <a
-                              href={`mailto:${item.email}`}
-                              className="text-gold/90 hover:text-gold transition-all text-[13px] font-medium hover:underline truncate"
-                              dir="ltr"
-                            >
-                              {item.email}
-                            </a>
-                          </div>
-                        ))}
-                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3">
+                      {[
+                        { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
+                        { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
+                        { label: locale === "ar" ? "المشاريع" : locale === "zh" ? "项目" : "Projects", email: "projects@kafaahsolutions.com" },
+                        { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
+                      ].map((item) => (
+                        <a
+                          key={item.email}
+                          href={`mailto:${item.email}`}
+                          className="group/card bg-gradient-to-b from-[#1b2b3d]/70 to-[#121f2d]/70 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-lg p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                          <span className={`${fcBody} text-[10px] font-medium text-silver/50 tracking-wide`}>
+                            {item.label}
+                          </span>
+                          <span className="text-[12px] sm:text-[12.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight" dir="ltr">
+                            {item.email}
+                          </span>
+                        </a>
+                      ))}
                     </div>
                   </div>
 
                   {/* Service response hours badge */}
-                  <div className="flex items-center gap-3 border-t border-white/[0.06] pt-5 text-[11px] font-mono text-silver/65">
-                    <span className="relative flex h-2 w-2">
+                  <div className="flex items-center gap-3 border-t border-white/[0.08] pt-4 text-[11px] font-mono text-silver/65">
+                    <span className="relative flex h-2 w-2 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
@@ -312,7 +316,7 @@ export function ContactClient() {
         </div>
 
         {/* Right side - Contact Form */}
-        <div className="flex-1 p-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/20 flex flex-col justify-center relative">
+        <div className="flex-1 px-4 py-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/20 flex flex-col justify-center relative">
 
           {/* Mobile Premium Divider */}
           <div className="lg:hidden absolute top-0 left-1/2 -translate-x-1/2 w-3/5 h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent z-20">
@@ -326,7 +330,7 @@ export function ContactClient() {
             <div className="max-w-[520px] w-full mx-auto">
 
               {/* Form Card wrapper with true Glassmorphism and Live Gold corners */}
-              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-6 sm:p-10 relative group">
+              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-4 sm:p-10 relative group">
 
                 {/* Architectural corner highlights matching the card's rounded border */}
                 <div className="absolute -top-[1px] -left-[1px] w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
