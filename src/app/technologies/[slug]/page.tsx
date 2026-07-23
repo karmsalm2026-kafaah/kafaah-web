@@ -52,6 +52,8 @@ export default async function TechnologyPage({ params }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}

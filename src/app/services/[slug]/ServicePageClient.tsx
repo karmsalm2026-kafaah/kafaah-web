@@ -420,6 +420,8 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
@@ -477,11 +479,8 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
           </div>
         </div>
 
-        {/* 1. Trust Strip Bar at bottom of 100vh with 92% opacity and clear dividers */}
-        <div
-          className="relative z-10 w-full backdrop-blur-md border-t border-white/[0.2] py-6 transition-all duration-500"
-          style={{ backgroundColor: "rgba(10, 24, 48, 0.92)" }}
-        >
+        {/* 1. Trust Strip Bar at bottom of 100vh with semi-transparent glassmorphism */}
+        <div className="relative z-10 w-full bg-navy-dark/50 backdrop-blur-xl border-t border-white/20 py-6 transition-all duration-500 shadow-[0_-4px_30px_rgba(0,0,0,0.25)]">
           <div className="max-w-[1280px] mx-auto px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.22]">
               {trustStripItems.map((item: any, i: number) => {
@@ -1210,6 +1209,8 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
@@ -1267,11 +1268,8 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
           </div>
         </div>
 
-        {/* 1. Trust Strip Bar at bottom of 100vh with 92% opacity and clear dividers */}
-        <div
-          className="relative z-10 w-full backdrop-blur-md border-t border-white/[0.2] py-6 transition-all duration-500"
-          style={{ backgroundColor: "rgba(10, 24, 48, 0.92)" }}
-        >
+        {/* 1. Trust Strip Bar at bottom of 100vh with semi-transparent glassmorphism */}
+        <div className="relative z-10 w-full bg-navy-dark/50 backdrop-blur-xl border-t border-white/20 py-6 transition-all duration-500 shadow-[0_-4px_30px_rgba(0,0,0,0.25)]">
           <div className="max-w-[1280px] mx-auto px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.22]">
               {trustStripItems.map((item: any, i: number) => {
@@ -2065,6 +2063,8 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
@@ -2122,11 +2122,8 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
           </div>
         </div>
 
-        {/* 1. Trust Strip Bar at bottom of 100vh with 92% opacity and clear dividers */}
-        <div
-          className="relative z-10 w-full backdrop-blur-md border-t border-white/[0.2] py-6 transition-all duration-500"
-          style={{ backgroundColor: "rgba(10, 24, 48, 0.92)" }}
-        >
+        {/* 1. Trust Strip Bar at bottom of 100vh with semi-transparent glassmorphism */}
+        <div className="relative z-10 w-full bg-navy-dark/50 backdrop-blur-xl border-t border-white/20 py-6 transition-all duration-500 shadow-[0_-4px_30px_rgba(0,0,0,0.25)]">
           <div className="max-w-[1280px] mx-auto px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-white/[0.22]">
               {trustStripItems.map((item: any, i: number) => {
@@ -2989,6 +2986,8 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
@@ -3938,6 +3937,8 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
           {/* Mobile soft contrast layer */}
           <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
+          {/* Mobile simple full-image subtle backdrop overlay */}
+          <div className="absolute inset-0 max-md:bg-navy-deep/45 md:hidden pointer-events-none" />
         </div>
 
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
@@ -3995,8 +3996,8 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
           </div>
         </div>
 
-        {/* Hero Bottom Trust Bar (4 items with pt-4 pb-4 sm:py-0 on mobile) */}
-        <div className="w-full border-t border-white/[0.12] bg-navy-dark/95 backdrop-blur-md relative z-10 mt-10">
+        {/* Hero Bottom Trust Bar with semi-transparent glassmorphism */}
+        <div className="w-full border-t border-white/20 bg-navy-dark/50 backdrop-blur-xl relative z-10 mt-10 shadow-[0_-4px_30px_rgba(0,0,0,0.25)]">
           <div className="max-w-[1280px] mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x rtl:sm:divide-x-reverse divide-white/[0.08]">
               {trustData.map((item: any, idx: number) => {
