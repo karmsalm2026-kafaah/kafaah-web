@@ -36,7 +36,7 @@ export default async function TechnologyPage({ params }: Props) {
   return (
     <div className="w-full overflow-x-hidden">
       {/* Immersive Technology Hero Section aligned with UI Playbook.md */}
-      <header className="relative min-h-[100dvh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-24 sm:pt-28 lg:pt-36 pb-12 sm:pb-16 border-b border-white/[0.08]">
+      <header className="relative min-h-[100svh] h-auto lg:h-[100vh] lg:min-h-[680px] flex flex-col justify-center overflow-hidden bg-navy-deep pt-24 sm:pt-28 lg:pt-36 pb-12 sm:pb-16 border-b border-white/[0.08]">
         {/* Background Image with authoritative dark overlay & directional gradient */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <picture>
@@ -47,15 +47,15 @@ export default async function TechnologyPage({ params }: Props) {
               className="w-full h-full object-cover object-center lg:object-right opacity-95 mix-blend-luminosity"
             />
           </picture>
-          {/* Fading gradient */}
-          <div className="absolute inset-0 max-md:bg-gradient-to-b md:bg-gradient-to-r md:rtl:bg-gradient-to-l from-navy-deep via-navy-deep/85 via-45% to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/80" />
-          {/* Mobile overlay for high text contrast */}
-          <div className="absolute inset-0 max-md:bg-navy-deep/40 max-md:bg-gradient-to-b max-md:from-navy-deep/65 max-md:via-navy-deep/40 max-md:to-navy-deep/75 md:hidden" />
+          {/* Softened gradient overlay: bright clear image on mobile with top readability */}
+          <div className="absolute inset-0 max-md:bg-gradient-to-b md:bg-gradient-to-r md:rtl:bg-gradient-to-l max-md:from-navy-deep/70 max-md:via-navy-deep/35 max-md:to-transparent from-navy-deep via-navy-deep/85 via-45% to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/60 max-md:from-navy-deep/40 max-md:to-navy-deep/30" />
+          {/* Mobile soft contrast layer */}
+          <div className="absolute inset-0 max-md:bg-gradient-to-b max-md:from-navy-deep/35 max-md:via-transparent max-md:to-navy-deep/20 md:hidden pointer-events-none" />
         </div>
 
-        {/* Content Container (Bottom-left on Desktop, 100vh centered on Mobile) */}
-        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-[calc(100dvh-6rem)] lg:min-h-0 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 pb-12 lg:pb-0">
+        {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
+        <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
             {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
             <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
