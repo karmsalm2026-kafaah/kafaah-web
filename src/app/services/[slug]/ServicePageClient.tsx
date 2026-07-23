@@ -425,45 +425,55 @@ function ExpertWitnessView({ service, relatedTechs }: Props) {
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
         <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
-            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
-              <span>{heroData.tag[locale]}</span>
-            </div>
+            {/* Eyebrow Tag with pulse indicator */}
+            <FadeIn delay={0.05} y={15}>
+              <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+                <span>{heroData.tag[locale]}</span>
+              </div>
+            </FadeIn>
 
             {/* H1 Title with Natural Inline Title Flow */}
-            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
-              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
-                {heroData.titlePart2[locale]}
-              </span>
-            </h1>
+            <FadeIn delay={0.12} y={20}>
+              <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+                <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+                <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                  {heroData.titlePart2[locale]}
+                </span>
+              </h1>
+            </FadeIn>
 
-            {/* Subtitle - slightly reduced size */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
-              {heroData.sub[locale]}
-            </p>
+            {/* Subtitle - Whiter, Bolder & Sharp */}
+            <FadeIn delay={0.2} y={18}>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[640px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                {heroData.sub[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Description - slightly reduced size */}
-            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
-              {heroData.desc[locale]}
-            </p>
+            {/* Description - Whiter, Clearest Readability & Bolder */}
+            <FadeIn delay={0.28} y={18}>
+              <p className="text-[13.5px] xs:text-[14px] sm:text-[15px] font-normal text-cloud/95 leading-relaxed max-w-[560px] mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                {heroData.desc[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Action Buttons optimized for 360px mobile view */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a
-                href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnPrimary[locale]}</span>
-              </a>
-              <a
-                href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnSecondary[locale]}</span>
-              </a>
-            </div>
+            {/* Action Buttons with semi-transparent navy backdrop for secondary button */}
+            <FadeIn delay={0.36} y={18}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <a
+                  href="mailto:info@kafaahsolutions.com"
+                  className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnPrimary[locale]}</span>
+                </a>
+                <a
+                  href="/contact/"
+                  className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnSecondary[locale]}</span>
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
@@ -1205,45 +1215,55 @@ function ConstructionCommissioningView({ service, relatedTechs }: Props) {
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
         <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
-            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
-              <span>{heroData.tag[locale]}</span>
-            </div>
+            {/* Eyebrow Tag with pulse indicator */}
+            <FadeIn delay={0.05} y={15}>
+              <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+                <span>{heroData.tag[locale]}</span>
+              </div>
+            </FadeIn>
 
             {/* H1 Title with Natural Inline Title Flow */}
-            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
-              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
-                {heroData.titlePart2[locale]}
-              </span>
-            </h1>
+            <FadeIn delay={0.12} y={20}>
+              <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+                <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+                <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                  {heroData.titlePart2[locale]}
+                </span>
+              </h1>
+            </FadeIn>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
-              {heroData.sub[locale]}
-            </p>
+            {/* Subtitle - Whiter, Bolder & Sharp */}
+            <FadeIn delay={0.2} y={18}>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[640px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                {heroData.sub[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Description */}
-            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
-              {heroData.desc[locale]}
-            </p>
+            {/* Description - Whiter, Clearest Readability & Bolder */}
+            <FadeIn delay={0.28} y={18}>
+              <p className="text-[13.5px] xs:text-[14px] sm:text-[15px] font-normal text-cloud/95 leading-relaxed max-w-[560px] mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                {heroData.desc[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Action Buttons optimized for 360px mobile view */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a
-                href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnPrimary[locale]}</span>
-              </a>
-              <a
-                href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnSecondary[locale]}</span>
-              </a>
-            </div>
+            {/* Action Buttons with semi-transparent navy backdrop for secondary button */}
+            <FadeIn delay={0.36} y={18}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <a
+                  href="mailto:info@kafaahsolutions.com"
+                  className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnPrimary[locale]}</span>
+                </a>
+                <a
+                  href="/contact/"
+                  className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnSecondary[locale]}</span>
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
@@ -2050,45 +2070,55 @@ function ProcessEngineeringSupportView({ service, relatedTechs }: Props) {
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
         <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
-            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
-              <span>{heroData.tag[locale]}</span>
-            </div>
+            {/* Eyebrow Tag with pulse indicator */}
+            <FadeIn delay={0.05} y={15}>
+              <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+                <span>{heroData.tag[locale]}</span>
+              </div>
+            </FadeIn>
 
             {/* H1 Title with Natural Inline Title Flow */}
-            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
-              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
-                {heroData.titlePart2[locale]}
-              </span>
-            </h1>
+            <FadeIn delay={0.12} y={20}>
+              <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+                <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+                <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                  {heroData.titlePart2[locale]}
+                </span>
+              </h1>
+            </FadeIn>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
-              {heroData.sub[locale]}
-            </p>
+            {/* Subtitle - Whiter, Bolder & Sharp */}
+            <FadeIn delay={0.2} y={18}>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[640px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                {heroData.sub[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Description */}
-            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
-              {heroData.desc[locale]}
-            </p>
+            {/* Description - Whiter, Clearest Readability & Bolder */}
+            <FadeIn delay={0.28} y={18}>
+              <p className="text-[13.5px] xs:text-[14px] sm:text-[15px] font-normal text-cloud/95 leading-relaxed max-w-[560px] mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                {heroData.desc[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Action Buttons optimized for 360px mobile view */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a
-                href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnPrimary[locale]}</span>
-              </a>
-              <a
-                href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnSecondary[locale]}</span>
-              </a>
-            </div>
+            {/* Action Buttons with semi-transparent navy backdrop for secondary button */}
+            <FadeIn delay={0.36} y={18}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <a
+                  href="mailto:info@kafaahsolutions.com"
+                  className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnPrimary[locale]}</span>
+                </a>
+                <a
+                  href="/contact/"
+                  className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnSecondary[locale]}</span>
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
 
@@ -2964,45 +2994,55 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
         <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
-            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
-              <span>{heroData.tag[locale]}</span>
-            </div>
+            {/* Eyebrow Tag with pulse indicator */}
+            <FadeIn delay={0.05} y={15}>
+              <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+                <span>{heroData.tag[locale]}</span>
+              </div>
+            </FadeIn>
 
             {/* H1 Title with Natural Inline Title Flow */}
-            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
-              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
-                {heroData.titlePart2[locale]}
-              </span>
-            </h1>
+            <FadeIn delay={0.12} y={20}>
+              <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+                <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+                <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                  {heroData.titlePart2[locale]}
+                </span>
+              </h1>
+            </FadeIn>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
-              {heroData.sub[locale]}
-            </p>
+            {/* Subtitle - Whiter, Bolder & Sharp */}
+            <FadeIn delay={0.2} y={18}>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[640px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                {heroData.sub[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Description */}
-            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
-              {heroData.desc[locale]}
-            </p>
+            {/* Description - Whiter, Clearest Readability & Bolder */}
+            <FadeIn delay={0.28} y={18}>
+              <p className="text-[13.5px] xs:text-[14px] sm:text-[15px] font-normal text-cloud/95 leading-relaxed max-w-[560px] mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                {heroData.desc[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Action Buttons optimized for 360px mobile view */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a
-                href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnPrimary[locale]}</span>
-              </a>
-              <a
-                href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnSecondary[locale]}</span>
-              </a>
-            </div>
+            {/* Action Buttons with semi-transparent navy backdrop for secondary button */}
+            <FadeIn delay={0.36} y={18}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <a
+                  href="mailto:info@kafaahsolutions.com"
+                  className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnPrimary[locale]}</span>
+                </a>
+                <a
+                  href="/contact/"
+                  className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnSecondary[locale]}</span>
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </header>
@@ -3903,45 +3943,55 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
         {/* Content Container (Bottom-left on Desktop, 100svh centered on Mobile with 0 scroll jump) */}
         <div className="max-w-[1280px] w-full mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex-1 flex flex-col justify-center lg:justify-end lg:mt-auto lg:mb-10 lg:my-0 py-8 lg:py-0">
           <div className="max-w-[720px] text-left rtl:text-right">
-            {/* Eyebrow Tag with pulse indicator (plain text + dot, no border box) */}
-            <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
-              <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
-              <span>{heroData.tag[locale]}</span>
-            </div>
+            {/* Eyebrow Tag with pulse indicator */}
+            <FadeIn delay={0.05} y={15}>
+              <div className="inline-flex items-center gap-2.5 mb-4 font-[family-name:var(--font-ui)] text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-semibold text-gold">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold animate-ping flex-shrink-0" />
+                <span>{heroData.tag[locale]}</span>
+              </div>
+            </FadeIn>
 
             {/* H1 Title with Natural Inline Title Flow */}
-            <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
-              <span className="text-cloud">{heroData.titlePart1[locale]} </span>
-              <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
-                {heroData.titlePart2[locale]}
-              </span>
-            </h1>
+            <FadeIn delay={0.12} y={20}>
+              <h1 className="font-[family-name:var(--font-display)] text-[20px] xs:text-[23px] sm:text-[31px] md:text-[40px] lg:text-[46px] font-semibold leading-[1.18] sm:leading-[1.12] text-cloud mb-4 tracking-tight">
+                <span className="text-cloud">{heroData.titlePart1[locale]} </span>
+                <span className="text-gold font-bold drop-shadow-[0_2px_15px_rgba(240,160,32,0.2)]">
+                  {heroData.titlePart2[locale]}
+                </span>
+              </h1>
+            </FadeIn>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-2.5 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
-              {heroData.sub[locale]}
-            </p>
+            {/* Subtitle - Whiter, Bolder & Sharp */}
+            <FadeIn delay={0.2} y={18}>
+              <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-3 font-[family-name:var(--font-ui)] tracking-wide max-w-[640px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
+                {heroData.sub[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Description */}
-            <p className="text-[12.5px] xs:text-[13px] sm:text-[14px] font-light text-silver/80 leading-relaxed max-w-[530px] mb-7">
-              {heroData.desc[locale]}
-            </p>
+            {/* Description - Whiter, Clearest Readability & Bolder */}
+            <FadeIn delay={0.28} y={18}>
+              <p className="text-[13.5px] xs:text-[14px] sm:text-[15px] font-normal text-cloud/95 leading-relaxed max-w-[560px] mb-8 drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">
+                {heroData.desc[locale]}
+              </p>
+            </FadeIn>
 
-            {/* Action Buttons optimized for 360px mobile view */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-              <a
-                href="mailto:info@kafaahsolutions.com"
-                className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnPrimary[locale]}</span>
-              </a>
-              <a
-                href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
-              >
-                <span>{heroData.btnSecondary[locale]}</span>
-              </a>
-            </div>
+            {/* Action Buttons with semi-transparent navy backdrop for secondary button */}
+            <FadeIn delay={0.36} y={18}>
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
+                <a
+                  href="mailto:info@kafaahsolutions.com"
+                  className="btn-premium-gold bg-gold text-navy-deep hover:bg-gold-light font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-lg inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnPrimary[locale]}</span>
+                </a>
+                <a
+                  href="/contact/"
+                  className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                >
+                  <span>{heroData.btnSecondary[locale]}</span>
+                </a>
+              </div>
+            </FadeIn>
           </div>
         </div>
 

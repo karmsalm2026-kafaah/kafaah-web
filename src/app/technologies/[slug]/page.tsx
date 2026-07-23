@@ -68,8 +68,8 @@ export default async function TechnologyPage({ params }: Props) {
               {tech.fullName}
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base font-medium text-cloud mb-4 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px]">
+            {/* Subtitle - Whiter & Bolder */}
+            <p className="text-[15px] sm:text-[17px] font-semibold text-white mb-4 font-[family-name:var(--font-ui)] tracking-wide max-w-[620px] drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
               {tech.heroTagline}
             </p>
 
@@ -83,7 +83,7 @@ export default async function TechnologyPage({ params }: Props) {
               </a>
               <a
                 href="/contact/"
-                className="border border-white/40 hover:border-white text-cloud hover:bg-white/10 font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
+                className="border border-white/40 hover:border-gold hover:text-gold text-cloud bg-navy-dark/70 hover:bg-navy-dark/95 backdrop-blur-md font-[family-name:var(--font-ui)] text-[11px] xs:text-xs sm:text-[13px] font-bold tracking-[0.08em] sm:tracking-[0.12em] uppercase px-5 sm:px-8 py-3.5 w-full sm:w-auto sm:min-w-[240px] h-12 sm:h-14 rounded-sm transition-all duration-300 shadow-md inline-flex items-center justify-center gap-2.5 sm:gap-3 text-center"
               >
                 <span>Talk to a Process Expert →</span>
               </a>
