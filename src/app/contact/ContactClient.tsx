@@ -194,10 +194,10 @@ export function ContactClient() {
           <img
             src="/executive-contact-bg.png"
             alt="Kafaah Executive Chemical Engineering Hub"
-            className="w-full h-full object-cover opacity-35 mix-blend-luminosity scale-105 transition-transform duration-[30s] ease-out hover:scale-100"
+            className="w-full h-full object-cover opacity-55 scale-105 transition-transform duration-[30s] ease-out hover:scale-100"
           />
         </picture>
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/90 to-navy-dark/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/45 via-navy-deep/60 to-navy-dark/75" />
         <div
           className="absolute inset-0 opacity-[0.05] pointer-events-none"
           style={{
