@@ -190,11 +190,11 @@ export function ContactClient() {
       {/* Global Background Image across BOTH sides & Glowing Blur Orbs */}
       <div className="absolute inset-0 z-0 select-none pointer-events-none overflow-hidden">
         <picture>
-          <source srcSet="/contact-full-bg.png" type="image/png" />
+          <source srcSet="/executive-contact-bg.png" type="image/png" />
           <img
-            src="/contact-full-bg.png"
-            alt="Kafaah Industrial Engineering & Global Network"
-            className="w-full h-full object-cover opacity-30 mix-blend-luminosity scale-105 transition-transform duration-[30s] ease-out hover:scale-100"
+            src="/executive-contact-bg.png"
+            alt="Kafaah Executive Chemical Engineering Hub"
+            className="w-full h-full object-cover opacity-35 mix-blend-luminosity scale-105 transition-transform duration-[30s] ease-out hover:scale-100"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/90 to-navy-dark/95" />
@@ -211,17 +211,13 @@ export function ContactClient() {
         <div className="absolute bottom-[10%] right-[10%] w-[550px] h-[550px] bg-gold/5 rounded-full blur-[150px] pointer-events-none animate-pulse duration-[12s]" />
       </div>
 
-      <div className="flex-1 flex flex-col lg:flex-row pt-[72px] lg:pt-[68px] relative z-10 lg:overflow-hidden min-h-0">
-
-        {/* Desktop Premium Divider */}
-        <div className="hidden lg:block absolute left-[56%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-3/4 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent z-20">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
-        </div>
+      {/* Centered Unified Content Wrapper bringing left and right sections close together */}
+      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center max-w-[1280px] w-full mx-auto px-4 sm:px-8 lg:px-12 pt-[72px] lg:pt-[68px] relative z-10 lg:overflow-hidden min-h-0 gap-6 lg:gap-10 xl:gap-14">
 
         {/* Left side - Info Panel (Border-free, Sitting Directly on Page Background) */}
-        <div className="w-full lg:w-[56%] xl:w-[58%] px-4 py-4 sm:p-6 lg:px-12 lg:py-4 xl:px-16 flex flex-col justify-center relative overflow-hidden shrink-0">
+        <div className="w-full lg:w-[54%] xl:w-[55%] max-w-[580px] py-4 flex flex-col justify-center relative overflow-hidden shrink-0">
 
-          <div className="relative z-10 max-w-[640px] w-full mx-auto">
+          <div className="relative z-10 w-full mx-auto">
             <FadeIn className="space-y-3.5 sm:space-y-4">
 
               {/* Eyebrow */}
@@ -240,7 +236,7 @@ export function ContactClient() {
               </h1>
 
               {/* Paragraph */}
-              <p className={`${fcBody} text-silver/85 text-xs sm:text-sm leading-[1.7] font-light max-w-[580px]`}>
+              <p className={`${fcBody} text-silver/85 text-xs sm:text-sm leading-[1.7] font-light max-w-[540px]`}>
                 <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
               </p>
 
@@ -380,19 +376,14 @@ export function ContactClient() {
           </div>
         </div>
 
-        {/* Right side - Contact Form (Compact 44% Layout) */}
-        <div className="w-full lg:w-[44%] xl:w-[42%] px-4 py-4 sm:p-6 lg:px-8 lg:py-4 bg-navy-deep/20 flex flex-col justify-center relative shrink-0">
-
-          {/* Mobile Premium Divider */}
-          <div className="lg:hidden absolute top-0 left-1/2 -translate-x-1/2 w-3/5 h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent z-20">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
-          </div>
+        {/* Right side - Contact Form (Compact 46% Layout) */}
+        <div className="w-full lg:w-[46%] xl:w-[45%] max-w-[480px] py-4 flex flex-col justify-center relative shrink-0">
 
           {/* Glow corner element */}
           <div className="absolute -right-1/4 -bottom-1/4 w-[350px] h-[350px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
 
           <FadeIn delay={0.15}>
-            <div className="max-w-[480px] w-full mx-auto">
+            <div className="w-full mx-auto">
 
               {/* Form Card wrapper with Glassmorphism and Compact Paddings */}
               <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/20 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-4 sm:p-7 relative group shadow-[0_15px_40px_rgba(0,0,0,0.4)]">
