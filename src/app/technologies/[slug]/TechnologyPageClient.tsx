@@ -504,9 +504,11 @@ function SulfuricAcidPFD({ tech, relatedSvcs }: Props) {
 
 const NPK_FLOW_COLORS = {
   solids: "#64748b",
-  dust: "#a78bfa",
+  gas: "#8b5cf6",
   utility: "#38bdf8",
-  oil: "#fb7185",
+  product: "#10b981",
+  micro: "#f59e0b",
+  dust: "#a78bfa",
 };
 
 interface NPKNodeData {
@@ -518,103 +520,103 @@ interface NPKNodeData {
 }
 
 const npkData: Record<string, NPKNodeData> = {
-  macrohoppers: {
-    title: "Macro Granular Storage & Dosing Hoppers",
-    badge: ["Primary Feeds", "info"],
-    body: "Manages incoming high-purity granular elements (such as Urea, DAP, MAP, MOP, or SOP). Individual silos use loss-in-weight feeders or continuous weigh belts to regulate stream flows. Granule size distribution consistency across all ingredients is critical to prevent post-blending segregation.",
-    kafaah: "Weigh controller loop calibration, checking input granule compatibility charts, and sizing symmetry analysis.",
-    challenge: "Mismatched particle sizes (e.g., fine MOP blended with large urea granules) causing size segregation inside bulk trucks and bag streams, leading to off-spec commercial analysis."
+  raw_n: {
+    title: "Nitrogen (N) Raw Material Feeding Hoppers",
+    badge: ["Feed Quality", "info"],
+    body: "Stores Nitrogen raw materials: Ammonium Nitrate (AN), Potassium Nitrate (NOP / KNO₃), and Urea. Ammonium Nitrate and NOP are highly hygroscopic solid salts requiring controlled ambient humidity (<40% RH) in storage.",
+    kafaah: "Feed moisture content monitoring, hopper discharge vibration control, and Critical Relative Humidity (CRH) management.",
+    challenge: "CRITICAL CHEMICAL INCOMPATIBILITY: Dry blending Urea directly with Ammonium Nitrate (AN) causes immediate liquefaction/mud formation as their joint CRH drops to ~18% RH. Urea and AN must NEVER be combined in dry solid formulations."
   },
-  microhoppers: {
-    title: "Secondary & Minor Nutrient Hoppers",
-    badge: ["Secondary Salts", "info"],
-    body: "Feeds secondary macronutrients (such as Magnesium Sulfate, Calcium Sulfate, or Kieserite granular fractions) into the formulation batch. These components are accurately metered to fulfill customized commercial soil grade targets.",
-    kafaah: "Dosing screw precision diagnostics, moisture tracking, and chemical formulation cross-checks.",
-    challenge: "High moisture absorption in secondary salts causing bridging across hopper throats, stopping secondary element delivery."
+  raw_p: {
+    title: "Phosphate (P) Raw Material Feeding Hopper",
+    badge: ["Feed Quality", "info"],
+    body: "Stores primary Phosphate sources (DAP, MAP) supplying targeted P₂O₅ mass content for the NPK formulation.",
+    kafaah: "P₂O₅ mass purity verification, flow consistency tracking, and intake gate calibration.",
+    challenge: "Excessive ambient humidity binding phosphate feed dust inside storage hoppers, forming localized discharge bridges."
   },
-  traceelements: {
-    title: "Trace Element & Micronutrient Addition Unit",
-    badge: ["Micronutrients", "info"],
-    body: "Controls the micro-addition of vital trace metals (Boron as borax, Zinc Sulfate, Iron Sulfate, Copper, Manganese). Because these elements make up a very low percentage of the total formulation, precise automated control loops are required to ensure uniform distribution.",
-    kafaah: "Micro-gravimetric system tuning, validation of homogeneous pre-mixes, and tracer index checking.",
-    challenge: "Poor dispersion patterns creating highly concentrated pockets of trace elements next to trace-deficient zones in the final product."
+  raw_k: {
+    title: "Potash (K) Raw Material Feeding Hoppers",
+    badge: ["Feed Quality", "info"],
+    body: "Handles Potassium Nitrate (NOP / KNO₃), Muriate of Potash (MOP / KCl), or Sulfate of Potash (SOP / K₂SO₄). NOP acts as a dual-nutrient component contributing both Potassium (44% K₂O) and Nitrate-Nitrogen (13% N).",
+    kafaah: "Dual-nutrient mass balancing for NOP (N & K values), feed gate erosion checks, and material transfer profiling.",
+    challenge: "Abrasive surface wear on hopper discharge valves caused by continuous hard potash feed movement."
   },
-  npkmixer: {
-    title: "Low-Shear Homogeneous NPK Blender",
-    badge: ["Blending Core", "danger"],
-    body: "Blends all granular inputs into a uniform mixture. The unit leverages low-shear rotary drum actions or paddle configurations designed to achieve high blending uniformity within brief cycle windows while minimizing physical grain fracture.",
-    kafaah: "Blending uniformity index testing, paddle tip clearance validation, and optimal retention timing logs.",
-    challenge: "Excessive rotational velocity or extended blend times causing granule degradation and generating fine dust, which increases caking risks during storage."
+  raw_micro: {
+    title: "Dedicated Micronutrients Storage Hopper",
+    badge: ["Separated Feed", "warn"],
+    body: "Completely separated storage dedicated exclusively to trace element inputs: Zinc (Zn), Boron (B), Iron (Fe), Manganese (Mn), Copper (Cu), and Molybdenum (Mo). Isolating micronutrients prevents unmeasured loss and segregation prior to batching.",
+    kafaah: "Micronutrient raw material purity checks, moisture protection, and accurate trace element stock management.",
+    challenge: "Cross-contamination of trace elements when switching between crop-specific micronutrient recipes."
   },
-  scalpingscreen: {
-    title: "Safety Scalping & De-dusting Screen",
-    badge: ["Quality Control", "info"],
-    body: "Processes the raw blend through a high-capacity screening deck prior to surface conditioning. This step removes oversize material lumps, raw material bag scraps, or fine debris to isolate the required target granule spectrum.",
-    kafaah: "Screen cloth tension metrics, amplitude optimization, and oversized discharge tracing.",
-    challenge: "Screen blinding from damp fines carryover, allowing oversize lumps to bypass the screen and block down-stream bagging scale gates."
+  screening: {
+    title: "Macro Feed Scalping & De-agglomeration Deck",
+    badge: ["Material Control", "warn"],
+    body: "Pre-screens incoming macro-nutrients (N, P, K) to capture oversized lumps, agglomerates, or foreign trash prior to precision weighing. Keeps macro feeds free-flowing.",
+    kafaah: "Screen deck clean-out cycles, scalp trash monitoring, and de-agglomerator blade inspection.",
+    challenge: "Damp Ammonium Nitrate or NOP sticking to scalping screens, restricting material intake velocity."
   },
-  surgebin: {
-    title: "Coating Feed Surge Hopper",
-    badge: ["Process Buffer", "info"],
-    body: "Acts as a continuous production buffer between the blending section and the downstream rotary coating drum. Features an anti-segregation interior geometry to preserve blend uniformity during levels shifts.",
-    kafaah: "Level sensor testing, mass-flow valve alignment, and structural shell wall auditing.",
-    challenge: "Funnel-flow patterns causing funneling and granule size segregation, resulting in uneven NPK concentrations between bag batches."
+  weighing: {
+    title: "Main Macro-Nutrient Batch Scale Hopper",
+    badge: ["Batch Precision", "danger"],
+    body: "Accumulates major N, P, and K components sequentially into a primary gravimetric weigh hopper using high-precision load cells. Formulations dynamically factor in NOP's dual N & K nutrient values.",
+    kafaah: "Load cell fast-response zeroing, sequence timing optimization, and precise recipe tare management.",
+    challenge: "Material cling on internal scale hopper walls due to electrostatic charge or humidity, causing target batch weight drift."
   },
-  coatingagent: {
-    title: "Anticaking Compound Storage & Pump Loop",
-    badge: ["Surface Protect", "warn"],
-    body: "Manages the delivery of specialized oil- or fatty amine wax-based anticaking compounds. This coating creates a hydrophobic surface barrier on the granules, preventing moisture absorption and moisture-bridge crystal formatting during storage.",
-    kafaah: "Pump calibration profiles, viscosity indexing against temperature variations, and consumption balancing.",
-    challenge: "Fluctuations in compound viscosity due to seasonal tracking errors, leading to inadequate granule surface coverage."
+  micro_doser: {
+    title: "Dedicated Micronutrient Precision Doser",
+    badge: ["Micro Precision", "danger"],
+    body: "An independent micro-dosing unit featuring micro-load cells or loss-in-weight feeders designed specifically for low-percentage trace element additions. Measures micro-inputs with extreme accuracy (±0.05%).",
+    kafaah: "Micro-feeder screw speed calibration, high-resolution load cell checks, and micro-recipe validation.",
+    challenge: "Inconsistent micro-dosing rates caused by fine micronutrient powder compaction or bridging inside small dosing spouts."
   },
-  heatinglump: {
-    title: "Thermal Melt Tank & Utility Loop",
-    badge: ["Thermal Control", "info"],
-    body: "Heats solid or highly viscous anticaking waxes to their optimal fluid operational windows (typically 70–80 °C). Precise temperature control is required to achieve the low viscosity necessary for fine nozzle atomization.",
-    kafaah: "Steam tracing efficiency audits, safety interlock checks, and thermal controller optimization.",
-    challenge: "Heating line failures causing wax solidification inside the feed line, choking the spray array and interrupting plant operations."
+  blender: {
+    title: "High-Precision Batch Mixer (Paddle / Ribbon / Rotary)",
+    badge: ["Batch Mixing Zone", "danger"],
+    body: "Discontinuous batch mixer that receives weighed macro-nutrients alongside the micro-nutrient dose. Operates on a timed batch cycle (2–4 minutes) to achieve thorough, uniform distribution of trace elements across the entire batch matrix.",
+    kafaah: "Mixing cycle duration optimization, batch homogeneity testing (CV < 2%), and rapid discharge gate operation.",
+    challenge: "Inadequate mixing time leading to non-uniform micronutrient distribution across the batch."
   },
-  coatingdrum: {
-    title: "Rotary Conditioning & Coating Drum",
-    badge: ["Coating Action", "danger"],
-    body: "Granules pass through a rotating drum equipped with internal lifters that create a cascading curtain. Twin-fluid atomizing nozzles spray the heated anticaking agent onto the product. Inert talc or clay powder can also be added to form a non-sticky surface finish.",
-    kafaah: "Nozzle spray pattern alignment, flight configuration reviews, and granule surface coverage evaluations.",
-    challenge: "Nozzle blockage or poor atomization forming large liquid droplets, creating sticky product clusters that blind down-stream packaging chutes."
+  coating: {
+    title: "Batch Conditioning & Micro-Nutrient Coating Unit",
+    badge: ["Quality Control", "warn"],
+    body: "Applies a liquid binder (oil or specialized polymer) inside a coating drum to permanently adhere trace micronutrients onto the primary NPK carrier matrix. Simultaneously applies anti-caking compounds to protect hygroscopic nitrate components (AN/NOP).",
+    kafaah: "Liquid binder dosing accuracy per batch, atomization spray quality, and micronutrient adhesion efficiency testing.",
+    challenge: "Insufficient liquid binder spray leading to poor micronutrient adhesion, causing trace elements to rub off and settle during transport."
   },
-  powderfeed: {
-    title: "Inert Powder Coating Silo & Feeder",
-    badge: ["Conditioning Dust", "info"],
-    body: "Meters fine inert powders (such as micronized talc, kaolin clay, or diatomaceous earth) into the rear section of the coating drum. This powder adheres to the oiled granule surface, creating a protective layer that enhances anti-caking performance.",
-    kafaah: "Powder feeder synchronization, loss-in-weight tracking, and powder-to-oil ratio balancing.",
-    challenge: "Excessive powder addition generating free ambient dust in the drum, which loads the emission baghouse and increases raw material losses."
+  oil_tank: {
+    title: "Binder / Anti-Caking Agent Dosing System",
+    badge: ["Additive Loop", "info"],
+    body: "Heats and pumps liquid binding oils or waxes to the coating chamber. Regulates liquid viscosity to maintain proper atomization during spraying.",
+    kafaah: "Thermostatic temperature regulation, pump flow rate calibration, and inline filter element cleanliness.",
+    challenge: "Viscosity spikes in binder lines during winter cycles causing spray nozzle clogging and spotty coating."
   },
-  productpacking: {
-    title: "Finished NPK Bagging Silo",
-    badge: ["Inventory Stream", "ok"],
-    body: "Receives the fully conditioned, caking-resistant granular NPK fertilizer. Product is held under controlled relative humidity conditions before transfer to automated 50kg bagging machines or big-bag packaging stations.",
-    kafaah: "Bagging scale weight calibration checks, moisture ingress auditing, and product hardness analysis.",
-    challenge: "Packaging product with high residual temperatures into plastic bags, causing moisture condensation on internal bag faces and driving localized granule dissolution."
+  dust: {
+    title: "Central Pulse-Jet Dust Collector",
+    badge: ["HSE Control", "danger"],
+    body: "Draws fugitive dust from weigh hoppers, material transfers, and batch mixer discharge gates to maintain plant air quality and operational safety.",
+    kafaah: "Air-to-cloth ratio tuning, differential pressure tracking, and filter cleaning cycle optimization.",
+    challenge: "Hygroscopic nitrate dusts (AN/NOP) absorbing ambient moisture on filter bags, forming sticky cakes that blind the filter cloth."
   },
-  baghouse: {
-    title: "Pulse-Jet Aspiration Bag Filter",
-    badge: ["Dust Extraction", "danger"],
-    body: "Provides negative draft ventilation to key dust-generation sources (such as weigh scales, blenders, screens, and hopper drops). High-efficiency PTFE membrane bags filter out airborne dust particles, returning reclaimed materials back to the process.",
-    kafaah: "Differential pressure monitoring, pulse valve sequence optimization, and bag structural inspections.",
-    challenge: "Damp air ingress causing fertilizer dust to form a crust on the filter bags (\"mud-coaxing\"), which restricts ventilation draft and causes dust buildup around the blending machinery."
+  surge_bin: {
+    title: "Batch Discharge Surge Hopper",
+    badge: ["Buffer Zone", "ok"],
+    body: "Receives the completed batch discharge from the mixer/coater unit. Acts as a buffer to convert discontinuous batch discharges into a steady, continuous stream for downstream bagging.",
+    kafaah: "Anti-segregation baffle maintenance, level sensor calibration, and smooth discharge profiling.",
+    challenge: "Unbound powders separating inside the surge hopper during vertical free-fall discharge."
   },
-  wetventuri: {
-    title: "Wet Venturi Scrubber System",
-    badge: ["Emission Clean", "danger"],
-    body: "Processes air streams carrying ultra-fine or sticky fertilizer dust that cannot be managed by dry baghouses alone. High-velocity liquid shearing traps particulates into a recycling liquor stream, preventing environmental stack emissions.",
-    kafaah: "Liquid-to-gas flow balances, throat delta-P monitoring, and liquor bleed control loops.",
-    challenge: "Crystallization and scale buildup inside the Venturi throat section from highly saturated recycling liquors, reducing scrubbing draft efficiency."
+  bagging: {
+    title: "Automated Bagging & Heat-Sealing Station",
+    badge: ["Packaging Core", "ok"],
+    body: "Weighs and packages the final NPK + Micronutrient batch blend into 25 kg, 50 kg, or jumbo bags. Features hermetic Polyethylene (PE) heat-sealing to block ambient moisture ingress.",
+    kafaah: "PE liner seal integrity testing, gravimetric target weighing accuracy, and bag sewing tension tuning.",
+    challenge: "Fine dust settling on bag sealing lips, causing weak heat seals and subsequent atmospheric moisture ingress."
   },
-  exhauststack: {
-    title: "Main Exhaust Fan & Stack Assembly",
-    badge: ["Compliance", "danger"],
-    body: "Draws treated process air from the filtration loops and discharges it to the atmosphere. Continuous monitoring guarantees total particulate emissions remain securely below 20 mg/Nm³ to fulfill strict industrial frameworks.",
-    kafaah: "Fan impeller balance reviews, CEMS verification logs, and emission profile auditing.",
-    challenge: "Aerosol or fine particulate carryover caused by upstream scrubber flooding, resulting in visible stack plume alerts."
+  warehouse: {
+    title: "Finished Product Palletizing & Storage",
+    badge: ["Final Product", "ok"],
+    body: "Palletizes and stretch-wraps sealed NPK bags for warehouse storage. Stored in climate-controlled, low-humidity conditions to protect nitrate-containing NPK formulas.",
+    kafaah: "Pallet stack height limits, stretch-wrap tension configurations, and warehouse humidity monitoring.",
+    challenge: "Product caking under bottom pallets caused by excessive stack weight pressure on hygroscopic AN/NOP formulations."
   }
 };
 
@@ -654,6 +656,8 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
       borderClass = "stroke-[#10b981]";
     } else if (category === "c-amber") {
       borderClass = "stroke-[#f59e0b]";
+    } else if (category === "c-micro") {
+      borderClass = "stroke-[#d97706]";
     } else if (category === "c-gray" || category === "class-gray") {
       borderClass = "stroke-[#94a3b8]";
     }
@@ -684,7 +688,7 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
                 Interactive NPK Process Flow Diagram
               </h2>
               <p className="text-base font-light text-silver/80 leading-relaxed">
-                Explore the NPK physical blending and conditioning process loop. Click on any process unit to view bulk gravimetric dosing, secondary trace nutrient integration, coating mechanics, and dedusting circuits.
+                Explore the NPK physical batch blending plant PFD with dedicated micronutrient ingestion, gravimetric dosing, batch mixing, and coating loops. Click any unit block to inspect key parameters and engineering guidance.
               </p>
             </FadeIn>
           </div>
@@ -693,140 +697,137 @@ function NpkPFD({ tech, relatedSvcs }: Props) {
             {/* SVG Interactive Diagram */}
             <div className="lg:col-span-7 xl:col-span-8 bg-navy-dark/30 border border-white/[0.08] p-4 sm:p-6 md:p-8 rounded-sm shadow-xl relative">
               <FadeIn delay={0.1}>
-                <svg width="100%" viewBox="0 0 720 1120" role="img" className="w-full h-auto text-silver select-none">
-                  <title>NPK Physical Blending Plant — Process Flow Diagram</title>
-                  <desc>Interactive PFD showing multi-bin gravimetric macro dosing, micronutrient trace integration, homogeneous mixing, screening, drum coating, and dedusting circuits.</desc>
+                <svg width="100%" viewBox="0 0 700 980" role="img" className="w-full h-auto text-silver select-none">
+                  <title>NPK Fertilizer Physical Batch Blending Plant — Separated Micronutrients PFD</title>
+                  <desc>Interactive PFD illustrating raw component intake (AN, NOP, Urea, DAP, MOP), dedicated micronutrients stream, batch weighing, batch mixing, coating/binding, and automated bagging systems.</desc>
                   <defs>
                     <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                       <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </marker>
                   </defs>
 
-                  <text x={35} y={25} className="text-[12px] font-bold fill-silver/80 font-[family-name:var(--font-ui)] tracking-wider">STAGE 1: GRAVIMETRIC DOSING &amp; MIXING TRAIN</text>
-                  <rect x={10} y={35} width={480} height={425} rx={8} fill="none" stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4"/>
-
-                  <g id="node-macrohoppers" className="node" onClick={() => setActiveNode("macrohoppers")}>
-                    <rect x={25} y={55} width={130} height={65} rx={6} className={getNodeClass("macrohoppers", "c-blue")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={90} y={78} textAnchor="middle" dominantBaseline="central">NPK Macro Hoppers</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={90} y={98} textAnchor="middle" dominantBaseline="central">Urea, DAP, MOP, SOP</text>
+                  {/* Row 1: Raw Material Hoppers (4 Streams) */}
+                  <g id="node-raw_n" className="node" onClick={() => setActiveNode("raw_n")}>
+                    <rect x="20" y="30" width="150" height="58" rx="8" className={getNodeClass("raw_n", "c-blue")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="95" y="50" textAnchor="middle" dominantBaseline="central">Nitrogen (N) Feeds</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="95" y="68" textAnchor="middle" dominantBaseline="central">AN / NOP / Urea</text>
                   </g>
 
-                  <g id="node-microhoppers" className="node" onClick={() => setActiveNode("microhoppers")}>
-                    <rect x={180} y={55} width={130} height={65} rx={6} className={getNodeClass("microhoppers", "c-teal")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={245} y={78} textAnchor="middle" dominantBaseline="central">Minor Nutrients</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={245} y={98} textAnchor="middle" dominantBaseline="central">Mg, Ca, S, Secondary</text>
+                  <g id="node-raw_p" className="node" onClick={() => setActiveNode("raw_p")}>
+                    <rect x="185" y="30" width="150" height="58" rx="8" className={getNodeClass("raw_p", "c-blue")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="260" y="50" textAnchor="middle" dominantBaseline="central">Phosphate (P) Feeds</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="260" y="68" textAnchor="middle" dominantBaseline="central">DAP / MAP</text>
                   </g>
 
-                  <g id="node-traceelements" className="node" onClick={() => setActiveNode("traceelements")}>
-                    <rect x={330} y={55} width={145} height={65} rx={6} className={getNodeClass("traceelements", "c-teal")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={402.5} y={78} textAnchor="middle" dominantBaseline="central">Trace Micronutrients</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={402.5} y={98} textAnchor="middle" dominantBaseline="central">B, Zn, Fe, Cu, Mn</text>
+                  <g id="node-raw_k" className="node" onClick={() => setActiveNode("raw_k")}>
+                    <rect x="350" y="30" width="150" height="58" rx="8" className={getNodeClass("raw_k", "c-blue")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="425" y="50" textAnchor="middle" dominantBaseline="central">Potash (K) Feeds</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="425" y="68" textAnchor="middle" dominantBaseline="central">MOP / SOP / NOP</text>
                   </g>
 
-                  <line x1={90} y1={120} x2={90} y2={155} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.2} markerEnd="url(#ar)"/>
-                  <line x1={245} y1={120} x2={245} y2={155} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.2} markerEnd="url(#ar)"/>
-                  <line x1={402} y1={120} x2={402} y2={155} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.2} markerEnd="url(#ar)"/>
-                  
-                  <path d="M90 155 L402 155" fill="none" stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5}/>
-                  <path d="M245 155 L245 175" fill="none" stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-
-                  <g id="node-npkmixer" className="node" onClick={() => setActiveNode("npkmixer")}>
-                    <rect x={125} y={177} width={240} height={60} rx={6} className={getNodeClass("npkmixer", "c-coral")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={245} y={198} textAnchor="middle" dominantBaseline="central">Homogeneous Blender</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={245} y={218} textAnchor="middle" dominantBaseline="central">Low-Shear Paddle / Rotary</text>
-                  </g>
-                  <line x1={245} y1={237} x2={245} y2={275} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-
-                  <g id="node-scalpingscreen" className="node" onClick={() => setActiveNode("scalpingscreen")}>
-                    <rect x={125} y={277} width={240} height={55} rx={6} className={getNodeClass("scalpingscreen", "c-gray")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={245} y={296} textAnchor="middle" dominantBaseline="central">Safety Scalping Screen</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={245} y={316} textAnchor="middle" dominantBaseline="central">Oversize Clump / Fines Isolation</text>
-                  </g>
-                  <line x1={245} y1={332} x2={245} y2={370} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-
-                  <g id="node-surgebin" className="node" onClick={() => setActiveNode("surgebin")}>
-                    <rect x={125} y={372} width={240} height={50} rx={6} className={getNodeClass("surgebin", "c-gray")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={245} y={388} textAnchor="middle" dominantBaseline="central">Coating Feed Surge Hopper</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={245} y={408} textAnchor="middle" dominantBaseline="central">Mass Flow Anti-Segregation Design</text>
+                  <g id="node-raw_micro" className="node" onClick={() => setActiveNode("raw_micro")}>
+                    <rect x="515" y="30" width="165" height="58" rx="8" className={getNodeClass("raw_micro", "c-micro")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="597" y="50" textAnchor="middle" dominantBaseline="central">Micronutrient Hopper</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="597" y="68" textAnchor="middle" dominantBaseline="central">Zn, B, Fe, Mn, Cu, Mo</text>
                   </g>
 
-                  <path d="M365 207 L490 207" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1} strokeDasharray="3 3"/>
-                  <path d="M365 304 L490 304 L490 207" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1} strokeDasharray="3 3"/>
-                  <path d="M490 207 L530 207" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1.2} markerEnd="url(#ar)"/>
+                  {/* Connecting Lines 1 */}
+                  <line x1="95" y1="88" x2="95" y2="125" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.2" markerEnd="url(#ar)"/>
+                  <line x1="260" y1="88" x2="260" y2="125" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.2" markerEnd="url(#ar)"/>
+                  <line x1="425" y1="88" x2="425" y2="125" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.2" markerEnd="url(#ar)"/>
+                  <line x1="597" y1="88" x2="597" y2="225" stroke={NPK_FLOW_COLORS.micro} strokeWidth="1.2" markerEnd="url(#ar)"/>
 
-                  <text x={35} y={495} className="text-[12px] font-bold fill-silver/80 font-[family-name:var(--font-ui)] tracking-wider">STAGE 2: SURFACE CONDITIONING &amp; ANTICAKING</text>
-                  <rect x={10} y={505} width={480} height={425} rx={8} fill="none" stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4"/>
-
-                  <path d="M245 422 L245 525" fill="none" stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-                  <text className="text-[11px] fill-silver/70 pointer-events-none font-light" x={175} y={465}>Uncoated Core Granules</text>
-
-                  <g id="node-coatingagent" className="node" onClick={() => setActiveNode("coatingagent")}>
-                    <rect x={15} y={525} width={160} height={55} rx={6} className={getNodeClass("coatingagent", "c-coral")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={95} y={544} textAnchor="middle" dominantBaseline="central">Anticaking Compound</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={95} y={564} textAnchor="middle" dominantBaseline="central">Oil / Fatty Amine Wax</text>
+                  {/* Row 2: Intake De-agglomeration Screens (Macro-Nutrients) */}
+                  <g id="node-screening" className="node" onClick={() => setActiveNode("screening")}>
+                    <rect x="70" y="127" width="380" height="60" rx="8" className={getNodeClass("screening", "c-amber")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="260" y="148" textAnchor="middle" dominantBaseline="central">Macro Feed Scalping &amp; De-agglomeration Deck</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="260" y="168" textAnchor="middle" dominantBaseline="central">Removes Oversized Clumps &amp; Foreign Debris</text>
                   </g>
 
-                  <g id="node-heatinglump" className="node" onClick={() => setActiveNode("heatinglump")}>
-                    <rect x={15} y={615} width={160} height={50} rx={6} className={getNodeClass("heatinglump", "c-coral")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={95} y={632} textAnchor="middle" dominantBaseline="central">Thermal Melt Unit</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={95} y={650} textAnchor="middle" dominantBaseline="central">Target: 70–80 °C Liquid</text>
-                  </g>
-                  <line x1={95} y1={580} x2={95} y2={615} stroke={NPK_FLOW_COLORS.oil} strokeWidth={1.2} markerEnd="url(#ar)"/>
-                  <path d="M95 665 L95 725 L180 725" fill="none" stroke={NPK_FLOW_COLORS.oil} strokeWidth={1.2} markerEnd="url(#ar)"/>
+                  <line x1="260" y1="187" x2="260" y2="225" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.5" markerEnd="url(#ar)"/>
 
-                  <g id="node-coatingdrum" className="node" onClick={() => setActiveNode("coatingdrum")}>
-                    <rect x={195} y={692} width={250} height={65} rx={6} className={getNodeClass("coatingdrum", "c-teal")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={320} y={715} textAnchor="middle" dominantBaseline="central">Rotary Conditioning Drum</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={320} y={735} textAnchor="middle" dominantBaseline="central">Twin-Fluid Nozzle Coating</text>
-                  </g>
-                  
-                  <path d="M245 580 L245 692" fill="none" stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-
-                  <g id="node-powderfeed" className="node" onClick={() => setActiveNode("powderfeed")}>
-                    <rect x={290} y={525} width={155} height={55} rx={6} className={getNodeClass("powderfeed", "c-gray")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={367} y={544} textAnchor="middle" dominantBaseline="central">Inert Talc/Clay Silo</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={367} y={564} textAnchor="middle" dominantBaseline="central">Dusting Agent Feeder</text>
-                  </g>
-                  <path d="M367 580 L367 692" fill="none" stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.2} markerEnd="url(#ar)"/>
-
-                  <line x1={320} y1={757} x2={320} y2={800} stroke={NPK_FLOW_COLORS.solids} strokeWidth={1.5} markerEnd="url(#ar)"/>
-
-                  <g id="node-productpacking" className="node" onClick={() => setActiveNode("productpacking")}>
-                    <rect x={195} y={802} width={250} height={55} rx={6} className={getNodeClass("productpacking", "c-green")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={320} y={820} textAnchor="middle" dominantBaseline="central">Finished NPK Bagging Silo</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={320} y={840} textAnchor="middle" dominantBaseline="central">To Big-Bag / 50kg Packing Lines</text>
+                  {/* Row 3: Batch Weigh Hoppers */}
+                  <g id="node-weighing" className="node" onClick={() => setActiveNode("weighing")}>
+                    <rect x="70" y="227" width="380" height="70" rx="8" className={getNodeClass("weighing", "c-teal")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="260" y="248" textAnchor="middle" dominantBaseline="central">Main Macro-Nutrient Batch Scale Hopper</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="260" y="268" textAnchor="middle" dominantBaseline="central">Sequential Gravimetric Dosing (AN, NOP, Urea, DAP, MOP)</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="260" y="283" textAnchor="middle" dominantBaseline="central">High Precision Target Yield: ±0.2%</text>
                   </g>
 
-                  <path d="M445 725 L470 725" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1} strokeDasharray="3 3"/>
-                  <path d="M470 725 L470 550 L490 550" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1} strokeDasharray="3 3"/>
-                  <path d="M490 550 L530 550" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth={1} markerEnd="url(#ar)"/>
-
-                  <text x={607} y={25} textAnchor="middle" className="text-[11px] font-bold fill-silver/80 font-[family-name:var(--font-ui)] tracking-wider">VENTILATION & DUST CONTROL</text>
-                  <rect x={505} y={35} width={205} height={900} rx={8} fill="none" stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4"/>
-
-                  <g id="node-baghouse" className="node" onClick={() => setActiveNode("baghouse")}>
-                    <rect x={515} y={165} width={185} height={75} rx={6} className={getNodeClass("baghouse", "c-purple")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={607.5} y={192} textAnchor="middle" dominantBaseline="central">Pulse-Jet Bag Filter</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={607.5} y={214} textAnchor="middle" dominantBaseline="central">Primary Granule Dust Hook</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={607.5} y={226} textAnchor="middle" dominantBaseline="central">PTFE Membrane Matrices</text>
-                  </g>
-                  <line x1={607} y1={240} x2={607} y2={390} stroke={NPK_FLOW_COLORS.utility} strokeWidth={1.2} markerEnd="url(#ar)"/>
-
-                  <g id="node-wetventuri" className="node" onClick={() => setActiveNode("wetventuri")}>
-                    <rect x={515} y={392} width={185} height={70} rx={6} className={getNodeClass("wetventuri", "c-purple")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={607.5} y={415} textAnchor="middle" dominantBaseline="central">Wet Venturi Scrubber</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={607.5} y={435} textAnchor="middle" dominantBaseline="central">Soluble Fertilizer Fines Reclaim</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={607.5} y={448} textAnchor="middle" dominantBaseline="central">Liquor Recycle Balance</text>
-                  </g>
-                  <line x1={607} y1={462} x2={607} y2={760} stroke={NPK_FLOW_COLORS.utility} strokeWidth={1.2} markerEnd="url(#ar)"/>
-
-                  <g id="node-exhauststack" className="node" onClick={() => setActiveNode("exhauststack")}>
-                    <rect x={515} y={762} width={185} height={60} rx={6} className={getNodeClass("exhauststack", "c-gray")}/>
-                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x={607.5} y={785} textAnchor="middle" dominantBaseline="central">Exhaust Fan & Stack</text>
-                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x={607.5} y={805} textAnchor="middle" dominantBaseline="central">Particulates &lt; 20 mg/Nm³</text>
+                  {/* Separate Micro Dosing Feeder */}
+                  <g id="node-micro_doser" className="node" onClick={() => setActiveNode("micro_doser")}>
+                    <rect x="495" y="227" width="185" height="70" rx="8" className={getNodeClass("micro_doser", "c-micro")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="587" y="248" textAnchor="middle" dominantBaseline="central">Micro-Dosing Scale</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="587" y="268" textAnchor="middle" dominantBaseline="central">High-Precision Micro Feeder</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="587" y="283" textAnchor="middle" dominantBaseline="central">Target Tolerance: ±0.05%</text>
                   </g>
 
-                  <text className="text-[12px] fill-silver/40 pointer-events-none font-medium" x={360} y={970} textAnchor="middle">↑ Click any process node above to view core technical advisory details.</text>
+                  {/* Side Connection: Dust Collection */}
+                  <g id="node-dust" className="node" onClick={() => setActiveNode("dust")}>
+                    <rect x="15" y="235" width="45" height="54" rx="6" className={getNodeClass("dust", "c-purple")}/>
+                    <text className="text-[11px] font-semibold fill-cloud tracking-wide pointer-events-none" x="37" y="253" textAnchor="middle" dominantBaseline="central">Dust</text>
+                    <text className="text-[10px] fill-silver/70 pointer-events-none font-light" x="37" y="270" textAnchor="middle" dominantBaseline="central">Filter</text>
+                  </g>
+                  <path d="M70 262 L60 262" fill="none" stroke={NPK_FLOW_COLORS.dust} strokeWidth="1" strokeDasharray="3 3" markerEnd="url(#ar)"/>
+
+                  <line x1="260" y1="297" x2="260" y2="335" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.5" markerEnd="url(#ar)"/>
+                  <path d="M587 297 L587 316 L410 316 L410 335" fill="none" stroke={NPK_FLOW_COLORS.micro} strokeWidth="1.2" markerEnd="url(#ar)"/>
+
+                  {/* Row 4: Batch Mixer Core */}
+                  <g id="node-blender" className="node" onClick={() => setActiveNode("blender")}>
+                    <rect x="110" y="337" width="480" height="90" rx="10" className={getNodeClass("blender", "c-coral")}/>
+                    <text className="text-[13px] font-bold fill-cloud tracking-wide pointer-events-none" x="350" y="362" textAnchor="middle" dominantBaseline="central">High-Precision Batch Mixer (Paddle / Ribbon / Rotary)</text>
+                    <text className="text-[11px] fill-silver/80 pointer-events-none font-medium" x="350" y="384" textAnchor="middle" dominantBaseline="central">Discontinuous Timed Batch Cycle (2–4 Min / Batch)</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="350" y="404" textAnchor="middle" dominantBaseline="central">Homogeneous Macro &amp; Micro-Nutrient Matrix Distribution</text>
+                  </g>
+
+                  <line x1="350" y1="427" x2="350" y2="465" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.5" markerEnd="url(#ar)"/>
+
+                  {/* Row 5: Coating & Binding Unit */}
+                  <g id="node-coating" className="node" onClick={() => setActiveNode("coating")}>
+                    <rect x="110" y="467" width="480" height="75" rx="8" className={getNodeClass("coating", "c-amber")}/>
+                    <text className="text-[12.5px] font-semibold fill-cloud tracking-wide pointer-events-none" x="350" y="488" textAnchor="middle" dominantBaseline="central">Batch Conditioning &amp; Micro-Nutrient Coating Unit</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="350" y="508" textAnchor="middle" dominantBaseline="central">Liquid Binding Agent Spraying &amp; Anti-Caking Treatment</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="350" y="525" textAnchor="middle" dominantBaseline="central">Fixes Micronutrients onto Macro Carrier Base &amp; Seals Nitrate (AN/NOP)</text>
+                  </g>
+
+                  {/* Liquid Additive Input to Coating */}
+                  <g id="node-oil_tank" className="node" onClick={() => setActiveNode("oil_tank")}>
+                    <rect x="600" y="475" width="85" height="58" rx="6" className={getNodeClass("oil_tank", "c-blue")}/>
+                    <text className="text-[11px] font-semibold fill-cloud tracking-wide pointer-events-none" x="642" y="495" textAnchor="middle" dominantBaseline="central">Binder/Oil</text>
+                    <text className="text-[10px] fill-silver/70 pointer-events-none font-light" x="642" y="513" textAnchor="middle" dominantBaseline="central">Dosing Unit</text>
+                  </g>
+                  <line x1="600" y1="504" x2="590" y2="504" stroke={NPK_FLOW_COLORS.utility} strokeWidth="1.2" markerEnd="url(#ar)"/>
+
+                  <line x1="350" y1="542" x2="350" y2="580" stroke={NPK_FLOW_COLORS.solids} strokeWidth="1.5" markerEnd="url(#ar)"/>
+
+                  {/* Row 6: Hopper / Surge Tank */}
+                  <g id="node-surge_bin" className="node" onClick={() => setActiveNode("surge_bin")}>
+                    <rect x="210" y="582" width="280" height="58" rx="8" className={getNodeClass("surge_bin", "c-gray")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="350" y="603" textAnchor="middle" dominantBaseline="central">Batch Discharge Surge Hopper</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="350" y="623" textAnchor="middle" dominantBaseline="central">Converts Batch Discharge to Continuous Downstream Flow</text>
+                  </g>
+
+                  <line x1="350" y1="640" x2="350" y2="678" stroke={NPK_FLOW_COLORS.product} strokeWidth="1.5" markerEnd="url(#ar)"/>
+
+                  {/* Row 7: Bagging & Packaging */}
+                  <g id="node-bagging" className="node" onClick={() => setActiveNode("bagging")}>
+                    <rect x="110" y="680" width="480" height="85" rx="8" className={getNodeClass("bagging", "c-green")}/>
+                    <text className="text-[12.5px] font-semibold fill-cloud tracking-wide pointer-events-none" x="350" y="703" textAnchor="middle" dominantBaseline="central">Automated Bagging &amp; Heat-Sealing Station</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="350" y="725" textAnchor="middle" dominantBaseline="central">25 kg / 50 kg &amp; Jumbo Bag Discharge Options</text>
+                    <text className="text-[10px] fill-silver/60 pointer-events-none font-light" x="350" y="745" textAnchor="middle" dominantBaseline="central">Hermetic PE In-Liner Sealing (Critical for AN/NOP Hygro-Protection)</text>
+                  </g>
+
+                  <line x1="350" y1="765" x2="350" y2="805" stroke={NPK_FLOW_COLORS.product} strokeWidth="1.5" markerEnd="url(#ar)"/>
+
+                  {/* Row 8: Warehouse Storage */}
+                  <g id="node-warehouse" className="node" onClick={() => setActiveNode("warehouse")}>
+                    <rect x="210" y="807" width="280" height="58" rx="8" className={getNodeClass("warehouse", "c-green")}/>
+                    <text className="text-[12px] font-semibold fill-cloud tracking-wide pointer-events-none" x="350" y="828" textAnchor="middle" dominantBaseline="central">Finished Product Palletizing &amp; Storage</text>
+                    <text className="text-[10.5px] fill-silver/70 pointer-events-none font-light" x="350" y="848" textAnchor="middle" dominantBaseline="central">Climate-Controlled Warehouse Storage</text>
+                  </g>
+
+                  <text className="text-[12px] fill-silver/40 pointer-events-none font-medium" x="350" y="905" textAnchor="middle">↑ Click any process block above to examine operational indicators.</text>
                 </svg>
               </FadeIn>
             </div>

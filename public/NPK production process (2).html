@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPK Fertilizer Plant — Batch Blending PFD (Separated Micronutrients)</title>
+  <style>
+    :root {
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --color-text-primary: #0f172a;
+      --color-text-secondary: #334155;
+      --color-text-tertiary: #64748b;
+      --color-border-tertiary: #e2e8f0;
+      --color-background-secondary: #f8fafc;
+      
+      /* System Badges */
+      --color-background-info: #e0f2fe; --color-text-info: #0369a1;
+      --color-background-warning: #fef3c7; --color-text-warning: #b45309;
+      --color-background-danger: #fee2e2; --color-text-danger: #b91c1c;
+      --color-background-success: #dcfce7; --color-text-success: #15803d;
+
+      /* Process Flow Line Colors */
+      --flow-solids: #475569;     
+      --flow-gas: #8b5cf6;        
+      --flow-utility: #0ea5e9;    
+      --flow-product: #16a34a;    
+      --flow-micro: #d97706;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body { background: #ffffff; padding: 2rem 1rem; }
+    .root{font-family:var(--font-sans);padding:1rem; max-width: 740px; margin: 0 auto;}
+    
+    /* Header Title Styling */
+    .pfd-header {
+      text-align: center;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      border-radius: 10px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+    }
+    .pfd-header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: #f8fafc;
+    }
+    .pfd-header p {
+      font-size: 13px;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+
+    /* SVG styling classes */
+    .node { cursor: pointer; fill: #ffffff; transition: transform 0.2s ease; }
+    .node rect { stroke: #cbd5e1; fill: #ffffff; transition: all 0.2s ease; }
+    
+    /* Color themes for PFD blocks */
+    .c-blue rect { stroke: var(--flow-utility); }
+    .c-coral rect { stroke: #e11d48; fill: #fff1f2; }
+    .c-teal rect { stroke: #14b8a6; }
+    .c-purple rect { stroke: var(--flow-gas); }
+    .c-green rect { stroke: var(--flow-product); fill: #f0fdf4; }
+    .c-amber rect { stroke: #f59e0b; }
+    .c-gray rect { stroke: #94a3b8; }
+    .c-micro rect { stroke: var(--flow-micro); fill: #fffbeb; }
+
+    .node:hover rect { stroke-width: 1.5px; filter: drop-shadow(0 4px 6px -1px rgb(0 0 0 / 0.05)); }
+    .node.active rect { stroke-width: 2px; fill: #f0fdfa; stroke: #0d9488 !important; }
+
+    .th { font-size: 12px; font-weight: 600; fill: var(--color-text-primary); }
+    .ts { font-size: 10.5px; fill: var(--color-text-secondary); }
+
+    /* Details Panel UI */
+    .detail-panel{background:var(--color-background-secondary);border:1px solid var(--color-border-tertiary);border-radius:8px;padding:16px 20px;margin-top:16px;min-height:90px;transition:all .2s; box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);}
+    .detail-panel h3{font-size:15px;font-weight:600;color:var(--color-text-primary);margin-bottom:8px; display: flex; align-items: center; justify-content: space-between;}
+    .detail-panel p{font-size:13.5px;color:var(--color-text-secondary);line-height:1.6; margin-bottom: 8px;}
+    .badge{display:inline-block;font-size:11px;padding:3px 10px;border-radius:9999px;font-weight:500; text-transform: uppercase; letter-spacing: 0.05em;}
+    
+    .badge-warn{background:var(--color-background-warning);color:var(--color-text-warning)}
+    .badge-danger{background:var(--color-background-danger);color:var(--color-text-danger)}
+    .badge-info{background:var(--color-background-info);color:var(--color-text-info)}
+    .badge-ok{background:var(--color-background-success);color:var(--color-text-success)}
+    
+    .kafaah-note{margin-top:10px;font-size:12.5px;color:var(--color-text-secondary);border-top:1px dashed var(--color-border-tertiary);padding-top:10px}
+    .kafaah-note b{color: #0d9488}
+    .challenge-note{margin-top:6px;font-size:12.5px;color:var(--color-text-secondary);}
+    .challenge-note b{color: #dc2626}
+  </style>
+</head>
+<body>
+
+<div class="root">
+
+  <!-- Suitable Heading Title Header -->
+  <header class="pfd-header">
+    <h1>PROCESS FLOW DIAGRAM: NPK FERTILIZER BATCH BLENDING PLANT</h1>
+    <p>Physical Batching System with Dedicated Micronutrient Ingestion & Coating Loops</p>
+  </header>
+
+<svg width="100%" viewBox="0 0 700 980" role="img">
+  <title>NPK Fertilizer Physical Batch Blending Plant — Separated Micronutrients PFD</title>
+  <desc>Interactive PFD illustrating raw component intake (AN, NOP, Urea, DAP, MOP), dedicated micronutrients stream, batch weighing, batch mixing, coating/binding, and automated bagging systems.</desc>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <!-- Row 1: Raw Material Hoppers (4 Streams) -->
+  <g id="node-raw_n" class="node c-blue" onclick="showDetail('raw_n')">
+    <rect x="20" y="30" width="150" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="95" y="50" text-anchor="middle" dominant-baseline="central">Nitrogen (N) Feeds</text>
+    <text class="ts" x="95" y="68" text-anchor="middle" dominant-baseline="central">AN / NOP / Urea</text>
+  </g>
+
+  <g id="node-raw_p" class="node c-blue" onclick="showDetail('raw_p')">
+    <rect x="185" y="30" width="150" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="260" y="50" text-anchor="middle" dominant-baseline="central">Phosphate (P) Feeds</text>
+    <text class="ts" x="260" y="68" text-anchor="middle" dominant-baseline="central">DAP / MAP</text>
+  </g>
+
+  <g id="node-raw_k" class="node c-blue" onclick="showDetail('raw_k')">
+    <rect x="350" y="30" width="150" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="425" y="50" text-anchor="middle" dominant-baseline="central">Potash (K) Feeds</text>
+    <text class="ts" x="425" y="68" text-anchor="middle" dominant-baseline="central">MOP / SOP / NOP</text>
+  </g>
+
+  <g id="node-raw_micro" class="node c-micro" onclick="showDetail('raw_micro')">
+    <rect x="515" y="30" width="165" height="58" rx="8" stroke-width="1.2"/>
+    <text class="th" x="597" y="50" text-anchor="middle" dominant-baseline="central">Micronutrient Hopper</text>
+    <text class="ts" x="597" y="68" text-anchor="middle" dominant-baseline="central">Zn, B, Fe, Mn, Cu, Mo</text>
+  </g>
+
+  <!-- Connecting Lines 1 -->
+  <line x1="95" y1="88" x2="95" y2="125" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <line x1="260" y1="88" x2="260" y2="125" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <line x1="425" y1="88" x2="425" y2="125" stroke="var(--flow-solids)" stroke-width="1.2" marker-end="url(#ar)"/>
+  <line x1="597" y1="88" x2="597" y2="225" stroke="var(--flow-micro)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <!-- Row 2: Intake De-agglomeration Screens (Macro-Nutrients) -->
+  <g id="node-screening" class="node c-amber" onclick="showDetail('screening')">
+    <rect x="70" y="127" width="380" height="60" rx="8" stroke-width="1.2"/>
+    <text class="th" x="260" y="148" text-anchor="middle" dominant-baseline="central">Macro Feed Scalping & De-agglomeration Deck</text>
+    <text class="ts" x="260" y="168" text-anchor="middle" dominant-baseline="central">Removes Oversized Clumps & Foreign Debris</text>
+  </g>
+
+  <line x1="260" y1="187" x2="260" y2="225" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Row 3: Batch Weigh Hoppers -->
+  <g id="node-weighing" class="node c-teal" onclick="showDetail('weighing')">
+    <rect x="70" y="227" width="380" height="70" rx="8" stroke-width="1.5"/>
+    <text class="th" x="260" y="248" text-anchor="middle" dominant-baseline="central">Main Macro-Nutrient Batch Scale Hopper</text>
+    <text class="ts" x="260" y="268" text-anchor="middle" dominant-baseline="central">Sequential Gravimetric Dosing (AN, NOP, Urea, DAP, MOP)</text>
+    <text class="ts" x="260" y="283" text-anchor="middle" dominant-baseline="central">High Precision Target Yield: ±0.2%</text>
+  </g>
+
+  <!-- Separate Micro Dosing Feeder -->
+  <g id="node-micro_doser" class="node c-micro" onclick="showDetail('micro_doser')">
+    <rect x="495" y="227" width="185" height="70" rx="8" stroke-width="1.5"/>
+    <text class="th" x="587" y="248" text-anchor="middle" dominant-baseline="central">Micro-Dosing Scale</text>
+    <text class="ts" x="587" y="268" text-anchor="middle" dominant-baseline="central">High-Precision Micro Feeder</text>
+    <text class="ts" x="587" y="283" text-anchor="middle" dominant-baseline="central">Target Tolerance: ±0.05%</text>
+  </g>
+
+  <!-- Side Connection: Dust Collection -->
+  <g id="node-dust" class="node c-purple" onclick="showDetail('dust')">
+    <rect x="15" y="235" width="45" height="54" rx="6" stroke-width="1"/>
+    <text class="th" x="37" y="253" text-anchor="middle" dominant-baseline="central">Dust</text>
+    <text class="ts" x="37" y="270" text-anchor="middle" dominant-baseline="central">Filter</text>
+  </g>
+  <path d="M70 262 L60 262" fill="none" stroke="var(--flow-gas)" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+
+  <line x1="260" y1="297" x2="260" y2="335" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+  <path d="M587 297 L587 316 L410 316 L410 335" fill="none" stroke="var(--flow-micro)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <!-- Row 4: Batch Mixer Core -->
+  <g id="node-blender" class="node c-coral" onclick="showDetail('blender')">
+    <rect x="110" y="337" width="480" height="90" rx="10" stroke-width="1.5"/>
+    <text class="th" x="350" y="362" text-anchor="middle" dominant-baseline="central">High-Precision Batch Mixer (Paddle / Ribbon / Rotary)</text>
+    <text class="ts" x="350" y="384" text-anchor="middle" dominant-baseline="central">Discontinuous Timed Batch Cycle (2–4 Min / Batch)</text>
+    <text class="ts" x="350" y="404" text-anchor="middle" dominant-baseline="central">Homogeneous Macro & Micro-Nutrient Matrix Distribution</text>
+  </g>
+
+  <line x1="350" y1="427" x2="350" y2="465" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Row 5: Coating & Binding Unit -->
+  <g id="node-coating" class="node c-amber" onclick="showDetail('coating')">
+    <rect x="110" y="467" width="480" height="75" rx="8" stroke-width="1.2"/>
+    <text class="th" x="350" y="488" text-anchor="middle" dominant-baseline="central">Batch Conditioning & Micro-Nutrient Coating Unit</text>
+    <text class="ts" x="350" y="508" text-anchor="middle" dominant-baseline="central">Liquid Binding Agent Spraying & Anti-Caking Treatment</text>
+    <text class="ts" x="350" y="525" text-anchor="middle" dominant-baseline="central">Fixes Micronutrients onto Macro Carrier Base & Seals Nitrate (AN/NOP)</text>
+  </g>
+
+  <!-- Liquid Additive Input to Coating -->
+  <g id="node-oil_tank" class="node c-blue" onclick="showDetail('oil_tank')">
+    <rect x="600" y="475" width="85" height="58" rx="6" stroke-width="1"/>
+    <text class="th" x="642" y="495" text-anchor="middle" dominant-baseline="central">Binder/Oil</text>
+    <text class="ts" x="642" y="513" text-anchor="middle" dominant-baseline="central">Dosing Unit</text>
+  </g>
+  <line x1="600" y1="504" x2="590" y2="504" stroke="var(--flow-utility)" stroke-width="1.2" marker-end="url(#ar)"/>
+
+  <line x1="350" y1="542" x2="350" y2="580" stroke="var(--flow-solids)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Row 6: Hopper / Surge Tank -->
+  <g id="node-surge_bin" class="node c-gray" onclick="showDetail('surge_bin')">
+    <rect x="210" y="582" width="280" height="58" rx="8" stroke-width="1"/>
+    <text class="th" x="350" y="603" text-anchor="middle" dominant-baseline="central">Batch Discharge Surge Hopper</text>
+    <text class="ts" x="350" y="623" text-anchor="middle" dominant-baseline="central">Converts Batch Discharge to Continuous Downstream Flow</text>
+  </g>
+
+  <line x1="350" y1="640" x2="350" y2="678" stroke="var(--flow-product)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Row 7: Bagging & Packaging -->
+  <g id="node-bagging" class="node c-green" onclick="showDetail('bagging')">
+    <rect x="110" y="680" width="480" height="85" rx="8" stroke-width="1.5"/>
+    <text class="th" x="350" y="703" text-anchor="middle" dominant-baseline="central">Automated Bagging & Heat-Sealing Station</text>
+    <text class="ts" x="350" y="725" text-anchor="middle" dominant-baseline="central">25 kg / 50 kg & Jumbo Bag Discharge Options</text>
+    <text class="ts" x="350" y="745" text-anchor="middle" dominant-baseline="central">Hermetic PE In-Liner Sealing (Critical for AN/NOP Hygro-Protection)</text>
+  </g>
+
+  <line x1="350" y1="765" x2="350" y2="805" stroke="var(--flow-product)" stroke-width="1.5" marker-end="url(#ar)"/>
+
+  <!-- Row 8: Warehouse Storage -->
+  <g id="node-warehouse" class="node c-green" onclick="showDetail('warehouse')">
+    <rect x="210" y="807" width="280" height="58" rx="8" stroke-width="1.2"/>
+    <text class="th" x="350" y="828" text-anchor="middle" dominant-baseline="central">Finished Product Palletizing & Storage</text>
+    <text class="ts" x="350" y="848" text-anchor="middle" dominant-baseline="central">Climate-Controlled Warehouse Storage</text>
+  </g>
+
+  <text class="ts" x="350" y="905" text-anchor="middle" fill="var(--color-text-secondary)" opacity="0.7" style="font-weight: 500;">↑ Click any process block above to examine operational indicators.</text>
+</svg>
+
+<div class="detail-panel" id="detail-box">
+  <p style="color:var(--color-text-tertiary); font-style: italic;">Click any process block above to see technical detail and advisory focuses.</p>
+</div>
+</div>
+
+<script>
+const data = {
+  raw_n: {
+    title: 'Nitrogen (N) Raw Material Feeding Hoppers',
+    badge: ['Feed Quality','info'],
+    body: 'Stores Nitrogen raw materials: Ammonium Nitrate (AN), Potassium Nitrate (NOP / KNO₃), and Urea. Ammonium Nitrate and NOP are highly hygroscopic solid salts requiring controlled ambient humidity (<40% RH) in storage.',
+    kafaah: 'Feed moisture content monitoring, hopper discharge vibration control, and Critical Relative Humidity (CRH) management.',
+    challenge: 'CRITICAL CHEMICAL INCOMPATIBILITY: Dry blending Urea directly with Ammonium Nitrate (AN) causes immediate liquefaction/mud formation as their joint CRH drops to ~18% RH. Urea and AN must NEVER be combined in dry solid formulations.'
+  },
+  raw_p: {
+    title: 'Phosphate (P) Raw Material Feeding Hopper',
+    badge: ['Feed Quality','info'],
+    body: 'Stores primary Phosphate sources (DAP, MAP) supplying targeted P₂O₅ mass content for the NPK formulation.',
+    kafaah: 'P₂O₅ mass purity verification, flow consistency tracking, and intake gate calibration.',
+    challenge: 'Excessive ambient humidity binding phosphate feed dust inside storage hoppers, forming localized discharge bridges.'
+  },
+  raw_k: {
+    title: 'Potash (K) Raw Material Feeding Hoppers',
+    badge: ['Feed Quality','info'],
+    body: 'Handles Potassium Nitrate (NOP / KNO₃), Muriate of Potash (MOP / KCl), or Sulfate of Potash (SOP / K₂SO₄). NOP acts as a dual-nutrient component contributing both Potassium (44% K₂O) and Nitrate-Nitrogen (13% N).',
+    kafaah: 'Dual-nutrient mass balancing for NOP (N & K values), feed gate erosion checks, and material transfer profiling.',
+    challenge: 'Abrasive surface wear on hopper discharge valves caused by continuous hard potash feed movement.'
+  },
+  raw_micro: {
+    title: 'Dedicated Micronutrients Storage Hopper',
+    badge: ['Separated Feed','warn'],
+    body: 'Completely separated storage dedicated exclusively to trace element inputs: Zinc (Zn), Boron (B), Iron (Fe), Manganese (Mn), Copper (Cu), and Molybdenum (Mo). Isolating micronutrients prevents unmeasured loss and segregation prior to batching.',
+    kafaah: 'Micronutrient raw material purity checks, moisture protection, and accurate trace element stock management.',
+    challenge: 'Cross-contamination of trace elements when switching between crop-specific micronutrient recipes.'
+  },
+  screening: {
+    title: 'Macro Feed Scalping & De-agglomeration Deck',
+    badge: ['Material Control','warn'],
+    body: 'Pre-screens incoming macro-nutrients (N, P, K) to capture oversized lumps, agglomerates, or foreign trash prior to precision weighing. Keeps macro feeds free-flowing.',
+    kafaah: 'Screen deck clean-out cycles, scalp trash monitoring, and de-agglomerator blade inspection.',
+    challenge: 'Damp Ammonium Nitrate or NOP sticking to scalping screens, restricting material intake velocity.'
+  },
+  weighing: {
+    title: 'Main Macro-Nutrient Batch Scale Hopper',
+    badge: ['Batch Precision','danger'],
+    body: 'Accumulates major N, P, and K components sequentially into a primary gravimetric weigh hopper using high-precision load cells. Formulations dynamically factor in NOP\'s dual N & K nutrient values.',
+    kafaah: 'Load cell fast-response zeroing, sequence timing optimization, and precise recipe tare management.',
+    challenge: 'Material cling on internal scale hopper walls due to electrostatic charge or humidity, causing target batch weight drift.'
+  },
+  micro_doser: {
+    title: 'Dedicated Micronutrient Precision Doser',
+    badge: ['Micro Precision','danger'],
+    body: 'An independent micro-dosing unit featuring micro-load cells or loss-in-weight feeders designed specifically for low-percentage trace element additions. Measures micro-inputs with extreme accuracy (±0.05%).',
+    kafaah: 'Micro-feeder screw speed calibration, high-resolution load cell checks, and micro-recipe validation.',
+    challenge: 'Inconsistent micro-dosing rates caused by fine micronutrient powder compaction or bridging inside small dosing spouts.'
+  },
+  blender: {
+    title: 'High-Precision Batch Mixer (Paddle / Ribbon / Rotary)',
+    badge: ['Batch Mixing Zone','danger'],
+    body: 'Discontinuous batch mixer that receives weighed macro-nutrients alongside the micro-nutrient dose. Operates on a timed batch cycle (2–4 minutes) to achieve thorough, uniform distribution of trace elements across the entire batch matrix.',
+    kafaah: 'Mixing cycle duration optimization, batch homogeneity testing (CV < 2%), and rapid discharge gate operation.',
+    challenge: 'Inadequate mixing time leading to non-uniform micronutrient distribution across the batch.'
+  },
+  coating: {
+    title: 'Batch Conditioning & Micro-Nutrient Coating Unit',
+    badge: ['Quality Control','warn'],
+    body: 'Applies a liquid binder (oil or specialized polymer) inside a coating drum to permanently adhere trace micronutrients onto the primary NPK carrier matrix. Simultaneously applies anti-caking compounds to protect hygroscopic nitrate components (AN/NOP).',
+    kafaah: 'Liquid binder dosing accuracy per batch, atomization spray quality, and micronutrient adhesion efficiency testing.',
+    challenge: 'Insufficient liquid binder spray leading to poor micronutrient adhesion, causing trace elements to rub off and settle during transport.'
+  },
+  oil_tank: {
+    title: 'Binder / Anti-Caking Agent Dosing System',
+    badge: ['Additive Loop','info'],
+    body: 'Heats and pumps liquid binding oils or waxes to the coating chamber. Regulates liquid viscosity to maintain proper atomization during spraying.',
+    kafaah: 'Thermostatic temperature regulation, pump flow rate calibration, and inline filter element cleanliness.',
+    challenge: 'Viscosity spikes in binder lines during winter cycles causing spray nozzle clogging and spotty coating.'
+  },
+  dust: {
+    title: 'Central Pulse-Jet Dust Collector',
+    badge: ['HSE Control','danger'],
+    body: 'Draws fugitive dust from weigh hoppers, material transfers, and batch mixer discharge gates to maintain plant air quality and operational safety.',
+    kafaah: 'Air-to-cloth ratio tuning, differential pressure tracking, and filter cleaning cycle optimization.',
+    challenge: 'Hygroscopic nitrate dusts (AN/NOP) absorbing ambient moisture on filter bags, forming sticky cakes that blind the filter cloth.'
+  },
+  surge_bin: {
+    title: 'Batch Discharge Surge Hopper',
+    badge: ['Buffer Zone','ok'],
+    body: 'Receives the completed batch discharge from the mixer/coater unit. Acts as a buffer to convert discontinuous batch discharges into a steady, continuous stream for downstream bagging.',
+    kafaah: 'Anti-segregation baffle maintenance, level sensor calibration, and smooth discharge profiling.',
+    challenge: 'Unbound powders separating inside the surge hopper during vertical free-fall discharge.'
+  },
+  bagging: {
+    title: 'Automated Bagging & Heat-Sealing Station',
+    badge: ['Packaging Core','ok'],
+    body: 'Weighs and packages the final NPK + Micronutrient batch blend into 25 kg, 50 kg, or jumbo bags. Features hermetic Polyethylene (PE) heat-sealing to block ambient moisture ingress.',
+    kafaah: 'PE liner seal integrity testing, gravimetric target weighing accuracy, and bag sewing tension tuning.',
+    challenge: 'Fine dust settling on bag sealing lips, causing weak heat seals and subsequent atmospheric moisture ingress.'
+  },
+  warehouse: {
+    title: 'Finished Product Palletizing & Storage',
+    badge: ['Final Product','ok'],
+    body: 'Palletizes and stretch-wraps sealed NPK bags for warehouse storage. Stored in climate-controlled, low-humidity conditions to protect nitrate-containing NPK formulas.',
+    kafaah: 'Pallet stack height limits, stretch-wrap tension configurations, and warehouse humidity monitoring.',
+    challenge: 'Product caking under bottom pallets caused by excessive stack weight pressure on hygroscopic AN/NOP formulations.'
+  }
+};
+
+function showDetail(key) {
+  const d = data[key];
+  if (!d) return;
+  const [badgeLabel, badgeType] = d.badge;
+  
+  const panel = document.getElementById('detail-box');
+  panel.innerHTML = `
+    <h3>${d.title} <span class="badge badge-${badgeType}">${badgeLabel}</span></h3>
+    <p>${d.body}</p>
+    <p class="kafaah-note"><b>Optimization Focus:</b> ${d.kafaah}</p>
+    <p class="challenge-note"><b>Operational Challenge:</b> ${d.challenge}</p>
+  `;
+  
+  document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+  const activeNode = document.getElementById(`node-${key}`);
+  if (activeNode) activeNode.classList.add('active');
+
+  panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+
+</body>
+</html>
