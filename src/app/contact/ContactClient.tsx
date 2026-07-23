@@ -6,7 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Mail, MapPin, ArrowRight, Clock, Building, Check, ChevronDown, PhoneCall, Award, Loader2
+  Mail, MapPin, ArrowRight, Clock, Building, Check, ChevronDown, PhoneCall, Award, Loader2,
+  Copy, ExternalLink, ShieldCheck, Zap, Globe, Sparkles, CheckCircle2
 } from "lucide-react";
 import { FadeIn } from "@/components/Animations";
 import { useRole } from "@/lib/RoleContext";
@@ -91,6 +92,7 @@ export function ContactClient() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectOpen, setSelectOpen] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { locale } = useRole();
@@ -118,6 +120,7 @@ export function ContactClient() {
   });
 
   const selectedService = watch("service");
+  const messageContent = watch("message") || "";
 
   const selectOptions = [
     { value: "owners-engineer" },
@@ -127,6 +130,13 @@ export function ContactClient() {
     { value: "optimization" },
     { value: "training" },
     { value: "advisory" }
+  ];
+
+  const quickChips = [
+    "owners-engineer",
+    "commissioning",
+    "optimization",
+    "troubleshooting"
   ];
 
   // Close dropdown on click outside
@@ -139,6 +149,14 @@ export function ContactClient() {
     window.addEventListener("mousedown", handleOutsideClick);
     return () => window.removeEventListener("mousedown", handleOutsideClick);
   }, []);
+
+  const handleCopyEmail = (e: React.MouseEvent, email: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(email);
+    setCopiedEmail(email);
+    setTimeout(() => setCopiedEmail(null), 2000);
+  };
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
@@ -157,11 +175,9 @@ export function ContactClient() {
 
       setIsSuccess(true);
       reset();
-      // Reset success message after 5 seconds
       setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
       console.error("Contact form error:", err);
-      // Show error state — set a generic error the user can see
       setIsSuccess(false);
     } finally {
       setIsSubmitting(false);
@@ -169,7 +185,7 @@ export function ContactClient() {
   };
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen relative overflow-hidden font-body">
+    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen relative overflow-hidden font-body flex flex-col justify-between">
 
       {/* Global Blueprint Grid Underlay & Glowing Blur Orbs */}
       <div className="absolute inset-0 z-0">
@@ -236,40 +252,93 @@ export function ContactClient() {
                 <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
               </p>
 
-              {/* Premium Headquarters and Contact glassmorphic dashboard card with Live Gold Border */}
-              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-7 rounded-xl transition-all duration-500 mt-8 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
+              {/* Trust SLA badges */}
+              <div className="flex flex-wrap items-center gap-2 pt-1">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10.5px] font-mono font-medium shadow-sm">
+                  <Zap className="w-3 h-3 text-gold shrink-0" />
+                  <span>{locale === "ar" ? "استجابة خلال 24 ساعة" : locale === "zh" ? "24小时内回复" : "24h Response SLA"}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10.5px] font-mono font-medium shadow-sm">
+                  <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
+                  <span>{locale === "ar" ? "سرية تامة وإتفاقية NDA" : locale === "zh" ? "严格保密协议" : "Strict NDA & Confidentiality"}</span>
+                </div>
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-[10.5px] font-mono font-medium shadow-sm">
+                  <Globe className="w-3 h-3 text-sky-400 shrink-0" />
+                  <span>{locale === "ar" ? "انتشار تشغيلي عالمي" : locale === "zh" ? "全球部署" : "Global Plant Deployment"}</span>
+                </div>
+              </div>
 
-                {/* Architectural corner highlights matching the card's rounded border (Bentley/ROSHN style) */}
+              {/* Premium Headquarters and Contact glassmorphic dashboard card */}
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-7 rounded-xl transition-all duration-500 mt-6 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
+
+                {/* Architectural corner highlights matching the card's rounded border */}
                 <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
                 <div className="absolute -top-[1px] -right-[1px] w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
                 <div className="absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
                 <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
 
-                {/* Content wrapper to isolate space-y-6 from absolute positioned elements */}
                 <div className="space-y-6">
-                  {/* Headquarters Info Item */}
-                  <div className="flex items-start gap-3.5 sm:gap-4">
-                    <div className="p-2.5 sm:p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 mt-0.5 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                    <div>
-                      <span className={`${fcUi} text-[9px] sm:text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
-                        {dict.headquarters[locale]}
-                      </span>
-                      <span className={`${fcBody} text-sm sm:text-base font-semibold text-white mt-0.5 block`}>
-                        {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
-                      </span>
-                      <span className="text-xs text-silver/50 font-light mt-0.5 block">
-                        {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
-                      </span>
-                    </div>
+
+                  {/* Location & Direct Phone Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Address Card */}
+                    <a
+                      href="https://maps.google.com/?q=Cairo,Egypt"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/loc bg-gradient-to-b from-[#1b2b3d]/80 to-[#121f2d]/80 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3.5 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/loc:scale-110 transition-transform">
+                          <MapPin className="w-3.5 h-3.5" />
+                        </div>
+                        <ExternalLink className="w-3 h-3 text-silver/40 group-hover/loc:text-gold transition-colors" />
+                      </div>
+                      <div>
+                        <span className={`${fcUi} text-[9px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                          {dict.headquarters[locale]}
+                        </span>
+                        <span className={`${fcBody} text-xs sm:text-sm font-semibold text-white mt-0.5 block group-hover/loc:text-gold transition-colors`}>
+                          {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
+                        </span>
+                        <span className="text-[11px] text-silver/50 font-light block">
+                          {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
+                        </span>
+                      </div>
+                    </a>
+
+                    {/* Phone Card */}
+                    <a
+                      href="tel:+201018081191"
+                      className="group/phone bg-gradient-to-b from-[#1b2b3d]/80 to-[#121f2d]/80 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3.5 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/phone:scale-110 transition-transform">
+                          <PhoneCall className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                          {locale === "ar" ? "مباشر" : "Direct"}
+                        </span>
+                      </div>
+                      <div>
+                        <span className={`${fcUi} text-[9px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                          {locale === "ar" ? "الهاتف المباشر" : "Direct Line"}
+                        </span>
+                        <span className="text-xs sm:text-sm font-semibold text-gold group-hover/phone:text-gold-light transition-colors mt-0.5 block" dir="ltr">
+                          +20 10 18081191
+                        </span>
+                        <span className="text-[11px] text-silver/50 font-light block">
+                          {locale === "ar" ? "اتصال فوري أو واتساب" : "Instant Call or WhatsApp"}
+                        </span>
+                      </div>
+                    </a>
                   </div>
 
                   {/* Email Info Section */}
                   <div className="border-t border-white/[0.08] pt-5">
                     <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2.5 sm:p-3 bg-gold/10 rounded-lg border border-gold/15 shrink-0 text-gold group-hover:scale-105 transition-transform duration-300 shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                        <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+                      <div className="p-2 sm:p-2.5 bg-gold/10 rounded-lg border border-gold/15 shrink-0 text-gold shadow-[0_0_15px_rgba(240,160,32,0.1)]">
+                        <Mail className="w-4 h-4" />
                       </div>
                       <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
                         {dict.email[locale]}
@@ -280,23 +349,41 @@ export function ContactClient() {
                       {[
                         { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
                         { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
-                        { label: locale === "ar" ? "المشاريع" : locale === "zh" ? "项目" : "Projects", email: "projects@kafaahsolutions.com" },
+                        { label: locale === "ar" ? "المشاريع والهندسة" : locale === "zh" ? "项目与工程" : "Projects & Eng", email: "projects@kafaahsolutions.com" },
                         { label: locale === "ar" ? "تطوير الأعمال" : locale === "zh" ? "商务拓展" : "Business Dev", email: "business@kafaahsolutions.com" },
-                      ].map((item) => (
-                        <a
-                          key={item.email}
-                          href={`mailto:${item.email}`}
-                          className="group/card bg-gradient-to-b from-[#1b2b3d]/70 to-[#121f2d]/70 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-lg p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-br from-gold/[0.03] to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                          <span className={`${fcBody} text-[10px] font-medium text-silver/50 tracking-wide`}>
-                            {item.label}
-                          </span>
-                          <span className="text-[12px] sm:text-[12.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight" dir="ltr">
-                            {item.email}
-                          </span>
-                        </a>
-                      ))}
+                      ].map((item) => {
+                        const isCopied = copiedEmail === item.email;
+                        return (
+                          <div
+                            key={item.email}
+                            className="group/card bg-gradient-to-b from-[#1b2b3d]/70 to-[#121f2d]/70 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                          >
+                            <div className="flex items-center justify-between">
+                              <span className={`${fcBody} text-[10px] font-medium text-silver/50 tracking-wide`}>
+                                {item.label}
+                              </span>
+                              <button
+                                onClick={(e) => handleCopyEmail(e, item.email)}
+                                title="Copy Email"
+                                className="text-silver/30 hover:text-gold transition-colors p-1 rounded hover:bg-white/5"
+                              >
+                                {isCopied ? (
+                                  <Check className="w-3 h-3 text-emerald-400" />
+                                ) : (
+                                  <Copy className="w-3 h-3" />
+                                )}
+                              </button>
+                            </div>
+                            <a
+                              href={`mailto:${item.email}`}
+                              className="text-[12px] sm:text-[12.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight"
+                              dir="ltr"
+                            >
+                              {item.email}
+                            </a>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -330,7 +417,7 @@ export function ContactClient() {
             <div className="max-w-[520px] w-full mx-auto">
 
               {/* Form Card wrapper with true Glassmorphism and Live Gold corners */}
-              <div className="bg-gradient-to-br from-navy-card/30 via-navy-card/10 to-navy-dark/25 backdrop-blur-[20px] border border-white/[0.04] hover:border-gold/25 transition-all duration-500 rounded-xl p-4 sm:p-10 relative group">
+              <div className="bg-gradient-to-br from-navy-card/40 via-navy-card/15 to-navy-dark/35 backdrop-blur-[20px] border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-5 sm:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
 
                 {/* Architectural corner highlights matching the card's rounded border */}
                 <div className="absolute -top-[1px] -left-[1px] w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
@@ -388,10 +475,9 @@ export function ContactClient() {
                               {...register("name")}
                               type="text"
                               placeholder="John Doe"
-                              className={`w-full bg-white/[0.02] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              className={`w-full bg-white/[0.03] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
                                 } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                             />
-                            {/* Underline animation expanding from center */}
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                           </div>
                           {errors.name && (
@@ -409,10 +495,9 @@ export function ContactClient() {
                               {...register("company")}
                               type="text"
                               placeholder="Acme Chemical Corp"
-                              className={`w-full bg-white/[0.02] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                              className={`w-full bg-white/[0.03] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
                                 } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                             />
-                            {/* Underline animation expanding from center */}
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                           </div>
                           {errors.company && (
@@ -432,10 +517,9 @@ export function ContactClient() {
                             {...register("email")}
                             type="email"
                             placeholder="johndoe@company.com"
-                            className={`w-full bg-white/[0.02] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            className={`w-full bg-white/[0.03] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
                               } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
                           />
-                          {/* Underline animation expanding from center */}
                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                         </div>
                         {errors.email && (
@@ -443,12 +527,35 @@ export function ContactClient() {
                         )}
                       </div>
 
-                      {/* Custom Styled Select Dropdown */}
+                      {/* Service of Interest */}
                       <div ref={dropdownRef} className="relative space-y-2">
-                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
-                          <span className="w-1 h-1 rounded-full bg-gold/60" />
-                          {dict.serviceLabel[locale]} <span className="text-gold">*</span>
-                        </label>
+                        <div className="flex items-center justify-between">
+                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                            <span className="w-1 h-1 rounded-full bg-gold/60" />
+                            {dict.serviceLabel[locale]} <span className="text-gold">*</span>
+                          </label>
+                        </div>
+
+                        {/* Quick Selection Service Chips */}
+                        <div className="flex flex-wrap gap-1.5 pb-1">
+                          {quickChips.map((chipKey) => {
+                            const isSelected = selectedService === chipKey;
+                            return (
+                              <button
+                                key={chipKey}
+                                type="button"
+                                onClick={() => setValue("service", chipKey, { shouldValidate: true })}
+                                className={`text-[11px] font-medium px-2.5 py-1 rounded-full transition-all border ${
+                                  isSelected
+                                    ? "bg-gold text-navy-deep border-gold font-bold shadow-[0_0_10px_rgba(240,160,32,0.3)]"
+                                    : "bg-white/[0.03] text-silver/70 border-white/[0.08] hover:border-gold/40 hover:text-white"
+                                }`}
+                              >
+                                {serviceLabels[chipKey]?.[locale] || chipKey}
+                              </button>
+                            );
+                          })}
+                        </div>
 
                         <div className="relative group">
                           <div
@@ -456,17 +563,16 @@ export function ContactClient() {
                               e.stopPropagation();
                               setSelectOpen(!selectOpen);
                             }}
-                            className={`w-full flex items-center justify-between bg-white/[0.02] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold shadow-[0_0_15px_rgba(240,160,32,0.25)]" : "border-white/[0.06] hover:border-white/15"
+                            className={`w-full flex items-center justify-between bg-white/[0.03] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold shadow-[0_0_15px_rgba(240,160,32,0.25)]" : "border-white/[0.08] hover:border-white/20"
                               } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
                           >
-                            <span className={selectedService ? "text-white" : "text-silver/30"}>
+                            <span className={selectedService ? "text-white font-medium" : "text-silver/30"}>
                               {selectedService
                                 ? (serviceLabels[selectedService]?.[locale] || selectedService)
                                 : dict.selectService[locale]}
                             </span>
                             <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
                           </div>
-                          {/* Underline animation expanding from center based on selectOpen state */}
                           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out rounded-full pointer-events-none ${selectOpen ? 'w-[80%]' : 'w-0'}`} />
                         </div>
 
@@ -505,21 +611,26 @@ export function ContactClient() {
                         )}
                       </div>
 
-                      {/* Message */}
+                      {/* Message Field */}
                       <div className="space-y-2">
-                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
-                          <span className="w-1 h-1 rounded-full bg-gold/60" />
-                          {dict.messageLabel[locale]} <span className="text-gold">*</span>
-                        </label>
+                        <div className="flex items-center justify-between">
+                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                            <span className="w-1 h-1 rounded-full bg-gold/60" />
+                            {dict.messageLabel[locale]} <span className="text-gold">*</span>
+                          </label>
+                          <span className="text-[10px] font-mono text-silver/30">
+                            {messageContent.length} / 500
+                          </span>
+                        </div>
                         <div className="relative group">
                           <textarea
                             {...register("message")}
                             rows={4}
-                            placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
-                            className={`w-full bg-white/[0.02] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.06] hover:border-white/15 focus:border-gold"
+                            maxLength={500}
+                            placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك والتحديات الهندسية..." : "Tell us about your chemical plant challenges and project scope..."}
+                            className={`w-full bg-white/[0.03] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
                               } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
                           ></textarea>
-                          {/* Underline animation expanding from center */}
                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                         </div>
                         {errors.message && (
@@ -571,6 +682,37 @@ export function ContactClient() {
           </FadeIn>
         </div>
       </div>
+
+      {/* Bottom Industrial Trust & Assurance Banner */}
+      <div className="w-full border-t border-white/[0.08] bg-navy-dark/90 backdrop-blur-xl py-5 px-4 sm:px-8 relative z-20">
+        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-start">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 shadow-[0_0_12px_rgba(240,160,32,0.15)]">
+              <Sparkles className="w-4 h-4" />
+            </div>
+            <div>
+              <h4 className={`${fcDisplay} text-xs sm:text-sm font-semibold text-white`}>
+                {locale === "ar" ? "تواصل مباشر مع كبار مستشاري هندسة المصانع" : locale === "zh" ? "直接与高级工业顾问沟通" : "Direct Access to Senior Industrial Consultants"}
+              </h4>
+              <p className="text-[11px] font-light text-silver/60">
+                {locale === "ar" ? "بدون وسطاء مبيعات — استجابة فنية مباشرة لمشروعك" : locale === "zh" ? "无销售中介 — 为您的项目提供直接技术响应" : "No sales intermediaries — direct technical engineering response for your project"}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-silver/70 font-mono">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
+              {locale === "ar" ? "تقييم فني سري" : locale === "zh" ? "保密技术评估" : "Confidential Review"}
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
+              {locale === "ar" ? "جاهزية تعبئة سريعة" : locale === "zh" ? "快速部署准备" : "Rapid Mobilization"}
+            </span>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }
