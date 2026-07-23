@@ -185,7 +185,7 @@ export function ContactClient() {
   };
 
   return (
-    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen relative overflow-hidden font-body flex flex-col justify-between">
+    <div dir={rtl ? "rtl" : "ltr"} className="w-full text-start bg-navy-deep min-h-screen lg:h-screen lg:max-h-screen relative overflow-hidden font-body flex flex-col justify-between">
 
       {/* Global Blueprint Grid Underlay & Glowing Blur Orbs */}
       <div className="absolute inset-0 z-0">
@@ -196,45 +196,45 @@ export function ContactClient() {
             backgroundSize: "32px 32px",
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/80 via-navy-deep/95 to-navy-dark" />
+        <div className="absolute inset-0 bg-gradient-to-b from-navy-deep/85 via-navy-deep/95 to-navy-dark" />
 
         {/* Soft glowing ambient lighting orbs */}
-        <div className="absolute top-[10%] left-[5%] w-[450px] h-[450px] bg-gold/5 rounded-full blur-[120px] pointer-events-none animate-pulse duration-[8s]" />
-        <div className="absolute bottom-[20%] right-[10%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[12s]" />
+        <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-gold/5 rounded-full blur-[140px] pointer-events-none animate-pulse duration-[8s]" />
+        <div className="absolute bottom-[10%] right-[10%] w-[550px] h-[550px] bg-gold/5 rounded-full blur-[150px] pointer-events-none animate-pulse duration-[12s]" />
       </div>
 
-      <div className="min-h-screen flex flex-col lg:flex-row pt-[72px] relative z-10">
+      <div className="flex-1 flex flex-col lg:flex-row pt-[72px] lg:pt-[68px] relative z-10 lg:overflow-hidden min-h-0">
 
         {/* Desktop Premium Divider */}
-        <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-2/3 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent z-20">
+        <div className="hidden lg:block absolute left-[56%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-3/4 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent z-20">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gold rotate-45 shadow-[0_0_8px_rgba(212,175,55,0.8)] border border-navy-deep" />
         </div>
 
-        {/* Left side - Info Panel */}
-        <div className="flex-1 px-4 py-8 sm:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative overflow-hidden">
+        {/* Left side - Info Panel (Wider 56% layout) */}
+        <div className="w-full lg:w-[56%] xl:w-[58%] px-4 py-4 sm:p-6 lg:px-10 lg:py-4 xl:px-14 flex flex-col justify-center relative overflow-hidden shrink-0">
 
-          {/* Dark Industrial Hero Image underlay */}
+          {/* Premium Global Communications & Control Room Image Underlay */}
           <div className="absolute inset-0 z-0 select-none pointer-events-none">
             <picture>
-              <source srcSet="/contact-hero-bg.webp" type="image/webp" />
+              <source srcSet="/premium-contact-bg.png" type="image/png" />
               <img
-                src="/contact-hero-bg.png"
-                alt="Kafaah Engineering Complex"
-                className="w-full h-full object-cover opacity-25 mix-blend-luminosity scale-105 transition-transform duration-[20s] ease-out hover:scale-100"
+                src="/premium-contact-bg.png"
+                alt="Kafaah Global Communications & Industrial Operations Hub"
+                className="w-full h-full object-cover opacity-30 mix-blend-overlay scale-105 transition-transform duration-[25s] ease-out hover:scale-100"
               />
             </picture>
             <div className="absolute inset-0 bg-gradient-to-b from-navy-dark/90 via-navy-dark/95 to-navy-dark/85" />
-            <div className="absolute -left-1/4 top-1/4 w-[400px] h-[400px] bg-gold/5 rounded-full blur-[120px]" />
+            <div className="absolute -left-1/4 top-1/4 w-[450px] h-[450px] bg-gold/5 rounded-full blur-[130px]" />
           </div>
 
-          <div className="relative z-10 max-w-[540px] w-full mx-auto p-4 sm:p-8 border border-white/[0.02] rounded-xl bg-navy-card/5 backdrop-blur-[5px]">
+          <div className="relative z-10 max-w-[640px] w-full mx-auto p-4 sm:p-6 border border-white/[0.04] rounded-2xl bg-navy-card/10 backdrop-blur-[12px] shadow-[0_15px_35px_rgba(0,0,0,0.3)]">
             {/* Architectural L-shaped corner marks framing the left content */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/20 pointer-events-none" />
             <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/20 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/20 pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/20 pointer-events-none" />
 
-            <FadeIn className="space-y-6">
+            <FadeIn className="space-y-3.5 sm:space-y-4">
               <div className="flex items-center gap-3">
                 <span className={`${fcUi} text-[10px] font-bold tracking-[0.25em] text-gold uppercase flex items-center gap-1.5`}>
                   <span className="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" />
@@ -243,65 +243,65 @@ export function ContactClient() {
                 <div className="w-8 h-px bg-gradient-to-r from-gold to-transparent" />
               </div>
 
-              <h1 className={`${fcDisplay} text-[clamp(24px,4.5vw,56px)] leading-[1.1] text-white font-medium`}>
+              <h1 className={`${fcDisplay} text-[clamp(22px,3.8vw,46px)] leading-[1.15] text-white font-medium`}>
                 <HoverWords text={dict.letsTalk[locale]} locale={locale} />
                 <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
               </h1>
 
-              <p className={`${fcBody} text-silver/85 text-[15px] sm:text-[16px] leading-[1.8] font-light`}>
+              <p className={`${fcBody} text-silver/85 text-xs sm:text-sm leading-[1.7] font-light max-w-[560px]`}>
                 <HoverSubcopy text={dict.respondTime[locale]} locale={locale} />
               </p>
 
               {/* Trust SLA badges */}
-              <div className="flex flex-wrap items-center gap-2 pt-1">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10.5px] font-mono font-medium shadow-sm">
+              <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-gold/10 border border-gold/20 text-gold text-[10px] font-mono font-medium shadow-sm">
                   <Zap className="w-3 h-3 text-gold shrink-0" />
                   <span>{locale === "ar" ? "استجابة خلال 24 ساعة" : locale === "zh" ? "24小时内回复" : "24h Response SLA"}</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10.5px] font-mono font-medium shadow-sm">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-mono font-medium shadow-sm">
                   <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
                   <span>{locale === "ar" ? "سرية تامة وإتفاقية NDA" : locale === "zh" ? "严格保密协议" : "Strict NDA & Confidentiality"}</span>
                 </div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-[10.5px] font-mono font-medium shadow-sm">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-[10px] font-mono font-medium shadow-sm">
                   <Globe className="w-3 h-3 text-sky-400 shrink-0" />
                   <span>{locale === "ar" ? "انتشار تشغيلي عالمي" : locale === "zh" ? "全球部署" : "Global Plant Deployment"}</span>
                 </div>
               </div>
 
               {/* Premium Headquarters and Contact glassmorphic dashboard card */}
-              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/25 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-4 xs:p-5 sm:p-7 rounded-xl transition-all duration-500 mt-6 relative group shadow-[0_15px_40px_rgba(0,0,0,0.5)]">
+              <div className="bg-gradient-to-br from-navy-card/50 via-navy-card/30 to-navy-dark/45 backdrop-blur-[20px] border border-white/[0.08] hover:border-gold/30 hover:bg-navy-card-hover/20 p-3.5 sm:p-5 rounded-xl transition-all duration-500 mt-4 relative group shadow-[0_12px_30px_rgba(0,0,0,0.4)]">
 
                 {/* Architectural corner highlights matching the card's rounded border */}
-                <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
-                <div className="absolute -top-[1px] -right-[1px] w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -left-[1px] w-7 h-7 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -right-[1px] w-7 h-7 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -left-[1px] w-7 h-7 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -right-[1px] w-7 h-7 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
 
-                <div className="space-y-6">
+                <div className="space-y-4">
 
                   {/* Location & Direct Phone Grid */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                     {/* Address Card */}
                     <a
                       href="https://maps.google.com/?q=Cairo,Egypt"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group/loc bg-gradient-to-b from-[#1b2b3d]/80 to-[#121f2d]/80 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3.5 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                      className="group/loc bg-gradient-to-b from-[#1b2b3d]/85 to-[#121f2d]/85 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/loc:scale-110 transition-transform">
-                          <MapPin className="w-3.5 h-3.5" />
+                        <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/loc:scale-110 transition-transform">
+                          <MapPin className="w-3 h-3" />
                         </div>
                         <ExternalLink className="w-3 h-3 text-silver/40 group-hover/loc:text-gold transition-colors" />
                       </div>
                       <div>
-                        <span className={`${fcUi} text-[9px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                        <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
                           {dict.headquarters[locale]}
                         </span>
-                        <span className={`${fcBody} text-xs sm:text-sm font-semibold text-white mt-0.5 block group-hover/loc:text-gold transition-colors`}>
+                        <span className={`${fcBody} text-xs font-semibold text-white mt-0.5 block group-hover/loc:text-gold transition-colors`}>
                           {locale === "ar" ? "القاهرة، جمهورية مصر العربية" : locale === "zh" ? "埃及开罗" : "Cairo, Egypt"}
                         </span>
-                        <span className="text-[11px] text-silver/50 font-light block">
+                        <span className="text-[10.5px] text-silver/50 font-light block">
                           {locale === "ar" ? "التجمع الخامس، القاهرة الجديدة" : locale === "zh" ? "新开罗，第五定居点" : "Fifth Settlement, New Cairo"}
                         </span>
                       </div>
@@ -310,24 +310,24 @@ export function ContactClient() {
                     {/* Phone Card */}
                     <a
                       href="tel:+201018081191"
-                      className="group/phone bg-gradient-to-b from-[#1b2b3d]/80 to-[#121f2d]/80 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3.5 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                      className="group/phone bg-gradient-to-b from-[#1b2b3d]/85 to-[#121f2d]/85 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
                     >
                       <div className="flex items-center justify-between">
-                        <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/phone:scale-110 transition-transform">
-                          <PhoneCall className="w-3.5 h-3.5" />
+                        <div className="w-6 h-6 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center text-gold group-hover/phone:scale-110 transition-transform">
+                          <PhoneCall className="w-3 h-3" />
                         </div>
-                        <span className="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                        <span className="text-[8.5px] font-mono text-emerald-400 bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-500/20">
                           {locale === "ar" ? "مباشر" : "Direct"}
                         </span>
                       </div>
                       <div>
-                        <span className={`${fcUi} text-[9px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
+                        <span className={`${fcUi} text-[8.5px] font-bold tracking-[0.18em] text-silver/45 uppercase block`}>
                           {locale === "ar" ? "الهاتف المباشر" : "Direct Line"}
                         </span>
-                        <span className="text-xs sm:text-sm font-semibold text-gold group-hover/phone:text-gold-light transition-colors mt-0.5 block" dir="ltr">
+                        <span className="text-xs font-semibold text-gold group-hover/phone:text-gold-light transition-colors mt-0.5 block" dir="ltr">
                           +20 10 18081191
                         </span>
-                        <span className="text-[11px] text-silver/50 font-light block">
+                        <span className="text-[10.5px] text-silver/50 font-light block">
                           {locale === "ar" ? "اتصال فوري أو واتساب" : "Instant Call or WhatsApp"}
                         </span>
                       </div>
@@ -335,17 +335,17 @@ export function ContactClient() {
                   </div>
 
                   {/* Email Info Section */}
-                  <div className="border-t border-white/[0.08] pt-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 sm:p-2.5 bg-gold/10 rounded-lg border border-gold/15 shrink-0 text-gold shadow-[0_0_15px_rgba(240,160,32,0.1)]">
-                        <Mail className="w-4 h-4" />
+                  <div className="border-t border-white/[0.08] pt-3.5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="p-1.5 bg-gold/10 rounded-md border border-gold/15 shrink-0 text-gold">
+                        <Mail className="w-3.5 h-3.5" />
                       </div>
-                      <span className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
+                      <span className={`${fcUi} text-[9px] font-bold tracking-[0.2em] text-silver/45 uppercase block`}>
                         {dict.email[locale]}
                       </span>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
                       {[
                         { label: locale === "ar" ? "استعلامات عامة" : locale === "zh" ? "一般咨询" : "General Inquiries", email: "info@kafaahsolutions.com" },
                         { label: locale === "ar" ? "المدير التنفيذي" : locale === "zh" ? "首席执行官" : "CEO Direct", email: "moustafa@kafaahsolutions.com" },
@@ -356,16 +356,16 @@ export function ContactClient() {
                         return (
                           <div
                             key={item.email}
-                            className="group/card bg-gradient-to-b from-[#1b2b3d]/70 to-[#121f2d]/70 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-3 transition-all duration-300 flex flex-col gap-1.5 shadow-md relative overflow-hidden"
+                            className="group/card bg-gradient-to-b from-[#1b2b3d]/75 to-[#121f2d]/75 border border-white/[0.08] hover:border-gold/40 hover:bg-navy-card-hover/80 rounded-xl p-2.5 transition-all duration-300 flex flex-col gap-1 shadow-md relative overflow-hidden"
                           >
                             <div className="flex items-center justify-between">
-                              <span className={`${fcBody} text-[10px] font-medium text-silver/50 tracking-wide`}>
+                              <span className={`${fcBody} text-[9.5px] font-medium text-silver/50 tracking-wide`}>
                                 {item.label}
                               </span>
                               <button
                                 onClick={(e) => handleCopyEmail(e, item.email)}
                                 title="Copy Email"
-                                className="text-silver/30 hover:text-gold transition-colors p-1 rounded hover:bg-white/5"
+                                className="text-silver/30 hover:text-gold transition-colors p-0.5 rounded hover:bg-white/5"
                               >
                                 {isCopied ? (
                                   <Check className="w-3 h-3 text-emerald-400" />
@@ -376,7 +376,7 @@ export function ContactClient() {
                             </div>
                             <a
                               href={`mailto:${item.email}`}
-                              className="text-[12px] sm:text-[12.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight"
+                              className="text-[11.5px] font-semibold text-gold group-hover/card:text-gold-light transition-colors break-all leading-tight"
                               dir="ltr"
                             >
                               {item.email}
@@ -388,12 +388,12 @@ export function ContactClient() {
                   </div>
 
                   {/* Service response hours badge */}
-                  <div className="flex items-center gap-3 border-t border-white/[0.08] pt-4 text-[11px] font-mono text-silver/65">
+                  <div className="flex items-center gap-2.5 border-t border-white/[0.08] pt-3 text-[10.5px] font-mono text-silver/65">
                     <span className="relative flex h-2 w-2 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                     </span>
-                    <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة طوال أيام الأسبوع" : "Engineering mobilization available 24/7"}</span>
+                    <span>{locale === "ar" ? "متاحون لحشد العمليات الهندسية على مدار الساعة" : "Engineering mobilization available 24/7"}</span>
                   </div>
                 </div>
 
@@ -402,8 +402,8 @@ export function ContactClient() {
           </div>
         </div>
 
-        {/* Right side - Contact Form */}
-        <div className="flex-1 px-4 py-8 sm:p-12 lg:p-16 xl:p-24 bg-navy-deep/20 flex flex-col justify-center relative">
+        {/* Right side - Contact Form (Compact 44% Layout) */}
+        <div className="w-full lg:w-[44%] xl:w-[42%] px-4 py-4 sm:p-6 lg:px-8 lg:py-4 bg-navy-deep/20 flex flex-col justify-center relative shrink-0">
 
           {/* Mobile Premium Divider */}
           <div className="lg:hidden absolute top-0 left-1/2 -translate-x-1/2 w-3/5 h-[1px] bg-gradient-to-r from-transparent via-white/[0.12] to-transparent z-20">
@@ -414,16 +414,16 @@ export function ContactClient() {
           <div className="absolute -right-1/4 -bottom-1/4 w-[350px] h-[350px] bg-gold/5 rounded-full blur-[100px] pointer-events-none" />
 
           <FadeIn delay={0.15}>
-            <div className="max-w-[520px] w-full mx-auto">
+            <div className="max-w-[480px] w-full mx-auto">
 
-              {/* Form Card wrapper with true Glassmorphism and Live Gold corners */}
-              <div className="bg-gradient-to-br from-navy-card/40 via-navy-card/15 to-navy-dark/35 backdrop-blur-[20px] border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-5 sm:p-10 relative group shadow-[0_20px_50px_rgba(0,0,0,0.4)]">
+              {/* Form Card wrapper with Glassmorphism and Compact Paddings */}
+              <div className="bg-gradient-to-br from-navy-card/45 via-navy-card/20 to-navy-dark/40 backdrop-blur-[20px] border border-white/[0.06] hover:border-gold/25 transition-all duration-500 rounded-xl p-4 sm:p-7 relative group shadow-[0_15px_40px_rgba(0,0,0,0.4)]">
 
                 {/* Architectural corner highlights matching the card's rounded border */}
-                <div className="absolute -top-[1px] -left-[1px] w-10 h-10 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
-                <div className="absolute -top-[1px] -right-[1px] w-10 h-10 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -left-[1px] w-10 h-10 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
-                <div className="absolute -bottom-[1px] -right-[1px] w-10 h-10 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -left-[1px] w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
+                <div className="absolute -top-[1px] -right-[1px] w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -left-[1px] w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
+                <div className="absolute -bottom-[1px] -right-[1px] w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
 
                 {/* Thin golden top border line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-gold/40 to-transparent pointer-events-none" />
@@ -434,39 +434,33 @@ export function ContactClient() {
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
-                      className="text-center py-12 px-6 sm:px-10 relative overflow-hidden"
+                      className="text-center py-8 px-4 sm:px-6 relative overflow-hidden"
                     >
-                      {/* Success Card corner highlights */}
-                      <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-gold/70 rounded-tl-xl pointer-events-none" />
-                      <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gold/70 rounded-tr-xl pointer-events-none" />
-                      <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-gold/70 rounded-bl-xl pointer-events-none" />
-                      <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-gold/70 rounded-br-xl pointer-events-none" />
-
-                      <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gold/10 border border-gold/30 text-gold mb-8 shadow-[0_0_30px_rgba(240,160,32,0.2)] animate-pulse">
-                        <Check className="w-10 h-10" />
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/10 border border-gold/30 text-gold mb-6 shadow-[0_0_30px_rgba(240,160,32,0.2)] animate-pulse">
+                        <Check className="w-8 h-8" />
                       </div>
-                      <h3 className={`${fcDisplay} text-3xl text-white font-semibold mb-6 tracking-wide`}>
+                      <h3 className={`${fcDisplay} text-2xl text-white font-semibold mb-4 tracking-wide`}>
                         {dict.successTitle[locale]}
                       </h3>
-                      <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-6" />
-                      <p className={`${fcBody} text-base text-silver/85 font-light leading-relaxed max-w-[420px] mx-auto`}>
+                      <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold to-transparent mx-auto mb-4" />
+                      <p className={`${fcBody} text-sm text-silver/85 font-light leading-relaxed max-w-[380px] mx-auto`}>
                         {dict.successDesc[locale]}
                       </p>
 
                       <button
                         onClick={() => setIsSuccess(false)}
-                        className={`mt-10 px-6 py-2.5 rounded-lg border border-gold/45 text-gold hover:bg-gold/10 transition-all duration-300 ${fcUi} text-xs font-bold tracking-[0.15em] uppercase`}
+                        className={`mt-6 px-5 py-2 rounded-lg border border-gold/45 text-gold hover:bg-gold/10 transition-all duration-300 ${fcUi} text-xs font-bold tracking-[0.15em] uppercase`}
                       >
                         {locale === "ar" ? "إرسال رسالة أخرى" : locale === "zh" ? "发送另一条消息" : "Send Another Message"}
                       </button>
                     </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-3.5">
 
                       {/* Name & Company Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <div className="space-y-1.5">
+                          <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.fullName[locale]} <span className="text-gold">*</span>
                           </label>
@@ -476,17 +470,17 @@ export function ContactClient() {
                               type="text"
                               placeholder="John Doe"
                               className={`w-full bg-white/[0.03] border ${errors.name ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
-                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-xs sm:text-sm font-light px-3.5 py-2.5 rounded-lg`}
                             />
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                           </div>
                           {errors.name && (
-                            <span className="text-red-400 text-[11px] mt-1 block">{errors.name.message}</span>
+                            <span className="text-red-400 text-[10.5px] mt-0.5 block">{errors.name.message}</span>
                           )}
                         </div>
 
-                        <div className="space-y-2">
-                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                        <div className="space-y-1.5">
+                          <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.companyLabel[locale]} <span className="text-gold">*</span>
                           </label>
@@ -496,19 +490,19 @@ export function ContactClient() {
                               type="text"
                               placeholder="Acme Chemical Corp"
                               className={`w-full bg-white/[0.03] border ${errors.company ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
-                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                                } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-xs sm:text-sm font-light px-3.5 py-2.5 rounded-lg`}
                             />
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                           </div>
                           {errors.company && (
-                            <span className="text-red-400 text-[11px] mt-1 block">{errors.company.message}</span>
+                            <span className="text-red-400 text-[10.5px] mt-0.5 block">{errors.company.message}</span>
                           )}
                         </div>
                       </div>
 
                       {/* Work Email */}
-                      <div className="space-y-2">
-                        <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                      <div className="space-y-1.5">
+                        <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                           <span className="w-1 h-1 rounded-full bg-gold/60" />
                           {dict.workEmail[locale]} <span className="text-gold">*</span>
                         </label>
@@ -518,26 +512,26 @@ export function ContactClient() {
                             type="email"
                             placeholder="johndoe@company.com"
                             className={`w-full bg-white/[0.03] border ${errors.email ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
-                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg`}
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-xs sm:text-sm font-light px-3.5 py-2.5 rounded-lg`}
                           />
                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                         </div>
                         {errors.email && (
-                          <span className="text-red-400 text-[11px] mt-1 block">{errors.email.message}</span>
+                          <span className="text-red-400 text-[10.5px] mt-0.5 block">{errors.email.message}</span>
                         )}
                       </div>
 
                       {/* Service of Interest */}
-                      <div ref={dropdownRef} className="relative space-y-2">
+                      <div ref={dropdownRef} className="relative space-y-1.5">
                         <div className="flex items-center justify-between">
-                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                          <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.serviceLabel[locale]} <span className="text-gold">*</span>
                           </label>
                         </div>
 
                         {/* Quick Selection Service Chips */}
-                        <div className="flex flex-wrap gap-1.5 pb-1">
+                        <div className="flex flex-wrap gap-1 pb-0.5">
                           {quickChips.map((chipKey) => {
                             const isSelected = selectedService === chipKey;
                             return (
@@ -545,9 +539,9 @@ export function ContactClient() {
                                 key={chipKey}
                                 type="button"
                                 onClick={() => setValue("service", chipKey, { shouldValidate: true })}
-                                className={`text-[11px] font-medium px-2.5 py-1 rounded-full transition-all border ${
+                                className={`text-[10px] font-medium px-2 py-0.5 rounded-full transition-all border ${
                                   isSelected
-                                    ? "bg-gold text-navy-deep border-gold font-bold shadow-[0_0_10px_rgba(240,160,32,0.3)]"
+                                    ? "bg-gold text-navy-deep border-gold font-bold shadow-[0_0_8px_rgba(240,160,32,0.3)]"
                                     : "bg-white/[0.03] text-silver/70 border-white/[0.08] hover:border-gold/40 hover:text-white"
                                 }`}
                               >
@@ -564,14 +558,14 @@ export function ContactClient() {
                               setSelectOpen(!selectOpen);
                             }}
                             className={`w-full flex items-center justify-between bg-white/[0.03] border ${errors.service ? "border-red-500/40" : selectOpen ? "border-gold shadow-[0_0_15px_rgba(240,160,32,0.25)]" : "border-white/[0.08] hover:border-white/20"
-                              } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg cursor-pointer select-none`}
+                              } focus:ring-1 focus:ring-gold/30 outline-none transition-all duration-300 text-white ${fcBody} text-xs sm:text-sm font-light px-3.5 py-2.5 rounded-lg cursor-pointer select-none`}
                           >
                             <span className={selectedService ? "text-white font-medium" : "text-silver/30"}>
                               {selectedService
                                 ? (serviceLabels[selectedService]?.[locale] || selectedService)
                                 : dict.selectService[locale]}
                             </span>
-                            <ChevronDown className={`w-4 h-4 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
+                            <ChevronDown className={`w-3.5 h-3.5 text-gold transition-transform duration-300 ${selectOpen ? "rotate-180" : ""}`} />
                           </div>
                           <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out rounded-full pointer-events-none ${selectOpen ? 'w-[80%]' : 'w-0'}`} />
                         </div>
@@ -583,7 +577,7 @@ export function ContactClient() {
                               animate={{ opacity: 1, y: 0 }}
                               exit={{ opacity: 0, y: 5 }}
                               transition={{ duration: 0.15 }}
-                              className="absolute z-30 left-0 right-0 mt-1.5 bg-navy-dark/95 backdrop-blur-xl border border-white/[0.12] rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden max-h-[250px] overflow-y-auto"
+                              className="absolute z-30 left-0 right-0 mt-1 bg-navy-dark/95 backdrop-blur-xl border border-white/[0.12] rounded-lg shadow-[0_20px_50px_rgba(0,0,0,0.7)] overflow-hidden max-h-[220px] overflow-y-auto"
                             >
                               {selectOptions.map((opt) => (
                                 <div
@@ -593,13 +587,13 @@ export function ContactClient() {
                                     setValue("service", opt.value, { shouldValidate: true });
                                     setSelectOpen(false);
                                   }}
-                                  className={`px-4 py-3 text-xs sm:text-sm cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${selectedService === opt.value
+                                  className={`px-3.5 py-2.5 text-xs cursor-pointer transition-colors duration-200 text-start flex items-center justify-between ${selectedService === opt.value
                                       ? "bg-gold/15 text-gold font-semibold"
                                       : "text-silver/80 hover:bg-white/[0.04] hover:text-white"
                                     }`}
                                 >
                                   <span>{serviceLabels[opt.value]?.[locale] || opt.value}</span>
-                                  {selectedService === opt.value && <Check className="w-4 h-4 text-gold" />}
+                                  {selectedService === opt.value && <Check className="w-3.5 h-3.5 text-gold" />}
                                 </div>
                               ))}
                             </motion.div>
@@ -607,34 +601,34 @@ export function ContactClient() {
                         </AnimatePresence>
 
                         {errors.service && (
-                          <span className="text-red-400 text-[11px] mt-1 block">{errors.service.message}</span>
+                          <span className="text-red-400 text-[10.5px] mt-0.5 block">{errors.service.message}</span>
                         )}
                       </div>
 
                       {/* Message Field */}
-                      <div className="space-y-2">
+                      <div className="space-y-1.5">
                         <div className="flex items-center justify-between">
-                          <label className={`${fcUi} text-[10px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
+                          <label className={`${fcUi} text-[9.5px] font-bold tracking-[0.2em] uppercase text-silver/40 block flex items-center gap-1.5`}>
                             <span className="w-1 h-1 rounded-full bg-gold/60" />
                             {dict.messageLabel[locale]} <span className="text-gold">*</span>
                           </label>
-                          <span className="text-[10px] font-mono text-silver/30">
+                          <span className="text-[9.5px] font-mono text-silver/30">
                             {messageContent.length} / 500
                           </span>
                         </div>
                         <div className="relative group">
                           <textarea
                             {...register("message")}
-                            rows={4}
+                            rows={3}
                             maxLength={500}
-                            placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك والتحديات الهندسية..." : "Tell us about your chemical plant challenges and project scope..."}
+                            placeholder={locale === "ar" ? "أخبرنا بالتفصيل عن احتياجات مصنعك..." : "Tell us about your chemical plant challenges..."}
                             className={`w-full bg-white/[0.03] border ${errors.message ? "border-red-500/40 focus:border-red-500" : "border-white/[0.08] hover:border-white/20 focus:border-gold"
-                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-sm font-light px-4 py-[14px] rounded-lg resize-none`}
+                              } focus:bg-navy-dark/95 focus:shadow-[0_0_15px_rgba(240,160,32,0.25)] outline-none transition-all duration-300 text-white placeholder-silver/20 ${fcBody} text-xs sm:text-sm font-light px-3.5 py-2.5 rounded-lg resize-none`}
                           ></textarea>
                           <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 ease-out group-focus-within:w-[80%] rounded-full pointer-events-none" />
                         </div>
                         {errors.message && (
-                          <span className="text-red-400 text-[11px] mt-1 block">{errors.message.message}</span>
+                          <span className="text-red-400 text-[10.5px] mt-0.5 block">{errors.message.message}</span>
                         )}
                       </div>
 
@@ -642,9 +636,8 @@ export function ContactClient() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`group w-full relative overflow-hidden rounded-lg bg-gradient-to-r from-gold via-gold-light to-gold hover:from-gold-light hover:to-gold text-navy py-4 transition-all duration-300 shadow-[0_10px_25px_rgba(240,160,32,0.2)] hover:shadow-[0_15px_30px_rgba(240,160,32,0.35)] hover:-translate-y-0.5 active:translate-y-0 ${fcUi} text-xs font-bold tracking-[0.18em] uppercase disabled:opacity-75 disabled:cursor-not-allowed`}
+                        className={`group w-full relative overflow-hidden rounded-lg bg-gradient-to-r from-gold via-gold-light to-gold hover:from-gold-light hover:to-gold text-navy py-3 transition-all duration-300 shadow-[0_8px_20px_rgba(240,160,32,0.2)] hover:shadow-[0_12px_25px_rgba(240,160,32,0.35)] hover:-translate-y-0.5 active:translate-y-0 ${fcUi} text-xs font-bold tracking-[0.18em] uppercase disabled:opacity-75 disabled:cursor-not-allowed`}
                       >
-                        {/* Premium Automatic Looping Shimmer Sweep */}
                         <motion.div
                           className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
                           initial={{ x: "-150%" }}
@@ -661,13 +654,13 @@ export function ContactClient() {
                         <span className="relative z-10 flex items-center justify-center gap-2">
                           {isSubmitting ? (
                             <>
-                              <Loader2 className="w-4 h-4 animate-spin text-navy" />
+                              <Loader2 className="w-3.5 h-3.5 animate-spin text-navy" />
                               <span>{dict.sending[locale]}</span>
                             </>
                           ) : (
                             <>
                               <span>{dict.submit[locale]}</span>
-                              <ArrowRight className={`w-4 h-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
+                              <ArrowRight className={`w-3.5 h-3.5 shrink-0 transition-transform duration-300 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 ${rtl ? "rotate-180" : ""}`} />
                             </>
                           )}
                         </span>
@@ -684,29 +677,29 @@ export function ContactClient() {
       </div>
 
       {/* Bottom Industrial Trust & Assurance Banner */}
-      <div className="w-full border-t border-white/[0.08] bg-navy-dark/90 backdrop-blur-xl py-5 px-4 sm:px-8 relative z-20">
-        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-start">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 shadow-[0_0_12px_rgba(240,160,32,0.15)]">
-              <Sparkles className="w-4 h-4" />
+      <div className="w-full border-t border-white/[0.08] bg-navy-dark/90 backdrop-blur-xl py-3.5 px-4 sm:px-8 relative z-20 shrink-0">
+        <div className="max-w-[1280px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2.5 text-center md:text-start">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold shrink-0 shadow-[0_0_10px_rgba(240,160,32,0.15)]">
+              <Sparkles className="w-3.5 h-3.5" />
             </div>
             <div>
-              <h4 className={`${fcDisplay} text-xs sm:text-sm font-semibold text-white`}>
+              <h4 className={`${fcDisplay} text-xs font-semibold text-white`}>
                 {locale === "ar" ? "تواصل مباشر مع كبار مستشاري هندسة المصانع" : locale === "zh" ? "直接与高级工业顾问沟通" : "Direct Access to Senior Industrial Consultants"}
               </h4>
-              <p className="text-[11px] font-light text-silver/60">
+              <p className="text-[10.5px] font-light text-silver/60">
                 {locale === "ar" ? "بدون وسطاء مبيعات — استجابة فنية مباشرة لمشروعك" : locale === "zh" ? "无销售中介 — 为您的项目提供直接技术响应" : "No sales intermediaries — direct technical engineering response for your project"}
               </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] text-silver/70 font-mono">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[10.5px] text-silver/70 font-mono">
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
+              <CheckCircle2 className="w-3 h-3 text-gold shrink-0" />
               {locale === "ar" ? "تقييم فني سري" : locale === "zh" ? "保密技术评估" : "Confidential Review"}
             </span>
             <span className="flex items-center gap-1.5">
-              <CheckCircle2 className="w-3.5 h-3.5 text-gold shrink-0" />
+              <CheckCircle2 className="w-3 h-3 text-gold shrink-0" />
               {locale === "ar" ? "جاهزية تعبئة سريعة" : locale === "zh" ? "快速部署准备" : "Rapid Mobilization"}
             </span>
           </div>
