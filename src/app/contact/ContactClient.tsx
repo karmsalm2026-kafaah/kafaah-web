@@ -230,7 +230,7 @@ export function ContactClient() {
               </div>
 
               {/* Headline */}
-              <h1 className={`${fcDisplay} text-[clamp(19px,3.5vw,36px)] sm:whitespace-nowrap leading-[1.2] text-white font-medium`}>
+              <h1 className={`${fcDisplay} text-[clamp(19px,3.8vw,42px)] sm:whitespace-nowrap leading-[1.2] text-white font-medium`}>
                 <HoverWords text={dict.letsTalk[locale]} locale={locale} />
                 <HoverWords text={dict.letsTalkAccent[locale]} locale={locale} isGradient={true} />
               </h1>

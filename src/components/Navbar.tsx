@@ -173,7 +173,7 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Services Mega Menu (Dual-Column layout) */}
+          {/* Services Mega Menu (Compact Single-Column layout) */}
           <div className="nav-item-drop relative">
             <Link
               href="/services/"
@@ -184,27 +184,27 @@ export function Navbar() {
               <ChevronDown className={`w-3 h-3 opacity-40 transition-transform duration-300`} />
             </Link>
             {/* Mega Menu Dropdown */}
-            <div className="nav-dropdown absolute top-[72px] left-1/2 -translate-x-1/2 pt-4 w-[660px]">
-              <div className="bg-navy-deep/98 backdrop-blur-xl border border-white/[0.15] rounded-sm shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden">
-                <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60" />
-                <div className="grid grid-cols-2 gap-1.5 p-3">
+            <div className="nav-dropdown absolute top-[72px] left-1/2 -translate-x-1/2 pt-4 w-[520px] max-w-[92vw]">
+              <div className="bg-navy-deep/98 backdrop-blur-xl border border-white/[0.15] rounded-sm shadow-[0_25px_70px_rgba(0,0,0,0.85)] overflow-hidden max-h-[calc(100vh-88px)] overflow-y-auto">
+                <div className="h-[2px] bg-gradient-to-r from-gold/60 via-gold to-gold/60 sticky top-0 z-10" />
+                <div className="grid grid-cols-1 gap-1 p-1.5">
                   {navServices.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="flex items-center gap-3.5 px-3.5 py-2.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-300 group/item border border-transparent hover:border-white/5"
+                      className="flex items-center gap-3 px-3 py-1.5 rounded-sm hover:bg-gold/[0.08] transition-all duration-200 group/item border border-transparent hover:border-white/5"
                     >
-                      <div className="w-8 h-8 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-500 group-hover/item:border-gold group-hover/item:bg-gold/[0.06] group-hover/item:scale-110 group-hover/item:shadow-[0_0_15px_rgba(240,160,32,0.15)]">
-                        <div className="transition-transform duration-500 group-hover/item:rotate-6">
+                      <div className="w-6 h-6 rounded-sm border border-gold/25 bg-gold/[0.02] text-gold flex items-center justify-center shrink-0 transition-all duration-300 group-hover/item:border-gold group-hover/item:bg-gold/[0.06] group-hover/item:scale-105">
+                        <div className="transition-transform duration-300 group-hover/item:rotate-6">
                           {getServiceIcon(item.slug)}
                         </div>
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <span className={`${fc} block text-[10.5px] font-bold uppercase tracking-wider text-cloud/85 group-hover/item:text-white transition-colors leading-tight`}>
+                      <div className="flex-1 min-w-0 flex items-center justify-between gap-2">
+                        <span className={`${fc} block text-[11px] font-bold uppercase tracking-wider text-cloud/85 group-hover/item:text-white transition-colors leading-tight truncate`}>
                           {item.label}
                         </span>
                         {item.sub && (
-                          <span className="block font-[family-name:var(--font-body)] text-[9.5px] text-gold/70 tracking-normal mt-0.5 opacity-80 group-hover/item:opacity-100 transition-opacity">
+                          <span className="hidden sm:inline-block font-[family-name:var(--font-body)] text-[9.5px] text-gold/70 tracking-normal opacity-75 group-hover/item:opacity-100 shrink-0 truncate max-w-[190px]">
                             {item.sub}
                           </span>
                         )}
@@ -213,7 +213,7 @@ export function Navbar() {
                   ))}
                 </div>
                 {/* View all services footer link */}
-                <div className="border-t border-white/[0.08] px-5 py-3 bg-white/[0.01]">
+                <div className="border-t border-white/[0.08] px-4 py-2 bg-white/[0.01] sticky bottom-0 z-10 bg-navy-deep">
                   <Link
                     href="/services/"
                     className={`flex items-center gap-2 ${fc} text-[11px] font-semibold text-gold/80 hover:text-gold transition-colors duration-200 group/all`}

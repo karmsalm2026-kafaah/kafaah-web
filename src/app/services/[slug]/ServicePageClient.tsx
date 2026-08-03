@@ -3112,36 +3112,6 @@ function InvestorAdvisoryView({ service, relatedTechs }: Props) {
         </div>
       </section>
 
-      {/* 2. Experience Bar */}
-      <section className="py-12 bg-navy-dark border-b border-white/[0.05]">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 sm:p-8 rounded-sm">
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-6">
-              {expData.eyebrow[locale]}
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
-              {((expData.stats as any)[locale] || expData.stats.en).map((st: any, idx: number) => {
-                const StatIcon = st.icon;
-                return (
-                  <div key={idx} className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-gold/10">
-                      <StatIcon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-cloud">
-                        {st.value}
-                      </div>
-                      <div className="text-[11px] font-light text-silver/80 leading-snug">
-                        {st.label}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 3. Service Scope */}
       <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
@@ -4089,36 +4059,6 @@ function OwnersEngineerView({ service, relatedTechs }: Props) {
         </div>
       </section>
 
-      {/* 2. Experience Bar */}
-      <section className="py-12 bg-navy-dark border-b border-white/[0.05]">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="bg-navy-card/40 backdrop-blur-md border border-white/[0.12] p-6 sm:p-8 rounded-sm">
-            <div className="font-[family-name:var(--font-ui)] text-[10px] font-bold tracking-[0.3em] uppercase text-gold mb-6">
-              {expData.eyebrow[locale]}
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
-              {((expData.stats as any)[locale] || expData.stats.en).map((st: any, idx: number) => {
-                const StatIcon = st.icon;
-                return (
-                  <div key={idx} className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-full border border-gold/40 flex items-center justify-center text-gold shrink-0 bg-gold/10">
-                      <StatIcon className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-cloud">
-                        {st.value}
-                      </div>
-                      <div className="text-[11px] font-light text-silver/80 leading-snug">
-                        {st.label}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 3. Service Scope */}
       <section className="py-24 bg-navy-deep relative border-b border-white/[0.05]">
